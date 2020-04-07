@@ -4,7 +4,7 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="../../../assets/css/main.css" />
 <title>1:1 문의하기</title>
 </head>
 <body>
@@ -59,11 +59,11 @@
 				href="https://html5up.net">HTML5 UP</a>.
 		</p>
 	</footer>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
+	<script src="../../../assets/js/jquery.min.js"></script>
+	<script src="../../../assets/js/skel.min.js"></script>
+	<script src="../../../assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>
+	<script src="../../../assets/js/main.js"></script>
 			
 
 </body>
