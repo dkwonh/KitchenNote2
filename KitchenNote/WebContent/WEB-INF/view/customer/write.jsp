@@ -6,6 +6,7 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
+<!-- 새 글 쓰기 -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -13,6 +14,7 @@
 			var title = $("#title").val();
 			var content = $("#content").val();
 			var writer = $("#writer").val();
+			var regdate = $("#regdate").val();
 			if (title == "") {
 				alert("제목을 입력하세요.");
 				document.form1.title.focus();
@@ -23,6 +25,10 @@
 				document.form1.content.focus();
 				return;
 			}
+			document.form1.submit();
+		});
+		$("#btnCancel").click(function() {
+			document.form1.action = "list.do"
 			document.form1.submit();
 		});
 	});
@@ -59,9 +65,12 @@
 				<textarea name="content" id="content" rows="8" cols="80"
 					placeholder="글 내용 입력"></textarea>
 			</div>
+			<input type="hidden" name="writer" value="testWriter">
+			<%--  <input type="hidden" name="regdate" value="${dto.regdate }"> --%>
 			<div style="width: 650px; text-align: center;">
 				<button type="button" id="btnSave">
-					확인 <button type="reset" id="nn">취소
+					확인</button>
+					<button type="button" id="btnCancel">취소</button>
 			</div>
 		</form>
 		<h2>고객센터</h2>
@@ -72,6 +81,7 @@
 					<li><a href="#">1:1 문의하기</a></li>
 					<li><a href="#">내 문의 내역</a></li>
 				</ul></li>
+				</ul>
 	</nav>
 
 	<footer id="footer">

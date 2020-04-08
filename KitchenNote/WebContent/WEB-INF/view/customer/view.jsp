@@ -7,16 +7,18 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
+<!-- 내 문의 내역 게시물 상세내용 보기 -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("btnDelete").click(function() {
+		$("#btnDelete").click(function() {
 			if (confirm("삭제하시겠습니까?")) {
-				document.form1.action = "${path}/customer.delete.do";
+				document.form1.action = "delete.do"
 				document.form1.submit();
 			}
 		});
 		$("#btnUpdate").click(function() {
-			var title = $("#title").val();
+			/* var title = $("#title").val();
 			var content = $("#content").val();
 			var writer = $("#writer").val();
 			if (title == "") {
@@ -28,13 +30,12 @@
 				alert("내용을 입력하세요.");
 				document.form1.content.focus();
 				return;
-			}
-			if (writer == "") {
-				alert("이름을 입력하세요.");
-				document.form1.writer.focus();
-				return;
-			}
-			document.form1.action = "${path}/customer/update.do"
+			} */
+			document.form1.action = "update.do?bno=" + ${dto.bno};
+			document.form1.submit();
+		});
+		$("#btnNon").click(function() {
+			document.form1.action = "list.do"
 			document.form1.submit();
 		});
 	});
@@ -67,7 +68,11 @@
 			</div>
 			<div>조회수 : ${dto.viewcnt }</div>
 			<div>
-				제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
+				이름 <input name="writer" id="writer" value="${dto.writer }" readonly>
+			</div>
+			<div>
+				제목<input value="${dto.title}" name="title" id="title" size="80"
+					readonly>
 			</div>
 			<div>
 				공개여부 <input type="radio" name="open" value="공개">공개 <input
@@ -75,25 +80,24 @@
 			</div>
 			<div>
 				내용
-				<textarea name="content" id="content" rows="8" cols="80"
-					placeholder="글 내용 입력">${dto.content}</textarea>
+				<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
 			</div>
-			<div>
-				이름 <input name="writer" id="writer" value="${dto.writer }"
-					placeholder="이름 입력">
-			</div>
+
 			<div style="width: 650px; text-align: center;">
 				<input type="hidden" name="bno" value="${dto.bno}">
 				<button type="button" id="btnUpdate">수정</button>
 				<button type="button" id="btnDelete">삭제</button>
+				<button type="button" id="btnNon">확인</button>
 			</div>
-			<ul>
-				<li><a href="#">자주 묻는 질문/FAQ</a></li>
-				<li><span class="opener">1:1 문의</span>
-					<ul>
-						<li><a href="#">1:1 문의하기</a></li>
-						<li><a href="#">내 문의 내역</a></li>
-					</ul></li>
+		</form>
+		<ul>
+			<li><a href="#">자주 묻는 질문/FAQ</a></li>
+			<li><span class="opener">1:1 문의</span>
+				<ul>
+					<li><a href="#">1:1 문의하기</a></li>
+					<li><a href="#">내 문의 내역</a></li>
+				</ul></li>
+		</ul>
 	</nav>
 
 	<footer id="footer">

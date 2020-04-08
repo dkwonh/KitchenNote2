@@ -33,7 +33,7 @@
 	</bean>
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
+			<mvc:mapping path="/KitchenNote" />
 			<bean
 				class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
 				p:paramName="language" />

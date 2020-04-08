@@ -13,45 +13,63 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value="/customer/")
+@RequestMapping(value = "/customer/")
 public class BoardController {
 
 	@Autowired
 	BoardService boardService;
-	
+
 	@RequestMapping("list.do") // 게시글 목록
-	public ModelAndView list() throws Exception{
+	public ModelAndView list() throws Exception {
 		List<BoardDto> list = boardService.listAll();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/list");
-		mav.addObject("list",list);
-		System.out.println(list);
+		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping(value="write.do", method=RequestMethod.GET)
+
+	@RequestMapping(value = "write.do", method = RequestMethod.GET)
 	public String write() {
 		return "customer/write";
 	} // 게시글 작성화면
-	
-	@RequestMapping(value="insert.do",method=RequestMethod.POST)
-	public String insert(@ModelAttribute BoardDto dto) throws Exception{
+
+	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
+	public String insert(@ModelAttribute BoardDto dto) throws Exception {
 		boardService.create(dto);
 		return "redirect:list.do";
 	} // 게시글 작성 처리
-	@RequestMapping(value="view.do",method=RequestMethod.GET)
-	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception{
-		boardService.increaseViewcnt(bno,session);
+
+	@RequestMapping(value = "view.do", method = RequestMethod.GET)
+	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception {
+		boardService.increaseViewcnt(bno, session);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/view");
-		mav.addObject("dto",boardService.read(bno));
+		mav.addObject("dto", boardService.read(bno));
+		mav.addObject("bno", bno);
 		return mav;
 	} // 게시글 상세 내용 조회, 게시글 조회수 증가 처리
-	@RequestMapping(value="update.do",method=RequestMethod.POST)
-	public String update(@ModelAttribute BoardDto dto) throws Exception{
-		return "redirect:list.do";
+
+	@RequestMapping(value = "view.do", method = RequestMethod.POST)
+	public ModelAndView cancleView(@RequestParam int bno, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("customer/view");
+		mav.addObject("dto", boardService.read(bno));
+		return mav;
+	} // 취소 버튼
+
+	@RequestMapping(value = "update.do", method = RequestMethod.POST)
+	public String update(@ModelAttribute("dto") BoardDto dto) throws Exception {
+		return "customer/modifiedView";
 	} // 게시글 수정
+
+	@RequestMapping(value = "update2.do", method = RequestMethod.GET)
+	public String update2(@ModelAttribute("dto") BoardDto dto) throws Exception {
+		boardService.update(dto);
+		return "redirect:list.do";
+	}
+
 	@RequestMapping("delete.do")
-	public String delete(@RequestParam int bno) throws Exception{
+	public String delete(@RequestParam int bno) throws Exception {
 		boardService.delete(bno);
 		return "redirect:list.do";
 	}

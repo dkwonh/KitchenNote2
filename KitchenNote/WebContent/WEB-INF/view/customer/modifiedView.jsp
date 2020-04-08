@@ -1,23 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <html>
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
-<!-- 내 문의 내역 홈 -->
+<!-- 글 수정 폼  -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#btnWrite").click(function() {
-			location.href = "write.do";
+		$("#btnReset").click(function() {
+			if (confirm("취소 하시겠습니까?")) {
+				document.form2.action = "view.do";
+				document.form2.submit();
+			}
 		});
+		$("#btnConfirm").click(function() {
+			var title = $("#title").val();
+			var content = $("#content").val();
+			var writer = $("#writer").val();
+			var regdate = $("#regdate").val();
+			if (title == "") {
+				alert("제목을 입력하세요.");
+				document.form2.title.focus();
+				return;
+			}
+			if (content == "") {
+				alert("내용을 입력하세요.");
+				document.form2.content.focus();
+				return;
+			} else {
+				confirm("저장 하시겠습니까?");
+				document.form2.action = "update2.do"
+					document.form2.submit();
+			}
+			
+		}); 
 	});
-	
 </script>
 </head>
 <body>
@@ -37,35 +57,31 @@
 		<input type="button" value="카테고리"> <input type="button"
 			value="레시피"> <input type="button" value="이벤트"> <input
 			type="button" value="고객센터"><br>
-		<h2>내 문의 내역</h2>
-		<h4>내 문의 내역</h4>
-		<p>
-			분류<select id="select1" name="">
-				<option value="1">순번</option>
-				<option value="2">제목</option>
-				<option value="3">등록일</option>
-			</select>
-			<button type="button" id="btnWrite">글쓰기</button>
-		<table border="1" width="600px">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일자</th>
-				<th>조회수</th>
-			</tr>
-			<c:forEach var="row" items="${list}">
-				<tr>
-					<td>${row.bno}</td>
-					<td><a href="view.do?bno=${row.bno}">${row.title }</a></td>
-					<td>${row.writer }</td>
-					<td><fmt:formatDate value="${row.regdate }"
-							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td>${row.viewcnt }</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<h2>고객센터</h2>
+
+		<h2>수정하기</h2>
+		<form name="form2" method="GET">
+			<div>
+				제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
+			</div>
+			<div>
+				공개여부 <input type="radio" name="open" value="공개">공개 <input
+					type="radio" name="open" value="비공개">비공개
+			</div>
+			<div>
+				내용
+				<textarea name="content" id="content" rows="8" cols="80"
+					placeholder="글 내용 입력"></textarea>
+			</div>
+			<div style="width: 650px; text-align: center;">
+				<input type="hidden" name="bno" value="${dto.bno}">
+				<input type="hidden" name="writer" value="${dto.writer }">
+<%-- 				<input type="hidden" name="regdate" value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss">
+				<fmt:formatDate value="${dto.regdate }"
+					pattern="yyyy-MM-dd a HH:mm:ss" /> --%>
+				<button type="button" id="btnConfirm">저장</button>
+				<button type="button" id="btnReset">취소</button>
+			</div>
+		</form>
 		<ul>
 			<li><a href="#">자주 묻는 질문/FAQ</a></li>
 			<li><span class="opener">1:1 문의</span>
@@ -74,7 +90,6 @@
 					<li><a href="#">내 문의 내역</a></li>
 				</ul></li>
 		</ul>
-
 	</nav>
 
 	<footer id="footer">
@@ -87,6 +102,9 @@
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="../assets/js/main.js"></script>
+
+
 </body>
 </html>

@@ -17,4 +17,6 @@ public interface BoardDao {
 	public List<BoardDto> listAll() throws Exception;
 
 	public void increaseViewcnt(int bno) throws Exception;
+	
+	public List<BoardDto> listPaging(int page) throws Exception;
 }
