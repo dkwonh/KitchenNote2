@@ -18,19 +18,6 @@
 			}
 		});
 		$("#btnUpdate").click(function() {
-			/* var title = $("#title").val();
-			var content = $("#content").val();
-			var writer = $("#writer").val();
-			if (title == "") {
-				alert("제목을 입력하세요.");
-				document.form1.title.focus();
-				return;
-			}
-			if (content == "") {
-				alert("내용을 입력하세요.");
-				document.form1.content.focus();
-				return;
-			} */
 			document.form1.action = "update.do?bno=" + ${dto.bno};
 			document.form1.submit();
 		});
@@ -38,7 +25,9 @@
 			document.form1.action = "list.do"
 			document.form1.submit();
 		});
+		$("input[name='open']").attr('disabled',true);
 	});
+
 </script>
 </head>
 <body>
@@ -74,9 +63,12 @@
 				제목<input value="${dto.title}" name="title" id="title" size="80"
 					readonly>
 			</div>
-			<div>
-				공개여부 <input type="radio" name="open" value="공개">공개 <input
-					type="radio" name="open" value="비공개">비공개
+			<div class="4u 12u$(small)" readonly>
+				공개 여부 :<input type="radio" id="demo-priority-normal"
+					name="open" value="${dto.open }" checked> <label
+					for="demo-priority-normal">공개</label> <input type="radio"
+					id="demo-priority-high" name="open" value="${dto.open }" checked> <label
+					for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용

@@ -1,6 +1,7 @@
 package custom.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,10 +22,19 @@ public class BoardController {
 
 	@RequestMapping("list.do") // 게시글 목록
 	public ModelAndView list() throws Exception {
+
 		List<BoardDto> list = boardService.listAll();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/list");
 		mav.addObject("list", list);
+		/*
+		 * Criteria cri = new Criteria(); ModelAndView mav = new
+		 * ModelAndView("customer/list.do"); PageMaker pageMaker = new PageMaker();
+		 * pageMaker.setCri(cri);
+		 * pageMaker.setTotalCount(boardService.countBoardList());
+		 * List<Map<String,Object>> list = boardService.pageList(cri);
+		 * mav.addObject("list", list); mav.addObject("pageMaker",pageMaker);
+		 */
 		return mav;
 	}
 
@@ -35,7 +45,7 @@ public class BoardController {
 
 	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
 	public String insert(@ModelAttribute BoardDto dto) throws Exception {
-		boardService.create(dto);
+		 boardService.create(dto); 
 		return "redirect:list.do";
 	} // 게시글 작성 처리
 
@@ -73,4 +83,19 @@ public class BoardController {
 		boardService.delete(bno);
 		return "redirect:list.do";
 	}
+	/*
+	 * @RequestMapping(value="/boardPageList") public ModelAndView
+	 * boardPageList(Criteria cri, HttpSession session) throws Exception {
+	 * ModelAndView mav = null; if(session.getAttribute("id") == null) { mav = new
+	 * ModelAndView("redirect"); mav.addObject("msg", "잘못된 접근 입니다.");
+	 * mav.addObject("url", "login"); return mav; } else { mav = new
+	 * ModelAndView("/boardPageList"); PageMaker pageMaker = new PageMaker();
+	 * pageMaker.setCri(cri);
+	 * pageMaker.setTotalCount(boardService.countBoardList());
+	 * List<Map<String,Object>> list = boardService.pageList(cri);
+	 * mav.addObject("list", list); mav.addObject("pageMaker",pageMaker); return
+	 * mav;
+	 * 
+	 * } }
+	 */
 }

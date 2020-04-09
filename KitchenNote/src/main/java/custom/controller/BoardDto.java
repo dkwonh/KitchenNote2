@@ -10,6 +10,14 @@ public class BoardDto {
 	String writer;
 	Date regdate;
 	int viewcnt;
+	String open;
+	
+	public String getOpen() {
+		return open;
+	}
+	public void setOpen(String open) {
+		this.open = open;
+	}
 	public int getBno() {
 		return bno;
 	}
@@ -48,9 +56,10 @@ public class BoardDto {
 	}
 	@Override
 	public String toString() {
-		return "BaordDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + "]";
+		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", open=" + open + "]";
 	}
+
 	
 	
 }

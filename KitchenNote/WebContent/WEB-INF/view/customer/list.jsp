@@ -16,8 +16,9 @@
 		$("#btnWrite").click(function() {
 			location.href = "write.do";
 		});
+		/* $("#btnSearch").click(function(){
+			}); */
 	});
-	
 </script>
 </head>
 <body>
@@ -39,19 +40,28 @@
 			type="button" value="고객센터"><br>
 		<h2>내 문의 내역</h2>
 		<h4>내 문의 내역</h4>
+		<form name="searchform" method="post" >
 		<p>
-			분류<select id="select1" name="">
+			분류 :<select id="select1" name="select1">
 				<option value="1">순번</option>
 				<option value="2">제목</option>
 				<option value="3">등록일</option>
 			</select>
-			<button type="button" id="btnWrite">글쓰기</button>
+			검색 :<select id="select2" name="select2">
+			<option value="4">제목</option>
+			<option value="5">작성자</option>
+			</select>
+			<input type="search" placeholder="search">
+			<input type="button" id="btnSearch" value="검색">
+			</form>
+			</p>
 		<table border="1" width="600px">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일자</th>
+				<th>공개 여부</th>
 				<th>조회수</th>
 			</tr>
 			<c:forEach var="row" items="${list}">
@@ -61,9 +71,29 @@
 					<td>${row.writer }</td>
 					<td><fmt:formatDate value="${row.regdate }"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td>${row.open}</td>
 					<td>${row.viewcnt }</td>
 				</tr>
 			</c:forEach>
+		</table>
+		<button type="button" id="btnWrite">글쓰기</button>
+		<table>
+			<tr>
+				<c:if test="${pageMaker.prev}">
+					<td><a
+						href='<c:url value="customer/list.do?page=${pageMaker.startPage-1}"/>'>&laquo;</a>
+					</td>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<td><a href='<c:url value="customer/list.do"/>'>${idx}</a></td>
+				</c:forEach>
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<td><a
+						href='<c:url value="customer/list.do?page=${pageMaker.endPage+1}"/>'>&raquo;</a>
+					</td>
+				</c:if>
+			</tr>
 		</table>
 		<h2>고객센터</h2>
 		<ul>

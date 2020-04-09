@@ -1,8 +1,10 @@
 package custom.Model;
 
 import java.util.List;
+import java.util.Map;
 
 import custom.controller.BoardDto;
+/*import custom.controller.Criteria;*/
 
 public interface BoardDao {
 
@@ -18,5 +20,9 @@ public interface BoardDao {
 
 	public void increaseViewcnt(int bno) throws Exception;
 	
-	public List<BoardDto> listPaging(int page) throws Exception;
+	/*
+	 * public List<Map<String,Object>> pageList(Criteria cri) throws Exception;
+	 * 
+	 * public int countBoardList();
+	 */
 }

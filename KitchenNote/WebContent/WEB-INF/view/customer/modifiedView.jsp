@@ -21,6 +21,8 @@
 			var content = $("#content").val();
 			var writer = $("#writer").val();
 			var regdate = $("#regdate").val();
+			var open = $(":checked").val();
+		
 			if (title == "") {
 				alert("제목을 입력하세요.");
 				document.form2.title.focus();
@@ -30,7 +32,11 @@
 				alert("내용을 입력하세요.");
 				document.form2.content.focus();
 				return;
-			} else {
+			}if (open == null || open == "") {
+				alert("공개 여부를 체크하여 주세요.");
+				document.form1.open.focus();
+				return;
+			}else {
 				confirm("저장 하시겠습니까?");
 				document.form2.action = "update2.do"
 					document.form2.submit();
@@ -63,9 +69,12 @@
 			<div>
 				제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
 			</div>
-			<div>
-				공개여부 <input type="radio" name="open" value="공개">공개 <input
-					type="radio" name="open" value="비공개">비공개
+			<div class="4u 12u$(small)" >
+				공개 여부 :<input type="radio" id="demo-priority-normal"
+					name="open" value="공개"> <label
+					for="demo-priority-normal">공개</label> <input type="radio"
+					id="demo-priority-high" name="open" value="비공개"> <label
+					for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용

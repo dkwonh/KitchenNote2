@@ -3,6 +3,7 @@ package custom.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import custom.Model.BoardDao;
 import custom.controller.BoardDto;
 import custom.controller.BoardService;
+/*import custom.controller.Criteria;*/
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -71,4 +73,12 @@ public class BoardServiceImpl implements BoardService {
 		dao.increaseViewcnt(bno);
 
 	}
+	/*
+	 * @Override public List<Map<String,Object>> pageList(Criteria cri) throws
+	 * Exception{ return dao.pageList(cri); }
+	 * 
+	 * @Override public int countBoardList() throws Exception {
+	 * 
+	 * return dao.countBoardList(); }
+	 */
 }

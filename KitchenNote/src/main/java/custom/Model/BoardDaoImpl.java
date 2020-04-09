@@ -1,13 +1,13 @@
 package custom.Model;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import custom.controller.BoardDto;
+/*import custom.controller.Criteria;*/
+
 
 public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 
@@ -35,13 +35,11 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		getSqlSession().update("customer.increaseViewcnt", bno);
 	}
 
-	public List<BoardDto> listPaging(int page) throws Exception {
-		if (page <= 0) {
-			page = 1;
-		}
-		page = (page - 1) * 10;
-
-		return getSqlSession().selectList("customer.listpaging", page);
-	}
-
+	/*
+	 * @Override public List<Map<String,Object>> pageList(Criteria cri){ return
+	 * getSqlSession().selectList("customer.pageList", cri); }
+	 * 
+	 * public int countBoardList() { return
+	 * getSqlSession().selectOne("customer.countBoardList"); }
+	 */
 }
