@@ -7,6 +7,15 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
 <!-- 글 수정 폼  -->
+<style type="text/css">
+.navi input {
+	float: left;
+}
+
+.c input {
+	width: 25%
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -22,7 +31,7 @@
 			var writer = $("#writer").val();
 			var regdate = $("#regdate").val();
 			var open = $(":checked").val();
-		
+
 			if (title == "") {
 				alert("제목을 입력하세요.");
 				document.form2.title.focus();
@@ -32,17 +41,18 @@
 				alert("내용을 입력하세요.");
 				document.form2.content.focus();
 				return;
-			}if (open == null || open == "") {
+			}
+			if (open == null || open == "") {
 				alert("공개 여부를 체크하여 주세요.");
 				document.form1.open.focus();
 				return;
-			}else {
+			} else {
 				confirm("저장 하시겠습니까?");
 				document.form2.action = "update2.do"
-					document.form2.submit();
+				document.form2.submit();
 			}
-			
-		}); 
+
+		});
 	});
 </script>
 </head>
@@ -59,22 +69,21 @@
 						class="label">Instagram</span></a></li>
 			</ul>
 		</header>
-		<hr>
-		<input type="button" value="카테고리"> <input type="button"
-			value="레시피"> <input type="button" value="이벤트"> <input
-			type="button" value="고객센터"><br>
-
+		<div class="navi c">
+			<input type="button" value="카테고리"> <input type="button"
+				value="레시피"> <input type="button" value="이벤트"> <input
+				type="button" value="고객센터"><br>
+		</div>
 		<h2>수정하기</h2>
 		<form name="form2" method="GET">
 			<div>
 				제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
 			</div>
-			<div class="4u 12u$(small)" >
-				공개 여부 :<input type="radio" id="demo-priority-normal"
-					name="open" value="공개"> <label
-					for="demo-priority-normal">공개</label> <input type="radio"
-					id="demo-priority-high" name="open" value="비공개"> <label
-					for="demo-priority-high">비공개</label>
+			<div class="4u 12u$(small)">
+				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
+					value="공개"> <label for="demo-priority-normal">공개</label> <input
+					type="radio" id="demo-priority-high" name="open" value="비공개">
+				<label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용
@@ -82,9 +91,9 @@
 					placeholder="글 내용 입력"></textarea>
 			</div>
 			<div style="width: 650px; text-align: center;">
-				<input type="hidden" name="bno" value="${dto.bno}">
-				<input type="hidden" name="writer" value="${dto.writer }">
-<%-- 				<input type="hidden" name="regdate" value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss">
+				<input type="hidden" name="bno" value="${dto.bno}"> <input
+					type="hidden" name="writer" value="${dto.writer }">
+				<%-- 				<input type="hidden" name="regdate" value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss">
 				<fmt:formatDate value="${dto.regdate }"
 					pattern="yyyy-MM-dd a HH:mm:ss" /> --%>
 				<button type="button" id="btnConfirm">저장</button>

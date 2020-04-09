@@ -6,10 +6,22 @@
 <html>
 <head>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+	content="width=device-width, initial-scale=0.7, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
 <!-- 내 문의 내역 홈 -->
+<style type="text/css">
+.navi input{
+float: left;
+}
+.c input{
+width: 25%
+}
+.searchbtn input{
+
+font-size:15px; padding:10px 10px
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -24,8 +36,8 @@
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
+			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
+			<input type="search"><input type="button" class="button special small" value="검색">
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -34,14 +46,15 @@
 						class="label">Instagram</span></a></li>
 			</ul>
 		</header>
-		<hr>
+		<div class="navi c">
 		<input type="button" value="카테고리"> <input type="button"
 			value="레시피"> <input type="button" value="이벤트"> <input
 			type="button" value="고객센터"><br>
+			</div>
 		<h2>내 문의 내역</h2>
 		<h4>내 문의 내역</h4>
+		<div class="12u$">
 		<form name="searchform" method="post" >
-		<p>
 			분류 :<select id="select1" name="select1">
 				<option value="1">순번</option>
 				<option value="2">제목</option>
@@ -54,7 +67,7 @@
 			<input type="search" placeholder="search">
 			<input type="button" id="btnSearch" value="검색">
 			</form>
-			</p>
+			</div>
 		<table border="1" width="600px">
 			<tr>
 				<th>번호</th>

@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <title>1:1 문의하기</title>
 <!-- 내 문의 내역 게시물 상세내용 보기 -->
+<style type="text/css">
+.navi input{
+float: left;
+}
+.c input{
+width: 25%
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -43,11 +51,11 @@
 						class="label">Instagram</span></a></li>
 			</ul>
 		</header>
-		<hr>
+<div class="navi c">
 		<input type="button" value="카테고리"> <input type="button"
 			value="레시피"> <input type="button" value="이벤트"> <input
-			type="button" value="고객센터"><br>
-
+			type="button" value="고객센터">
+			</div><br>
 		<h2>1:1 문의하기</h2>
 		<form name="form1" method="post">
 			<div>
