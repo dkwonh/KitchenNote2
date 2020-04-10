@@ -98,10 +98,10 @@
 			<li><span class="opener">1:1 문의</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">내 문의
+						href="http://localhost:8082/KitchenNote/customer/list.do">- 내 문의
 							내역</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">1:1
+						href="http://localhost:8082/KitchenNote/customer/write.do">- 1:1
 							문의하기</a></li>
 				</ul></li>
 		</ul>

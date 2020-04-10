@@ -9,30 +9,39 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yh.admin.controller.AdminFaqDto;
-import yh.admin.model.AdminFaqDao;
+
+import yh.custom.controller.BoardDto;
+import yh.custom.controller.BoardService;
+import yh.custom.model.BoardDao;
 
 @Service
-public class AdminFaqServiceImpl implements AdminFaqService {
+public class AdminBoardServiceImpl implements BoardService {
 
 	@Autowired
-	AdminFaqDao dao;
+	BoardDao dao;
 
 	@Override
-	public void create(AdminFaqDto dto) throws Exception {
+	public void create(BoardDto dto) throws Exception {
 	
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = sdf.format(date);
+		dto.setRegdate(date);
 		dao.create(dto);
 	}
 
 	@Override
-	public AdminFaqDto read(int bno) throws Exception {
-		AdminFaqDto dto = dao.read(bno);
+	public BoardDto read(int bno) throws Exception {
+		BoardDto dto = dao.read(bno);
 		return dto;
 	}
 
 	@Override
-	public void update(AdminFaqDto dto) throws Exception {
-	
+	public void update(BoardDto dto) throws Exception {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String to = sdf.format(date);
+		dto.setRegdate(date);
 		dao.update(dto);
 	}
 
@@ -42,7 +51,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	}
 
 	@Override
-	public List<AdminFaqDto> listAll() throws Exception {
+	public List<BoardDto> listAll() throws Exception {
 		return dao.listAll();
 	}
 

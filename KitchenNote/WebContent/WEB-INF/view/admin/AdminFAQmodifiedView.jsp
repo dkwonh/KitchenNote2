@@ -102,17 +102,69 @@
 		</form>
 		<h2>고객센터</h2>
 		<ul>
-			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
-					묻는 질문/FAQ</a></li>
-			<li><span class="opener">1:1 문의</span>
+			<li><span class="opener">사용자 관리</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">내 문의
-							내역</a></li>
+						href="http://localhost:8082/KitchenNote/customer/list.do">- 일반
+							사용자 관리</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">1:1
-							문의하기</a></li>
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							쉐프 사용자 관리 </a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							쉐프 등업 신청확인 </a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							탈퇴자 관리 </a></li>
 				</ul></li>
+			<li><span class="opener">레시피 관리</span>
+				<ul>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">-
+							레시피 목록</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							유료 레시피 목록</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							삭제 레시피 목록 </a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							레시피 통계 </a></li>
+				</ul></li>
+			<li><span class="opener">결제 내역 관리</span>
+				<ul>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">-
+							레시피 결제 내역</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							쿠킹 클래스 결제 내역</a></li>
+				</ul></li>
+			<li><span class="opener">이벤트 관리</span>
+				<ul>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">- 쿠킹
+							클래스</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							강사 모집</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							종료된 이벤트 </a></li>
+				</ul></li>
+			<li><span class="opener">문의 사항</span>
+				<ul>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">- 자주
+							묻는 질문 /FAQ</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">-
+							1:1 문의</a></li>
+				</ul></li>
+				<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">홈페이지
+							통계 </a></li>
 		</ul>
 	</nav>
 
