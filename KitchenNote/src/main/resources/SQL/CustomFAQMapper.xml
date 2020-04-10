@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FAQ">
+	<select id="listAll" resultType="yh.custom.controller.FAQDto">
+		select * from FAQ_user2 order by
+		bno desc
+	</select>
+	<select id="FAQView" resultType="yh.custom.controller.FAQDto">
+	select * from FAQ_user2 where bno = #{bno}
+	</select>
+	
+	<update id="increaseViewcnt" parameterType="int">
+	update FAQ_user2 set viewcnt = viewcnt +1 where bno = #{bno}
+	</update>
+</mapper>

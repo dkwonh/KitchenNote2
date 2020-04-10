@@ -23,6 +23,20 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btnWrite").click(function() {
+			location.href = "AdminFAQWrite.do";
+		});
+		$("#choice").click(function(){
+			
+			});
+/* 		$(document).ready(function() {
+			$("#BtnModified").click(function() {
+				location.href = "AdminFAQWrite.do";
+			}); // 컨트롤러 생성 */
+	});
+</script>
 </head>
 <body>
 	<nav id="menu">
@@ -44,12 +58,12 @@
 				type="button" value="고객센터"><br>
 		</div>
 		<section>
-			<P>
-			<h3>자주 묻는 질문/FAQ</h3>
-			<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
-			질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.<br>
-			<p>
+			<form id="adForm1" method="post">
+				<h3>자주 묻는 질문/FAQ</h3>
+				<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
+				질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.<hr>
 		</section>
+		
 		<h4> 자주 찾는 도움말</h4>
 		<br>
 		<ul id="choice">
@@ -59,6 +73,7 @@
 			<li><a href="#">오류 및 수정</a></li>
 			<li><a href="#">신고</a></li>
 		</ul>
+		</form>
 		<br> 구분<select id="select1">
 			<option value="선택">선택</option>
 			<option value="레시피">레시피</option>
@@ -88,15 +103,16 @@
 				<th>구분</th>
 				<th>조회수</th>
 			</tr>
-			<c:forEach var="row" items="${FAQ}">
+			<c:forEach var="row" items="${AdminFAQ}">
 				<tr>
 					<td>${row.bno}</td>
-					<td><a href="FAQView.do?bno=${row.bno}">${row.title }</a></td>
-							<td>${row.menu}</td>
+					<td><a href="AdminFAQView.do?bno=${row.bno}">${row.title }</a></td>
+					<td>${row.menu}</td>
 					<td>${row.viewcnt }</td>
 				</tr>
 			</c:forEach>
 		</table>
+		<button type="button" id="btnWrite">글쓰기</button>
 		<p />
 		<h2>고객센터</h2>
 		<ul>

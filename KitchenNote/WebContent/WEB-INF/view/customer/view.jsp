@@ -9,11 +9,12 @@
 <title>1:1 문의하기</title>
 <!-- 내 문의 내역 게시물 상세내용 보기 -->
 <style type="text/css">
-.navi input{
-float: left;
+.navi input {
+	float: left;
 }
-.c input{
-width: 25%
+
+.c input {
+	width: 25%
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -33,9 +34,8 @@ width: 25%
 			document.form1.action = "list.do"
 			document.form1.submit();
 		});
-		$("input[name='open']").attr('disabled',true);
+		$("input[name='open']").attr('disabled', true);
 	});
-
 </script>
 </head>
 <body>
@@ -51,11 +51,12 @@ width: 25%
 						class="label">Instagram</span></a></li>
 			</ul>
 		</header>
-<div class="navi c">
-		<input type="button" value="카테고리"> <input type="button"
-			value="레시피"> <input type="button" value="이벤트"> <input
-			type="button" value="고객센터">
-			</div><br>
+		<div class="navi c">
+			<input type="button" value="카테고리"> <input type="button"
+				value="레시피"> <input type="button" value="이벤트"> <input
+				type="button" value="고객센터">
+		</div>
+		<br>
 		<h2>1:1 문의하기</h2>
 		<form name="form1" method="post">
 			<div>
@@ -72,11 +73,11 @@ width: 25%
 					readonly>
 			</div>
 			<div class="4u 12u$(small)" readonly>
-				공개 여부 :<input type="radio" id="demo-priority-normal"
-					name="open" value="${dto.open }" checked> <label
+				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
+					value="${dto.open }" checked> <label
 					for="demo-priority-normal">공개</label> <input type="radio"
-					id="demo-priority-high" name="open" value="${dto.open }" checked> <label
-					for="demo-priority-high">비공개</label>
+					id="demo-priority-high" name="open" value="${dto.open }" checked>
+				<label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용
@@ -90,12 +91,18 @@ width: 25%
 				<button type="button" id="btnNon">확인</button>
 			</div>
 		</form>
+		<h2>고객센터</h2>
 		<ul>
-			<li><a href="#">자주 묻는 질문/FAQ</a></li>
+			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
+					묻는 질문/FAQ</a></li>
 			<li><span class="opener">1:1 문의</span>
 				<ul>
-					<li><a href="#">1:1 문의하기</a></li>
-					<li><a href="#">내 문의 내역</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">내 문의
+							내역</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">1:1
+							문의하기</a></li>
 				</ul></li>
 		</ul>
 	</nav>

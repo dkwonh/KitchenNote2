@@ -10,7 +10,7 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="admin.*,custom.*" />
+	<context:component-scan base-package="yh.admin.*,yh.custom.*" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

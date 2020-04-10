@@ -11,15 +11,17 @@
 <title>1:1 문의하기</title>
 <!-- 내 문의 내역 홈 -->
 <style type="text/css">
-.navi input{
-float: left;
+.navi input {
+	float: left;
 }
-.c input{
-width: 25%
-}
-.searchbtn input{
 
-font-size:15px; padding:10px 10px
+.c input {
+	width: 25%
+}
+
+.searchbtn input {
+	font-size: 15px;
+	padding: 10px 10px
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -36,8 +38,9 @@ font-size:15px; padding:10px 10px
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
-			<input type="search"><input type="button" class="button special small" value="검색">
+			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
+				type="search"><input type="button"
+				class="button special small" value="검색">
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -47,27 +50,36 @@ font-size:15px; padding:10px 10px
 			</ul>
 		</header>
 		<div class="navi c">
-		<input type="button" value="카테고리"> <input type="button"
-			value="레시피"> <input type="button" value="이벤트"> <input
-			type="button" value="고객센터"><br>
+			<input type="button" value="카테고리"> <input type="button"
+				value="레시피"> <input type="button" value="이벤트"> <input
+				type="button" value="고객센터"><br>
+		</div>
+		<section>
+			<h2>내 문의 내역</h2>
+			<h4>내 문의 내역</h4>
+			<div class="12u$">
+				<form name="searchform" method="post">
+					구분 :<select id="select1" name="select1">
+						<option value="0">선택</option>
+						<option value="1">레시피</option>
+						<option value="2">쿠킹 클래스</option>
+						<option value="3">결제 및 환불</option>
+						<option value="4">오류 및 수정</option>
+						<option value="5">신고</option>
+					</select> 검색 :<select id="select2" name="select2">
+						<option value="6">선택</option>
+						<option value="7">제목</option>
+						<option value="8">작성자</option>
+					</select> <input type="search" placeholder="search"> <input
+						type="button" id="btnSearch" value="검색">
+				</form>
 			</div>
-		<h2>내 문의 내역</h2>
-		<h4>내 문의 내역</h4>
-		<div class="12u$">
-		<form name="searchform" method="post" >
-			분류 :<select id="select1" name="select1">
-				<option value="1">순번</option>
-				<option value="2">제목</option>
-				<option value="3">등록일</option>
+		</section>
+		<p>
+			정렬 :<select id="select3">
+				<option value="순번">순번</option>
+				<option value="조회수">조회수</option>
 			</select>
-			검색 :<select id="select2" name="select2">
-			<option value="4">제목</option>
-			<option value="5">작성자</option>
-			</select>
-			<input type="search" placeholder="search">
-			<input type="button" id="btnSearch" value="검색">
-			</form>
-			</div>
 		<table border="1" width="600px">
 			<tr>
 				<th>번호</th>
@@ -76,6 +88,7 @@ font-size:15px; padding:10px 10px
 				<th>작성일자</th>
 				<th>공개 여부</th>
 				<th>조회수</th>
+				<th>처리 상태</th>
 			</tr>
 			<c:forEach var="row" items="${list}">
 				<tr>
@@ -110,11 +123,16 @@ font-size:15px; padding:10px 10px
 		</table>
 		<h2>고객센터</h2>
 		<ul>
-			<li><a href="#">자주 묻는 질문/FAQ</a></li>
+			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
+					묻는 질문/FAQ</a></li>
 			<li><span class="opener">1:1 문의</span>
 				<ul>
-					<li><a href="#">1:1 문의하기</a></li>
-					<li><a href="#">내 문의 내역</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/list.do">내 문의
+							내역</a></li>
+					<li><a
+						href="http://localhost:8082/KitchenNote/customer/write.do">1:1
+							문의하기</a></li>
 				</ul></li>
 		</ul>
 
