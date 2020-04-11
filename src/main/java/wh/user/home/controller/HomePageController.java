@@ -50,7 +50,7 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("category3", categoryList.subList(16, 26));
 		model.addAttribute("category4", categoryList.subList(26, 36));
 
-		return "home/list";
+		return "homepage/home";
 	}
 
 	/* 메인 화면 모달창으로 대체됨
@@ -68,7 +68,7 @@ public class HomePageController implements ApplicationContextAware {
 	public String nangbuSearch(@RequestParam("ingredients[]") int ingredients[], Model model) {
 		List<HomePageRecipeDto> list = homePageService.searchFromIngre(ingredients);
 		model.addAttribute("dto", list);
-		return "home/searchList";
+		return "homepage/searchList";
 	}
 
 	// 냉부 재료 리스트 출력 GSON
@@ -88,7 +88,7 @@ public class HomePageController implements ApplicationContextAware {
 	public String search(String search, Model model) {
 		List<HomePageRecipeDto> list = homePageService.searchFromName(search);
 		model.addAttribute("dto", list);
-		return "home/searchList";
+		return "homepage/searchList";
 	}
 
 	// 관리자 페이지
@@ -125,7 +125,7 @@ public class HomePageController implements ApplicationContextAware {
 
 		List<HomePageRecipeDto> list = homePageService.searchFromCategory(c);
 		model.addAttribute("dto", list);
-		return "home/searchList";
+		return "homepage/searchList";
 	}
 
 	@Override
