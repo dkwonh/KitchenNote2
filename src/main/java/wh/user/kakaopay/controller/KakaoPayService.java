@@ -21,9 +21,9 @@ import wh.user.kakaopay.model.*;
 public class KakaoPayService {
 	private static final String HOST = "https://kapi.kakao.com";
 	@Autowired
-	private KakaoPayReadyVO kakaoPayReadyVO;
+	private KakaoPayReadyDto kakaoPayReadyVO;
 	
-	public String kakaoPayReady(KakaoPayRequestVO req) {
+	public String kakaoPayReady(KakaoPayRequestDto req) {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -49,7 +49,7 @@ public class KakaoPayService {
          HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
  
         try {
-            kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
+            kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyDto.class);
                   
             return kakaoPayReadyVO.getNext_redirect_pc_url();
  

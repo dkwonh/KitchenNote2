@@ -1,6 +1,6 @@
 package wh.user.kakaopay.model;
 
-public class KakaoPayRequestVO {
+public class KakaoPayRequestDto {
 	String item_name;
 	String quantity;
 	String total_amount;
