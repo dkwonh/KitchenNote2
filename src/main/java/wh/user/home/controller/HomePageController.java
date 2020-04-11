@@ -45,6 +45,7 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("nangbuCategory", nangbuCategory);
 
 		model.addAttribute("dto", recipeList);
+		if(categoryList.size()==0) {return "homepage/home";}
 		model.addAttribute("category1", categoryList.subList(0, 8));
 		model.addAttribute("category2", categoryList.subList(8, 16));
 		model.addAttribute("category3", categoryList.subList(16, 26));
