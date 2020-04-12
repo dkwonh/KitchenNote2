@@ -1,9 +1,11 @@
-package yh.custom.controller;
+package yh.custom.service;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+
+import yh.custom.controller.BoardDto;
 
 public interface BoardService {
 

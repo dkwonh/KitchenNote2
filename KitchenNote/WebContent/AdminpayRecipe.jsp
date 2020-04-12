@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
-<title>1:1 문의하기</title>
-<!-- 새 글 쓰기 -->
+<title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
 .navi input {
 	float: left;
@@ -15,84 +16,69 @@
 .c input {
 	width: 25%
 }
-</style>
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#btnSave").click(function() {
-			var title = $("#title").val();
-			var content = $("#content").val();
-			var writer = $("#writer").val();
-			var regdate = $("#regdate").val();
-			var open = $(":checked").val();
 
-			if (title == "") {
-				alert("제목을 입력하세요.");
-				document.form1.title.focus();
-				return;
-			}
-			if (content == "") {
-				alert("내용을 입력하세요.");
-				document.form1.content.focus();
-				return;
-			}
-			if (open == null || open == "") {
-				alert("공개 여부를 체크하여 주세요.");
-				document.form1.open.focus();
-				return;
-			}
-			document.form1.submit();
-		});
-		$("#btnCancel").click(function() {
-			document.form1.action = "list.do"
-			document.form1.submit();
-		});
-	});
-</script>
+.searchbtn input {
+	font-size: 15px;
+	padding: 10px 10px
+}
+</style>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
+			<select id="category">
+				<option value="#">카테고리</option>
+			</select> <input type="search"> <input type="button"
+				class="button special small" value="검색"> <a href="#"
+				class="KitchenNote"><strong>Kitchen</strong>Note</a>
 			<ul class="icons">
-				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon fa-facebook"><span
-						class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon fa-instagram"><span
-						class="label">Instagram</span></a></li>
+				<a href="#" class="icon fa-twitter"><span class="label">관리자</span></a>
+
 			</ul>
 		</header>
 		<div class="navi c">
 			<input type="button" value="카테고리"> <input type="button"
 				value="레시피"> <input type="button" value="이벤트"> <input
-				type="button" value="고객센터">
+				type="button" value="고객센터"><br>
 		</div>
-		<br>
-		<h2>1:1 문의하기</h2>
-		<form name="form1" method="post" action="insert.do">
-			<div>
-				제목 :<input name="title" id="title" size="80" placeholder="글 제목 입력">
+		<h2>유료 레시피 목록</h2>
+		<select id="select">
+			<option value="레시피 이름">레시피 이름</option>
+			<option value="작성자">작성자</option>
+		</select> <input type="search">
+		<button type="submit">검색</button>
+		<a href="#">Excel 파일로 다운 받기</a>
+		<table border="1" width="600px">
+			<tr>
+				<th>번호</th>
+				<th>레시피 이미지</th>
+				<th>레시피 이름</th>
+				<th>작성자</th>
+				<th><button type="submit" value="삭제"></th>
+			</tr>
+				<p>
+				<a href="#ex1" rel="modal:open">모달창띄우기</a>
+			</p>
+			<div id="ex1" class="modal" rel="modal:open">
+				<c:forEach var="row" items="${list}">
+					<tr>
+						<td>${row.bno}</td>
+						<td><a href="view.do?bno=${row.bno}">${row.title }</a></td>
+						<td>${row.writer }</td>
+						<td>${row.writer }</td>
+						<td>${row.writer }</td>
+					</tr>
+				</c:forEach>
+				<a href="#" rel="modal:close">닫기</a>
 			</div>
-			<br />
-			<div class="4u 12u$(small)">
-				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
-					value="공개"> <label for="demo-priority-normal">공개</label> <input
-					type="radio" id="demo-priority-high" name="open" value="비공개">
-				<label for="demo-priority-high">비공개</label>
-			</div>
-			<div>
-				내용 :
-				<textarea name="content" id="content" rows="8" cols="80"
-					placeholder="글 내용 입력"></textarea>
-			</div>
-			<input type="hidden" name="writer" value="testWriter">
-			<%--  <input type="hidden" name="regdate" value="${dto.regdate }"> --%>
-			<div style="width: 650px; text-align: center;">
-				<button type="button" id="btnSave">확인</button>
-				<button type="button" id="btnCancel">취소</button>
-			</div>
-		</form>
+		</table>
 		<h2>고객센터</h2>
 		<ul>
 			<li><span class="opener">사용자 관리</span>

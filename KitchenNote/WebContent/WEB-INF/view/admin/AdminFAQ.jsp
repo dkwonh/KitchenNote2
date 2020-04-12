@@ -28,9 +28,6 @@
 		$("#btnWrite").click(function() {
 			location.href = "AdminFAQWrite.do";
 		});
-		$("#choice").click(function() {
-
-		});
 		/* 		$(document).ready(function() {
 		 $("#BtnModified").click(function() {
 		 location.href = "AdminFAQWrite.do";

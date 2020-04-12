@@ -3,26 +3,25 @@ package yh.admin.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import yh.custom.controller.BoardDto;
-import yh.custom.controller.BoardService;
-import yh.custom.model.BoardDao;
+import yh.admin.controller.AdminBoardDto;
+import yh.admin.model.AdminBoardDao;
+
 
 @Service
-public class AdminBoardServiceImpl implements BoardService {
+public class AdminBoardServiceImpl implements AdminBoardService {
 
 	@Autowired
-	BoardDao dao;
+	AdminBoardDao dao;
 
 	@Override
-	public void create(BoardDto dto) throws Exception {
-	
+	public void create(AdminBoardDto dto) throws Exception {
+	System.out.println(dto);
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
@@ -31,13 +30,13 @@ public class AdminBoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardDto read(int bno) throws Exception {
-		BoardDto dto = dao.read(bno);
+	public AdminBoardDto read(int bno) throws Exception {
+		AdminBoardDto dto = dao.read(bno);
 		return dto;
 	}
 
 	@Override
-	public void update(BoardDto dto) throws Exception {
+	public void update(AdminBoardDto dto) throws Exception {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
@@ -51,7 +50,7 @@ public class AdminBoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> listAll() throws Exception {
+	public List<AdminBoardDto> listAll() throws Exception {
 		return dao.listAll();
 	}
 

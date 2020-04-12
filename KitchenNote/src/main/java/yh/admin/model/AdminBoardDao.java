@@ -1,21 +1,20 @@
 package yh.admin.model;
 
 import java.util.List;
-import java.util.Map;
 
-import yh.custom.controller.BoardDto;
+import yh.admin.controller.AdminBoardDto;
 
 public interface AdminBoardDao {
 
-	public void create(BoardDto dto) throws Exception;
+	public void create(AdminBoardDto dto) throws Exception;
 
-	public BoardDto read(int bno) throws Exception;
+	public AdminBoardDto read(int bno) throws Exception;
 
-	public int update(BoardDto dto) throws Exception;
+	public int update(AdminBoardDto dto) throws Exception;
 
 	public void delete(int bno) throws Exception;
 
-	public List<BoardDto> listAll() throws Exception;
+	public List<AdminBoardDto> listAll() throws Exception;
 
 	public void increaseViewcnt(int bno) throws Exception;
 	

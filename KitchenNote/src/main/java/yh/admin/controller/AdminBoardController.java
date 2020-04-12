@@ -22,13 +22,14 @@ public class AdminBoardController {
 	@Autowired
 	AdminBoardService adminboardService;
 
-	@RequestMapping("adminList.do") // 게시글 목록
+	@RequestMapping("AdminList.do") // 게시글 목록
 	public ModelAndView list() throws Exception {
 
 		List<AdminBoardDto> list = adminboardService.listAll();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/list");
-		mav.addObject("list", list);
+		System.out.println(list);
+		mav.setViewName("admin/AdminList");
+		mav.addObject("AdminList", list);
 		return mav;
 	}
 

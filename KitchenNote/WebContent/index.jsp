@@ -11,7 +11,7 @@
 	<br>
 	<a href="admin/AdminFAQ.do">자주 묻는 질문(관리자)</a>
 	<br>
-	<a href="admin/adminList.do">1:1 문의(관리자)</a>
+	<a href="admin/AdminList.do">1:1 문의(관리자)</a>
 	<br>
 </body>
 </html>

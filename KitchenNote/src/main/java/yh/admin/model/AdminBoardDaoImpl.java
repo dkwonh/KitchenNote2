@@ -1,37 +1,36 @@
 package yh.admin.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import yh.custom.controller.BoardDto;
+import yh.admin.controller.AdminBoardDto;
 
 
 public class AdminBoardDaoImpl extends SqlSessionDaoSupport implements AdminBoardDao {
 
-	public void create(BoardDto dto) throws Exception {
-		getSqlSession().insert("customer.insert", dto);
+	public void create(AdminBoardDto dto) throws Exception {
+		getSqlSession().insert("adminBoard.insert", dto);
 	}
 
-	public BoardDto read(int bno) throws Exception {
-		return getSqlSession().selectOne("customer.view", bno);
+	public AdminBoardDto read(int bno) throws Exception {
+		return getSqlSession().selectOne("adminBoard.view", bno);
 	}
 
-	public int update(BoardDto dto) throws Exception {
-		return getSqlSession().update("customer.updateArticle", dto);
+	public int update(AdminBoardDto dto) throws Exception {
+		return getSqlSession().update("adminBoard.updateArticle", dto);
 	}
 
 	public void delete(int bno) throws Exception {
-		getSqlSession().delete("customer.deleteArticle", bno);
+		getSqlSession().delete("adminBoard.deleteArticle", bno);
 	}
 
-	public List<BoardDto> listAll() throws Exception {
-		return getSqlSession().selectList("customer.listAll");
+	public List<AdminBoardDto> listAll() throws Exception {
+		return getSqlSession().selectList("adminBoard.listAll");
 	}
 
 	public void increaseViewcnt(int bno) throws Exception {
-		getSqlSession().update("customer.increaseViewcnt", bno);
+		getSqlSession().update("adminBoard.increaseViewcnt", bno);
 	}
 
 	/*

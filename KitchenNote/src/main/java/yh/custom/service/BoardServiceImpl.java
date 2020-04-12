@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yh.custom.controller.BoardDto;
-import yh.custom.controller.BoardService;
 import yh.custom.model.BoardDao;
 
 @Service

@@ -11,14 +11,7 @@ public class AdminBoardDto {
 	Date regdate;
 	int viewcnt;
 	String open;
-	String status;
-	
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
 	public String getOpen() {
 		return open;
 	}
