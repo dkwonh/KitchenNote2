@@ -254,8 +254,38 @@ function loadCategory(ing_category){
 					</form>
 				</div>
 			
-					기준1:<br>
-					<c:forEach var="item" items="${dto }">
+					1:<br>
+					<c:forEach var="item" items="${recommand1 }">
+						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
+							<img src="${item.image}"><br> ${item.recipe_Name }<br>
+							${item.recipe_Exp}<br> ${item.nickname }<br>
+							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
+						</fieldset>
+					</c:forEach>
+					<button id="recipe">더보기</button>
+					<br>
+					2:<br>
+					<c:forEach var="item" items="${recommand2 }">
+						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
+							<img src="${item.image}"><br> ${item.recipe_Name }<br>
+							${item.recipe_Exp}<br> ${item.nickname }<br>
+							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
+						</fieldset>
+					</c:forEach>
+					<button id="recipe">더보기</button>
+					<br>
+					3:<br>
+					<c:forEach var="item" items="${recommand3 }">
+						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
+							<img src="${item.image}"><br> ${item.recipe_Name }<br>
+							${item.recipe_Exp}<br> ${item.nickname }<br>
+							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
+						</fieldset>
+					</c:forEach>
+					<button id="recipe">더보기</button>
+					<br>
+					4:<br>
+					<c:forEach var="item" items="${recommand4 }">
 						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
 							<img src="${item.image}"><br> ${item.recipe_Name }<br>
 							${item.recipe_Exp}<br> ${item.nickname }<br>

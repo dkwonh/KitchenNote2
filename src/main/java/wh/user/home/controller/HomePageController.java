@@ -3,8 +3,11 @@ package wh.user.home.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,8 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
-import wh.user.home.dao.HomePageService;
+
 import wh.user.home.model.HomePageCategoryDto;
+import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
 
@@ -36,15 +40,28 @@ public class HomePageController implements ApplicationContextAware {
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Model model) {
 		
-		List<HomePageRecipeDto> recipeList = homePageService.recipe_home();
-		List<HomePageCategoryDto> categoryList = homePageService.categoryName();
+		Set<Integer> set = new HashSet<>();
+		while(set.size()<=3) {
+			Random random = new Random();
+			set.add(random.nextInt(36)+1);
+		}
+		List<Integer> category = new ArrayList<>(set);
+		
+		List<HomePageRecipeDto> recommand1 = homePageService.recipe_home(category.get(0));
+		List<HomePageRecipeDto> recommand2 = homePageService.recipe_home(category.get(1));
+		List<HomePageRecipeDto> recommand3 = homePageService.recipe_home(category.get(2));
+		List<HomePageRecipeDto> recommand4 = homePageService.recipe_home(category.get(3));
+		List<HomePageCategoryName> categoryList = homePageService.categoryName();
 		List<HomePageNangbuDto> nangbuList = homePageService.nangbuList(1);
 		Map<Integer, String> nangbuCategory = homePageService.nangbuCategoryList();
-
+		
 		model.addAttribute("nangbuList", nangbuList);
 		model.addAttribute("nangbuCategory", nangbuCategory);
-
-		model.addAttribute("dto", recipeList);
+		
+		model.addAttribute("recommand1", recommand1);
+		model.addAttribute("recommand2", recommand2);
+		model.addAttribute("recommand3", recommand3);
+		model.addAttribute("recommand4", recommand4);
 		if(categoryList.size()==0) {return "homepage/home";}
 		model.addAttribute("category1", categoryList.subList(0, 8));
 		model.addAttribute("category2", categoryList.subList(8, 16));
@@ -95,7 +112,7 @@ public class HomePageController implements ApplicationContextAware {
 	// 관리자 페이지
 	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
 	public String adminMain() {
-		return "admin/adminMain";
+		return "adminPage/admin";
 	}
 
 	// 카테고리 리스트 출력 **안씀**

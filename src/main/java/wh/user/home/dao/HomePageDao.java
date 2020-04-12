@@ -6,18 +6,19 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import wh.user.home.model.HomePageCategoryDto;
+import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
 
 public class HomePageDao extends SqlSessionDaoSupport {
 
 	// 메인화면에 보여질 레시피 리스트
-	public List<HomePageRecipeDto> recipe_home() {
-		return getSqlSession().selectList("home.recipe_home");
+	public List<HomePageRecipeDto> recipe_home(int category_id) {
+		return getSqlSession().selectList("home.recommandRecipe",category_id);
 	}
 
 	// 카테고리 리스트
-	public List<HomePageCategoryDto> categoryName() {
+	public List<HomePageCategoryName> categoryName() {
 		return getSqlSession().selectList("home.categoryName");
 	}
 

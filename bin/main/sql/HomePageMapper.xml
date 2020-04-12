@@ -66,4 +66,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
                     )
 	</select>
+	
+	<!-- 홈페이지 카테고리별 추천 -->
+	<select id="recommandRecipe" resultType="wh.user.home.model.HomePageRecipeDto" parameterType="int">
+		select * from recipe_info natural join recipe_category natural join category natural join members where category_id = #{category_id} limit 5;
+	</select>
+	
+	
 </mapper>

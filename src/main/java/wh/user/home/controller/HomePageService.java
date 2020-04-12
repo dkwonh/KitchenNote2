@@ -1,4 +1,4 @@
-package wh.user.home.dao;
+package wh.user.home.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import wh.user.home.dao.HomePageDao;
 import wh.user.home.model.HomePageCategoryDto;
+import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
 
@@ -17,12 +19,12 @@ public class HomePageService {
 	HomePageDao homePageDao;
 
 	// 메인화면에 보여질 레시피 리스트
-	public List<HomePageRecipeDto> recipe_home() {
-		return homePageDao.recipe_home();
+	public List<HomePageRecipeDto> recipe_home(int category_id) {
+		return homePageDao.recipe_home(category_id);
 	}
 
 	// 카테고리 리스트
-	public List<HomePageCategoryDto> categoryName() {
+	public List<HomePageCategoryName> categoryName() {
 		return homePageDao.categoryName();
 	}
 

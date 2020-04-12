@@ -21,12 +21,27 @@ public class HomePageRecipeDto {
 
 	 // 레시피 이름 
 	 private String recipe_Name;
+	 // 레시피 설명
 	 private String recipe_Exp;
 	 
 	 //필요시간
 	 private String duration;
 	 
+	 //작성자 닉네임
 	 private String nickname;
+	 
+	 //카테고리 이름
+	 private String category_name;
+	 
+	 
+
+	public String getCategory_name() {
+		return category_name;
+	}
+
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
 
 	public int getRecipe_Id() {
 		return recipe_Id;
