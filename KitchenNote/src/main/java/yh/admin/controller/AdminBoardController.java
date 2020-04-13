@@ -27,8 +27,8 @@ public class AdminBoardController {
 
 		List<AdminBoardDto> list = adminboardService.listAll();
 		ModelAndView mav = new ModelAndView();
-		System.out.println(list);
 		mav.setViewName("admin/AdminList");
+		System.out.println(list);
 		mav.addObject("AdminList", list);
 		return mav;
 	}
@@ -41,24 +41,26 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminInsert.do", method = RequestMethod.POST)
 	public String insert(@ModelAttribute AdminBoardDto dto) throws Exception {
 		adminboardService.create(dto); 
-		return "redirect:adminList.do";
+		System.out.println("ADMININSERT:");
+		System.out.println(dto);
+		return "redirect:AdminList.do";
 	} // 게시글 작성 처리
 
 	@RequestMapping(value = "adminView.do", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception {
-		adminboardService.increaseViewcnt(bno, session);
+	public ModelAndView view(@RequestParam int num, HttpSession session) throws Exception {
+		adminboardService.increaseViewcnt(num, session);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/view");
-		mav.addObject("dto", adminboardService.read(bno));
-		mav.addObject("bno", bno);
+		mav.setViewName("admin/AdminView");
+		mav.addObject("dto", adminboardService.read(num));
+		mav.addObject("num", num);
 		return mav;
 	} // 게시글 상세 내용 조회, 게시글 조회수 증가 처리
 
 	@RequestMapping(value = "adminView.do", method = RequestMethod.POST)
-	public ModelAndView cancleView(@RequestParam int bno, HttpSession session) throws Exception {
+	public ModelAndView cancleView(@RequestParam int num, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/AdminView");
-		mav.addObject("dto", adminboardService.read(bno));
+		mav.addObject("dto", adminboardService.read(num));
 		return mav;
 	} // 취소 버튼
 
@@ -70,12 +72,12 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminUpdate2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") AdminBoardDto dto) throws Exception {
 		adminboardService.update(dto);
-		return "redirect:adminList.do";
+		return "redirect:AdminList.do";
 	} 
 
 	@RequestMapping("adminDelete.do")
-	public String delete(@RequestParam int bno) throws Exception {
-		adminboardService.delete(bno);
-		return "redirect:adminList.do";
+	public String delete(@RequestParam int num) throws Exception {
+		adminboardService.delete(num);
+		return "redirect:AdminList.do";
 	}
 }

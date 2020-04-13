@@ -4,31 +4,27 @@ import java.util.Date;
 
 public class AdminBoardDto {
 
-	int bno;
-	String title;
+	int num;
+	String subject;
 	String content;
-	String writer;
-	Date regdate;
-	int viewcnt;
-	String open;
-
-	public String getOpen() {
-		return open;
+	String member_id;
+	Date reg_date;
+	String answer;
+	String status;
+	int readcount;
+	boolean secret;
+	
+	public int getNum() {
+		return num;
 	}
-	public void setOpen(String open) {
-		this.open = open;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public int getBno() {
-		return bno;
+	public String getSubject() {
+		return subject;
 	}
-	public void setBno(int bno) {
-		this.bno = bno;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 	public String getContent() {
 		return content;
@@ -36,30 +32,50 @@ public class AdminBoardDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWriter() {
-		return writer;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
-	public int getViewcnt() {
-		return viewcnt;
+	public String getAnswer() {
+		return answer;
 	}
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public boolean isSecret() {
+		return secret;
+	}
+	public void setSecret(boolean secret) {
+		this.secret = secret;
 	}
 	@Override
 	public String toString() {
-		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", open=" + open + "]";
+		return "AdminBoardDto [num=" + num + ", subject=" + subject + ", content=" + content + ", member_id="
+				+ member_id + ", reg_date=" + reg_date + ", answer=" + answer + ", status=" + status + ", readcount="
+				+ readcount + ", secret=" + secret + "]";
 	}
-
+	
+	
 	
 	
 }

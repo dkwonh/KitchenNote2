@@ -20,15 +20,15 @@
 <script>
 	$(document).ready(function() {
 		$("#btnSave").click(function() {
-			var title = $("#title").val();
+			var subject = $("#subject").val();
 			var content = $("#content").val();
-			var writer = $("#writer").val();
-			var regdate = $("#regdate").val();
-			var open = $(":checked").val();
+			var member_id = $("#member_id").val();
+			var reg_date = $("#reg_date").val();
+			var secret = $(":checked").val();
 
-			if (title == "") {
+			if (subject == "") {
 				alert("제목을 입력하세요.");
-				document.form1.title.focus();
+				document.form1.subject.focus();
 				return;
 			}
 			if (content == "") {
@@ -36,25 +36,30 @@
 				document.form1.content.focus();
 				return;
 			}
-			if (open == null || open == "") {
+			if (secret == null || secret == "") {
 				alert("공개 여부를 체크하여 주세요.");
-				document.form1.open.focus();
+				document.form1.secret.focus();
 				return;
 			}
 			document.form1.submit();
 		});
 		$("#btnCancel").click(function() {
-			document.form1.action = "list.do"
+			document.form1.action = "AdminList.do"
 			document.form1.submit();
 		});
 	});
 </script>
 </head>
 <body>
-	<nav id="menu">
+<div id="wrapper">
+<div id="main">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
+			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<section id="search" class="alt 4u 12u$">
+			<form method="post">
+			<input name="search" id="query" type="text">
+			</form>
+				</section>
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -69,16 +74,16 @@
 				type="button" value="고객센터">
 		</div>
 		<br>
-		<h2>1:1 문의하기</h2>
-		<form name="form1" method="post" action="insert.do">
+		<h2>답변 하기</h2>
+		<form name="form1" method="post" action="adminInsert.do">
 			<div>
-				제목 :<input name="title" id="title" size="80" placeholder="글 제목 입력">
+				제목 :<input name="subject" id="subject" size="80" placeholder="글 제목 입력">
 			</div>
 			<br />
 			<div class="4u 12u$(small)">
-				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
-					value="공개"> <label for="demo-priority-normal">공개</label> <input
-					type="radio" id="demo-priority-high" name="open" value="비공개">
+				공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
+					value="true"> <label for="demo-priority-normal">공개</label> <input
+					type="radio" id="demo-priority-high" name="secret" value="false">
 				<label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
@@ -86,13 +91,17 @@
 				<textarea name="content" id="content" rows="8" cols="80"
 					placeholder="글 내용 입력"></textarea>
 			</div>
-			<input type="hidden" name="writer" value="testWriter">
+			<input type="hidden" name="member_id" value="member_id">
 			<%--  <input type="hidden" name="regdate" value="${dto.regdate }"> --%>
 			<div style="width: 650px; text-align: center;">
 				<button type="button" id="btnSave">확인</button>
 				<button type="button" id="btnCancel">취소</button>
 			</div>
 		</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
 		<h2>고객센터</h2>
 		<ul>
 			<li><span class="opener">사용자 관리</span>
@@ -160,7 +169,9 @@
 					통계 </a></li>
 		</ul>
 	</nav>
-
+</div>
+</div>
+</div>
 	<footer id="footer">
 		<p class="copyright">
 			&copy; Untitled. All rights reserved. Demo Images: <a

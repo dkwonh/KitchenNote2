@@ -25,13 +25,13 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
-		dto.setRegdate(date);
+		dto.setReg_date(date);
 		dao.create(dto);
 	}
 
 	@Override
-	public AdminBoardDto read(int bno) throws Exception {
-		AdminBoardDto dto = dao.read(bno);
+	public AdminBoardDto read(int num) throws Exception {
+		AdminBoardDto dto = dao.read(num);
 		return dto;
 	}
 
@@ -40,13 +40,13 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
-		dto.setRegdate(date);
+		dto.setReg_date(date);
 		dao.update(dto);
 	}
 
 	@Override
-	public void delete(int bno) throws Exception {
-		dao.delete(bno);
+	public void delete(int num) throws Exception {
+		dao.delete(num);
 	}
 
 	@Override
@@ -55,8 +55,8 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public void increaseViewcnt(int bno, HttpSession session) throws Exception {
-		dao.increaseViewcnt(bno);
+	public void increaseViewcnt(int num, HttpSession session) throws Exception {
+		dao.increaseViewcnt(num);
 
 	}
 	/*

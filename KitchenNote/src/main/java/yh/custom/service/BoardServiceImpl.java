@@ -25,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
-		dto.setRegdate(date);
+		dto.setReg_date(date);
 		dao.create(dto);
 	}
 
@@ -40,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);
-		dto.setRegdate(date);
+		dto.setReg_date(date);
 		dao.update(dto);
 	}
 

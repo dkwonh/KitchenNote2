@@ -29,6 +29,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/list");
 		mav.addObject("list", list);
+		System.out.println(list);
 		/*
 		 * Criteria cri = new Criteria(); ModelAndView mav = new
 		 * ModelAndView("customer/list.do"); PageMaker pageMaker = new PageMaker();
@@ -52,37 +53,40 @@ public class BoardController {
 	} // 게시글 작성 처리
 
 	@RequestMapping(value = "view.do", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception {
-		boardService.increaseViewcnt(bno, session);
+	public ModelAndView view(@RequestParam int num, HttpSession session) throws Exception {
+		boardService.increaseViewcnt(num, session);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/view");
-		mav.addObject("dto", boardService.read(bno));
-		mav.addObject("bno", bno);
+		mav.addObject("dto", boardService.read(num));
+		mav.addObject("num", num);
 		return mav;
 	} // 게시글 상세 내용 조회, 게시글 조회수 증가 처리
 
 	@RequestMapping(value = "view.do", method = RequestMethod.POST)
-	public ModelAndView cancleView(@RequestParam int bno, HttpSession session) throws Exception {
+	public ModelAndView cancleView(@RequestParam int num, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/view");
-		mav.addObject("dto", boardService.read(bno));
+		mav.addObject("dto", boardService.read(num));
 		return mav;
 	} // 취소 버튼
 
 	@RequestMapping(value = "update.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") BoardDto dto) throws Exception {
+		System.out.println(dto);
 		return "customer/modifiedView";
+		
 	} // 게시글 수정
 
 	@RequestMapping(value = "update2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") BoardDto dto) throws Exception {
+		System.out.println(dto);
 		boardService.update(dto);
 		return "redirect:list.do";
 	} 
 
 	@RequestMapping("delete.do")
-	public String delete(@RequestParam int bno) throws Exception {
-		boardService.delete(bno);
+	public String delete(@RequestParam int num) throws Exception {
+		boardService.delete(num);
 		return "redirect:list.do";
 	}
 	/*

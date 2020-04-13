@@ -38,9 +38,12 @@
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button"
-				class="button special small" value="검색">
+				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<section id="search" class="alt 4u 12u$">
+			<form method="post">
+			<input name="search" id="query" type="text">
+			</form>
+				</section>
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -86,19 +89,19 @@
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일자</th>
-				<th>공개 여부</th>
 				<th>조회수</th>
+				<th>공개 여부</th>
 				<th>처리 상태</th>
 			</tr>
 			<c:forEach var="row" items="${list}">
 				<tr>
-					<td>${row.bno}</td>
-					<td><a href="view.do?bno=${row.bno}">${row.title }</a></td>
-					<td>${row.writer }</td>
-					<td><fmt:formatDate value="${row.regdate }"
+					<td>${row.num}</td>
+					<td><a href="view.do?num=${row.num}">${row.subject }</a></td>
+					<td>${row.member_id }</td>
+					<td><fmt:formatDate value="${row.reg_date }"
 							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td>${row.open}</td>
-					<td>${row.viewcnt }</td>
+					<td>${row.readcount }</td>
+					<td>${row.secret}</td>
 				</tr>
 			</c:forEach>
 		</table>

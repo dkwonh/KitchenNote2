@@ -7,11 +7,11 @@
 <body>
 	<a href="customer/list.do">1:1 문의</a>
 	<br>
+	<a href="admin/AdminList.do">1:1 문의(관리자)</a>
+	<br>
 	<a href="customer/FAQ.do">자주 묻는 질문</a>
 	<br>
 	<a href="admin/AdminFAQ.do">자주 묻는 질문(관리자)</a>
-	<br>
-	<a href="admin/AdminList.do">1:1 문의(관리자)</a>
 	<br>
 </body>
 </html>

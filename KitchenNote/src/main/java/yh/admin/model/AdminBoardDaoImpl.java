@@ -13,24 +13,24 @@ public class AdminBoardDaoImpl extends SqlSessionDaoSupport implements AdminBoar
 		getSqlSession().insert("adminBoard.insert", dto);
 	}
 
-	public AdminBoardDto read(int bno) throws Exception {
-		return getSqlSession().selectOne("adminBoard.view", bno);
+	public AdminBoardDto read(int num) throws Exception {
+		return getSqlSession().selectOne("adminBoard.view", num);
 	}
 
 	public int update(AdminBoardDto dto) throws Exception {
 		return getSqlSession().update("adminBoard.updateArticle", dto);
 	}
 
-	public void delete(int bno) throws Exception {
-		getSqlSession().delete("adminBoard.deleteArticle", bno);
+	public void delete(int num) throws Exception {
+		getSqlSession().delete("adminBoard.deleteArticle", num);
 	}
 
 	public List<AdminBoardDto> listAll() throws Exception {
 		return getSqlSession().selectList("adminBoard.listAll");
 	}
 
-	public void increaseViewcnt(int bno) throws Exception {
-		getSqlSession().update("adminBoard.increaseViewcnt", bno);
+	public void increaseViewcnt(int num) throws Exception {
+		getSqlSession().update("adminBoard.increaseViewcnt", num);
 	}
 
 	/*

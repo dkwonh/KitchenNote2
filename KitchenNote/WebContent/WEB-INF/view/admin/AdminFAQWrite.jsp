@@ -52,11 +52,15 @@
 </script>
 </head>
 <body>
-	<nav id="menu">
+	<div id="wrapper">
+<div id="main">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
-			<ul class="icons">
+				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<section id="search" class="alt 4u 12u$">
+			<form method="post">
+			<input name="search" id="query" type="text">
+			</form>
+				</section>
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
 						class="label">Facebook</span></a></li>

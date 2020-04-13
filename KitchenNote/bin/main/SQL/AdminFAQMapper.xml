@@ -5,35 +5,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="admin">
 
 	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto">
-		select * from FAQ_user2 order by
+		select * from Admin_FAQ order by
 		bno desc
 
 	</select>
 
 	<insert id="insert" parameterType="yh.admin.controller.AdminFaqDto">
-		insert into FAQ_user2 values(
+		insert into Admin_FAQ values(
 		#{bno},
 		#{title}, #{content},#{menu},#{viewcnt}
 		)
 	</insert>
 
 	<select id="view" resultType="yh.admin.controller.AdminFaqDto">
-		select * from FAQ_user2 where bno =
+		select * from Admin_FAQ where bno =
 		#{bno}
 	</select>
 
 	<update id="increaseViewcnt" parameterType="int">
-		update FAQ_user2 set
+		update Admin_FAQ set
 		viewcnt = viewcnt +1 where bno = #{bno}
 	</update>
 
 	<update id="updateArticle">
-		update FAQ_user2 set title = #{title}, content =
+		update Admin_FAQ set title = #{title}, content =
 		#{content},menu = #{menu} where bno = #{bno}
 	</update>
 
 	<delete id="deleteArticle">
-		delete from FAQ_user2 where bno = #{bno}
+		delete from Admin_FAQ where bno = #{bno}
 	</delete>
 
 <!-- 	<select id="pageList" resultType="custom.controller.BoardDto"

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
-<title>1:1 문의하기</title>
-<!-- 글 수정 폼  -->
+<title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
 .navi input {
 	float: left;
@@ -15,41 +16,13 @@
 .c input {
 	width: 25%
 }
+
+.searchbtn input {
+	font-size: 15px;
+	padding: 10px 10px
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#btnReset").click(function() {
-			if (confirm("취소 하시겠습니까?")) {
-				document.form2.action = "adminView.do";
-				document.form2.submit();
-			}
-		});
-		$("#btnConfirm").click(function() {
-			var subject = $("#subject").val();
-			var content = $("#content").val();
-			var member_id = $("#member_id").val();
-			var reg_date = $("#reg_date").val();
-			var secret = $(":checked").val();
-
-			if (subject == "") {
-				alert("제목을 입력하세요.");
-				document.form2.subject.focus();
-				return;
-			}
-			if (content == "") {
-				alert("내용을 입력하세요.");
-				document.form2.content.focus();
-				return;
-			}else {
-				confirm("저장 하시겠습니까?");
-				document.form2.action = "adminUpdate2.do"
-				document.form2.submit();
-			}
-
-		});
-	});
-</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -75,31 +48,17 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-			<h2>수정하기</h2>
-			<form name="form2" method="GET">
-				<div>
-					제목<input name="subject" id="subject" size="80"
-						placeholder="글 제목 입력">
-				</div>
-				<div class="4u 12u$(small)">
-					공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
-						value="true"> <label for="demo-priority-normal">공개</label>
-					<input type="radio" id="demo-priority-high" name="secret"
-						value="false"> <label for="demo-priority-high">비공개</label>
-				</div>
-				<div>
-					내용
-					<textarea name="content" id="content" rows="8" cols="80"
-						placeholder="글 내용 입력"></textarea>
-				</div>
-				<div style="width: 650px; text-align: center;">
-					<input type="hidden" name="num" value="${dto.num}"> <input
-						type="hidden" name="member_id" value="관리자">
-					<button type="button" id="btnConfirm">저장</button>
-					<button type="button" id="btnReset">취소</button>
-				</div>
-			</form>
-		</div>
+</div><br>
+<h1> 홈페이지 통계</h1><br>
+
+<select id="statics" >
+<option value="판매량">레시피 판매량</option>
+<option value="구맨건수">레시피 구매건수</option>
+<option value="등록건수">레시피 등록건수</option>
+<option value="매출">쿠킹 클래스 매출</option>
+</select>
+
+
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
@@ -173,6 +132,7 @@
 			</div>
 		</div>
 	</div>
+
 	<footer id="footer">
 		<p class="copyright">
 			&copy; Untitled. All rights reserved. Demo Images: <a

@@ -27,22 +27,28 @@
 			}
 		});
 		$("#btnUpdate").click(function() {
-			document.form1.action = "update.do?bno=" + ${dto.bno};
+			document.form1.action = "update.do?num=" + ${dto.num};
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {
 			document.form1.action = "list.do"
 			document.form1.submit();
 		});
-		$("input[name='open']").attr('disabled', true);
+		$("input[name='secret']").attr('disabled', true);\
+		var answer = $("#answer").val();
+		if(answer == "")
 	});
 </script>
 </head>
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
+				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<section id="search" class="alt 4u 12u$">
+			<form method="post">
+			<input name="search" id="query" type="text">
+			</form>
+				</section>
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -61,31 +67,36 @@
 		<form name="form1" method="post">
 			<div>
 				작성일자 :
-				<fmt:formatDate value="${dto.regdate }"
+				<fmt:formatDate value="${dto.reg_date }"
 					pattern="yyyy-MM-dd a HH:mm:ss" />
 			</div>
-			<div>조회수 : ${dto.viewcnt }</div>
+			<div>조회수 : ${dto.readcount }</div>
 			<div>
-				이름 <input name="writer" id="writer" value="${dto.writer }" readonly>
+				이름 <input name="member_id" id="member_id" value="${dto.member_id }" readonly>
 			</div>
 			<div>
-				제목<input value="${dto.title}" name="title" id="title" size="80"
+				제목<input value="${dto.subject}" name="title" id="title" size="80"
 					readonly>
 			</div>
 			<div class="4u 12u$(small)" readonly>
-				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
-					value="${dto.open }" checked> <label
+				공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
+					value="${dto.secret }" checked> <label
 					for="demo-priority-normal">공개</label> <input type="radio"
-					id="demo-priority-high" name="open" value="${dto.open }" checked>
+					id="demo-priority-high" name="secret" value="${dto.secret }" checked>
 				<label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용
 				<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
 			</div>
+			<br>
+			<div>
+			관리자 답변 :<br>
+			<input type="hidden" name="answer" id="answer" rows="8" cols="80" readonly>${dto.answer}</textarea>
+			
 
 			<div style="width: 650px; text-align: center;">
-				<input type="hidden" name="bno" value="${dto.bno}">
+				<input type="hidden" name="num" value="${dto.num}">
 				<button type="button" id="btnUpdate">수정</button>
 				<button type="button" id="btnDelete">삭제</button>
 				<button type="button" id="btnNon">확인</button>

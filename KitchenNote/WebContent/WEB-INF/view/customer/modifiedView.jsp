@@ -26,15 +26,15 @@
 			}
 		});
 		$("#btnConfirm").click(function() {
-			var title = $("#title").val();
+			var subject = $("#subject").val();
 			var content = $("#content").val();
-			var writer = $("#writer").val();
-			var regdate = $("#regdate").val();
-			var open = $(":checked").val();
+			var member_id = $("#member_id").val();
+			var reg_date = $("#reg_date").val();
+			var secret = $(":checked").val();
 
-			if (title == "") {
+			if (subject == "") {
 				alert("제목을 입력하세요.");
-				document.form2.title.focus();
+				document.form2.subject.focus();
 				return;
 			}
 			if (content == "") {
@@ -42,9 +42,9 @@
 				document.form2.content.focus();
 				return;
 			}
-			if (open == null || open == "") {
+			if (secret == null || secret == "") {
 				alert("공개 여부를 체크하여 주세요.");
-				document.form1.open.focus();
+				document.form1.secret.focus();
 				return;
 			} else {
 				confirm("저장 하시겠습니까?");
@@ -59,8 +59,12 @@
 <body>
 	<nav id="menu">
 		<header id="header">
-			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> <input
-				type="search"><input type="button" value="검색">
+			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<section id="search" class="alt 4u 12u$">
+			<form method="post">
+			<input name="search" id="query" type="text">
+			</form>
+				</section>
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -77,12 +81,12 @@
 		<h2>수정하기</h2>
 		<form name="form2" method="GET">
 			<div>
-				제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
+				제목<input name="subject" id="subject" size="80" placeholder="글 제목 입력">
 			</div>
 			<div class="4u 12u$(small)">
-				공개 여부 :<input type="radio" id="demo-priority-normal" name="open"
-					value="공개"> <label for="demo-priority-normal">공개</label> <input
-					type="radio" id="demo-priority-high" name="open" value="비공개">
+				공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
+					value="true"> <label for="demo-priority-normal">공개</label> <input
+					type="radio" id="demo-priority-high" name="secret" value="false">
 				<label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
@@ -91,11 +95,8 @@
 					placeholder="글 내용 입력"></textarea>
 			</div>
 			<div style="width: 650px; text-align: center;">
-				<input type="hidden" name="bno" value="${dto.bno}"> <input
-					type="hidden" name="writer" value="${dto.writer }">
-				<%-- 				<input type="hidden" name="regdate" value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss">
-				<fmt:formatDate value="${dto.regdate }"
-					pattern="yyyy-MM-dd a HH:mm:ss" /> --%>
+				<input type="hidden" name="num" value="${dto.num}"> <input
+					type="hidden" name="member_id" value="${dto.member_id }">
 				<button type="button" id="btnConfirm">저장</button>
 				<button type="button" id="btnReset">취소</button>
 			</div>
