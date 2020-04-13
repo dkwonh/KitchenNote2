@@ -62,10 +62,6 @@
 								이메일 : <input type="text">
 							</div>
 							<div>
-							자기 소개 : <textarea name="content" id="content" cols="80" rows="8" 
-							placeholder="자기 소개를 입력하여주세요."></textarea>
-							</div>
-							<div>
 							연락처 : <input type="text">
 							</div>
 							<div>
