@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<select id="getUserList" resultType="wh.admin.manage.model.MemberDto" parameterType="int">
+		select * from members where level in (1,2) order by join_date limit #{start},10
+	</select>
+	
+	<select id="getChefList" resultType="wh.admin.manage.model.ChefDto">
+		select * from members natural join chef
+	</select>
+	
+	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto">
+		select * from drop_members
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from members where level in(1,2)
+	</select>
+	
+	<select id="UserListFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="">
+		
+	</select>
+</mapper>

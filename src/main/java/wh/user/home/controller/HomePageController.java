@@ -30,9 +30,8 @@ import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
 
 @Controller
-public class HomePageController implements ApplicationContextAware {
-	private WebApplicationContext context = null;
-
+public class HomePageController implements ApplicationContextAware{
+	WebApplicationContext context = null;
 	@Autowired
 	HomePageService homePageService;
 
@@ -108,13 +107,6 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("dto", list);
 		return "homepage/searchList";
 	}
-
-	// 관리자 페이지
-	@RequestMapping(value = "admin.do", method = RequestMethod.GET)
-	public String adminMain() {
-		return "adminPage/admin";
-	}
-
 	// 카테고리 리스트 출력 **안씀**
 	/*
 	 * @RequestMapping(value = "loadCategory.do", method = RequestMethod.GET) public
@@ -148,6 +140,6 @@ public class HomePageController implements ApplicationContextAware {
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.context = (WebApplicationContext) applicationContext;
+		this.context = (WebApplicationContext)applicationContext;
 	}
 }

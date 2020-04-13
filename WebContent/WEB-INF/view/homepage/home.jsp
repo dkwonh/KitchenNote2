@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,16 +187,17 @@ function loadCategory(ing_category){
 				<header id="header">
 					<a href="index.html" class="logo"><strong>Editorial</strong>
 					KitchenNote</a>
-					<form action="home.do" method="post">
-						<input type="text" name="search">
-						<input type=submit value=검색> 
-					</form>	
+					<section id=search class="alt 4u 12u$">
+					<form method=post>
+					<input type=text name=search id=query placeholder="Search">
+					</form>
+					</section>
 					<ul class="icons"> 
 						<li><a  class="icon fa-twitter modal"><span
 								class="label">twitter</span></a></li>
 						<li><a href="kakaoPay.do" class="icon fa-facebook"><span
 								class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-snapchat-ghost"><span
+						<li><a href="admin.do?pageNum=0" class="icon fa-snapchat-ghost"><span
 								class="label">Snapchat</span></a></li>
 					</ul>
 					
