@@ -22,16 +22,12 @@ public interface BoardService {
 	public void delete(int bno) throws Exception;
 
 // 게시글 전체 목록
-	public List<BoardDto> listAll() throws Exception;
+	public List<BoardDto> listAll(int start) throws Exception;
 
 // 게시글 조회
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception;
 
-	/*
-	 * public List<Map<String, Object>> pageList(Criteria cri) throws Exception;
-	 * 
-	 * public int countBoardList() throws Exception;
-	 */
+	public int count() throws Exception;
 
 
 }

@@ -50,21 +50,17 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public List<AdminBoardDto> listAll() throws Exception {
-		return dao.listAll();
+	public List<AdminBoardDto> listAll(int start) throws Exception {
+		return dao.listAll(start);
 	}
 
 	@Override
 	public void increaseViewcnt(int num, HttpSession session) throws Exception {
 		dao.increaseViewcnt(num);
-
 	}
-	/*
-	 * @Override public List<Map<String,Object>> pageList(Criteria cri) throws
-	 * Exception{ return dao.pageList(cri); }
-	 * 
-	 * @Override public int countBoardList() throws Exception {
-	 * 
-	 * return dao.countBoardList(); }
-	 */
+	
+	@Override
+	public int count() throws Exception{
+		return dao.count();
+	}
 }

@@ -35,7 +35,7 @@
 				document.form1.content.focus();
 				return;
 			}
-			if (menu == 0) {
+			if (menu == "선택") {
 				alert("분류를 선택하여 주세요.");
 				document.form1.menu.focus();
 				return false;
@@ -45,7 +45,7 @@
 			document.form1.submit();
 		});
 		$("#btnCancel").click(function() {
-			document.form1.action = "AdminFAQ.do"
+			document.form1.action = "AdminFAQ.do?pageNum=0"
 			document.form1.submit();
 		});
 	});

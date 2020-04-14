@@ -14,13 +14,10 @@ public interface AdminBoardDao {
 
 	public void delete(int num) throws Exception;
 
-	public List<AdminBoardDto> listAll() throws Exception;
+	public List<AdminBoardDto> listAll(int start) throws Exception;
 
 	public void increaseViewcnt(int num) throws Exception;
 	
-	/*
-	 * public List<Map<String,Object>> pageList(Criteria cri) throws Exception;
-	 * 
-	 * public int countBoardList();
-	 */
+	public int count() throws Exception;
+	
 }

@@ -15,13 +15,9 @@ public interface BoardDao {
 
 	public void delete(int bno) throws Exception;
 
-	public List<BoardDto> listAll() throws Exception;
+	public List<BoardDto> listAll(int start) throws Exception;
 
 	public void increaseViewcnt(int bno) throws Exception;
 	
-	/*
-	 * public List<Map<String,Object>> pageList(Criteria cri) throws Exception;
-	 * 
-	 * public int countBoardList();
-	 */
+	public int count() throws Exception;
 }

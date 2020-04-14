@@ -24,18 +24,18 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
-/* 	$(document).ready(function() {
+$(document).ready(function() {
 		$("#btnWrite").click(function() {
 			location.href = "adminWrite.do";
 		});
-		$("#choice").click(function() {
+		});
+	/* 	$("#choice").click(function() {
 
-		}); */
-		/* 		$(document).ready(function() {
+		});
+ 		$(document).ready(function() {
 		 $("#BtnModified").click(function() {
 		 location.href = "AdminFAQWrite.do";
 		 }); // 컨트롤러 생성 */
-	});
 </script>
 </head>
 <body>
@@ -100,7 +100,7 @@
 				</tr>
 				<c:forEach var="row" items="${AdminList}">
 					<tr>
-						<td>${row.num}</td>
+						<td>${row.num+(pageNum-1)*10}</td>
 						<td><a href="adminView.do?num=${row.num}">${row.subject }</a></td>
 						<td>${row.member_id }</td>
 						<td><fmt:formatDate value="${row.reg_date }"
@@ -111,24 +111,24 @@
 				</c:forEach>
 			</table>
 			<button type="button" id="btnWrite">글쓰기</button>
-			<table>
-				<tr>
-					<c:if test="${pageMaker.prev}">
-						<td><a
-							href='<c:url value="customer/list.do?page=${pageMaker.startPage-1}"/>'>&laquo;</a>
-						</td>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}" var="idx">
-						<td><a href='<c:url value="customer/list.do"/>'>${idx}</a></td>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<td><a
-							href='<c:url value="customer/list.do?page=${pageMaker.endPage+1}"/>'>&raquo;</a>
-						</td>
-					</c:if>
-				</tr>
-			</table>
+			<ul class="pagination">
+				<li><c:if test="${startPage > 10 }">
+						<a href="AdminList.do?pageNum=${startPage-10}" class="button">이전</a>
+					</c:if> <c:if test="${startPage <= 10 }">
+						<span class="button disabled">이전</span>
+					</c:if></li>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<li><a href="AdminList.do?pageNum=${i}" class="page">${i}</a></li>
+				</c:forEach>
+
+				<li><c:if test="${endPage < pageCount }">
+						<a href="AdminList.do?pageNum=${startPage+10}" class="button">다음</a>
+					</c:if> <c:if test="${endPage >= pageCount }">
+						<span class="button disabled">다음</span>
+					</c:if></li>
+			</ul>
+
 		</div>
 		<div id="sidebar">
 			<div class="inner">

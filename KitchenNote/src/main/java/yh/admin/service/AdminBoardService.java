@@ -21,16 +21,12 @@ public interface AdminBoardService {
 	public void delete(int num) throws Exception;
 
 // 게시글 전체 목록
-	public List<AdminBoardDto> listAll() throws Exception;
+	public List<AdminBoardDto> listAll(int start) throws Exception;
 
 // 게시글 조회
 	public void increaseViewcnt(int num, HttpSession session) throws Exception;
 
-	/*
-	 * public List<Map<String, Object>> pageList(Criteria cri) throws Exception;
-	 * 
-	 * public int countBoardList() throws Exception;
-	 */
+	public int count() throws Exception;
 
 
 }

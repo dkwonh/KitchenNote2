@@ -5,10 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="adminBoard">
 
 	<select id="listAll"
-		resultType="yh.admin.controller.AdminBoardDto">
-		select * from QnA order by
-		num desc, reg_date desc
+		resultType="yh.admin.controller.AdminBoardDto" parameterType="int">
+		select *
+		from QnA order by
+		num desc, reg_date desc limit #{start},10
+	</select>
 
+	<select id="count"
+		resultType="int">
+		select count(*) from QnA
 	</select>
 
 	<insert id="insert"
@@ -41,10 +46,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteArticle">
 		delete from QnA where num = #{num}
 	</delete>
-
-	<!-- <select id="pageList" resultType="custom.controller.BoardDto" parameterType="custom.controller.Criteria"> 
-		select * from FAQ_user order by bno desc, regdate desc limit #{page}, #{perPageNum} 
-		</select> <select id="countBoardList" resultType="int" parameterType="custom.controller.BoardDto" 
-		> select count(*) from FAQ_user where bno = #{bno} </select> -->
 
 </mapper>

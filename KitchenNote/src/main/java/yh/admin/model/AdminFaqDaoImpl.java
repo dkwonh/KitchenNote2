@@ -27,19 +27,16 @@ public class AdminFaqDaoImpl extends SqlSessionDaoSupport implements AdminFaqDao
 		getSqlSession().delete("admin.deleteArticle", bno);
 	}
 
-	public List<AdminFaqDto> listAll() throws Exception {
-		return getSqlSession().selectList("admin.listAll");
+	public List<AdminFaqDto> listAll(int start) throws Exception {
+		return getSqlSession().selectList("admin.listAll",start);
 	}
 
 	public void increaseViewcnt(int bno) throws Exception {
 		getSqlSession().update("admin.increaseViewcnt", bno);
 	}
+	public int count() throws Exception {
+		return getSqlSession().selectOne("admin.count");
+	}
 
-	/*
-	 * @Override public List<Map<String,Object>> pageList(Criteria cri){ return
-	 * getSqlSession().selectList("customer.pageList", cri); }
-	 * 
-	 * public int countBoardList() { return
-	 * getSqlSession().selectOne("customer.countBoardList"); }
-	 */
+	
 }

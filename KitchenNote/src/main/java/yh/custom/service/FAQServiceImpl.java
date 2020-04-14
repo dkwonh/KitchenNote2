@@ -23,13 +23,18 @@ public class FAQServiceImpl implements FAQService {
 	}
 
 	@Override
-	public List<FAQDto> listAll() throws Exception {
-		return dao.listAll();
+	public List<FAQDto> listAll(int start) throws Exception {
+		return dao.listAll(start);
 	}
 
 	@Override
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception {
 		dao.increaseViewcnt(bno);
 
+	}
+	
+	@Override
+	public int count() throws Exception {
+		return dao.count();
 	}
 }

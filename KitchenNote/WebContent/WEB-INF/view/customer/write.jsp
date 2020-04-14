@@ -44,7 +44,7 @@
 			document.form1.submit();
 		});
 		$("#btnCancel").click(function() {
-			document.form1.action = "list.do"
+			document.form1.action = "list.do?pageNum=0"
 			document.form1.submit();
 		});
 	});

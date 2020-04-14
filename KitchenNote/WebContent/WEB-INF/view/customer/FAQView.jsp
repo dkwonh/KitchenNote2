@@ -26,7 +26,7 @@
 <script>
 	$(document).ready(function() {
 		$("#btnback").click(function() {
-			document.form1.action = "FAQ.do"
+			document.form1.action = "FAQ.do?pageNum=0"
 			document.form1.submit();
 		});
 	});

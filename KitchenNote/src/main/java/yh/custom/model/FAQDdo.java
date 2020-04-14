@@ -8,7 +8,9 @@ public interface FAQDdo {
 
 	public FAQDto read(int bno) throws Exception;
 	
-	public List<FAQDto> listAll() throws Exception;
+	public List<FAQDto> listAll(int start) throws Exception;
 	
 	public void increaseViewcnt(int bno) throws Exception;
+	
+	public int count() throws Exception;
 }

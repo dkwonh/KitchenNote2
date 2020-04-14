@@ -6,10 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto">
 		select * from Admin_FAQ order by
-		bno desc
+		bno desc limit #{start}, 10
 
 	</select>
-
+	
+	<select id="count" resultType="int">
+		select count(*) from Admin_FAQ
+	</select>
+	
 	<insert id="insert" parameterType="yh.admin.controller.AdminFaqDto">
 		insert into Admin_FAQ values(
 		#{bno},
@@ -36,14 +40,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from Admin_FAQ where bno = #{bno}
 	</delete>
 
-<!-- 	<select id="pageList" resultType="custom.controller.BoardDto"
-		parameterType="custom.controller.Criteria">
-		select * from FAQ_user order by
-		bno desc, regdate desc
-		limit #{page}, #{perPageNum}
-	</select>
-	<select id="countBoardList" resultType="int" parameterType="custom.controller.BoardDto" >
-		select count(*) from FAQ_user where bno = #{bno}
-	</select> -->
 
 </mapper>

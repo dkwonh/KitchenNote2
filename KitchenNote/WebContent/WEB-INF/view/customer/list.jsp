@@ -30,8 +30,6 @@
 		$("#btnWrite").click(function() {
 			location.href = "write.do";
 		});
-		/* $("#btnSearch").click(function(){
-			}); */
 	});
 </script>
 </head>
@@ -106,24 +104,23 @@
 			</c:forEach>
 		</table>
 		<button type="button" id="btnWrite">글쓰기</button>
-		<table>
-			<tr>
-				<c:if test="${pageMaker.prev}">
-					<td><a
-						href='<c:url value="customer/list.do?page=${pageMaker.startPage-1}"/>'>&laquo;</a>
-					</td>
-				</c:if>
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
-					var="idx">
-					<td><a href='<c:url value="customer/list.do"/>'>${idx}</a></td>
+		<ul class="pagination">
+				<li><c:if test="${startPage > 10 }">
+						<a href="list.do?pageNum=${startPage-10}" class="button">이전</a>
+					</c:if> <c:if test="${startPage <= 10 }">
+						<span class="button disabled">이전</span>
+					</c:if></li>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<li><a href="list.do?pageNum=${i}" class="page">${i}</a></li>
 				</c:forEach>
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<td><a
-						href='<c:url value="customer/list.do?page=${pageMaker.endPage+1}"/>'>&raquo;</a>
-					</td>
-				</c:if>
-			</tr>
-		</table>
+
+				<li><c:if test="${endPage < pageCount }">
+						<a href="list.do?pageNum=${startPage+10}" class="button">다음</a>
+					</c:if> <c:if test="${endPage >= pageCount }">
+						<span class="button disabled">다음</span>
+					</c:if></li>
+			</ul>
 		<h2>고객센터</h2>
 		<ul>
 			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주

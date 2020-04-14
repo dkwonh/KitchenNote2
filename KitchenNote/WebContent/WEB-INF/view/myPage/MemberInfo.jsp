@@ -23,6 +23,13 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+ $(document).ready(function(){
+	 $("#btnWrite").click(function(){
+		 location.href = "chefApply.do"
+		 });
+	 });
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -49,30 +56,34 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
+			<section>
+			
 			<h2>회원 정보 수정</h2>
-			<image src="#"></image>
-			<form method="post">
+			<image src="${picture }"></image>
+			<form method="GET">
 				사진 바꾸기
 				<button type="submit" value="첨부">첨부</button>
-					<button type="submit" value="쉐프 신청">쉐프 신청</button>
+					<button type="submit" id="btnWrite" value="쉐프 신청">쉐프 신청</button><br>
+				<%-- 	<c:forEach var="row" items="${dto}"> --%>
 							<div>
-								닉네임 : <input type="text">
+								닉네임 : <input type="text" id="nickname" value="${dto.nickname}"> 
 							</div>
 							<div>
-								이메일 : <input type="text">
+								이메일 : <input type="text" id="email" value="${dto.chef }">
 							</div>
 							<div>
-							연락처 : <input type="text">
+							연락처 : <input type="text" id="tel" value="${dto.tel }">
 							</div>
 							<div>
-							개인 SNS주소 : <input type="text">
+							개인 SNS주소 : <input type="text" id="SNS" value="${dto.sns_address }">
 							</div>
+						<%-- 	</c:forEach> --%>
 							<hr>
 							<button type="submit">개정 정보 변경</button>
 							<button type="submit">비밀번호 바꾸기</button>
 							<button type="submit">탈퇴 하기</button>
 							</form>
-							
+							</section>
 							<div id="sidebar">
 								<div class="inner">
 									<nav id="menu">
@@ -113,7 +124,5 @@
 		<script src="../assets/js/jquery.min.js"></script>
 		<script src="../assets/js/skel.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
-</body>
+		<script src="../assets/js/main.js"></script></body>
 </html>

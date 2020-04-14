@@ -20,7 +20,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 
 	@Override
 	public void create(AdminFaqDto dto) throws Exception {
-	
+
 		dao.create(dto);
 	}
 
@@ -32,7 +32,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 
 	@Override
 	public void update(AdminFaqDto dto) throws Exception {
-	
+
 		dao.update(dto);
 	}
 
@@ -42,8 +42,8 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	}
 
 	@Override
-	public List<AdminFaqDto> listAll() throws Exception {
-		return dao.listAll();
+	public List<AdminFaqDto> listAll(int start) throws Exception {
+		return dao.listAll(start);
 	}
 
 	@Override
@@ -51,12 +51,9 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		dao.increaseViewcnt(bno);
 
 	}
-	/*
-	 * @Override public List<Map<String,Object>> pageList(Criteria cri) throws
-	 * Exception{ return dao.pageList(cri); }
-	 * 
-	 * @Override public int countBoardList() throws Exception {
-	 * 
-	 * return dao.countBoardList(); }
-	 */
+
+	@Override
+	public int count() throws Exception {
+		return dao.count();
+	}
 }

@@ -2,27 +2,35 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="customer">
+<mapper namespace="MemberInfo">
 
-	<insert id="insert" parameterType="yh.mypage.controller.MemberInfoDto">
-		insert into Members m, Chef c (nickname,member_id,tel,sns_adress) values(
-	m.nickname = #{nickname}, m.member_id = #{member_id}, c.tel = #{tel}, c.sns_adress = #{sns_adress}
-		)
-	</insert>
-
-	<select id="view" resultType="yh.mypage.controller.MemberInfoDto">
-		select * from QnA where num =
-		#{num}
+	<!-- <select id="listAll" resultType="yh.mypage.controller.ChefDto"> select 
+		m.member_id, m.password, m.picture, m.Level, c.tel, c.sns_address from members 
+		m inner join chef c where m.member_id = c.chef </select> -->
+		
+	<select id="view" resultType="yh.mypage.controller.ChefDto">
+		select m.nickname,c.chef, m.picture, m.Level, c.tel, c.sns_address 
+		from members m inner join chef c 
+		where m.member_id='test2@ki.com' and c.chef='test2@ki.com' 
 	</select>
+	
+<!-- 	<insert id="insert" parameterType="yh.mypage.controller.ChefDto">
+		insert into Members m,chef c
+		(m.member_id, m.password, m.picture, m.Level, c.tel,
+		c.sns_address)
+		values(
+		#{member_id},
+		#{password}, #{picture}, #{level},
+		#{tel},#{sns_address}
+		)
+	</insert> -->
 
-	<update id="update">
-		update QnA set subject = #{subject}, content =
-		#{content}, member_id = 'admin123@kitchen.com',
-		reg_date = #{reg_date},secret = #{secret} where num = #{num}
-	</update>
-
-	<delete id="delete">
-		delete from QnA where num = #{num}
-	</delete>
+	<!-- <select id="view" resultType="yh.mypage.controller.ChefDto"> select 
+		* from QnA where num = #{num} </select> <update id="increaseViewcnt" parameterType="int"> 
+		update QnA set readcount = readcount +1 where num = #{num} </update> <update 
+		id="updateArticle"> update QnA set subject = #{subject}, content = #{content}, 
+		member_id = 'admin123@kitchen.com', reg_date = #{reg_date},secret = #{secret} 
+		where num = #{num} </update> <delete id="deleteArticle"> delete from QnA 
+		where num = #{num} </delete> -->
 
 </mapper>

@@ -95,7 +95,7 @@
 				</tr>
 				<c:forEach var="row" items="${FAQ}">
 					<tr>
-						<td>${row.bno}</td>
+						<td>${row.bno+(pageNum-1)*10}</td>
 						<td><a href="FAQView.do?bno=${row.bno}">${row.title }</a></td>
 						<td>${row.menu}</td>
 						<td>${row.viewcnt }</td>
@@ -103,6 +103,23 @@
 				</c:forEach>
 			</table>
 			<p />
+				<ul class="pagination">
+				<li><c:if test="${startPage > 10 }">
+						<a href="FAQ.do?pageNum=${startPage-10}" class="button">이전</a>
+					</c:if> <c:if test="${startPage <= 10 }">
+						<span class="button disabled">이전</span>
+					</c:if></li>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<li><a href="FAQ.do?pageNum=${i}" class="page">${i}</a></li>
+				</c:forEach>
+
+				<li><c:if test="${endPage < pageCount }">
+						<a href="FAQ.do?pageNum=${startPage+10}" class="button">다음</a>
+					</c:if> <c:if test="${endPage >= pageCount }">
+						<span class="button disabled">다음</span>
+					</c:if></li>
+			</ul>
 		</div>
 		<div id="sidebar">
 			<div class="inner">

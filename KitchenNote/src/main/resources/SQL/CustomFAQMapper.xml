@@ -5,13 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="FAQ">
 	<select id="listAll" resultType="yh.custom.controller.FAQDto">
 		select * from Admin_FAQ order by
-		bno desc
+		bno desc limit #{start}, 10
 	</select>
-	<select id="FAQView" resultType="yh.custom.controller.FAQDto">
-	select * from Admin_FAQ where bno = #{bno}
+
+	<select id="count" resultType="int">
+		select count(*) from Admin_FAQ
 	</select>
 	
+	<select id="FAQView" resultType="yh.custom.controller.FAQDto">
+		select * from Admin_FAQ where bno = #{bno}
+	</select>
+
 	<update id="increaseViewcnt" parameterType="int">
-	update Admin_FAQ set viewcnt = viewcnt +1 where bno = #{bno}
+		update Admin_FAQ set viewcnt = viewcnt +1 where bno = #{bno}
 	</update>
 </mapper>

@@ -23,6 +23,34 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btnsave").click(function(){
+		var tel = $("#tel").val();
+		var sns_address = $("#sns_address").val();
+		var content = $("#content").val();
+
+		if(tel == ""){
+			alert("연락처를 입력하세요.");
+			document.form1.tel.focus();
+			return;
+			}
+		if(sns_address == ""){
+			alert("SNS주소를 입력하세요.")
+			document.form1.sns_address.focus();
+			return;
+			}
+		if(content == ""){
+			alert("신청 사유를 입력해주세요")
+			document.form1.sns_address.focus();
+			}
+		});
+	$("#btncancel").click(function(){
+		document.form1.action = "MemberInfo.do"
+			document.form1.submit();
+			});
+});
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -66,8 +94,8 @@
 					placeholder="신청 이유(동기)를 입력하여주세요."></textarea>
 			</div>
 			<hr>
-			<button type="submit">쉐프 신청</button>
-			<button type="submit">취소</button>
+			<button type="submit" id="btnsave">쉐프 신청</button>
+			<button type="submit" id="btncalcel">취소</button>
 
 			</form>
 

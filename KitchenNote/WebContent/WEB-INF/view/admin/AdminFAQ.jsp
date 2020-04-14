@@ -28,10 +28,6 @@
 		$("#btnWrite").click(function() {
 			location.href = "AdminFAQWrite.do";
 		});
-		/* 		$(document).ready(function() {
-		 $("#BtnModified").click(function() {
-		 location.href = "AdminFAQWrite.do";
-		 }); // 컨트롤러 생성 */
 	});
 </script>
 </head>
@@ -107,7 +103,7 @@
 			</tr>
 			<c:forEach var="row" items="${AdminFAQ}">
 				<tr>
-					<td>${row.bno}</td>
+					<td>${row.bno+(pageNum-1)*10}</td>
 					<td><a href="AdminFAQView.do?bno=${row.bno}">${row.title }</a></td>
 					<td>${row.menu}</td>
 					<td>${row.viewcnt }</td>
@@ -117,6 +113,23 @@
 		<button type="button" id="btnWrite">글쓰기</button>
 		<p />
 		</div>
+			<ul class="pagination">
+				<li><c:if test="${startPage > 10 }">
+						<a href="AdminFAQ.do?pageNum=${startPage-10}" class="button">이전</a>
+					</c:if> <c:if test="${startPage <= 10 }">
+						<span class="button disabled">이전</span>
+					</c:if></li>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<li><a href="AdminFAQ.do?pageNum=${i}" class="page">${i}</a></li>
+				</c:forEach>
+
+				<li><c:if test="${endPage < pageCount }">
+						<a href="AdminFAQ.do?pageNum=${startPage+10}" class="button">다음</a>
+					</c:if> <c:if test="${endPage >= pageCount }">
+						<span class="button disabled">다음</span>
+					</c:if></li>
+			</ul>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">

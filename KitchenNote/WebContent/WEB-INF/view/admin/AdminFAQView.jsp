@@ -36,7 +36,7 @@
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {
-			document.form1.action = "AdminFAQ.do"
+			document.form1.action = "AdminFAQ.do?pageNum=0"
 			document.form1.submit();
 		});
 		;

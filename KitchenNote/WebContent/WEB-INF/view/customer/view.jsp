@@ -31,12 +31,10 @@
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {
-			document.form1.action = "list.do"
+			document.form1.action = "list.do?pageNum=0"
 			document.form1.submit();
 		});
-		$("input[name='secret']").attr('disabled', true);\
-		var answer = $("#answer").val();
-		if(answer == "")
+		$("input[name='secret']").attr('disabled', true);
 	});
 </script>
 </head>

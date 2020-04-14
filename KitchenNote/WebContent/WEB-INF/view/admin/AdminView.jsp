@@ -31,7 +31,7 @@
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {
-			document.form1.action = "AdminList.do"
+			document.form1.action = "AdminList.do?pageNum=0"
 			document.form1.submit();
 		});
 		if(${dto.secret} == true ){

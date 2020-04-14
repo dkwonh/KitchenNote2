@@ -44,7 +44,7 @@
 			document.form1.submit();
 		});
 		$("#btnCancel").click(function() {
-			document.form1.action = "AdminList.do"
+			document.form1.action = "AdminList.do?pageNum="+${pageNum}
 			document.form1.submit();
 		});
 	});
