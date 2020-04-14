@@ -21,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
 
+import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
@@ -30,11 +31,11 @@ import wh.user.home.model.HomePageNangbuDto;
 public class AdminPageController implements ApplicationContextAware {
 	// 페이징 변수
 	public static final int PAGE_SIZE = 10;
-	int startPage;
-	int endPage;
-	int pageBlock;
-	int pageCount;
-	int count;
+	int startPage=0;
+	int endPage=0;
+	int pageBlock=0;
+	int pageCount=0;
+	
 	// 페이징 변수 끝
 
 	WebApplicationContext context = null;
@@ -50,7 +51,7 @@ public class AdminPageController implements ApplicationContextAware {
 		List<MemberDto> member;
 		if (pageNum == 0)
 			pageNum = 1;
-
+		int count = 0;
 		FilterDto f = new FilterDto();
 		f.setFilter(filter);
 		f.setSearch(search);
@@ -60,7 +61,7 @@ public class AdminPageController implements ApplicationContextAware {
 
 		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
 		model.addAttribute("pageCount", pageCount);
-		pageCalc(pageNum, count);
+		pageCalc(pageNum,count);
 
 		model.addAttribute("filter", filter);
 		model.addAttribute("search", search);
@@ -78,7 +79,7 @@ public class AdminPageController implements ApplicationContextAware {
 	@RequestMapping(value = "adminChef.do", method = RequestMethod.GET)
 	public String adminChef(@RequestParam int pageNum, @RequestParam String filter, @RequestParam String search,
 			Model model) {
-
+		int count = 0;
 		List<ChefDto> member;
 		if (pageNum == 0)
 			pageNum = 1;
@@ -92,7 +93,7 @@ public class AdminPageController implements ApplicationContextAware {
 
 		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
 		model.addAttribute("pageCount", pageCount);
-		pageCalc(pageNum, count);
+		pageCalc(pageNum,count);
 
 		model.addAttribute("filter", filter);
 		model.addAttribute("search", search);
@@ -114,10 +115,76 @@ public class AdminPageController implements ApplicationContextAware {
 		int i = adminPageService.updateUser(map);
 		
 		
-		return "adminPage/admin";
+		return "redirect:admin.do?pageNum=1&&filter=&&search=";
 	}
 	
+	@RequestMapping(value="delete.do",method=RequestMethod.GET)
+	public String deleteUser(@RequestParam String member_id, Model model) {
+		int i = adminPageService.deleteUser(member_id);
+		return "redirect:admin.do?pageNum=1&&filter=&&search=";
+	}
+	
+	@RequestMapping(value="updateChef", method=RequestMethod.GET)
+	public String updateChef(@RequestParam String member_id,@RequestParam String nickname,@RequestParam String sns_address, @RequestParam String tel, Model model) {
+		Map<String,String> map = new HashMap<>();
+		map.put("member_id",member_id);
+		map.put("nickname",nickname);
+		map.put("sns_address",sns_address);
+		map.put("tel",tel);
+		int i = adminPageService.updateChef(map);
+		
+		
+		return "redirect:adminChef.do?pageNum=1&&filter=&&search=";
+	}
+	
+	@RequestMapping(value="deleteChef.do",method=RequestMethod.GET)
+	public String deleteChef(@RequestParam String member_id, Model model) {
+		int i = adminPageService.deleteChef(member_id);
+		return "redirect:adminChef.do?pageNum=1&&filter=&&search=";
+	}
+	
+	
+	@RequestMapping(value="adminChefUp.do",method=RequestMethod.GET)
+	public String chefUp(@RequestParam int pageNum, Model model) {
+		List<ChefApplyDto> member;
+		if (pageNum == 0)
+			pageNum = 1;
 
+		int start = (pageNum - 1) * PAGE_SIZE;
+		member = adminPageService.getChefApply(start);
+		int count = adminPageService.getChefApplyCount();
+
+		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
+		model.addAttribute("pageCount", pageCount);
+		pageCalc(pageNum,count);
+		
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("userList",member);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "adminPage/adminChefUp";
+	}
+	
+	@RequestMapping(value="allow.do", method=RequestMethod.GET)
+	public String allowUp(@RequestParam String member_id, @RequestParam String sns_address, @RequestParam String tel) {
+		ChefApplyDto cef = new ChefApplyDto();
+		cef.setMember_id(member_id);
+		cef.setSns_address(sns_address);
+		cef.setTel(tel);
+		
+		adminPageService.allowChefUp(cef);
+		
+		return "redirect:adminChefUp.do?pageNum=1";
+	}
+	
+	@RequestMapping(value="deny.do", method=RequestMethod.GET)
+	public String denyUp(@RequestParam String member_id) {
+		adminPageService.denyChefup(member_id);
+		
+		return "redirect:adminChefUp.do?pageNum=1";
+	}
 	/*
 	 * //필터사용
 	 * 
@@ -148,8 +215,7 @@ public class AdminPageController implements ApplicationContextAware {
 	}
 
 	public void pageCalc(int pageNum, int count) {
-
-		if (count > 0) {
+		if (count >= 0) {
 
 			startPage = 1;
 			if (pageNum % 10 != 0) {

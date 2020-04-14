@@ -37,37 +37,37 @@ div#glayLayer{
 
 </style>
 <script>
+
 function deleteInfo(){
 	var form = $("form[name='form']");
-	form.attr("action","deleteChef.do");
+	form.attr("action","deny.do");
 	
 	form.submit();
 
-	form.attr("action","updateChef.do");
+	form.attr("action","allow.do");
 }
-
 $(function(){
-
-	
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
 
 	$("#glayLayer").click(function(){
 		$(this).hide();
 		$("#overLayer").hide();
 	});
-
 	
 	$("tr.modal").click(function(){
+		
 		var nickname = $(this).find("td.nickname").text();
 		var member_id = $(this).find("td.member_id").text();
-		var join_date = $(this).find("td.join_date").text();
 		var tel = $(this).find("td.tel").text();
 		var sns = $(this).find("td.sns_address").text();
+		var con = $(this).find("td.con").text();
+		
 		$("input#nickBox").attr("value",nickname);
 		$("input#idBox").attr("value",member_id);
-		$("input#joinBox").attr("value",join_date);
 		$("input#telBox").attr("value",tel);
 		$("input#snsBox").attr("value",sns);
+		$("div#conBox").text(con);
+		
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -87,24 +87,10 @@ $(function(){
 <div id="main">
 	<div class="inner">
 	<header id=header></header>
-	<section id=search class="alt 4u 12u$">
-	
-	<form>
-	<select name="filter">
-		<option selected value="nickname">닉네임</option>
-		<option value="member_id">아이디</option>
-	</select>
-	<input type=text name=search id=query placeholder="Search">
-	<input type=hidden name="pageNum" value="1">
-	</form>
-	</section>
 	<div class="table-wrapper">
 	<table>
 		<thead>
 			<tr>
-				<c:forEach var="item" items="${type }">
-					<td>${item}</td>
-				</c:forEach>
 			</tr>
 		</thead>
 		<tbody>
@@ -112,10 +98,10 @@ $(function(){
 		<tr class="modal">
 			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="nickname">${item.nickname }</td>
-			<td class="member_id">${item.member_id }</td>
+			<td class="member_id">${item.member_id}</td>
 			<td class="sns_address">${item.sns_address }</td>
 			<td class="tel">${item.tel }</td>
-			<td style="display:none" class="join_date">${item.join_date }</td>
+			<td class="con">${item.content }</td>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -156,7 +142,7 @@ $(function(){
 		<ul>
 			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
 			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li><a href="adminChefUp.do?pageNum=1">셰프 신청서</a></li>
+			<li><a href="adminChefUp.do?pageNum=1">셰프 등업 신청</a></li>
 			<li>탈퇴자 관리</li>
 		</ul>
 	</li>
@@ -218,27 +204,28 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="updateChef.do" name="form">
+	<form style="background:white" action="allow.do" name="form">
 	<div class="row uniform modal-dialog">
 		<div class="12u$ modal-body">
 		<h5>닉네임</h5>
-		<input type="text" name="nickname" id=nickBox>
+		<input type="text" name="nickname" id=nickBox readonly>
 		
 		<h5>아이디</h5>
 		<input type="text" name="member_id" id=idBox readonly>
 		
 		<h5>SNS주소</h5>
-		<input type="text" name="sns_address" id=snsBox>
+		<input type="text" name="sns_address" id=snsBox readonly>
 
 		<h5>연락처</h5>
-		<input type="text" name="tel" id="telBox">
+		<input type="text" name="tel" id="telBox" readonly>
 		
-		<h5>가입일</h5>
-		<input type="text" name="join_date" id="joinBox" readonly>
+		<h5>자기소개</h5>
+		<div class="box" id="conBox">
 		
+		</div>
 		<ul class="actions">
-			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
+			<li><input type="submit" value="승인" class="special"></li>
+			<li><input type="button" value="거부" onclick="deleteInfo()"></li>
 		</ul>
 		</div>
 		</div>

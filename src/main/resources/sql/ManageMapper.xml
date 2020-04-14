@@ -81,6 +81,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update members set nickname=#{nickname} where member_id = #{member_id}
 	</update>
 	
+	<delete id="deleteUser" parameterType="string">
+		delete from members where member_id = #{member_id}
+	</delete>
+	<!-- 회원정보 수정 끝 -->
+	
+	<!-- 셰프 정보 수정 -->
+	<update id="updateChef" parameterType="map">
+		update chef set tel = #{tel}, sns_address=#{sns_address} where chef=#{member_id}
+	</update>
+	
+	<delete id="deleteChef" parameterType="string">
+		delete from chef where chef=#{member_id}
+	</delete>
+	<!-- 셰프 정보 수정 끝 -->
+	
+	<!-- 셰프 신청서 리스트 -->
+	<select id="getChefApplyCount" resultType="int">
+		select count(*) from chef_apply
+	</select>
+	
+	<select id="getChefApply" resultType="wh.admin.manage.model.ChefApplyDto" parameterType="int">
+		select * from chef_apply natural join members limit #{start}, 10
+	</select>
+	
+	<insert id="allowChefUp" parameterType="wh.admin.manage.model.ChefApplyDto">
+		insert into chef(chef,tel,sns_address) values(#{member_id},#{tel},#{sns_address})
+	</insert>
+	
+	<delete id="denyChefUp" parameterType="string">
+		delete from chef_apply where member_id = #{member_id}
+	</delete>
+	<!-- 신청서 리스트 끝 -->
 	<!-- <select id="getUserFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
 		select * from members where level in(1,2) and
 		 <if test='filter == "nickname"'>

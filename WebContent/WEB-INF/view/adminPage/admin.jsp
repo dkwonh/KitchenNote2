@@ -36,11 +36,20 @@ div#glayLayer{
 }
 </style>
 <script>
+
+function deleteInfo(){
+	var form = $("form[name='form']");
+	form.attr("action","delete.do");
+	
+	form.submit();
+
+	form.attr("action","update.do");
+}
 $(function(){
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
 	
 	$("#glayLayer").click(function(){
-		$(this).hide()
+		$(this).hide();
 		$("#overLayer").hide();
 	});
 	
@@ -92,7 +101,7 @@ $(function(){
 		</thead>
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
-		<tr onclick="popUpInfo('${item.nickname}','${item.member_id}','${item.join_date}')" class="modal">
+		<tr class="modal">
 			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="nickname">${item.nickname }</td>
 			<td class="member_id">${item.member_id }</td>
@@ -137,7 +146,7 @@ $(function(){
 		<ul>
 			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
 			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li>셰프 등업 신청 확인</li>
+			<li><a href="adminChefUp.do?pageNum=1">셰프 신청서</a></li>
 			<li>탈퇴자 관리</li>
 		</ul>
 	</li>
@@ -199,7 +208,7 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="update.do">
+	<form style="background:white" name="form" action="update.do">
 	<div class="row uniform">
 		<div class="12u$">
 		<h3>닉네임</h3>
@@ -213,8 +222,7 @@ $(function(){
 		
 		<ul class="actions">
 			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제"></li>
-			<li><input type="button" value="취소"></li>
+			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
 		</div>
 		</div>
