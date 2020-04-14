@@ -197,7 +197,7 @@ function loadCategory(ing_category){
 								class="label">twitter</span></a></li>
 						<li><a href="kakaoPay.do" class="icon fa-facebook"><span
 								class="label">Facebook</span></a></li>
-						<li><a href="admin.do?pageNum=0" class="icon fa-snapchat-ghost"><span
+						<li><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
 								class="label">Snapchat</span></a></li>
 					</ul>
 					

@@ -49,8 +49,8 @@ $(function(){
 		var member_id = $(this).find("td.member_id").text();
 		var join_date = $(this).find("td.join_date").text();
 		$("input#nickBox").attr("value",nickname);
-		$("div#idBox").text(member_id);
-		$("div#joinBox").text(join_date);
+		$("input#idBox").attr("value",member_id);
+		$("input#joinBox").attr("value",join_date);
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -71,12 +71,14 @@ $(function(){
 	<div class="inner">
 	<header id=header></header>
 	<section id=search class="alt 4u 12u$">
-	<select>
-		<option selected>닉네임</option>
-		<option>아이디</option>
+	
+	<form>
+	<select name="filter">
+		<option selected value="nickname">닉네임</option>
+		<option value="member_id">아이디</option>
 	</select>
-	<form method=post>
-	<input type=text name=query id=query placeholder="Search">
+	<input type=text name=search id=query placeholder="Search">
+	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
 	<div class="table-wrapper">
@@ -103,7 +105,7 @@ $(function(){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="admin.do?pageNum=${startPage-10}" class="button">이전</a>
+			<a href="admin.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -111,12 +113,12 @@ $(function(){
 		</li>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-			<li><a href="admin.do?pageNum=${i}" class="page">${i}</a></li>
+			<li><a href="admin.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="admin.do?pageNum=${startPage+10}" class="button">다음</a>
+			<a href="admin.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>
@@ -133,8 +135,8 @@ $(function(){
 	<li>
 		<span class="opener">사용자 관리</span>
 		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
+			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
+			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
 			<li>셰프 등업 신청 확인</li>
 			<li>탈퇴자 관리</li>
 		</ul>
@@ -197,21 +199,17 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white">
+	<form style="background:white" action="update.do">
 	<div class="row uniform">
 		<div class="12u$">
 		<h3>닉네임</h3>
-		<input type="text" name="nickname" id=nickBox><br>
+		<input type="text" name="nickname" id=nickBox>
 		
 		<h3>아이디</h3>
-		<div class="box" id=idBox>
-		
-		</div>
+		<input type="text" name="member_id" id=idBox readonly>
 		
 		<h3>가입일</h3>
-		<div class="box" id=joinBox>
-		
-		</div>
+		<input type="text" name="join_date" id=joinBox readonly>
 		
 		<ul class="actions">
 			<li><input type="submit" value="수정" class="special"></li>

@@ -3,23 +3,104 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
-	<select id="getUserList" resultType="wh.admin.manage.model.MemberDto" parameterType="int">
-		select * from members where level in (1,2) order by join_date limit #{start},10
+	<!-- 유저 리스트 시작 -->
+	<select id="getUserList" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
+		select * from members 
+		<where>
+		<if test='filter == "nickname"'>
+		  nickname
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		and level in (1,2)
+		</where>
+		order by join_date limit #{start},10
 	</select>
 	
-	<select id="getChefList" resultType="wh.admin.manage.model.ChefDto">
-		select * from members natural join chef
+	<select id="getUserCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from members
+		<where>
+		<if test='filter == "nickname"'>
+		  nickname
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		and level in(1,2)
+		</where>
 	</select>
 	
+	<!-- 유저 리스트 끝 -->
+	
+	<!-- 셰프 리스트 시작 -->
+	<select id="getChefList" resultType="wh.admin.manage.model.ChefDto" parameterType="wh.admin.manage.model.FilterDto">
+		select * from members m join chef c where m.member_id = c.chef 
+		<where>
+		<if test='filter == "nickname"'>
+		 and nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by date limit #{start}, 10
+	</select>
+
+	<select id="getChefCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from members m natural join chef c where m.member_id = c.chef
+		<where>
+		<if test='filter == "nickname"'>
+		 and nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
+	</select> 
+	
+	<!-- 셰프 리스트 끝 -->
+	
+	<!-- 탈퇴자 리스트 시작 -->
 	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto">
 		select * from drop_members
 	</select>
 	
-	<select id="getCount" resultType="int">
-		select count(*) from members where level in(1,2)
+	<!-- 탈퇴자 리스트 끝 -->
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="map">
+		update members set nickname=#{nickname} where member_id = #{member_id}
+	</update>
+	
+	<!-- <select id="getUserFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
+		select * from members where level in(1,2) and
+		 <if test='filter == "nickname"'>
+		  nickname 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id 
+ 		</if>
+ 		like CONCAT('%',#{search},'%') limit #{start}, 10
 	</select>
 	
-	<select id="UserListFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="">
-		
+	<select id="getFilterCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from members where level in(1,2) and
+		<if test='filter == "nickname"'>
+		  nickname 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id 
+ 		</if>
+ 		like CONCAT('%',#{search},'%')
 	</select>
+	 -->
 </mapper>
