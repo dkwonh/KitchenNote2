@@ -37,48 +37,9 @@ div#glayLayer{
 
 </style>
 <script>
-function deleteInfo(){
-	var form = $("form[name='form']");
-	form.attr("action","deleteChef.do");
-	
-	form.submit();
-
-	form.attr("action","updateChef.do");
+function replacePage(url){
+	location.replace(url);
 }
-
-$(function(){
-
-	
-	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
-
-	$("#glayLayer").click(function(){
-		$(this).hide();
-		$("#overLayer").hide();
-	});
-
-	
-	$("tr.modal").click(function(){
-		var nickname = $(this).find("td.nickname").text();
-		var member_id = $(this).find("td.member_id").text();
-		var join_date = $(this).find("td.join_date").text();
-		var tel = $(this).find("td.tel").text();
-		var sns = $(this).find("td.sns_address").text();
-		$("input#nickBox").attr("value",nickname);
-		$("input#idBox").attr("value",member_id);
-		$("input#joinBox").attr("value",join_date);
-		$("input#telBox").attr("value",tel);
-		$("input#snsBox").attr("value",sns);
-		$("#glayLayer").show();
-		$("#overLayer").show().html($("div#popupWindow").html());
-		return false;
-	});
-	
-	if($.browser.msie && $.browser.version<7){
-		$(window).scroll(function(){
-			$("#glayLayer").css('top',$(document).scrollTop());
-			$("#overLayer").css('top',($(document).scrollTop()+$(window).height()/2) +"px");
-		});
-	}
 })
 </script>
 </head>
@@ -102,7 +63,7 @@ $(function(){
 	<table>
 		<thead>
 			<tr>
-				<c:forEach var="item" items="${type }">
+			<c:forEach var="item" items="${type }">
 					<td>${item}</td>
 				</c:forEach>
 			</tr>
@@ -111,11 +72,9 @@ $(function(){
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
 			<td class="num">${i.count+(pageNum-1)*10}</td>
+			<td class="member_id">${item.member_id}</td>
 			<td class="nickname">${item.nickname }</td>
-			<td class="member_id">${item.member_id }</td>
-			<td class="sns_address">${item.sns_address }</td>
-			<td class="tel">${item.tel }</td>
-			<td style="display:none" class="join_date">${item.join_date }</td>
+			<td class="drop_date">${item.drop_date }</td>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -124,7 +83,7 @@ $(function(){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="adminChef.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
+			<a href="dropUser.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -133,16 +92,16 @@ $(function(){
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pageNum==i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			<li><a href="dropUser.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
 			</c:if>
 			<c:if test="${pageNum!=i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			<li><a href="dropUser.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
 			</c:if>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="adminChef.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
+			<a href="dropUser.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>
@@ -161,7 +120,7 @@ $(function(){
 		<ul>
 			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
 			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li><a href="adminChefUp.do?pageNum=1">셰프 신청서</a></li>
+			<li><a href="adminChefUp.do?pageNum=1">셰프 등업 신청</a></li>
 			<li><a href="dropUser.do?pageNum=1&&filter=&&search=&&">탈퇴자 관리</a></li>
 		</ul>
 	</li>
@@ -220,35 +179,6 @@ $(function(){
 </nav>
 </div>
 </div>
-</div>
-<div id=popupWindow style="display:none">
-
-	<form style="background:white" action="updateChef.do" name="form">
-	<div class="row uniform modal-dialog">
-		<div class="12u$ modal-body">
-		<h5>닉네임</h5>
-		<input type="text" name="nickname" id=nickBox>
-		
-		<h5>아이디</h5>
-		<input type="text" name="member_id" id=idBox readonly>
-		
-		<h5>SNS주소</h5>
-		<input type="text" name="sns_address" id=snsBox>
-
-		<h5>연락처</h5>
-		<input type="text" name="tel" id="telBox">
-		
-		<h5>가입일</h5>
-		<input type="text" name="join_date" id="joinBox" readonly>
-		
-		<ul class="actions">
-			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
-		</ul>
-		</div>
-		</div>
-	</form>
-	
 </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>

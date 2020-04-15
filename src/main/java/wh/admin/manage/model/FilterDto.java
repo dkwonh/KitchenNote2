@@ -4,8 +4,17 @@ public class FilterDto {
 	String filter;
 	String search;
 	int start;
+	String type;
 	
 	
+	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getStart() {
 		return start;
 	}

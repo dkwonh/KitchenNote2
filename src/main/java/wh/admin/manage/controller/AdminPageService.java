@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import wh.admin.manage.dao.AdminPageDao;
+import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
+import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
+import wh.admin.manage.model.PayListDto;
 @Service
 public class AdminPageService {
 	
@@ -26,10 +29,6 @@ public class AdminPageService {
 		return adminPageDao.getChefList(f);
 	}
 	
-	public List<DropMembersDto> getDropList(){
-		return adminPageDao.getDropList();
-	}
-	
 	public int getUserCount(FilterDto f) {
 		return adminPageDao.getUserCount(f);
 	}
@@ -42,8 +41,8 @@ public class AdminPageService {
 		return adminPageDao.updateUser(map);
 	}
 	
-	public int deleteUser(String member_id) {
-		return adminPageDao.deleteUser(member_id);
+	public int deleteUser(DropMembersDto drop) {
+		return adminPageDao.deleteUser(drop);
 	}
 	
 	public int updateChef(Map<String,String> map) {
@@ -68,6 +67,50 @@ public class AdminPageService {
 	
 	public int denyChefup(String member_id) {
 		return adminPageDao.denyChefUp(member_id);
+	}
+	
+	public int getDropCount(FilterDto f) {
+		return adminPageDao.getDropCount(f);
+	}
+	
+	public List<DropMembersDto> getDropList(FilterDto f){
+		return adminPageDao.getDropList(f);
+	}
+	
+	public List<AdminRecipeDto> getRecipeList(FilterDto f){
+		return adminPageDao.getRecipeList(f);
+	}
+	
+	public int getRecipeCount(FilterDto f) {
+		return adminPageDao.getRecipeCount(f);
+	}
+	
+	public int deleteRecipe(DelRecipeDto del) {
+		return adminPageDao.deleteRecipe(del);
+	}
+	
+	public List<AdminRecipeDto> getPayList(FilterDto f){
+		return adminPageDao.getPayList(f);
+	}
+	
+	public int getPayCount(FilterDto f) {
+		return adminPageDao.getPayCount(f);
+	}
+	
+	public int getDelCount(FilterDto f) {
+		return adminPageDao.getDelCount(f);
+	}
+	
+	public List<DelRecipeDto> getDelRecipeList(FilterDto f){
+		return adminPageDao.getDelRecipeList(f);
+	}
+	
+	public int getPaymentCount(FilterDto f) {
+		return adminPageDao.getPaymentCount(f);
+	}
+	
+	public List<PayListDto> getPaymentList(FilterDto f){
+		return adminPageDao.getPaymentList(f);
 	}
 	
 	/*

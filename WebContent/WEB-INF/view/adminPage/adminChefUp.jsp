@@ -110,7 +110,7 @@ $(function(){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="adminChef.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
+			<a href="adminChefUp.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -118,12 +118,17 @@ $(function(){
 		</li>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			<c:if test="${pageNum==i }">
+			<li><a href="adminChefUp.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			</c:if>
+			<c:if test="${pageNum!=i }">
+			<li><a href="adminChefUp.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			</c:if>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="adminChef.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
+			<a href="adminChefUp.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>
@@ -143,7 +148,7 @@ $(function(){
 			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
 			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
 			<li><a href="adminChefUp.do?pageNum=1">셰프 등업 신청</a></li>
-			<li>탈퇴자 관리</li>
+			<li><a href="dropUser.do?pageNum=1&&filter=&&search=&&">탈퇴자 관리</a></li>
 		</ul>
 	</li>
 	

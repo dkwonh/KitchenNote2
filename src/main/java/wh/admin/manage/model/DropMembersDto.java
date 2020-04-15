@@ -6,22 +6,15 @@ import java.sql.Timestamp;
 public class DropMembersDto {
 
 	// 회원아이디
-	private String memberId;
+	private String member_id;
 
 	// 별명
 	private String nickname;
 
-	// 가입일
-	private Timestamp joinDate;
+	// 탈퇴일
+	private Timestamp drop_date;
 
-	public String getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-
+	
 	public String getNickname() {
 		return nickname;
 	}
@@ -30,11 +23,20 @@ public class DropMembersDto {
 		this.nickname = nickname;
 	}
 
-	public Timestamp getJoinDate() {
-		return joinDate;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setJoinDate(Timestamp joinDate) {
-		this.joinDate = joinDate;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
+
+	public Timestamp getDrop_date() {
+		return drop_date;
+	}
+
+	public void setDrop_date(Timestamp drop_date) {
+		this.drop_date = drop_date;
+	}
+
 }

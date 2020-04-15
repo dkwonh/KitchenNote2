@@ -70,8 +70,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 셰프 리스트 끝 -->
 	
 	<!-- 탈퇴자 리스트 시작 -->
-	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto">
+	<insert id="insertDrop" parameterType="wh.admin.manage.model.DropMembersDto">
+		insert into Drop_members(member_id,nickname) values(#{member_id},#{nickname})
+	</insert>
+	
+	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto" parameterType="wh.admin.manage.model.FilterDto">
 		select * from drop_members
+		<where>
+		<if test='filter == "nickname"'>
+		 nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by drop_date limit #{start}, 10
+	</select>
+	
+	<select id="getDropCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from drop_members
+		<where>
+		<if test='filter == "nickname"'>
+		  nickname
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
 	</select>
 	
 	<!-- 탈퇴자 리스트 끝 -->
@@ -112,27 +141,187 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="denyChefUp" parameterType="string">
 		delete from chef_apply where member_id = #{member_id}
 	</delete>
-	<!-- 신청서 리스트 끝 -->
-	<!-- <select id="getUserFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
-		select * from members where level in(1,2) and
-		 <if test='filter == "nickname"'>
-		  nickname 
+	<!-- 셰프 신청서 리스트 끝 -->
+	
+	<!-- 전체 레시피 리스트 -->
+	<select id="getRecipeList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.AdminRecipeDto">
+		select * from recipe_info
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		  like CONCAT('%',#{search},'%')
  		</if>
- 		<if test='filter == "member_id"'>
-		  member_id 
- 		</if>
- 		like CONCAT('%',#{search},'%') limit #{start}, 10
+ 		<if test='filter == "recipe_name"'>
+		 and recipe_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by recipe_id limit #{start}, 10
 	</select>
 	
-	<select id="getFilterCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
-		select count(*) from members where level in(1,2) and
-		<if test='filter == "nickname"'>
-		  nickname 
+	<select id="getRecipeCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from recipe_info
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
  		</if>
  		<if test='filter == "member_id"'>
-		  member_id 
+		  member_id
+		  like CONCAT('%',#{search},'%') 
  		</if>
- 		like CONCAT('%',#{search},'%')
+		</where>
 	</select>
-	 -->
+	<!-- 전체 레시피 끝 -->
+	
+	<!-- 유료 레시피 -->
+	<select id="getPayList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.AdminRecipeDto">
+		select * from recipe_info
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "recipe_name"'>
+		 and recipe_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		price not in(0)	
+		</where>
+		order by recipe_id limit #{start}, 10
+	</select>
+	
+	<select id="getPayCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from recipe_info
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		price not in(0)
+		</where>
+	</select>
+	<!-- 유료 레시피  끝 -->
+	
+	<!-- 삭제 레시피 -->
+	<select id="getDelRecipeList" resultType="wh.admin.manage.model.DelRecipeDto" parameterType="wh.admin.manage.model.FilterDto">
+		select * from del_recipe
+		<where>
+		<if test='filter == "recipe_name"'>
+		 recipe_name 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by del_date limit #{start}, 10
+	</select>
+	
+	<select id="getDelCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from del_recipe
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
+	</select>
+	<!-- 삭제 레시피 끝 -->
+	
+	
+	<!-- 레시피 삭제 -->
+	<delete id="deleteRecipe" parameterType="int">
+		delete from recipe_info where recipe_id = #{recipe_id}
+	</delete>
+	
+	<insert id="insertDelRecipe" parameterType="wh.admin.manage.model.DelRecipeDto">
+		insert into Del_Recipe(recipe_id,image,member_id,recipe_name,reason) value(#{recipe_id},#{image},#{member_id},#{recipe_name},#{reason})
+	</insert>
+	<!-- 레시피 삭제 -->
+	
+	<!-- 레시피 구매 내역 -->
+	
+	
+	<!-- 결제 내역 리스트 -->
+	<select id="getPaymentList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PayListDto">
+		select * from pay_list p
+		<where>
+		<!-- fork일때 -->
+		<if test='type == "fork"'>
+		<if test='filter == "member_id"'>
+		 member_id 
+		 like CONCAT('%',#{search},'%')
+		 and fork > 0
+		 order by fork_date limit #{start}, 10
+ 		 </if>
+ 		</if>
+ 		</where>
+ 		
+ 		<!-- class일때 -->
+ 		<if test='type == "class"'>
+ 		 join class_student s join cooking_class c join members m on p.member_id = s.member_id and s.c_num = c.c_num and c.chef = m.member_id
+ 		 <where>
+ 		 <if test='filter == "member_id"'>
+		 member_id 
+		 like CONCAT('%',#{search},'%')
+		 and class_price > 0
+		 </if>
+		 <if test='filter == "className"'>
+		 c_name 
+		 like CONCAT('%',#{search},'%')
+		 and class_price > 0
+		 </if>
+		 </where>
+ 		 order by class_date limit #{start}, 10	
+ 		</if>
+ 		
+		
+		
+	</select>
+	
+	<select id="getPaymentCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from pay_list p
+		<where>
+		<if test='type == "fork"'>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%')
+		  and fork > 0
+ 		</if>
+ 		</if>
+ 		</where>
+ 		
+ 		
+ 		
+ 		<if test='type == "class"'>
+ 		join class_student s join cooking_class c join members m on p.member_id = s.member_id and s.c_num = c.c_num and c.chef = m.member_id
+ 		<where>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%')
+		  and class_price > 0
+ 		</if>
+ 		
+ 		<if test='filter == "className"'>
+		 c_name 
+		 like CONCAT('%',#{search},'%')
+		 and class_price > 0
+		 </if>
+		 </where>
+ 		</if>
+		
+	</select>
+	
+	<!-- 결제 내역 리스트 끝 -->
+	
 </mapper>

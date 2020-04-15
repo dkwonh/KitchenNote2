@@ -45,6 +45,7 @@ function deleteInfo(){
 
 	form.attr("action","update.do");
 }
+
 $(function(){
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
 	
@@ -57,9 +58,11 @@ $(function(){
 		var nickname = $(this).find("td.nickname").text();
 		var member_id = $(this).find("td.member_id").text();
 		var join_date = $(this).find("td.join_date").text();
+		
 		$("input#nickBox").attr("value",nickname);
 		$("input#idBox").attr("value",member_id);
 		$("input#joinBox").attr("value",join_date);
+		
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -122,7 +125,12 @@ $(function(){
 		</li>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+			<c:if test="${pageNum==i }">
+			<li><a href="admin.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			</c:if>
+			<c:if test="${pageNum!=i }">
 			<li><a href="admin.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			</c:if>
 		</c:forEach>
 		
 		<li>
@@ -147,27 +155,24 @@ $(function(){
 			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
 			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
 			<li><a href="adminChefUp.do?pageNum=1">셰프 신청서</a></li>
-			<li>탈퇴자 관리</li>
+			<li><a href="dropUser.do?pageNum=1&&filter=&&search=&&">탈퇴자 관리</a></li>
 		</ul>
 	</li>
 	
 	<li>
 		<span class="opener">레시피 관리</span>
 		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
+			<li><a href="adminRecipe.do?pageNum=1&&filter=&&search=&&">전체 레시피 목록</a></li>
+			<li><a href="adminPayRecipe.do?pageNum=1&&filter=&&search=&&">유료 레시피 목록</a></li>
+			<li><a href="adminDropRecipe.do?pageNum=1&&filter=&&search=&&">삭제 레시피 목록</a></li>
 		</ul>
 	</li>
 	
 	<li>
 		<span class="opener">결제 내역 관리</span>
 		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
+			<li><a href="forkList.do?pageNum=1">포크 충전 내역</a></li>
+			<li><a href="classList.do?pageNum=1">클래스 결제 내역</a></li>
 		</ul>
 	</li>
 	

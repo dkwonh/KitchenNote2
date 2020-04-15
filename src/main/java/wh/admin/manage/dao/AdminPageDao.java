@@ -5,11 +5,14 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
+import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
+import wh.admin.manage.model.PayListDto;
 
 public class AdminPageDao extends SqlSessionDaoSupport{
 	
@@ -20,10 +23,6 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 	
 	public List<ChefDto> getChefList(FilterDto f){
 		return getSqlSession().selectList("admin.getChefList",f);
-	}
-	
-	public List<DropMembersDto> getDropList(){
-		return getSqlSession().selectList("admin.getDropList");
 	}
 	
 	public int getUserCount(FilterDto f) {
@@ -38,8 +37,9 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 		return getSqlSession().update("admin.updateUser",map);
 	}
 	
-	public int deleteUser(String member_id) {
-		return getSqlSession().delete("admin.deleteUser",member_id);
+	public int deleteUser(DropMembersDto drop) {
+		getSqlSession().insert("admin.insertDrop",drop);
+		return getSqlSession().delete("admin.deleteUser",drop.getMember_id());
 	}
 	
 	public int deleteChef(String member_id) {
@@ -68,6 +68,53 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 	public int denyChefUp(String member_id) {
 		return getSqlSession().delete("admin.denyChefUp",member_id);
 	}
+	
+	public int getDropCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getDropCount",f);
+	}
+	
+	public List<DropMembersDto> getDropList(FilterDto f){
+		return getSqlSession().selectList("admin.getDropList",f);
+	}
+	
+	public List<AdminRecipeDto> getRecipeList(FilterDto f){
+		return getSqlSession().selectList("admin.getRecipeList",f);
+	}
+	
+	public int getRecipeCount(FilterDto f){
+		return getSqlSession().selectOne("admin.getRecipeCount",f);
+	}
+	
+	public int deleteRecipe(DelRecipeDto del) {
+		getSqlSession().insert("admin.insertDelRecipe",del);
+		return getSqlSession().delete("admin.deleteRecipe",del.getRecipe_id());
+				
+	}
+	
+	public List<AdminRecipeDto> getPayList(FilterDto f) {
+		return getSqlSession().selectList("admin.getPayList",f);
+	}
+	
+	public int getPayCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getPayCount",f);
+	}
+	
+	public int getDelCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getDelCount",f);
+	}
+	
+	public List<DelRecipeDto> getDelRecipeList(FilterDto f){
+		return getSqlSession().selectList("admin.getDelRecipeList",f);
+	}
+	
+	public int getPaymentCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getPaymentCount",f);
+	}
+	
+	public List<PayListDto> getPaymentList(FilterDto f){
+		return getSqlSession().selectList("admin.getPaymentList",f);
+	}
+	
 	/*
 	 * public List<MemberDto> getUserFilter(FilterDto f) { return
 	 * getSqlSession().selectList("admin.getUserFilter",f); }

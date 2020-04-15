@@ -34,52 +34,8 @@ div#glayLayer{
 * html #overLayer{
 	position: absolute;
 }
-
 </style>
 <script>
-function deleteInfo(){
-	var form = $("form[name='form']");
-	form.attr("action","deleteChef.do");
-	
-	form.submit();
-
-	form.attr("action","updateChef.do");
-}
-
-$(function(){
-
-	
-	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
-
-	$("#glayLayer").click(function(){
-		$(this).hide();
-		$("#overLayer").hide();
-	});
-
-	
-	$("tr.modal").click(function(){
-		var nickname = $(this).find("td.nickname").text();
-		var member_id = $(this).find("td.member_id").text();
-		var join_date = $(this).find("td.join_date").text();
-		var tel = $(this).find("td.tel").text();
-		var sns = $(this).find("td.sns_address").text();
-		$("input#nickBox").attr("value",nickname);
-		$("input#idBox").attr("value",member_id);
-		$("input#joinBox").attr("value",join_date);
-		$("input#telBox").attr("value",tel);
-		$("input#snsBox").attr("value",sns);
-		$("#glayLayer").show();
-		$("#overLayer").show().html($("div#popupWindow").html());
-		return false;
-	});
-	
-	if($.browser.msie && $.browser.version<7){
-		$(window).scroll(function(){
-			$("#glayLayer").css('top',$(document).scrollTop());
-			$("#overLayer").css('top',($(document).scrollTop()+$(window).height()/2) +"px");
-		});
-	}
-})
 </script>
 </head>
 <body>
@@ -91,8 +47,10 @@ $(function(){
 	
 	<form>
 	<select name="filter">
-		<option selected value="nickname">닉네임</option>
-		<option value="member_id">아이디</option>
+		<c:if test="${p=='class'}">
+		<option selected value="className">클래스 이름</option>
+		</c:if>
+		<option value="member_id">구매자</option>
 	</select>
 	<input type=text name=search id=query placeholder="Search">
 	<input type=hidden name="pageNum" value="1">
@@ -110,12 +68,22 @@ $(function(){
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
-			<td class="num">${i.count+(pageNum-1)*10}</td>
-			<td class="nickname">${item.nickname }</td>
+			<c:if test="${p=='fork' }">
+			
 			<td class="member_id">${item.member_id }</td>
-			<td class="sns_address">${item.sns_address }</td>
-			<td class="tel">${item.tel }</td>
-			<td style="display:none" class="join_date">${item.join_date }</td>
+			<td class="fork">${item.fork }</td>
+			<td class="price">${item.purchase_amount }</td>
+			<td class="fork_date">${item.fork_date }</td>
+			</c:if>
+			<c:if test="${p=='class' }">
+			<td class="num">${i.count+(pageNum-1)*10}</td>
+			<td class="member_id">${item.member_id }</td>
+			<td class="nickname">${item.nickname }</td>
+			<td class="chef">${item.chef }</td>
+			<td class="c_name">${item.c_name }</td>
+			<td class="class_price">${item.class_price }</td>
+			<td class="class_date">${item.class_date }</td>
+			</c:if>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -124,7 +92,7 @@ $(function(){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="adminChef.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
+			<a href="adminPayRecipe.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -133,16 +101,16 @@ $(function(){
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pageNum==i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			<li><a href="adminPayRecipe.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
 			</c:if>
 			<c:if test="${pageNum!=i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			<li><a href="adminPayRecipe.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
 			</c:if>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="adminChef.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
+			<a href="adminPayRecipe.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>
@@ -169,7 +137,7 @@ $(function(){
 	<li>
 		<span class="opener">레시피 관리</span>
 		<ul>
-			<li>일반 사용자 관리</li>
+			<li><a href="adminRecipe.do?pageNum=1&&filter=&&search=&&">전체 레시피 목록</a></li>
 			<li>셰프 사용자 관리</li>
 			<li>셰프 등업 신청 확인</li>
 			<li>탈퇴자 관리</li>
@@ -223,27 +191,28 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="updateChef.do" name="form">
-	<div class="row uniform modal-dialog">
-		<div class="12u$ modal-body">
-		<h5>닉네임</h5>
-		<input type="text" name="nickname" id=nickBox>
+	<form style="background:white;" action="deleteRecipe.do">
+	<div class="row uniform">
+		<div >
+		<h3>레시피 이름</h3>
+		<input type="text" name="recipe_name" id=nameBox readonly>
 		
-		<h5>아이디</h5>
+		<h3>작성자</h3>
 		<input type="text" name="member_id" id=idBox readonly>
+		<input type="hidden" name="recipe_id" id=ridBox >
+		<input type="hidden" name="image" id=imageBox>
 		
-		<h5>SNS주소</h5>
-		<input type="text" name="sns_address" id=snsBox>
-
-		<h5>연락처</h5>
-		<input type="text" name="tel" id="telBox">
+		<h3>삭제 사유</h3>
+		<select class="reason" name="reason" onChange="showReasonBox()">
+			<option value="부적절한 내용">부적절한 내용</option>
+			<option value="불량 레시피 신고">불량 레시피 신고</option>
+			<option value="기타">기타</option>
+		</select>
 		
-		<h5>가입일</h5>
-		<input type="text" name="join_date" id="joinBox" readonly>
-		
+		<input type="text" name=reasonText class="reasonBox" style="display:none">
+				
 		<ul class="actions">
-			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
+			<li><input type="submit" value="삭제" class="special"></li>
 		</ul>
 		</div>
 		</div>

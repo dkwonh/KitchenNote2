@@ -34,40 +34,37 @@ div#glayLayer{
 * html #overLayer{
 	position: absolute;
 }
-
 </style>
 <script>
-function deleteInfo(){
-	var form = $("form[name='form']");
-	form.attr("action","deleteChef.do");
-	
-	form.submit();
 
-	form.attr("action","updateChef.do");
+function showReasonBox(){
+	$("select.reason option:selected").each(function(){
+			if($(this).val()=="기타"){
+				$("input.reasonBox").attr("style","display:block");
+			} else {
+				$("input.reasonBox").attr("style","display:none");
+			}
+			
+		})	
 }
-
 $(function(){
-
-	
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
-
+	
 	$("#glayLayer").click(function(){
 		$(this).hide();
 		$("#overLayer").hide();
 	});
-
 	
 	$("tr.modal").click(function(){
-		var nickname = $(this).find("td.nickname").text();
+		var recipe_id = $(this).find("td.recipe_id").text();
+		var recipe_name = $(this).find("td.recipe_name").text();
 		var member_id = $(this).find("td.member_id").text();
-		var join_date = $(this).find("td.join_date").text();
-		var tel = $(this).find("td.tel").text();
-		var sns = $(this).find("td.sns_address").text();
-		$("input#nickBox").attr("value",nickname);
+		var image = $(this).find("td.image img").attr("src");
+		
 		$("input#idBox").attr("value",member_id);
-		$("input#joinBox").attr("value",join_date);
-		$("input#telBox").attr("value",tel);
-		$("input#snsBox").attr("value",sns);
+		$("input#nameBox").attr("value",recipe_name);
+		$("input#ridBox").attr("value",recipe_id);
+		$("input#imageBox").attr("value",image);
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -91,8 +88,8 @@ $(function(){
 	
 	<form>
 	<select name="filter">
-		<option selected value="nickname">닉네임</option>
-		<option value="member_id">아이디</option>
+		<option selected value="recipe_name">레시피 이름</option>
+		<option value="member_id">작성자</option>
 	</select>
 	<input type=text name=search id=query placeholder="Search">
 	<input type=hidden name="pageNum" value="1">
@@ -110,12 +107,10 @@ $(function(){
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
-			<td class="num">${i.count+(pageNum-1)*10}</td>
-			<td class="nickname">${item.nickname }</td>
+			<td class="recipe_id">${item.recipe_id}</td>
+			<td class="image"><img width="100px" height="100px" src="${item.image}"></td>
+			<td class="recipe_name">${item.recipe_name }</td>
 			<td class="member_id">${item.member_id }</td>
-			<td class="sns_address">${item.sns_address }</td>
-			<td class="tel">${item.tel }</td>
-			<td style="display:none" class="join_date">${item.join_date }</td>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -124,7 +119,7 @@ $(function(){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="adminChef.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
+			<a href="adminRecipe.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -133,16 +128,16 @@ $(function(){
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pageNum==i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			<li><a href="adminRecipe.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
 			</c:if>
 			<c:if test="${pageNum!=i }">
-			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			<li><a href="adminRecipe.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
 			</c:if>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="adminChef.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
+			<a href="adminRecipe.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>
@@ -169,7 +164,7 @@ $(function(){
 	<li>
 		<span class="opener">레시피 관리</span>
 		<ul>
-			<li>일반 사용자 관리</li>
+			<li><a href="adminRecipe.do?pageNum=1&&filter=&&search=&&">전체 레시피 목록</a></li>
 			<li>셰프 사용자 관리</li>
 			<li>셰프 등업 신청 확인</li>
 			<li>탈퇴자 관리</li>
@@ -223,27 +218,28 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="updateChef.do" name="form">
-	<div class="row uniform modal-dialog">
-		<div class="12u$ modal-body">
-		<h5>닉네임</h5>
-		<input type="text" name="nickname" id=nickBox>
+	<form style="background:white;" action="deleteRecipe.do">
+	<div class="row uniform">
+		<div >
+		<h3>레시피 이름</h3>
+		<input type="text" name="recipe_name" id=nameBox readonly>
 		
-		<h5>아이디</h5>
+		<h3>작성자</h3>
 		<input type="text" name="member_id" id=idBox readonly>
+		<input type="hidden" name="recipe_id" id=ridBox >
+		<input type="hidden" name="image" id=imageBox>
 		
-		<h5>SNS주소</h5>
-		<input type="text" name="sns_address" id=snsBox>
-
-		<h5>연락처</h5>
-		<input type="text" name="tel" id="telBox">
+		<h3>삭제 사유</h3>
+		<select class="reason" name="reason" onChange="showReasonBox()">
+			<option value="부적절한 내용">부적절한 내용</option>
+			<option value="불량 레시피 신고">불량 레시피 신고</option>
+			<option value="기타">기타</option>
+		</select>
 		
-		<h5>가입일</h5>
-		<input type="text" name="join_date" id="joinBox" readonly>
-		
+		<input type="text" name=reasonText class="reasonBox" style="display:none">
+				
 		<ul class="actions">
-			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
+			<li><input type="submit" value="삭제" class="special"></li>
 		</ul>
 		</div>
 		</div>
