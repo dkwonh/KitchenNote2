@@ -8,11 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-1
-</body>
 <%
+	String s =  request.getParameter("ir1");
 
 %>
+<%=s %>
+</body>
+
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>

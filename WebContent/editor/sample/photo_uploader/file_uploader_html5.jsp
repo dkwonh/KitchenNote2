@@ -10,7 +10,6 @@
 	String filename_ext = filename.substring(filename.lastIndexOf(".") + 1);
 	filename_ext = filename_ext.toLowerCase();
 	String[] allow_file = { "jpg", "png", "bmp", "gif" };
-	System.out.println("test");
 
 	int cnt = 0;
 	for (int i = 0; i < allow_file.length; i++) {
@@ -22,7 +21,8 @@
 		out.println("NOTALLOW_" + filename);
 	} else {
 		String dftFilePath = request.getServletContext().getRealPath("/");
-		String filePath = dftFilePath + "editor" + File.separator + "multiupload" + File.separator;
+		String filePath = dftFilePath + "editor" + File.separator + "upload" + File.separator;
+		System.out.println(filePath);
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdirs();
@@ -32,6 +32,8 @@
 		String today = formatter.format(new java.util.Date());
 		realFileNm = today + UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
 		String rlFileNm = filePath + realFileNm;
+		
+		
 		InputStream is = request.getInputStream();
 		OutputStream os = new FileOutputStream(rlFileNm);
 		int numRead;
@@ -44,9 +46,11 @@
 		}
 		os.flush();
 		os.close();
+		
+		
 		sFileInfo += "&bNewLine=true"; //sFileInfo +="&sFileName=" + realFileNm;; 
 		sFileInfo += "&sFileName=" + filename;
-		sFileInfo += "&sFileURL=" + "/editor/multiupload/" + realFileNm;
+		sFileInfo += "&sFileURL=" + "./upload/" + realFileNm;// 경로 설정 잘해야함 ./ / ../ 구분 확실히 할것
 		out.println(sFileInfo);
 	}
 %>
