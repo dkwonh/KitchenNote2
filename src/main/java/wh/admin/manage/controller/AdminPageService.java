@@ -10,11 +10,14 @@ import wh.admin.manage.dao.AdminPageDao;
 import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
+import wh.admin.manage.model.CookingClassDto;
 import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
 import wh.admin.manage.model.PayListDto;
+import wh.admin.manage.model.PurchaseRecipeDto;
+import wh.admin.manage.model.TeacherApply;
 @Service
 public class AdminPageService {
 	
@@ -111,6 +114,30 @@ public class AdminPageService {
 	
 	public List<PayListDto> getPaymentList(FilterDto f){
 		return adminPageDao.getPaymentList(f);
+	}
+	
+	public List<PurchaseRecipeDto> getPurRecipeList(FilterDto f){
+		return adminPageDao.getPurRecipeList(f);
+	}
+	
+	public int getPurRecipeCount(FilterDto f) {
+		return adminPageDao.getPurRecipeCount(f);
+	}
+	
+	public List<CookingClassDto> getClassList(FilterDto f){
+		return adminPageDao.getClassList(f);
+	}
+	
+	public int getClassCount(FilterDto f) {
+		return adminPageDao.getClassCount(f);
+	}
+	
+	public int getApplyCount(int c_num) {
+		return adminPageDao.getApplyCount(c_num);
+	}
+	
+	public List<TeacherApply> getApplyList(FilterDto f){
+		return adminPageDao.getApplyList(f);
 	}
 	
 	/*

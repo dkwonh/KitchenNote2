@@ -146,75 +146,7 @@ $(function(){
 	</ul>
 	</div>
 </div>
-
-<div id="sidebar">
-<div class="inner">
-<nav id=menu>
-<ul>
-	<li>
-		<span class="opener">사용자 관리</span>
-		<ul>
-			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
-			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li><a href="adminChefUp.do?pageNum=1">셰프 신청서</a></li>
-			<li><a href="dropUser.do?pageNum=1&&filter=&&search=&&">탈퇴자 관리</a></li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">레시피 관리</span>
-		<ul>
-			<li><a href="adminRecipe.do?pageNum=1&&filter=&&search=&&">전체 레시피 목록</a></li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">결제 내역 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">이벤트 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">문의 사항</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">홈페이지 통계</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-</ul>
-</nav>
-</div>
-</div>
+<%@ include file="sideMenu.jsp" %>
 </div>
 <div id=popupWindow style="display:none">
 

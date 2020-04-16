@@ -5,10 +5,19 @@ public class FilterDto {
 	String search;
 	int start;
 	String type;
+	boolean recruit;
 	
 	
 	
 	
+	
+	
+	public boolean isRecruit() {
+		return recruit;
+	}
+	public void setRecruit(boolean recruit) {
+		this.recruit = recruit;
+	}
 	public String getType() {
 		return type;
 	}

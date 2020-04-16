@@ -8,11 +8,14 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
+import wh.admin.manage.model.CookingClassDto;
 import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
 import wh.admin.manage.model.PayListDto;
+import wh.admin.manage.model.PurchaseRecipeDto;
+import wh.admin.manage.model.TeacherApply;
 
 public class AdminPageDao extends SqlSessionDaoSupport{
 	
@@ -60,9 +63,13 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 	}
 	
 	public int allowChefUp(ChefApplyDto chef) {
-		
 		 getSqlSession().insert("admin.allowChefUp",chef);
+		 getSqlSession().update("admin.upLevel",chef.getMember_id());
 		 return getSqlSession().delete("admin.denyChefUp",chef.getMember_id());
+	}
+	
+	public int upLevel(String member_id) {
+		return getSqlSession().update("admin.upLevel",member_id);
 	}
 	
 	public int denyChefUp(String member_id) {
@@ -113,6 +120,30 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 	
 	public List<PayListDto> getPaymentList(FilterDto f){
 		return getSqlSession().selectList("admin.getPaymentList",f);
+	}
+	
+	public int getPurRecipeCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getPurRecipeCount",f);
+	}
+	
+	public List<PurchaseRecipeDto> getPurRecipeList(FilterDto f){
+		return getSqlSession().selectList("admin.getPurRecipeList",f);
+	}
+	
+	public List<CookingClassDto> getClassList(FilterDto f){
+		return getSqlSession().selectList("admin.getClassList",f);
+	}
+	
+	public int getClassCount(FilterDto f) {
+		return getSqlSession().selectOne("admin.getClassCount",f);
+	}
+	
+	public int getApplyCount(int c_num) {
+		return getSqlSession().selectOne("admin.getApplyCount",c_num);
+	}
+	
+	public List<TeacherApply> getApplyList(FilterDto f){
+		return getSqlSession().selectList("admin.getApplyList",f);
 	}
 	
 	/*

@@ -1,11 +1,19 @@
 package wh.admin.manage.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +25,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
+import wh.admin.manage.model.CookingClassDto;
 import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
 import wh.admin.manage.model.PayListDto;
+import wh.admin.manage.model.PhotoDto;
+import wh.admin.manage.model.PurchaseRecipeDto;
+import wh.admin.manage.model.TeacherApply;
 
 @Controller
 public class AdminPageController implements ApplicationContextAware {
@@ -350,6 +362,99 @@ public class AdminPageController implements ApplicationContextAware {
 		
 		return "adminPage/adminPayList";
 	}
+	
+	@RequestMapping(value="purRecipe.do", method=RequestMethod.GET)
+	public String purRecipe(int pageNum, FilterDto f, Model model) {
+		if(pageNum==0)
+			pageNum=1;
+		
+		f.setStart((pageNum - 1) * PAGE_SIZE);
+		
+		List<PurchaseRecipeDto> list = adminPageService.getPurRecipeList(f);
+		int count = adminPageService.getPurRecipeCount(f);
+
+		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
+		model.addAttribute("pageCount", pageCount);
+		pageCalc(pageNum,count);
+		
+		model.addAttribute("filter", f.getFilter());
+		model.addAttribute("search", f.getSearch());
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("type",new String[] {"레시피 아이디","닉네임","구매자","레시피 이름","결제일"});
+		model.addAttribute("userList",list);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("p","class");
+		
+		return "adminPage/adminPurRecipe";
+	}
+	
+	@RequestMapping(value="adminClassList.do", method=RequestMethod.GET)
+	public String getClass(int pageNum, FilterDto f, Model model) {
+		if(pageNum==0)
+			pageNum=1;
+		
+		f.setStart((pageNum - 1) * PAGE_SIZE);
+		f.setRecruit(true);
+		
+		List<CookingClassDto> list = adminPageService.getClassList(f);
+		int count = adminPageService.getClassCount(f);
+
+		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
+		model.addAttribute("pageCount", pageCount);
+		pageCalc(pageNum,count);
+		
+		model.addAttribute("filter", f.getFilter());
+		model.addAttribute("search", f.getSearch());
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("type",new String[] {"클래스 명","신청자 수","기간","상태"});
+		model.addAttribute("userList",list);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "adminPage/adminClassList";
+	}
+	
+	@RequestMapping(value="adminRecruit.do", method=RequestMethod.GET)
+	public String getRecruit(int pageNum, FilterDto f, Model model) {
+		if(pageNum==0)
+			pageNum=1;
+		
+		f.setStart((pageNum - 1) * PAGE_SIZE);
+		f.setType("모집중");
+		
+		List<CookingClassDto> list = adminPageService.getClassList(f);
+		int count = adminPageService.getClassCount(f);
+
+		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
+		model.addAttribute("pageCount", pageCount);
+		pageCalc(pageNum,count);
+		
+		model.addAttribute("filter", f.getFilter());
+		model.addAttribute("search", f.getSearch());
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("type",new String[] {"모집 제목","신청자","기간","상태"});
+		model.addAttribute("userList",list);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "adminPage/adminRecruit";
+	}
+	
+	@RequestMapping(value="writeClass.do")
+	public String writeClass() {
+		
+		return "adminPage/adminWriteClass";
+	}
+	
+	@RequestMapping(value="reg.do")
+	public void reg(HttpServletRequest request ) {
+		System.out.println(request.getParameter("ir1"));
+	}
+	
 	
 	/*
 	 * //필터사용

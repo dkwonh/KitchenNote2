@@ -138,6 +138,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into chef(chef,tel,sns_address) values(#{member_id},#{tel},#{sns_address})
 	</insert>
 	
+	<update id="upLevel" parameterType="string">
+		update members set level = 2 where member_id = #{member_id}
+	</update>
+	
 	<delete id="denyChefUp" parameterType="string">
 		delete from chef_apply where member_id = #{member_id}
 	</delete>
@@ -247,10 +251,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertDelRecipe" parameterType="wh.admin.manage.model.DelRecipeDto">
 		insert into Del_Recipe(recipe_id,image,member_id,recipe_name,reason) value(#{recipe_id},#{image},#{member_id},#{recipe_name},#{reason})
 	</insert>
-	<!-- 레시피 삭제 -->
+	<!-- 레시피 삭제 끝 -->
 	
 	<!-- 레시피 구매 내역 -->
+	<select id="getPurRecipeList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PurchaseRecipeDto">
+		select * from pur_recipe natural join recipe_info natural join members
+		<where>
+		<if test='filter == "recipe_name"'>
+		 recipe_name 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "nickname"'>
+ 		and nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+		</where>
+		order by pur_date limit #{start}, 10
+	</select>
 	
+	<select id="getPurRecipeCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from pur_recipe natural join recipe_info natural join members
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "nickname"'>
+ 		and nickname 
+		  like CONCAT('%',#{search},'%')
+		 </if>
+		</where>
+	</select>
+	<!-- 구매 내역 끝 -->
 	
 	<!-- 결제 내역 리스트 -->
 	<select id="getPaymentList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PayListDto">
@@ -321,7 +361,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		</if>
 		
 	</select>
-	
 	<!-- 결제 내역 리스트 끝 -->
+	
+	<!-- 쿠킹 클래스 리스트 -->
+	<select id="getClassList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.CookingClassDto">
+		select * from cooking_class inner join members on chef = member_id
+		<where>
+		<if test='filter == "c_name"'>
+		 c_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		
+ 		<if test='filter == "nickname"'>
+ 		nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		and recruit = #{recruit}
+		</where>
+		order by reg_date limit #{start}, 10
+	</select>
+	
+	<select id="getClassCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from cooking_class inner join members on chef = member_id
+		<where>
+		<if test='filter == "c_name"'>
+		  c_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		
+ 		<if test='filter == "nickname"'>
+ 		  nickname 
+		  like CONCAT('%',#{search},'%')
+		 </if>
+		 and recruit = #{recruit}
+		</where>
+	</select>
+	
+	
+	<!--  -->
+	
+	<!-- 클래스 계획서 리스트 -->
+	<select id="getApplyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.TeacherApply">
+		select * from class_apply where c_num=#{c_num} order by chef limit #{start}, 10
+	</select>
+	
+	<select id="getApplyCount" parameterType="int" resultType="int">
+		select count(*) from class_apply where c_num=#{c_num} 
+	</select>
 	
 </mapper>
