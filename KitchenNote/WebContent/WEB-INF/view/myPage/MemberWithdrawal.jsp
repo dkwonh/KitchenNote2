@@ -23,6 +23,28 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+	$("#btnExit").click(function() {
+		var content = $("#content").val();
+		var password = $("#password").val();
+		
+		if (password == "") {
+			alert("비밀번호를 입력하세요.");
+			document.form2.password.focus();
+			return;
+		} else {
+			confirm("탈퇴 하시면 복구가 불가 합니다."
+					 +"그래도 하시겠습니까?");
+			document.form2.action = "Withdrawal.do";
+			document.form2.submit();
+		}	
+	});
+});
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -49,10 +71,11 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
+			<form method="post" name="form2">
 			<h2>회원 탈퇴</h2>
 			<br>
 			<div>
-				비밀번호 : <input type="password"
+				비밀번호 : <input type="password" id="password" name="password"
 					placeholder="비밀번호를 입력하여 주세요.">
 			</div>
 			<br>
@@ -62,8 +85,8 @@
 					placeholder="탈퇴 사유를 입력하여주세요. 불만스러운 사항이 있다면 개선해 나가도록 하겠습니다."></textarea>
 			</div>
 			<hr>
-			<button type="submit">탈퇴</button>
-			<button type="submit">취소</button>
+			<button type="button" name="btnExit" id="btnExit">탈퇴</button>
+			<button type="button" name="btnCancel" id="btnCancel">취소</button>
 
 			</form>
 
@@ -90,7 +113,7 @@
 								href="http://localhost:8082/KitchenNote/customer/write.do">-
 									결제 내역</a></li>
 							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
+								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
 									회원 정보 수정</a></li>
 
 						</ul>

@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import yh.custom.controller.BoardDto;
 import yh.mypage.controller.ChefDto;
 import yh.mypage.controller.Chef_applyDto;
 import yh.mypage.controller.MemberInfoDto;
@@ -16,10 +14,11 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 
 	@Autowired
 	MemberInfoDao dao;
-
-	public List<MemberInfoDto> listAll() throws Exception {
-		return dao.listAll();
-	} // 역할 x
+	
+	/*
+	 * public MemberInfoDto checkPwd(String password) throws Exception{
+	 * MemberInfoDto dto = dao.checkPwd(password); return dto; }
+	 */
 	
 	public void submit(Chef_applyDto dto) throws Exception {
 		dao.submit(dto);
@@ -30,13 +29,30 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		return dto;
 	} // 회원 정보 수정 페이지
 
-	public void update(MemberInfoDto dto) throws Exception {
-		dao.update(dto);
-	} // 회원정보 변경
+	public int memUpdate(MemberInfoDto dto) throws Exception{
+		return dao.memUpdate(dto);
+	} // members 업데이트
+	
+	public int chefUpdate(ChefDto dto) throws Exception {
+		return dao.chefUpdate(dto);
+	} // chef 업데이트
 
 	public void delete(String member_id) throws Exception {
 		dao.delete(member_id);
 	} // 회원 탈퇴
+	
+	public int checkPwd(MemberInfoDto dto) throws Exception{
+		return dao.checkPwd(dto);
+	}
+	
+	public MemberInfoDto pwd(String password) throws Exception{
+		MemberInfoDto dto = dao.pwd(password);
+		return dto;
+	}
+	
+	public int changePwd(MemberInfoDto dto) throws Exception{
+		return dao.changePwd(dto);
+	} 
 	/*
 	 * public MemberInfoDto confirmPwd(String password) throws Exception{ return
 	 * dao.confirmPwd(password); }

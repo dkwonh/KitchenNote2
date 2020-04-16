@@ -74,7 +74,7 @@
 				type="button" value="고객센터">
 		</div>
 		<br>
-		<h2>답변 하기</h2>
+		<h2>1:1 문의 공지</h2>
 		<form name="form1" method="post" action="adminInsert.do">
 			<div>
 				제목 :<input name="subject" id="subject" size="80" placeholder="글 제목 입력">
@@ -158,10 +158,10 @@
 			<li><span class="opener">문의 사항</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">- 자주
+						href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=1">- 자주
 							묻는 질문 /FAQ</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">-
+						href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">-
 							1:1 문의</a></li>
 				</ul></li>
 			<li><a

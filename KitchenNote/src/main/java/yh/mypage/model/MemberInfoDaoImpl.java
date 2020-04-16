@@ -1,41 +1,57 @@
 package yh.mypage.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import yh.custom.controller.BoardDto;
+import yh.mypage.controller.ChefDto;
 import yh.mypage.controller.Chef_applyDto;
 import yh.mypage.controller.MemberInfoDto;
 
 public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInfoDao {
 
+	/*
+	 * @Override public MemberInfoDto checkPwd(String password) throws Exception{
+	 * getSqlSession().selectOne("MemberInfo.checkPwd",password); }
+	 */
 	@Override
 	public void submit(Chef_applyDto dto) throws Exception {
 		getSqlSession().insert("MemberInfo.submit", dto);
-	}
+	} // 쉐프 신청서 제출
 
 	@Override
 	public MemberInfoDto view(String member_id) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.view", member_id);
-	}
+	} // 회원정보 출력
 
 	@Override
-	public int update(MemberInfoDto dto) throws Exception {
-		return getSqlSession().update("MemberInfo.update");
-	}
+	public int memUpdate(MemberInfoDto dto) throws Exception {
+		return getSqlSession().update("MemberInfo.memupdate", dto);
+	} // members 업데이트
+
+	@Override
+	public int chefUpdate(ChefDto dto) throws Exception {
+		getSqlSession().update("MemberInfo.memupdate", dto);
+		return getSqlSession().update("MemberInfo.chefupdate", dto);
+	} // chef 업데이트
 
 	@Override
 	public void delete(String member_id) throws Exception {
 		getSqlSession().delete("MemberInfo.delete", member_id);
-	}
+	} // 회원 탈퇴
 
 	@Override
-	public List<MemberInfoDto> listAll() throws Exception {
-		return getSqlSession().selectList("MemberInfo.listAll");
+	public int checkPwd(MemberInfoDto dto) throws Exception {
+		return getSqlSession().update("MemberInfo.checkPwd", dto);
+	} // 비밀번호 확인
+
+	public MemberInfoDto pwd(String password) throws Exception {
+		return getSqlSession().selectOne("MemberInfo.pwd", password);
 	}
-	/*
-	 * public MemberInfoDto confirmPwd(String password) throws Exception{
-	 * getSqlSession().selectOne(password); }
-	 */
+	
+	public int changePwd(MemberInfoDto dto) throws Exception {
+		return getSqlSession().update("MemberInfo.changePwd", dto);
+	}
 }

@@ -78,6 +78,7 @@
 					<option value="7">제목</option>
 					<option value="8">작성자</option>
 				</select>
+				<input type="search" name="search" id="search" placeholder="검색 할 내용을 입력하여주세요.">
 			</p>
 			<h4>자주 묻는 질문 목록</h4>
 			<p>
@@ -127,15 +128,15 @@
 					<h2>고객센터</h2>
 					<ul>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
 								묻는 질문/FAQ</a></li>
 						<li><span class="opener">1:1 문의</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
 										내 문의 내역</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
 										1:1 문의하기</a></li>
 							</ul></li>
 					</ul>

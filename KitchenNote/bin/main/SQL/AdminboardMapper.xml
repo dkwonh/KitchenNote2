@@ -37,10 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<update id="updateArticle">
-		update QnA set subject = #{subject}, content =
-		#{content}, member_id = 'admin123@kitchen.com',
-		reg_date =
-		#{reg_date},secret = #{secret} where num = #{num}
+		update QnA set answer = #{answer},
+		status = '답변 완료' where num = #{num}
 	</update>
 
 	<delete id="deleteArticle">

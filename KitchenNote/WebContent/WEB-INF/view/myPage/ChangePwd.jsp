@@ -23,6 +23,51 @@
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+
+		$("#btnChange").click(function() {
+
+			var url = "pwd.do"
+			$.ajax({
+			type : "POST",
+			url : url,
+			dataType : "json",
+			error : function() {
+				alert('통신실패!!');
+			},
+			success : function(data) {
+				alert(data);
+				
+					var password = $("#password").val();
+					var pwdcheck = $("#pwdcheck").val();
+					if (password == "") {
+						alert("비밀번호를 입력하세요.");
+						document.form2.password.focus();
+						return;
+					}
+					if ($("#pwdcheck1").val() != $("#pwdcheck2").val()) {
+						alert("비밀번호를 다르게 입력하였습니다.");
+						document.form2.pwdcheck2.focus();
+						return;
+					}else {
+						confirm("변경 내용을 저장하시겠습니까?");
+						document.form2.action = "changepwd.do";
+						document.form2.submit();
+					}
+				}
+			});
+
+		});
+
+		$("#btnCancel").click(function() {
+			history.go(-1);
+		});
+
+	});
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -52,21 +97,22 @@
 			<h2>비밀번호 변경</h2>
 			<br>
 			<div>
-				현재 비밀번호 : <input type="text"
+				현재 비밀번호 : <input type="password" name="password" id="password"
 					placeholder="현재 비밀번호를 입력하여 주세요.">
 			</div>
 			<br>
 			<div>
-				비밀번호 : <input type="text" palceholder="바꾸실 비밀 번호를 입력하여 주세요.">
+				비밀번호 : <input type="password" name="pwdcheck1" id="pwdcheck1"
+					placeholder="바꾸실 비밀 번호를 입력하여 주세요.">
 			</div>
 			<br>
 			<div>
-				비밀번호 확인 :
-				 <input type="text" palceholder="비밀번호 확인을 위해 한번 더 입력하여 주세요.">
+				비밀번호 확인 : <input type="password" name="pwdcheck2" id="pwdcheck2"
+					placeholder="비밀번호 확인을 위해 한번 더 입력하여 주세요.">
 			</div>
 			<hr>
-			<button type="submit">변경</button>
-			<button type="submit">취소</button>
+			<button type="button" id="btnChange">변경</button>
+			<button type="button" id="btnCancel">취소</button>
 
 			</form>
 
@@ -93,7 +139,7 @@
 								href="http://localhost:8082/KitchenNote/customer/write.do">-
 									결제 내역</a></li>
 							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
+								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
 									회원 정보 수정</a></li>
 
 						</ul>

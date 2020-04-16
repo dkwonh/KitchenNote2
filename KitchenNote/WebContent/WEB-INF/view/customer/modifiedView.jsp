@@ -97,21 +97,22 @@
 			<div style="width: 650px; text-align: center;">
 				<input type="hidden" name="num" value="${dto.num}"> <input
 					type="hidden" name="member_id" value="${dto.member_id }">
+					<input type="hidden" name="status" value="${dto.status }">
 				<button type="button" id="btnConfirm">저장</button>
 				<button type="button" id="btnReset">취소</button>
 			</div>
 		</form>
 		<h2>고객센터</h2>
 		<ul>
-			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
+			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
 					묻는 질문/FAQ</a></li>
 			<li><span class="opener">1:1 문의</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">- 내 문의
+						href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">- 내 문의
 							내역</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">- 1:1
+						href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">- 1:1
 							문의하기</a></li>
 				</ul></li>
 		</ul>

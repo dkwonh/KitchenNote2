@@ -4,33 +4,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberInfo">
 
-	<!-- <select id="listAll" resultType="yh.mypage.controller.ChefDto"> select 
-		m.member_id, m.password, m.picture, m.Level, c.tel, c.sns_address from members 
-		m inner join chef c where m.member_id = c.chef </select> -->
-		
+	<!-- <select id="checkPwd" resultType="yh.mypage.controller.ChefDto"> select 
+		m.password from member m inner join chef c </select> -->
 	<select id="view" resultType="yh.mypage.controller.ChefDto">
-		select m.nickname,c.chef, m.picture, m.Level, c.tel, c.sns_address 
-		from members m inner join chef c 
-		where m.member_id='test2@ki.com' and c.chef='test2@ki.com' 
+		select m.nickname,c.chef,
+		m.picture, m.Level, c.tel, c.sns_address
+		from members m inner join chef
+		c
+		where m.member_id='test2@ki.com' and c.chef='test2@ki.com'
 	</select>
-	
-<!-- 	<insert id="insert" parameterType="yh.mypage.controller.ChefDto">
-		insert into Members m,chef c
-		(m.member_id, m.password, m.picture, m.Level, c.tel,
-		c.sns_address)
-		values(
-		#{member_id},
-		#{password}, #{picture}, #{level},
-		#{tel},#{sns_address}
-		)
-	</insert> -->
 
-	<!-- <select id="view" resultType="yh.mypage.controller.ChefDto"> select 
-		* from QnA where num = #{num} </select> <update id="increaseViewcnt" parameterType="int"> 
-		update QnA set readcount = readcount +1 where num = #{num} </update> <update 
-		id="updateArticle"> update QnA set subject = #{subject}, content = #{content}, 
-		member_id = 'admin123@kitchen.com', reg_date = #{reg_date},secret = #{secret} 
-		where num = #{num} </update> <delete id="deleteArticle"> delete from QnA 
-		where num = #{num} </delete> -->
+	<insert id="submit"
+		parameterType="yh.mypage.controller.Chef_applyDto">
+		insert into Chef_apply
+		values ('test2@ki.com',
+		#{sns_address}, #{tel},#{content})
+	</insert>
+
+	<update id="memupdate"
+		parameterType="yh.mypage.controller.MemberInfoDto">
+		update members set nickname=#{nickname} where
+		member_id='test2@ki.com'
+	</update>
+
+	<update id="chefupdate"
+		parameterType="yh.mypage.controller.ChefDto">
+		update chef set tel=#{tel}, sns_address = #{sns_address}
+		where chef =
+		'test2@ki.com'
+	</update>
+
+	<select id="checkPwd"
+		parameterType="yh.mypage.controller.MemberInfoDto">
+		select password from members
+	</select>
+
+	<delete id="deleteArticle">
+		delete from members where member_id = #{member_id}
+	</delete>
+	
+	<update id="changePwd"
+		parameterType="yh.mypage.controller.MemberInfoDto">
+		update members set password =#{password} where member_id
+		= 'test2@ki.com'
+	</update>
+
+	<select id="pwd"
+		parameterType="yh.mypage.controller.MemberInfoDto">
+		select password from members
+	</select>
 
 </mapper>

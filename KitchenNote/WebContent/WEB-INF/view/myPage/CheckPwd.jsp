@@ -24,11 +24,21 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
- $(document).ready(function(){
-	 $("#btnWrite").click(function(){
-		 location.href = "chefApply.do"
-		 });
-	 });
+	$(document).ready(function() {
+		$("#btnConfirm").click(function() {
+			var checkPwd = $("#checkPwd").val();
+			if(checkPwd == ""){
+				alert("비밀 번호를 입력하여 주세요.");
+				document.form1.checkPwd.focus();
+				return false;
+				}
+			document.form1.action = "MemberInfo.do";
+			document.form1.submit();
+		});
+		$("#btnCancel").click(function() {
+			history.back();
+		});
+	});
 </script>
 </head>
 <body>
@@ -56,59 +66,48 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
-			<h2>회원 정보 수정</h2>
-			<image src="#"></image>
-			<form method="post">
-				사진 바꾸기
-				<button type="submit" value="첨부">첨부</button>
-					<button type="submit" id="btnWrite" value="쉐프 신청">쉐프 신청</button>
-							<div>
-								닉네임 : <input type="text">
-							</div>
-							<div>
-								이메일 : <input type="text">
-							</div>
-							<div>
-							연락처 : <input type="text">
-							</div>
-							<div>
-							개인 SNS주소 : <input type="text">
-							</div>
-							<hr>
-							<button type="submit">개정 정보 변경</button>
-							<button type="submit">비밀번호 바꾸기</button>
-							<button type="submit">탈퇴 하기</button>
-							</form>
-							
-							<div id="sidebar">
-								<div class="inner">
-									<nav id="menu">
-										<h2>고객센터</h2>
-										<ul>
-											<li><a
-												href="http://localhost:8082/KitchenNote/customer/FAQ.do">
-												- 레시피</a></li>
+			<form name="form1" method="post" action="MemberInfo.do">
+				<h2>비밀 번호 확인</h2>
+				<br>
+				<div>
+				<input type="text" name="checkPwd" id="checkPwd" placeholder="본인 확인을 위해 비밀번호를 입력해주세요.">
+				</div>
+				<hr>
+				<button type="submit" id="btnConfirm">확인</button>
+				<button type="submit" id="btnCancel">취소</button>
 
-													<li><a
-														href="http://localhost:8082/KitchenNote/customer/list.do">-
-															스크랩</a></li>
-													<li><a
-														href="http://localhost:8082/KitchenNote/customer/write.do">-
-															댓글</a></li>
-															<li><a
-														href="http://localhost:8082/KitchenNote/customer/write.do">-
-															알람</a></li>
-															<li><a
-														href="http://localhost:8082/KitchenNote/customer/write.do">-
-															결제 내역</a></li>
-															<li><a
-														href="http://localhost:8082/KitchenNote/customer/write.do">-
-															회원 정보 수정</a></li>
+			</form>
 
-										</ul>
-									</nav>
-								</div>
-							</div>
+			<div id="sidebar">
+				<div class="inner">
+					<nav id="menu">
+						<h2>마이 페이지</h2>
+						<image src="#">
+						<ul>
+							<li><a
+								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+									레시피</a></li>
+
+							<li><a
+								href="http://localhost:8082/KitchenNote/customer/list.do">-
+									스크랩</a></li>
+							<li><a
+								href="http://localhost:8082/KitchenNote/customer/write.do">-
+									댓글</a></li>
+							<li><a
+								href="http://localhost:8082/KitchenNote/customer/write.do">-
+									알람</a></li>
+							<li><a
+								href="http://localhost:8082/KitchenNote/customer/write.do">-
+									결제 내역</a></li>
+							<li><a
+								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+									회원 정보 수정</a></li>
+
+						</ul>
+					</nav>
+				</div>
+			</div>
 		</div>
 		<footer id="footer">
 			<p class="copyright">

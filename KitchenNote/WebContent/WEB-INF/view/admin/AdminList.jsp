@@ -29,13 +29,6 @@ $(document).ready(function() {
 			location.href = "adminWrite.do";
 		});
 		});
-	/* 	$("#choice").click(function() {
-
-		});
- 		$(document).ready(function() {
-		 $("#BtnModified").click(function() {
-		 location.href = "AdminFAQWrite.do";
-		 }); // 컨트롤러 생성 */
 </script>
 </head>
 <body>
@@ -107,6 +100,7 @@ $(document).ready(function() {
 								pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td>${row.readcount }</td>
 						<td>${row.secret}</td>
+						<td>${row.status }</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -189,10 +183,10 @@ $(document).ready(function() {
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=1">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a

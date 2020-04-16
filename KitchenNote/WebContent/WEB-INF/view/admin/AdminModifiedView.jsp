@@ -26,23 +26,15 @@
 			}
 		});
 		$("#btnConfirm").click(function() {
-			var subject = $("#subject").val();
-			var content = $("#content").val();
-			var member_id = $("#member_id").val();
-			var reg_date = $("#reg_date").val();
-			var secret = $(":checked").val();
+			var answer = $("#answer").val();
+			var status = $("#status").val();
 
-			if (subject == "") {
-				alert("제목을 입력하세요.");
-				document.form2.subject.focus();
-				return;
-			}
-			if (content == "") {
+			if (answer == "") {
 				alert("내용을 입력하세요.");
-				document.form2.content.focus();
+				document.form2.answer.focus();
 				return;
-			}else {
-				confirm("저장 하시겠습니까?");
+			} else {
+				confirm("답변글을 등록 하시겠습니까?");
 				document.form2.action = "adminUpdate2.do"
 				document.form2.submit();
 			}
@@ -75,21 +67,11 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-			<h2>수정하기</h2>
+			<h2>답변하기</h2>
 			<form name="form2" method="GET">
 				<div>
-					제목<input name="subject" id="subject" size="80"
-						placeholder="글 제목 입력">
-				</div>
-				<div class="4u 12u$(small)">
-					공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
-						value="true"> <label for="demo-priority-normal">공개</label>
-					<input type="radio" id="demo-priority-high" name="secret"
-						value="false"> <label for="demo-priority-high">비공개</label>
-				</div>
-				<div>
 					내용
-					<textarea name="content" id="content" rows="8" cols="80"
+					<textarea name="answer" id="answer" rows="8" cols="80"
 						placeholder="글 내용 입력"></textarea>
 				</div>
 				<div style="width: 650px; text-align: center;">
@@ -159,10 +141,10 @@
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=1">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a

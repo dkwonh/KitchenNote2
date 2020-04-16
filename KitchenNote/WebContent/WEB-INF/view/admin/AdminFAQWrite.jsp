@@ -156,10 +156,10 @@
 			<li><span class="opener">문의 사항</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">- 자주
+						href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=1">- 자주
 							묻는 질문 /FAQ</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">- 1:1
+						href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">- 1:1
 							문의</a></li>
 				</ul></li>
 				<li><a

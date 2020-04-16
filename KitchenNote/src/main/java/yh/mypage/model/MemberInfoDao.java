@@ -8,15 +8,25 @@ import yh.mypage.controller.MemberInfoDto;
 
 public interface MemberInfoDao {
 
+	/* public MemberInfoDto checkPwd(String password) throws Exception; */
+	
 	public void submit(Chef_applyDto dto) throws Exception; //쉐프 신청 양식
 
 	public MemberInfoDto view(String member_id) throws Exception; // 회원 정보 수정 첫 페이지
 
-	public int update(MemberInfoDto dto) throws Exception; // 회원 정보 변경
+	public int memUpdate(MemberInfoDto dto) throws Exception; // 회원 정보 변경
+	
+	public int chefUpdate(ChefDto dto) throws Exception;
 
 	public void delete(String member_id) throws Exception; // 회원 탈퇴
-
-	public List<MemberInfoDto> listAll() throws Exception; // x
+	
+	public int checkPwd(MemberInfoDto dto) throws Exception;
+	
+	public MemberInfoDto pwd(String password) throws Exception;
+	
+	public int changePwd(MemberInfoDto dto) throws Exception;
+	
+	/* public void memberWithdrawal(String member_id) throws Exception; */
 	
 	/* public MemberInfoDto confirmPwd(String password) throws Exception; */
 

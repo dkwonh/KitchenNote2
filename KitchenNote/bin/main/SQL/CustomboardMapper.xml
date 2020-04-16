@@ -16,9 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="yh.custom.controller.BoardDto">
-		insert into QnA (num,subject,content,member_id,reg_date,readcount,secret)values(
+		insert into QnA (num,subject,content,member_id,reg_date,status,readcount,secret)values(
 		#{num},
-		#{subject}, #{content}, 'admin123@kitchen.com' ,#{reg_date},#{readcount} ,#{secret}
+		#{subject}, #{content}, 'admin123@kitchen.com' ,#{reg_date},'답변대기',#{readcount} ,#{secret}
 		)
 	</insert>
 

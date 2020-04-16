@@ -24,32 +24,37 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
-$(document).ready(function(){
-	$("#btnsave").click(function(){
-		var tel = $("#tel").val();
-		var sns_address = $("#sns_address").val();
-		var content = $("#content").val();
+	$(document).ready(function() {
+		$("#btnSave").click(function() {
+			var tel = $("#tel").val();
+			var sns_address = $("#sns_address").val();
+			var content = $("#content").val();
 
-		if(tel == ""){
-			alert("연락처를 입력하세요.");
-			document.form1.tel.focus();
-			return;
+			if (tel == "") {
+				alert("연락처를 입력하세요.");
+				document.form1.tel.focus();
+				return false;
 			}
-		if(sns_address == ""){
-			alert("SNS주소를 입력하세요.")
-			document.form1.sns_address.focus();
-			return;
+			if (sns_address == "") {
+				alert("SNS주소를 입력하세요.")
+				document.form1.sns_address.focus();
+				return false;
 			}
-		if(content == ""){
-			alert("신청 사유를 입력해주세요")
-			document.form1.sns_address.focus();
+			if (content == "") {
+				alert("신청 사유를 입력해주세요")
+				document.form1.content.focus();
+				return false;
+			} else {
+				confirm("신청서를 제출하시겠습니까?");
+				document.form1.action = "chefApply_submit.do";
+				document.form1.submit();
 			}
 		});
-	$("#btncancel").click(function(){
-		document.form1.action = "MemberInfo.do"
+		$("#btncancel").click(function() {
+			document.form1.action = "MemberInfo.do";
 			document.form1.submit();
-			});
-});
+		});
+	});
 </script>
 </head>
 <body>
@@ -77,25 +82,29 @@ $(document).ready(function(){
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
-			<h2>쉐프 신청하기</h2>
-			<br>
-			<div>
-				연락처 : <input type="text"
-					placeholder="승인여부를 안내 받으실 정확한 휴대전화 번호를  숫자로만 입력하여 주세요.">
-			</div>
-			<br>
-			<div>
-				개인 SNS 주소: <input type="text" palceholder="승인을 위한 간단한 확인 절차입니다.">
-			</div>
-			<br>
-			<div>
-				신청 이유(동기) :
-				<textarea name="content" id="content" cols="80" rows="8"
-					placeholder="신청 이유(동기)를 입력하여주세요."></textarea>
-			</div>
-			<hr>
-			<button type="submit" id="btnsave">쉐프 신청</button>
-			<button type="submit" id="btncalcel">취소</button>
+			<form name="form1" method="post" action="chefApply_submit.do">
+				<h2>쉐프 신청하기</h2>
+				<br>
+				<div>
+				<input type="hidden" name="member_id" value="${dto.chef }">
+				</div>
+				<div>
+					연락처 : <input name="tel" id="tel" type="text"
+						placeholder="승인여부를 안내 받으실 정확한 휴대전화 번호를  숫자로만 입력하여 주세요.">
+				</div>
+				<br>
+				<div>
+					개인 SNS 주소: <input name="sns_address" id="sns_address" type="text" placeholder="승인을 위한 간단한 확인 절차입니다.">
+				</div>
+				<br>
+				<div>
+					신청 이유(동기) :
+					<textarea name="content" id="content" cols="80" rows="8"
+						placeholder="신청 이유(동기)를 입력하여주세요."></textarea>
+				</div>
+				<hr>
+				<button type="submit" id="btnSave">쉐프 신청</button>
+				<button type="submit" id="btncalcel">취소</button>
 
 			</form>
 
@@ -122,7 +131,7 @@ $(document).ready(function(){
 								href="http://localhost:8082/KitchenNote/customer/write.do">-
 									결제 내역</a></li>
 							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
+								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
 									회원 정보 수정</a></li>
 
 						</ul>

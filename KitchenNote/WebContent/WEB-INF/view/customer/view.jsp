@@ -41,12 +41,12 @@
 <body>
 	<nav id="menu">
 		<header id="header">
-				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
+			<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
 			<section id="search" class="alt 4u 12u$">
-			<form method="post">
-			<input name="search" id="query" type="text">
-			</form>
-				</section>
+				<form method="post">
+					<input name="search" id="query" type="text">
+				</form>
+			</section>
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span
@@ -70,7 +70,8 @@
 			</div>
 			<div>조회수 : ${dto.readcount }</div>
 			<div>
-				이름 <input name="member_id" id="member_id" value="${dto.member_id }" readonly>
+				이름 <input name="member_id" id="member_id" value="${dto.member_id }"
+					readonly>
 			</div>
 			<div>
 				제목<input value="${dto.subject}" name="title" id="title" size="80"
@@ -80,8 +81,8 @@
 				공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
 					value="${dto.secret }" checked> <label
 					for="demo-priority-normal">공개</label> <input type="radio"
-					id="demo-priority-high" name="secret" value="${dto.secret }" checked>
-				<label for="demo-priority-high">비공개</label>
+					id="demo-priority-high" name="secret" value="${dto.secret }"
+					checked> <label for="demo-priority-high">비공개</label>
 			</div>
 			<div>
 				내용
@@ -89,29 +90,30 @@
 			</div>
 			<br>
 			<div>
-			관리자 답변 :<br>
-			<input type="hidden" name="answer" id="answer" rows="8" cols="80" readonly>${dto.answer}</textarea>
-			
+				관리자 답변 :<br> <input type="hidden" name="answer" id="answer"
+					rows="8" cols="80" readonly>${dto.answer}</textarea>
 
-			<div style="width: 650px; text-align: center;">
-				<input type="hidden" name="num" value="${dto.num}">
-				<button type="button" id="btnUpdate">수정</button>
-				<button type="button" id="btnDelete">삭제</button>
-				<button type="button" id="btnNon">확인</button>
-			</div>
+
+				<div style="width: 650px; text-align: center;">
+					<input type="hidden" name="num" value="${dto.num}">
+					<button type="button" id="btnUpdate">수정</button>
+					<button type="button" id="btnDelete">삭제</button>
+					<button type="button" id="btnNon">확인</button>
+				</div>
 		</form>
 		<h2>고객센터</h2>
 		<ul>
-			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do">자주
+			<li><a
+				href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
 					묻는 질문/FAQ</a></li>
 			<li><span class="opener">1:1 문의</span>
 				<ul>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do">- 내 문의
-							내역</a></li>
+						href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
+							내 문의 내역</a></li>
 					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do">- 1:1
-							문의하기</a></li>
+						href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
+							1:1 문의하기</a></li>
 				</ul></li>
 		</ul>
 	</nav>
