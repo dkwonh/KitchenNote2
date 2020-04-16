@@ -57,6 +57,7 @@ public class MemberInfoController {
 		System.out.println(dto);
 		return "redirect:memberInfo.do";
 	}
+	
 	@RequestMapping(value="changeUser.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") ChefDto dto, HttpSession session) throws Exception{
 		try {
@@ -67,18 +68,20 @@ public class MemberInfoController {
 		}
 		return "redirect:memberInfo.do";		
 	}
+	
 	@RequestMapping(value="changePwdView.do",method = {RequestMethod.POST,RequestMethod.GET})
 	public String changePwdView(@ModelAttribute MemberInfoDto dto) throws Exception{
 		return "myPage/ChangePwd";
 	}
+	
 	@RequestMapping(value="pwd.do", method = {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public String Pwd(String password) throws Exception{
-		MemberInfoDto dto = service.pwd(password);
-		Gson json = new Gson();
-		System.out.println(dto.getPassword());
-		return json.toJson(dto);
+	public int Pwd(String password) throws Exception{
+		System.out.println("입력");
+		int dto = service.pwd(password);
+		return dto;
 	}
+	
 	@RequestMapping(value="changePwd", method = {RequestMethod.POST,RequestMethod.GET})
 	public String changePwd(@ModelAttribute("dto") MemberInfoDto dto, HttpSession session) throws Exception{
 		service.changePwd(dto);

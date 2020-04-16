@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- <select id="checkPwd" resultType="yh.mypage.controller.ChefDto"> select 
 		m.password from member m inner join chef c </select> -->
+		
 	<select id="view" resultType="yh.mypage.controller.ChefDto">
 		select m.nickname,c.chef,
 		m.picture, m.Level, c.tel, c.sns_address
@@ -51,7 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="pwd"
 		parameterType="yh.mypage.controller.MemberInfoDto">
-		select password from members
+		select count(1) 
+		from members 
+		where 1=1
+		<if test="">
+		and password = #{password}
+		</if>
 	</select>
 
 </mapper>

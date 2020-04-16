@@ -22,7 +22,7 @@ public interface MemberInfoDao {
 	
 	public int checkPwd(MemberInfoDto dto) throws Exception;
 	
-	public MemberInfoDto pwd(String password) throws Exception;
+	public int pwd(String password) throws Exception;
 	
 	public int changePwd(MemberInfoDto dto) throws Exception;
 	

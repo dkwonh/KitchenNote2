@@ -5,8 +5,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="admin">
 
 	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto">
-		select * from Admin_FAQ order by
-		bno desc limit #{start}, 10
+		select * 
+		from Admin_FAQ
+		where 1=1
+		<if test="asdf != null">
+		and aekfoakewof = #{asdf}
+		</if>
+		<if>
+		and ajdsfo = #{adsfads} 
+		</if>
+		order by bno desc 
+		limit #{start}, 10
 
 	</select>
 	

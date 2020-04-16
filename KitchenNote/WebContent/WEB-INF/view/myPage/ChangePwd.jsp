@@ -29,11 +29,12 @@
 	$(document).ready(function() {
 
 		$("#btnChange").click(function() {
-
+			var password = $("#password").val();
 			var url = "pwd.do"
 			$.ajax({
 			type : "POST",
 			url : url,
+			data : {"password" : password}
 			dataType : "json",
 			error : function() {
 				alert('통신실패!!');
@@ -41,9 +42,9 @@
 			success : function(data) {
 				alert(data);
 				
-					var password = $("#password").val();
+					
 					var pwdcheck = $("#pwdcheck").val();
-					if (password == "") {
+					if () {
 						alert("비밀번호를 입력하세요.");
 						document.form2.password.focus();
 						return;

@@ -45,8 +45,8 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		return dao.checkPwd(dto);
 	}
 	
-	public MemberInfoDto pwd(String password) throws Exception{
-		MemberInfoDto dto = dao.pwd(password);
+	public int pwd(String password) throws Exception{
+		int dto = dao.pwd(password);
 		return dto;
 	}
 	

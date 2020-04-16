@@ -47,7 +47,7 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 		return getSqlSession().update("MemberInfo.checkPwd", dto);
 	} // 비밀번호 확인
 
-	public MemberInfoDto pwd(String password) throws Exception {
+	public int pwd(String password) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.pwd", password);
 	}
 	

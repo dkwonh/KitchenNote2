@@ -18,7 +18,7 @@ public interface MemberInfoService {
 
 	public void delete(String member_id) throws Exception; // 회원 탈퇴
 	
-	public MemberInfoDto pwd(String password) throws Exception; // 비밀번호 확인
+	public int pwd(String password) throws Exception; // 비밀번호 확인
 	
 	public int changePwd(MemberInfoDto dto) throws Exception;
 	/*
