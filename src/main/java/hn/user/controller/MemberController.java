@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.Session;
+
 import hn.user.model.LoginCommand;
 import hn.user.model.MemberDao;
 import hn.user.model.MemberDto;
 import hn.user.service.memberService;
+import hn.user.service.EmailService;
+import hn.user.model.EmailVO;
 
 @Controller
 public class MemberController {
@@ -23,6 +27,8 @@ public class MemberController {
 	MemberDao dao;
 	@Autowired
 	memberService msve;
+	@Autowired
+	private EmailService emailService;
 
 	
 	public void setDao(MemberDao dao) {
@@ -50,14 +56,18 @@ public class MemberController {
 	public String loginOk(LoginCommand lc, HttpSession session) {
 		List<MemberDto> list= msve.loginOk(lc);
 		int i = list.size();
-		
 		if (i == 0) {
 			return "login/loginForm"; //로그인 실패
 		}else {
-			session.setAttribute("Ok", lc.getMember_id());
+			session.setAttribute("MINFO", lc.getMember_id());
 			session.setAttribute("LEVEL", list.get(0).getLevel());
 			return "redirect:/index.jsp"; //로그인 성공
 		} 
+	}
+	//로그아웃
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/index.jsp";
 	}
 	//회원가입창
 	@RequestMapping(value = "/login/memberForm.do",method = RequestMethod.GET)
@@ -83,14 +93,51 @@ public class MemberController {
 		return i3;
 	}
 	//회원가입 실행
-	@RequestMapping(value = "/login/mem.do")
+	@RequestMapping(value = "/login/mem.do") //회원가입 완료시 가는 폼
 	public String insert(MemberDto mdto, HttpSession session) {
 		int i4 = msve.insert(mdto);
 		if (i4 == 0) {
-			session.setAttribute("succ", mdto.getMember_id());
+			session.setAttribute("MSUC", mdto.getMember_id());
 			return "login/loginForm"; //회원가입 완료
 		} else {
 			return "login/memberForm"; //회원가입 실패
 		}
 	}
+	//비밀번호 찾기
+	@RequestMapping(value = "/login/pwFind.do",method = RequestMethod.GET)
+	public String form3() {
+		return "login/pwFind";
+	}
+	
+	//비밀번호 찾기 이메일 보내기
+	@RequestMapping(value = "/login/find_pass.do")
+	@ResponseBody
+	public String sendMail(String member_id) throws Exception {
+
+		EmailVO email = new EmailVO();
+		
+		//System.out.println(member_id);
+		
+		//MemberDto members = MemberDao.findByLoginId(member_id);
+
+		String receiver = member_id; // Receiver. //회원 계정 이메일
+
+		String subject = "[KitchenNote] 비밀번호 안내 이메일 입니다."; //제목
+
+		String content = "[KitchenNote]"; //내용
+		
+
+		email.setReceiver(receiver);
+
+		email.setSubject(subject);
+
+		email.setContent(content);
+
+		boolean result = emailService.sendMail(email);
+
+		return "이메일이 전송 되었습니다: " + result
+				+ "<p><button type='button'  onclick=\"window.close();\">확인</button></p>";
+
+	}
+	
 }
