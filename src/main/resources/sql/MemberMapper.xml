@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<select id="allMember" resultType="hn.user.model.MemberDto">
+	select * from members
+</select>
+
+	<insert id="insert" parameterType="hn.user.model.LoginCommand">
+	insert into members(member_id, password, nickname, picture, Level) values (#{member_id},
+	#{password}, #{nickname}, 'pictureUrl', 1)
+</insert>
+
+	<update id="update" parameterType="hn.user.model.MemberDto">
+		update members set password=#{password}, nickname=#{nickname} where
+		member_id=#{member_id}
+	</update>
+
+	<delete id="delet" parameterType="String">
+		delete from members where member_id=#{member_id}
+	</delete>
+
+	<!-- 아이디 중복 체크 -->
+	<select id="emChk" resultType="int"
+		parameterType="hn.user.model.LoginCommand"> <!-- String -->
+		select COUNT(*) from members where member_id=#{member_id}
+	</select>
+
+	<!-- 닉네임 중복 체크  -->
+<select id="nkChk" resultType="int"
+		parameterType="hn.user.model.LoginCommand">
+		select COUNT(*) from members where nickname=#{nickname}
+		</select>
+
+	<select id="loginOk" resultType="hn.user.model.MemberDto"
+		parameterType="hn.user.model.LoginCommand">
+		select member_id,password,level from members where member_id=#{member_id}
+		and password=#{password}
+	</select>
+</mapper>

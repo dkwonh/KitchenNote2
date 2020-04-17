@@ -24,4 +24,7 @@
 		<property name="mapperLocations" value="classpath:sql/*.xml"></property>
 		<property name="configLocation" value="classpath:config.xml"></property>
 	</bean>
-</beans>
+	
+	
+	
+</beans> 
