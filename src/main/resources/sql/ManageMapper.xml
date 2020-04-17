@@ -329,6 +329,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
+	
+	
 	<select id="getPaymentCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
 		select count(*) from pay_list p
 		<where>
@@ -362,6 +364,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	<!-- 결제 내역 리스트 끝 -->
+	
+	
+	
+	<!-- 공지사항 -->
+	<select id="getNotifyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.NotifyDto">
+		select * from notify
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		 like CONCAT('%',#{search},'%')
+ 		</if>
+ 		 <if test='filter == "subject"'>
+		 subject 
+		 like CONCAT('%',#{search},'%')
+		 </if>
+		 <if test='filter == "content"'>
+		 content 
+		 like CONCAT('%',#{search},'%')
+		 </if>
+		 </where>
+ 		 order by 'num' limit #{start}, 10	
+
+	</select>
+	
+	
+	
+	<select id="getNotifyCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from notify
+		<where>
+		<if test='filter == "subject"'>
+		  subject
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "content"'>
+		  content
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
+	</select>
+	
+	<insert id="insertNotify" parameterType="wh.admin.manage.model.NotifyDto">
+		insert into notify(subject,content,member_id) values(#{subject},#{content},#{member_id})
+	</insert>
+	
+	<update id="updateNotify" parameterType="wh.admin.manage.model.NotifyDto">
+		update notify set subject = #{subject}, content = #{content}, member_id = #{member_id} where 'num' = #{num}
+	</update>
+	
+	
+	
+	
 	
 	
 	<!-- 쿠킹 클래스 리스트 -->

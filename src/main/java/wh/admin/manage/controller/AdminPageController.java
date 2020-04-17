@@ -396,6 +396,11 @@ public class AdminPageController implements ApplicationContextAware {
 		return "adminPage/adminPurRecipe";
 	}
 	
+	@RequestMapping(value="notify.do", method=RequestMethod.GET)
+	public String notify(FilterDto f) {
+		
+	}
+	
 	/**/
 	/*
 	 * //필터사용
