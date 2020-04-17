@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="admin">
+<mapper namespace="manage">
 	<!-- 유저 리스트 시작 -->
 	<select id="getUserList" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
 		select * from members 
@@ -363,6 +363,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 결제 내역 리스트 끝 -->
 	
+	
 	<!-- 쿠킹 클래스 리스트 -->
 	<select id="getClassList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.CookingClassDto">
 		select * from cooking_class inner join members on chef = member_id
@@ -376,7 +377,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		nickname 
 		  like CONCAT('%',#{search},'%')
  		</if>
- 		and recruit = #{recruit}
+ 		and recruit = 'true'
 		</where>
 		order by reg_date limit #{start}, 10
 	</select>
@@ -393,20 +394,82 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		  nickname 
 		  like CONCAT('%',#{search},'%')
 		 </if>
-		 and recruit = #{recruit}
+		 and recruit = 'true'
 		</where>
 	</select>
 	
+	<select id="getClass" parameterType="int" resultType="wh.admin.manage.model.CookingClassDto">
+		select * from cooking_class where c_num = #{c_num}
+	</select>
 	
-	<!--  -->
+	<select id="getClassPersonCount" parameterType="map" resultType="int">
+		select Count(*) from class_student natural join members where c_num = #{c_num}
+		<if test='start != "-1"'>
+			order by reg_date limit #{start}, 10
+		</if>
+	</select>
 	
-	<!-- 클래스 계획서 리스트 -->
-	<select id="getApplyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.TeacherApply">
+	<insert id="regClass" parameterType="map">
+		insert into cooking_class(c_name,price,chef,period_start,period_end,content,personnel,recruit) values(#{c_name},#{price},#{chef},#{period_start},#{period_end},#{content},#{personnel},#{recruit})
+	</insert>
+	
+	<update id="updateClass" parameterType="map">
+		update cooking_class set c_name = #{c_name}, price = #{price}, chef = #{chef},period_start = #{period_start}, period_end = #{period_end},content = #{content},personnel = #{personnel},recruit = #{recruit} where c_num = #{c_num}
+	</update>
+	<!-- 쿠킹 클래스 리스트 끝 -->
+	
+	<!-- 강사 모집 리스트 -->
+	<select id="getRecruitList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.CookingClassDto">
+		select * from cooking_class
+		<where>
+		<if test='filter == "c_name"'>
+		 c_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		and recruit = 'false'
+		</where>
+		order by reg_date limit #{start}, 10
+	</select>
+	
+	<select id="getRecruitCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from cooking_class
+		<where>
+		<if test='filter == "c_name"'>
+		  c_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		 and recruit = 'false'
+		</where>
+	</select>
+	
+	<select id="getRecruit" parameterType="int" resultType="wh.admin.manage.model.CookingClassDto">
+		select * from cooking_class where c_num = #{c_num}
+	</select>
+	
+	<select id="getRecruitPersonCount" parameterType="map" resultType="int">
+		select Count(*) from class_apply inner join members on member_id = chef where c_num = #{c_num}
+		<if test='start != "-1"'>
+			order by chef limit #{start}, 10
+		</if>
+	</select>
+	
+	<insert id="regRecruit" parameterType="map">
+		insert into cooking_class(c_name,price,chef,period_start,period_end,content,personnel,recruit) values(#{c_name},#{price},#{chef},#{period_start},#{period_end},#{content},#{personnel},#{recruit})
+	</insert>
+	
+	<update id="updateRecruit" parameterType="map">
+		update cooking_class set c_name = #{c_name}, price = #{price}, chef = #{chef},period_start = #{period_start}, period_end = #{period_end},content = #{content},personnel = #{personnel},recruit = #{recruit} where c_num = #{c_num}
+	</update>
+	
+	
+	
+	
+<!-- 	클래스 계획서 리스트
+ -->	<select id="getApplyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.TeacherApply">
 		select * from class_apply where c_num=#{c_num} order by chef limit #{start}, 10
 	</select>
 	
 	<select id="getApplyCount" parameterType="int" resultType="int">
 		select count(*) from class_apply where c_num=#{c_num} 
 	</select>
-	
 </mapper>

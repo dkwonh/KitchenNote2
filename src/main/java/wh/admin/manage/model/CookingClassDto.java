@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class CookingClassDto {
-	private String c_num;
+	private int c_num;
 	
 	// 클래스명
 	private String c_name;
@@ -33,8 +33,19 @@ public class CookingClassDto {
 	// 강사모집 상태 트루:모집완료
 	private Boolean recruit;
 	
+	private int regPerson;
+	
 	private String nickname;
+	
+	
 
+	public int getRegPerson() {
+		return regPerson;
+	}
+
+	public void setRegPerson(int regPerson) {
+		this.regPerson = regPerson;
+	}
 
 	public String getNickname() {
 		return nickname;
@@ -62,11 +73,11 @@ public class CookingClassDto {
 
 	
 
-	public String getC_num() {
+	public int getC_num() {
 		return c_num;
 	}
 
-	public void setC_num(String c_num) {
+	public void setC_num(int c_num) {
 		this.c_num = c_num;
 	}
 

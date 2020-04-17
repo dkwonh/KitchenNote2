@@ -6,9 +6,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -20,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -390,72 +396,7 @@ public class AdminPageController implements ApplicationContextAware {
 		return "adminPage/adminPurRecipe";
 	}
 	
-	@RequestMapping(value="adminClassList.do", method=RequestMethod.GET)
-	public String getClass(int pageNum, FilterDto f, Model model) {
-		if(pageNum==0)
-			pageNum=1;
-		
-		f.setStart((pageNum - 1) * PAGE_SIZE);
-		f.setRecruit(true);
-		
-		List<CookingClassDto> list = adminPageService.getClassList(f);
-		int count = adminPageService.getClassCount(f);
-
-		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
-		model.addAttribute("pageCount", pageCount);
-		pageCalc(pageNum,count);
-		
-		model.addAttribute("filter", f.getFilter());
-		model.addAttribute("search", f.getSearch());
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"클래스 명","신청자 수","기간","상태"});
-		model.addAttribute("userList",list);
-		model.addAttribute("pageNum", pageNum);
-		
-		return "adminPage/adminClassList";
-	}
-	
-	@RequestMapping(value="adminRecruit.do", method=RequestMethod.GET)
-	public String getRecruit(int pageNum, FilterDto f, Model model) {
-		if(pageNum==0)
-			pageNum=1;
-		
-		f.setStart((pageNum - 1) * PAGE_SIZE);
-		f.setType("모집중");
-		
-		List<CookingClassDto> list = adminPageService.getClassList(f);
-		int count = adminPageService.getClassCount(f);
-
-		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
-		model.addAttribute("pageCount", pageCount);
-		pageCalc(pageNum,count);
-		
-		model.addAttribute("filter", f.getFilter());
-		model.addAttribute("search", f.getSearch());
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"모집 제목","신청자","기간","상태"});
-		model.addAttribute("userList",list);
-		model.addAttribute("pageNum", pageNum);
-		
-		return "adminPage/adminRecruit";
-	}
-	
-	@RequestMapping(value="writeClass.do")
-	public String writeClass() {
-		
-		return "adminPage/adminWriteClass";
-	}
-	
-	@RequestMapping(value="reg.do")
-	public void reg(HttpServletRequest request ) {
-		System.out.println(request.getParameter("ir1"));
-	}
-	
-	
+	/**/
 	/*
 	 * //필터사용
 	 * 

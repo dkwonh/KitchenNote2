@@ -32,11 +32,9 @@
 	</li>
 	
 	<li>
-		<span class="opener">이벤트 관리</span>
+		<span class="opener">공지 사항</span>
 		<ul>
-			<li><a href="adminClassList.do?pageNum=1">쿠킹 클래스</a></li>
-			<li><a href="adminRecruit.do?pageNum=1">강사 모집</a></li>
-			<li><a href="#">종료 클래스</a></li>
+			<li><a href="notify.do?pageNum=1">공지 사항</a></li>
 		</ul>
 	</li>
 	

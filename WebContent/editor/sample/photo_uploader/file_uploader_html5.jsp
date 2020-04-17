@@ -32,7 +32,7 @@
 		String today = formatter.format(new java.util.Date());
 		realFileNm = today + UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
 		String rlFileNm = filePath + realFileNm;
-		
+		System.out.println("rlFileNm::"+rlFileNm);
 		
 		InputStream is = request.getInputStream();
 		OutputStream os = new FileOutputStream(rlFileNm);
@@ -46,8 +46,7 @@
 		}
 		os.flush();
 		os.close();
-		
-		
+				
 		sFileInfo += "&bNewLine=true"; //sFileInfo +="&sFileName=" + realFileNm;; 
 		sFileInfo += "&sFileName=" + filename;
 		sFileInfo += "&sFileURL=" + "./upload/" + realFileNm;// 경로 설정 잘해야함 ./ / ../ 구분 확실히 할것

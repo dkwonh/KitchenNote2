@@ -140,6 +140,47 @@ public class AdminPageService {
 		return adminPageDao.getApplyList(f);
 	}
 	
+	public int regClass(Map<String,String> map) {
+		return adminPageDao.regClass(map);
+	}
+	
+	public int getClassPersonCount(Map<String,Integer> map) {
+		return adminPageDao.getClassPersonCount(map);
+	}
+	
+	public CookingClassDto getClass(int c_num) {
+		return adminPageDao.getClass(c_num);
+	}
+	
+	public int updateClass(Map<String,String> map) {
+		return adminPageDao.updateClass(map);
+	}
+	
+	
+	public List<CookingClassDto> getRecruitList(FilterDto f){
+		return adminPageDao.getRecruitList(f);
+	}
+	
+	public int getRecruitCount(FilterDto f) {
+		return adminPageDao.getRecruitCount(f);
+	}
+	
+	public int regRecruit(Map<String,String> map) {
+		return adminPageDao.regRecruit(map);
+	}
+	
+	public int getRecruitPersonCount(Map<String,Integer> map) {
+		return adminPageDao.getRecruitPersonCount(map);
+	}
+	
+	public CookingClassDto getRecruit(int c_num) {
+		return adminPageDao.getRecruit(c_num);
+	}
+	
+	public int updateRecruit(Map<String,String> map) {
+		return adminPageDao.updateRecruit(map);
+	}
+	
 	/*
 	 * public List<MemberDto> getUserFilter(FilterDto f) { return
 	 * adminPageDao.getUserFilter(f); }
