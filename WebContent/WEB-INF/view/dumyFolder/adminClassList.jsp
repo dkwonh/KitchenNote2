@@ -111,7 +111,6 @@ function writeClass(){
 	
 	</div>
 </div>
-<%@ include file="sideMenu.jsp" %>
 </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
