@@ -25,7 +25,4 @@
 		<property name="configLocation" value="classpath:config.xml"></property>
 	</bean>
 	
-	
-	
-	
 </beans> 
