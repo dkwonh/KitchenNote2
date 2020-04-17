@@ -15,6 +15,7 @@ import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
+import wh.admin.manage.model.NotifyDto;
 import wh.admin.manage.model.PayListDto;
 import wh.admin.manage.model.PurchaseRecipeDto;
 import wh.admin.manage.model.TeacherApply;
@@ -140,45 +141,28 @@ public class AdminPageService {
 		return adminPageDao.getApplyList(f);
 	}
 	
-	public int regClass(Map<String,String> map) {
-		return adminPageDao.regClass(map);
+	public List<NotifyDto> getNotifyList(FilterDto f){
+		return adminPageDao.getNotifyList(f);
 	}
 	
-	public int getClassPersonCount(Map<String,Integer> map) {
-		return adminPageDao.getClassPersonCount(map);
+	public int getNotifyCount(FilterDto f) {
+		return adminPageDao.getNotifyCount(f);
 	}
 	
-	public CookingClassDto getClass(int c_num) {
-		return adminPageDao.getClass(c_num);
+	public int insertNotify(NotifyDto not) {
+		return adminPageDao.insertNotify(not);
 	}
 	
-	public int updateClass(Map<String,String> map) {
-		return adminPageDao.updateClass(map);
+	public int updateNotify(NotifyDto not) {
+		return adminPageDao.updateNotify(not);
 	}
 	
-	
-	public List<CookingClassDto> getRecruitList(FilterDto f){
-		return adminPageDao.getRecruitList(f);
+	public int deleteNotify(int num) {
+		return adminPageDao.deleteNotify(num);
 	}
 	
-	public int getRecruitCount(FilterDto f) {
-		return adminPageDao.getRecruitCount(f);
-	}
-	
-	public int regRecruit(Map<String,String> map) {
-		return adminPageDao.regRecruit(map);
-	}
-	
-	public int getRecruitPersonCount(Map<String,Integer> map) {
-		return adminPageDao.getRecruitPersonCount(map);
-	}
-	
-	public CookingClassDto getRecruit(int c_num) {
-		return adminPageDao.getRecruit(c_num);
-	}
-	
-	public int updateRecruit(Map<String,String> map) {
-		return adminPageDao.updateRecruit(map);
+	public NotifyDto getNotify(int num) {
+		return adminPageDao.getNotify(num);
 	}
 	
 	/*

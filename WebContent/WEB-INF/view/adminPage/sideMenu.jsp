@@ -27,7 +27,6 @@
 		<ul>
 			<li><a href="forkList.do?pageNum=1">포크 충전 내역</a></li>
 			<li><a href="purRecipe.do?pageNum=1">레시피 결제 내역</a>
-			<li><a href="classList.do?pageNum=1">클래스 결제 내역</a></li>
 		</ul>
 	</li>
 	

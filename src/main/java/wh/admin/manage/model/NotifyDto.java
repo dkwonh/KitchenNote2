@@ -1,12 +1,22 @@
 package wh.admin.manage.model;
 
+import java.sql.Timestamp;
+
 public class NotifyDto {
 	private int num;
 	private String subject;
 	private String member_id;
 	private String content;
+	private Timestamp reg_date;
 	
 	
+	
+	public Timestamp getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Timestamp reg_date) {
+		this.reg_date = reg_date;
+	}
 	public String getContent() {
 		return content;
 	}

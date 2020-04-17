@@ -294,74 +294,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 결제 내역 리스트 -->
 	<select id="getPaymentList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PayListDto">
-		select * from pay_list p
+		select * from pay_list
 		<where>
-		<!-- fork일때 -->
-		<if test='type == "fork"'>
 		<if test='filter == "member_id"'>
 		 member_id 
 		 like CONCAT('%',#{search},'%')
 		 and fork > 0
-		 order by fork_date limit #{start}, 10
  		 </if>
- 		</if>
  		</where>
- 		
- 		<!-- class일때 -->
- 		<if test='type == "class"'>
- 		 join class_student s join cooking_class c join members m on p.member_id = s.member_id and s.c_num = c.c_num and c.chef = m.member_id
- 		 <where>
- 		 <if test='filter == "member_id"'>
-		 member_id 
-		 like CONCAT('%',#{search},'%')
-		 and class_price > 0
-		 </if>
-		 <if test='filter == "className"'>
-		 c_name 
-		 like CONCAT('%',#{search},'%')
-		 and class_price > 0
-		 </if>
-		 </where>
- 		 order by class_date limit #{start}, 10	
- 		</if>
- 		
-		
-		
+ 		 order by fork_date limit #{start}, 10
 	</select>
 	
 	
 	
 	<select id="getPaymentCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
-		select count(*) from pay_list p
+		select count(*) from pay_list
 		<where>
-		<if test='type == "fork"'>
  		<if test='filter == "member_id"'>
 		  member_id
 		  like CONCAT('%',#{search},'%')
 		  and fork > 0
  		</if>
- 		</if>
  		</where>
- 		
- 		
- 		
- 		<if test='type == "class"'>
- 		join class_student s join cooking_class c join members m on p.member_id = s.member_id and s.c_num = c.c_num and c.chef = m.member_id
- 		<where>
- 		<if test='filter == "member_id"'>
-		  member_id
-		  like CONCAT('%',#{search},'%')
-		  and class_price > 0
- 		</if>
- 		
- 		<if test='filter == "className"'>
-		 c_name 
-		 like CONCAT('%',#{search},'%')
-		 and class_price > 0
-		 </if>
-		 </where>
- 		</if>
-		
 	</select>
 	<!-- 결제 내역 리스트 끝 -->
 	
@@ -384,7 +338,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 like CONCAT('%',#{search},'%')
 		 </if>
 		 </where>
- 		 order by 'num' limit #{start}, 10	
+ 		 order by num limit #{start}, 10	
 
 	</select>
 	
@@ -413,120 +367,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateNotify" parameterType="wh.admin.manage.model.NotifyDto">
-		update notify set subject = #{subject}, content = #{content}, member_id = #{member_id} where 'num' = #{num}
+		update notify set subject = #{subject}, content = #{content}, member_id = #{member_id} where num = #{num}
 	</update>
 	
+	<delete id="deleteNotify" parameterType="int">
+		delete from notify where num = #{num}
+	</delete>
 	
-	
-	
-	
-	
-	<!-- 쿠킹 클래스 리스트 -->
-	<select id="getClassList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.CookingClassDto">
-		select * from cooking_class inner join members on chef = member_id
-		<where>
-		<if test='filter == "c_name"'>
-		 c_name
-		  like CONCAT('%',#{search},'%')
- 		</if>
- 		
- 		<if test='filter == "nickname"'>
- 		nickname 
-		  like CONCAT('%',#{search},'%')
- 		</if>
- 		and recruit = 'true'
-		</where>
-		order by reg_date limit #{start}, 10
-	</select>
-	
-	<select id="getClassCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
-		select count(*) from cooking_class inner join members on chef = member_id
-		<where>
-		<if test='filter == "c_name"'>
-		  c_name
-		  like CONCAT('%',#{search},'%') 
- 		</if>
- 		
- 		<if test='filter == "nickname"'>
- 		  nickname 
-		  like CONCAT('%',#{search},'%')
-		 </if>
-		 and recruit = 'true'
-		</where>
-	</select>
-	
-	<select id="getClass" parameterType="int" resultType="wh.admin.manage.model.CookingClassDto">
-		select * from cooking_class where c_num = #{c_num}
-	</select>
-	
-	<select id="getClassPersonCount" parameterType="map" resultType="int">
-		select Count(*) from class_student natural join members where c_num = #{c_num}
-		<if test='start != "-1"'>
-			order by reg_date limit #{start}, 10
-		</if>
-	</select>
-	
-	<insert id="regClass" parameterType="map">
-		insert into cooking_class(c_name,price,chef,period_start,period_end,content,personnel,recruit) values(#{c_name},#{price},#{chef},#{period_start},#{period_end},#{content},#{personnel},#{recruit})
-	</insert>
-	
-	<update id="updateClass" parameterType="map">
-		update cooking_class set c_name = #{c_name}, price = #{price}, chef = #{chef},period_start = #{period_start}, period_end = #{period_end},content = #{content},personnel = #{personnel},recruit = #{recruit} where c_num = #{c_num}
-	</update>
-	<!-- 쿠킹 클래스 리스트 끝 -->
-	
-	<!-- 강사 모집 리스트 -->
-	<select id="getRecruitList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.CookingClassDto">
-		select * from cooking_class
-		<where>
-		<if test='filter == "c_name"'>
-		 c_name
-		  like CONCAT('%',#{search},'%')
- 		</if>
- 		and recruit = 'false'
-		</where>
-		order by reg_date limit #{start}, 10
-	</select>
-	
-	<select id="getRecruitCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
-		select count(*) from cooking_class
-		<where>
-		<if test='filter == "c_name"'>
-		  c_name
-		  like CONCAT('%',#{search},'%') 
- 		</if>
-		 and recruit = 'false'
-		</where>
-	</select>
-	
-	<select id="getRecruit" parameterType="int" resultType="wh.admin.manage.model.CookingClassDto">
-		select * from cooking_class where c_num = #{c_num}
-	</select>
-	
-	<select id="getRecruitPersonCount" parameterType="map" resultType="int">
-		select Count(*) from class_apply inner join members on member_id = chef where c_num = #{c_num}
-		<if test='start != "-1"'>
-			order by chef limit #{start}, 10
-		</if>
-	</select>
-	
-	<insert id="regRecruit" parameterType="map">
-		insert into cooking_class(c_name,price,chef,period_start,period_end,content,personnel,recruit) values(#{c_name},#{price},#{chef},#{period_start},#{period_end},#{content},#{personnel},#{recruit})
-	</insert>
-	
-	<update id="updateRecruit" parameterType="map">
-		update cooking_class set c_name = #{c_name}, price = #{price}, chef = #{chef},period_start = #{period_start}, period_end = #{period_end},content = #{content},personnel = #{personnel},recruit = #{recruit} where c_num = #{c_num}
-	</update>
-	
-	
-	
-	
-<!-- 	클래스 계획서 리스트
- -->	<select id="getApplyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.TeacherApply">
-		select * from class_apply where c_num=#{c_num} order by chef limit #{start}, 10
-	</select>
-	
-	<select id="getApplyCount" parameterType="int" resultType="int">
-		select count(*) from class_apply where c_num=#{c_num} 
+	<select id="getNotify" parameterType="int" resultType="wh.admin.manage.model.NotifyDto">
+		select * from notify where num = #{num}
 	</select>
 </mapper>

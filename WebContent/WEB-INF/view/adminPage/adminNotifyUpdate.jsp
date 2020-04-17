@@ -31,9 +31,11 @@ $(function(){
 <title>Insert title here</title>
 </head>
 <body>
-<form id=frm action="writeNotify.do" method=post>
+<form id=frm action="updateNotify.do" method=post>
+<input type="hidden" name=num value="${dto.num }">
 제목:<input type="text" name="subject" value="${dto.subject }">
 내용:<textarea name="content" id="content" rows="10" cols="100">${dto.content}</textarea>
+<input type="hidden" name="num" value="${dto.num }">
 <input id=save type=button value=저장>
 </form>
 </body>

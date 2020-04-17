@@ -1,29 +1,10 @@
 package wh.admin.manage.model;
 
 public class FilterDto {
-	String filter;
-	String search;
-	int start;
-	String type;
-	boolean recruit;
+	String filter;//구분자 닉네임 아이디 제목 내용
+	String search;//검색 내용 
+	int start;//시작페이지
 	
-	
-	
-	
-	
-	
-	public boolean isRecruit() {
-		return recruit;
-	}
-	public void setRecruit(boolean recruit) {
-		this.recruit = recruit;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public int getStart() {
 		return start;
 	}
@@ -42,7 +23,4 @@ public class FilterDto {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	
-	
-
 }

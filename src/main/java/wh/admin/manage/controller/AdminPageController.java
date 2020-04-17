@@ -36,15 +36,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import wh.admin.manage.model.AdminRecipeDto;
 import wh.admin.manage.model.ChefApplyDto;
 import wh.admin.manage.model.ChefDto;
-import wh.admin.manage.model.CookingClassDto;
 import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
+import wh.admin.manage.model.NotifyDto;
 import wh.admin.manage.model.PayListDto;
 import wh.admin.manage.model.PhotoDto;
 import wh.admin.manage.model.PurchaseRecipeDto;
-import wh.admin.manage.model.TeacherApply;
 
 @Controller
 public class AdminPageController implements ApplicationContextAware {
@@ -319,7 +318,6 @@ public class AdminPageController implements ApplicationContextAware {
 	public String payFork(@RequestParam int pageNum,FilterDto f, Model model) {
 		if(pageNum==0)
 			pageNum=1;
-		f.setType("fork");
 		f.setStart((pageNum - 1) * PAGE_SIZE);
 		
 		List<PayListDto> list = adminPageService.getPaymentList(f);
@@ -336,36 +334,7 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("pageBlock", pageBlock);
 		model.addAttribute("type",new String[] {"번호","아이디","포크 충전 수","충전 가격","충전 날짜"});
 		model.addAttribute("userList",list);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("p","fork");
-		
-		return "adminPage/adminPayList";
-	}
-	
-	@RequestMapping(value="classList.do", method=RequestMethod.GET)
-	public String payClass(@RequestParam int pageNum,FilterDto f, Model model) {
-		if(pageNum==0)
-			pageNum=1;
-		f.setType("class");
-		f.setStart((pageNum - 1) * PAGE_SIZE);
-		
-		List<PayListDto> list = adminPageService.getPaymentList(f);
-		int count = adminPageService.getPaymentCount(f);
-
-		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
-		model.addAttribute("pageCount", pageCount);
-		pageCalc(pageNum,count);
-		
-		model.addAttribute("filter", f.getFilter());
-		model.addAttribute("search", f.getSearch());
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"번호","신청자 아이디","셰프 닉네임","셰프 아이디","클래스 명", "금액", "결제일"});
-		model.addAttribute("userList",list);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("p","class");
-		
+		model.addAttribute("pageNum", pageNum);		
 		return "adminPage/adminPayList";
 	}
 	
@@ -391,14 +360,67 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("type",new String[] {"레시피 아이디","닉네임","구매자","레시피 이름","결제일"});
 		model.addAttribute("userList",list);
 		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("p","class");
 		
 		return "adminPage/adminPurRecipe";
 	}
 	
 	@RequestMapping(value="notify.do", method=RequestMethod.GET)
-	public String notify(FilterDto f) {
+	public String notify(int pageNum, FilterDto f, Model model) {
+		if(pageNum==0)
+			pageNum=1;
 		
+		f.setStart((pageNum - 1) * PAGE_SIZE);
+		
+		List<NotifyDto> list = adminPageService.getNotifyList(f);
+		int count = adminPageService.getNotifyCount(f);
+
+		pageCount = count / PAGE_SIZE + (count % PAGE_SIZE == 0 ? 0 : 1);
+		model.addAttribute("pageCount", pageCount);
+		pageCalc(pageNum,count);
+		
+		model.addAttribute("filter", f.getFilter());
+		model.addAttribute("search", f.getSearch());
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("type",new String[] {"글번호","제목","작성자","작성일"});
+		model.addAttribute("userList",list);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "adminPage/adminNotifyList";
+	}
+	
+	@RequestMapping(value="writeNotify.do", method=RequestMethod.GET)
+	public String writeForm() {
+		return "adminPage/adminNotifyWrite";
+	}
+	
+	@RequestMapping(value="writeNotify.do", method=RequestMethod.POST)
+	public String writeNotify(NotifyDto not, Model model) {
+		adminPageService.insertNotify(not);
+		return "redirect:notify.do?pageNum=1";
+	}
+	
+	@RequestMapping(value="viewNotify.do", method=RequestMethod.GET)
+	public String viewNotify(int num, Model model) {
+		
+		NotifyDto dto = adminPageService.getNotify(num);
+		model.addAttribute("dto",dto);
+		
+		return "adminPage/viewNotify";
+	}
+	
+	@RequestMapping(value="updateNotify.do", method=RequestMethod.GET)
+	public String updateForm(int num, Model model) {
+		NotifyDto dto = adminPageService.getNotify(num);
+		model.addAttribute("dto",dto);
+		return "adminPage/adminNotifyUpdate";
+	}
+	
+	@RequestMapping(value="updateNotify.do", method=RequestMethod.POST)
+	public String updateNotify(NotifyDto not, Model model) {
+		adminPageService.updateNotify(not);
+		return "redirect:notify.do?pageNum=1";
 	}
 	
 	/**/

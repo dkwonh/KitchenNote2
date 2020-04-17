@@ -26,7 +26,7 @@
 
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/dispatcher-servlet.xml,/WEB-INF/mybatis.xml,/WEB-INF/wh-servlet.xml,/WEB-INF/hn-servlet.xml,/WEB-INF/yk-servlet.xml,/WEB-INF/yh-servlet.xml,/WEB-INF/jb-servlet.xml</param-value>
+			<param-value>/WEB-INF/dispatcher-servlet.xml,/WEB-INF/mybatis.xml,/WEB-INF/wh-servlet.xml,/WEB-INF/hn-servlet.xml<!-- ,/WEB-INF/yk-servlet.xml,/WEB-INF/yh-servlet.xml,/WEB-INF/jb-servlet.xml --></param-value>
 		</init-param>
 	</servlet>
 

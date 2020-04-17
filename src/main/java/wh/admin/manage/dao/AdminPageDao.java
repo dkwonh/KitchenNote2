@@ -13,6 +13,7 @@ import wh.admin.manage.model.DelRecipeDto;
 import wh.admin.manage.model.DropMembersDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.MemberDto;
+import wh.admin.manage.model.NotifyDto;
 import wh.admin.manage.model.PayListDto;
 import wh.admin.manage.model.PurchaseRecipeDto;
 import wh.admin.manage.model.TeacherApply;
@@ -147,49 +148,67 @@ public class AdminPageDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("manage.getApplyList",f);
 	}
 	
-	public int regClass(Map<String,String> map) {
-		return getSqlSession().insert("manage.regClass",map);
+	public List<NotifyDto> getNotifyList(FilterDto f){
+		return getSqlSession().selectList("manage.getNotifyList",f);
 	}
 	
-	public int getClassPersonCount(Map<String,Integer> map) {
-		return getSqlSession().selectOne("manage.getClassPersonCount",map);
+	public int getNotifyCount(FilterDto f) {
+		return getSqlSession().selectOne("manage.getNotifyCount",f);
 	}
 	
-	public CookingClassDto getClass(int c_num) {
-		return getSqlSession().selectOne("manage.getClass",c_num);
+	public int insertNotify(NotifyDto not) {
+		return getSqlSession().insert("manage.insertNotify",not);
 	}
 	
-	public int updateClass(Map<String,String> map) {
-		return getSqlSession().update("manage.updateClass",map);
+	public int updateNotify(NotifyDto not) {
+		return getSqlSession().update("manage.updateNotify",not);
 	}
 	
-	
-	
-	public List<CookingClassDto> getRecruitList(FilterDto f){
-		
-		return getSqlSession().selectList("manage.getRecruitList",f);
+	public int deleteNotify(int num) {
+		return getSqlSession().delete("manage.deleteNotify",num);
 	}
 	
-	public int getRecruitCount(FilterDto f) {
-		return getSqlSession().selectOne("manage.getRecruitCount",f);
+	public NotifyDto getNotify(int num) {
+		return getSqlSession().selectOne("manage.getNotify",num);
 	}
 	
-
-	public int regRecruit(Map<String,String> map) {
-		return getSqlSession().insert("manage.regRecruit",map);
-	}
+	/*
+	 * public int regClass(Map<String,String> map) { return
+	 * getSqlSession().insert("manage.regClass",map); }
+	 * 
+	 * public int getClassPersonCount(Map<String,Integer> map) { return
+	 * getSqlSession().selectOne("manage.getClassPersonCount",map); }
+	 * 
+	 * public CookingClassDto getClass(int c_num) { return
+	 * getSqlSession().selectOne("manage.getClass",c_num); }
+	 * 
+	 * public int updateClass(Map<String,String> map) { return
+	 * getSqlSession().update("manage.updateClass",map); }
+	 * 
+	 * 
+	 * 
+	 * public List<CookingClassDto> getRecruitList(FilterDto f){
+	 * 
+	 * return getSqlSession().selectList("manage.getRecruitList",f); }
+	 * 
+	 * public int getRecruitCount(FilterDto f) { return
+	 * getSqlSession().selectOne("manage.getRecruitCount",f); }
+	 * 
+	 * 
+	 * public int regRecruit(Map<String,String> map) { return
+	 * getSqlSession().insert("manage.regRecruit",map); }
+	 * 
+	 * public int getRecruitPersonCount(Map<String,Integer> map) { return
+	 * getSqlSession().selectOne("manage.getRecruitPersonCount",map); }
+	 * 
+	 * public CookingClassDto getRecruit(int c_num) { return
+	 * getSqlSession().selectOne("manage.getRecruit",c_num); }
+	 * 
+	 * public int updateRecruit(Map<String,String> map) { return
+	 * getSqlSession().update("manage.updateRecruit",map); }
+	 */
 	
-	public int getRecruitPersonCount(Map<String,Integer> map) {
-		return getSqlSession().selectOne("manage.getRecruitPersonCount",map);
-	}
 	
-	public CookingClassDto getRecruit(int c_num) {
-		return getSqlSession().selectOne("manage.getRecruit",c_num);
-	}
-	
-	public int updateRecruit(Map<String,String> map) {
-		return getSqlSession().update("manage.updateRecruit",map);
-	}
 	
 	
 	

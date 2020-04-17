@@ -47,9 +47,6 @@ div#glayLayer{
 	
 	<form>
 	<select name="filter">
-		<c:if test="${p=='class'}">
-		<option selected value="className">클래스 이름</option>
-		</c:if>
 		<option value="member_id">구매자</option>
 	</select>
 	<input type=text name=search id=query placeholder="Search">
@@ -68,22 +65,10 @@ div#glayLayer{
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
-			<c:if test="${p=='fork' }">
-			
 			<td class="member_id">${item.member_id }</td>
 			<td class="fork">${item.fork }</td>
 			<td class="price">${item.purchase_amount }</td>
 			<td class="fork_date">${item.fork_date }</td>
-			</c:if>
-			<c:if test="${p=='class' }">
-			<td class="num">${i.count+(pageNum-1)*10}</td>
-			<td class="member_id">${item.member_id }</td>
-			<td class="nickname">${item.nickname }</td>
-			<td class="chef">${item.chef }</td>
-			<td class="c_name">${item.c_name }</td>
-			<td class="class_price">${item.class_price }</td>
-			<td class="class_date">${item.class_date }</td>
-			</c:if>
 		</tr>
 		</c:forEach>
 		</tbody>
