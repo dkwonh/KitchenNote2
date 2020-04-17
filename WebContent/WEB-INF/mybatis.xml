@@ -16,7 +16,7 @@
 		<property name="username" value="${name}"></property>
 		<property name="password" value="${pwd}"></property>
 	</bean>
-	
+
 	<!-- 커넥션 풀과 맵퍼 파일로 세션 팩토리 만듦 -->
 	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
@@ -24,4 +24,5 @@
 		<property name="mapperLocations" value="classpath:sql/*.xml"></property>
 		<property name="configLocation" value="classpath:config.xml"></property>
 	</bean>
-</beans>
+	
+</beans> 
