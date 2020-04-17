@@ -67,7 +67,7 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-			<p />
+			<section>
 		<h2>상세 보기</h2>
 		<form name="form1" method="post" readonly>
 			<div>분류 : ${dto.menu }</div>
@@ -89,6 +89,7 @@
 			</div>
 		</form>
 		</div>
+		</section>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">

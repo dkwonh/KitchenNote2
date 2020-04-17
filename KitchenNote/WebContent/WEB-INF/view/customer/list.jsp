@@ -71,8 +71,7 @@
 						<option value="6">선택</option>
 						<option value="7">제목</option>
 						<option value="8">작성자</option>
-					</select> <input type="search" placeholder="search"> <input
-						type="button" id="btnSearch" value="검색">
+					</select> <input type="search" placeholder="검색 할 내용을 입력하여주세요.">
 				</form>
 			</div>
 		</section>

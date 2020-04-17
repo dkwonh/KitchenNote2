@@ -1,6 +1,7 @@
 package yh.mypage.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,6 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 
 	@Autowired
 	MemberInfoDao dao;
-	
-	/*
-	 * public MemberInfoDto checkPwd(String password) throws Exception{
-	 * MemberInfoDto dto = dao.checkPwd(password); return dto; }
-	 */
 	
 	public void submit(Chef_applyDto dto) throws Exception {
 		dao.submit(dto);
@@ -41,8 +37,9 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		dao.delete(member_id);
 	} // 회원 탈퇴
 	
-	public int checkPwd(MemberInfoDto dto) throws Exception{
-		return dao.checkPwd(dto);
+	public int checkPwd(String password) throws Exception{
+		int a = dao.checkPwd(password);
+		return a;
 	}
 	
 	public int pwd(String password) throws Exception{
@@ -50,11 +47,8 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		return dto;
 	}
 	
-	public int changePwd(MemberInfoDto dto) throws Exception{
-		return dao.changePwd(dto);
+	public int changePwd(Map<String,String> map) throws Exception{
+		return dao.changePwd(map);
 	} 
-	/*
-	 * public MemberInfoDto confirmPwd(String password) throws Exception{ return
-	 * dao.confirmPwd(password); }
-	 */
+
 }

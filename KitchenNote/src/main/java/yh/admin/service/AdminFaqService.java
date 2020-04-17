@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import yh.admin.controller.AdminFaqDto;
+import yh.admin.controller.FilterDto;
 
 public interface AdminFaqService {
 
@@ -27,7 +28,7 @@ public interface AdminFaqService {
 // 게시글 조회
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception;
 
-	public int count() throws Exception;
+	public int count(FilterDto dto) throws Exception;
 
 
 }

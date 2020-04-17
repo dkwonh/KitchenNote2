@@ -19,4 +19,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="increaseViewcnt" parameterType="int">
 		update Admin_FAQ set viewcnt = viewcnt +1 where bno = #{bno}
 	</update>
+	
 </mapper>

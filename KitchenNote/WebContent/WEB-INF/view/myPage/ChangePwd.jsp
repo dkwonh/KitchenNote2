@@ -29,34 +29,39 @@
 	$(document).ready(function() {
 
 		$("#btnChange").click(function() {
-			var password = $("#password").val();
+			var password = "password="+$("#password").val();
 			var url = "pwd.do"
 			$.ajax({
 			type : "POST",
 			url : url,
-			data : {"password" : password}
+			data : password,
 			dataType : "json",
 			error : function() {
-				alert('통신실패!!');
+				alert("비밀번호를 확인해주세요");
 			},
 			success : function(data) {
-				alert(data);
-				
-					
-					var pwdcheck = $("#pwdcheck").val();
-					if () {
-						alert("비밀번호를 입력하세요.");
-						document.form2.password.focus();
+				alert(data);			
+					if ($("#password").val() != data) {
+						alert("비밀번호를 확인해주세요.");
+						document.pwdcheck.password.focus();
 						return;
 					}
 					if ($("#pwdcheck1").val() != $("#pwdcheck2").val()) {
 						alert("비밀번호를 다르게 입력하였습니다.");
-						document.form2.pwdcheck2.focus();
+						document.pwdcheck.pwdcheck2.focus();
 						return;
-					}else {
+					}
+					if($("#pwdcheck1").val() == ""){
+						alert("바꾸실 비밀 번호를 입력하여 주세요.")
+						document.pwdcheck.pwdcheck1.focus();
+						}
+					if($("#pwdcheck2").val() == ""){
+						alert("비밀 번호 확인을 입력하여 주세요.")
+						document.pwdcheck.pwdcheck2.focus();
+						} else {
 						confirm("변경 내용을 저장하시겠습니까?");
-						document.form2.action = "changepwd.do";
-						document.form2.submit();
+						document.pwdcheck.action = "changePwd.do";
+						document.pwdcheck.submit();
 					}
 				}
 			});
@@ -95,26 +100,27 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
+			<form method="post" name="pwdcheck" id="pwdcheck">
 			<h2>비밀번호 변경</h2>
 			<br>
+			<input type="hidden" name="pwd" value="${pwd}">
 			<div>
-				현재 비밀번호 : <input type="password" name="password" id="password"
+				현재 비밀번호 : <input type="password" name="password" id="password" 
 					placeholder="현재 비밀번호를 입력하여 주세요.">
 			</div>
 			<br>
 			<div>
-				비밀번호 : <input type="password" name="pwdcheck1" id="pwdcheck1"
+				비밀번호 : <input type="password" name="pwdcheck1" id="pwdcheck1" 
 					placeholder="바꾸실 비밀 번호를 입력하여 주세요.">
 			</div>
 			<br>
 			<div>
-				비밀번호 확인 : <input type="password" name="pwdcheck2" id="pwdcheck2"
+				비밀번호 확인 : <input type="password" name="pwdcheck2" id="pwdcheck2" 
 					placeholder="비밀번호 확인을 위해 한번 더 입력하여 주세요.">
 			</div>
 			<hr>
 			<button type="button" id="btnChange">변경</button>
 			<button type="button" id="btnCancel">취소</button>
-
 			</form>
 
 			<div id="sidebar">

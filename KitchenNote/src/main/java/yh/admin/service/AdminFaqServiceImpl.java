@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yh.admin.controller.AdminFaqDto;
+import yh.admin.controller.FilterDto;
 import yh.admin.model.AdminFaqDao;
 
 @Service
@@ -53,7 +54,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	}
 
 	@Override
-	public int count() throws Exception {
-		return dao.count();
+	public int count(FilterDto dto) throws Exception {
+		return dao.count(dto);
 	}
 }

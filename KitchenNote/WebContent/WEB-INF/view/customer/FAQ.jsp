@@ -82,11 +82,6 @@
 			</p>
 			<h4>자주 묻는 질문 목록</h4>
 			<p>
-				정렬<select id="select3">
-					<option value="9">선택</option>
-					<option value="10">순번</option>
-					<option value="11">조회수</option>
-				</select>
 			<table border="1" width="600px">
 				<tr>
 					<th>번호</th>

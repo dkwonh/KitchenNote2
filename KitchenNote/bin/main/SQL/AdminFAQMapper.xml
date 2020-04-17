@@ -4,16 +4,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto">
+	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto" parameterType="yh.admin.controller.FilterDto">
 		select * 
 		from Admin_FAQ
-		where 1=1
-		<if test="asdf != null">
-		and aekfoakewof = #{asdf}
-		</if>
-		<if>
-		and ajdsfo = #{adsfads} 
-		</if>
+		<where>
+		<if test= 'order == "menu"'>
+		  menu
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		
+ 		<if test='order == "viewcnt"'>
+		  and viewcnt
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		</where>
 		order by bno desc 
 		limit #{start}, 10
 

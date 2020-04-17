@@ -48,11 +48,11 @@ public class AdminFaqController {
 	AdminFaqService Service;
 
 	@RequestMapping("AdminFAQ.do") // 게시글 목록
-	public ModelAndView list(@RequestParam int pageNum,Model model) throws Exception {
-
-		int count = Service.count();//맵퍼 파일에 선언해둔 count(*) sql
+	public ModelAndView list(@RequestParam int pageNum, FilterDto f, Model model) throws Exception {
 		if(pageNum==0)
 			pageNum=1;
+		System.out.println(f);
+		int count = Service.count(f);//맵퍼 파일에 선언해둔 count(*) sql
 		pageCount = count/PAGE_SIZE + (count%PAGE_SIZE==0?0:1);
 		model.addAttribute("pageCount",pageCount);
 		pageCalc(pageNum,count);//5번에 선언된 함수

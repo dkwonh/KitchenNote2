@@ -3,9 +3,11 @@ package yh.admin.model;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import yh.admin.controller.AdminFaqDto;
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 
 
@@ -34,7 +36,7 @@ public class AdminFaqDaoImpl extends SqlSessionDaoSupport implements AdminFaqDao
 	public void increaseViewcnt(int bno) throws Exception {
 		getSqlSession().update("admin.increaseViewcnt", bno);
 	}
-	public int count() throws Exception {
+	public int count(FilterDto dto) throws Exception {
 		return getSqlSession().selectOne("admin.count");
 	}
 

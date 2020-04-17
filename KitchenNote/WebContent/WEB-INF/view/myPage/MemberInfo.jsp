@@ -32,7 +32,7 @@
 			location.href = "changePwdView.do";
 		});
 		$("#btnDel").click(function() {
-			location.href = "memberWithdrawal.do";
+			location.href = "pwdCheck.do";
 		});
 		$("#btnChange").click(function() {
 			var nickname = $("#nickname").val();

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import yh.admin.controller.AdminFaqDto;
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 
 public interface AdminFaqDao {
@@ -20,6 +21,6 @@ public interface AdminFaqDao {
 
 	public void increaseViewcnt(int bno) throws Exception;
 	
-	public int count() throws Exception;
+	public int count(FilterDto dto) throws Exception;
 
 }

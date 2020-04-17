@@ -5,17 +5,12 @@ import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import yh.custom.controller.BoardDto;
 import yh.mypage.controller.ChefDto;
 import yh.mypage.controller.Chef_applyDto;
 import yh.mypage.controller.MemberInfoDto;
 
 public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInfoDao {
 
-	/*
-	 * @Override public MemberInfoDto checkPwd(String password) throws Exception{
-	 * getSqlSession().selectOne("MemberInfo.checkPwd",password); }
-	 */
 	@Override
 	public void submit(Chef_applyDto dto) throws Exception {
 		getSqlSession().insert("MemberInfo.submit", dto);
@@ -43,15 +38,16 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 	} // 회원 탈퇴
 
 	@Override
-	public int checkPwd(MemberInfoDto dto) throws Exception {
-		return getSqlSession().update("MemberInfo.checkPwd", dto);
+	public int checkPwd(String password) throws Exception {
+		return getSqlSession().selectOne("MemberInfo.checkPwd",password);
 	} // 비밀번호 확인
 
 	public int pwd(String password) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.pwd", password);
-	}
+	} // 비밀번호 확인
 	
-	public int changePwd(MemberInfoDto dto) throws Exception {
-		return getSqlSession().update("MemberInfo.changePwd", dto);
-	}
+	public int changePwd(Map<String,String> map) throws Exception {
+		return getSqlSession().update("MemberInfo.changePwd", map);
+	} // 비밀번호 변경
+
 }

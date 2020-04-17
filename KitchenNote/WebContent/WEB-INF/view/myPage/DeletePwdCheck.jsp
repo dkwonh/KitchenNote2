@@ -25,21 +25,33 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$("#btnCheck").click(function() {
+			var password = "password=" + $("#password").val();
+			var url = "pwd.do"
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : password,
+				dataType : "json",
+				error : function() {
+					alert("비밀번호를 확인해주세요");
+				},
+				success : function(data) {
+					alert(data);
+					if ($("#password").val() != data) {
+						alert("비밀번호가 틀립니다.");
+						document.form1.password.focus();
+						return;
+					}
+					 else {
+						document.form1.action = "deleteForm.do";
+						document.form1.submit();
+					}
+				}
+			});
+		});
 		$("#btnCancel").click(function() {
 			history.go(-1);
-		});
-		$("#btnExit").click(function() {
-			var content = $("#content").val();
-			var checkbox = document.form2.checkbox.checked;
-
-			if (!checkbox) {
-				alert("안내 동의를 선택하여 주세요.");
-				document.form2.checkbox.focus();
-				return;
-			} else {
-				document.form2.action = "delete.do";
-				document.form2.submit();
-			}
 		});
 	});
 </script>
@@ -69,32 +81,20 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
-			<form method="post" name="form2">
-				<h2>회원 탈퇴</h2>
-				<br> 탈퇴 후에는 아이디 ${member_id} 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수
-				없습니다. <br>게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다. 또한, 키친노트 아이디를
-				사용해 다른 서비스에 사용할 수 없게 됩니다. <br>
-				<hr>
-				<div class="6u$ 12u$(small)">
-					<input type="checkbox" id="checkbox" name="checkbox" value="agree">
-					<label for="checkbox">안내 사항을 모두 확인하였으며, 이에 동의합니다</label>
-				</div>
-				<hr>
-				<div>
-					탈퇴 사유 :
-					<textarea name="content" id="content" cols="80" rows="8"></textarea>
-				</div>
-				<hr>
-				<button type="button" name="btnExit" id="btnExit">탈퇴</button>
-				<button type="button" name="btnCancel" id="btnCancel">취소</button>
+			<h2>비밀 번호 확인</h2>
 
+			<form method="post" name="form1" id="form1">
+				<div>
+					password : <input type="password" name="password" id="password">
+				</div>
+				<input type="button" id="btnCheck" name="btnCheck" value="확인">
+				<input type="button" id="btnCancel" name="btnCancel" value="취소">
 			</form>
 
 			<div id="sidebar">
 				<div class="inner">
 					<nav id="menu">
-						<h2>마이 페이지</h2>
-						<image src="#">
+						<h2>고객센터</h2>
 						<ul>
 							<li><a
 								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
@@ -131,7 +131,6 @@
 		<script src="../assets/js/jquery.min.js"></script>
 		<script src="../assets/js/skel.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../assets/js/main.js"></script>
 </body>
 </html>

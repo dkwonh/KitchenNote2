@@ -48,15 +48,15 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-</div><br>
-<h1> 홈페이지 통계</h1><br>
-
-<select id="statics" >
-<option value="판매량">레시피 판매량</option>
-<option value="구맨건수">레시피 구매건수</option>
-<option value="등록건수">레시피 등록건수</option>
-<option value="매출">쿠킹 클래스 매출</option>
-</select>
+		</div>
+		<br>
+		<h1>홈페이지 통계</h1>
+		<br> <select id="statics">
+			<option value="판매량">레시피 판매량</option>
+			<option value="구맨건수">레시피 구매건수</option>
+			<option value="등록건수">레시피 등록건수</option>
+			<option value="매출">쿠킹 클래스 매출</option>
+		</select>
 
 
 		<div id="sidebar">
