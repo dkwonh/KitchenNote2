@@ -6,6 +6,6 @@
 	
 	<bean id="homePageDao" class="wh.user.home.dao.HomePageDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 	<bean id="adminPageDao" class="wh.admin.manage.dao.AdminPageDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
-	
+	<bean id="kakaoPayDao" class="wh.user.kakaopay.dao.KakaoPayDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 	
 </beans> 

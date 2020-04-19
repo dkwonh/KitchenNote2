@@ -91,7 +91,7 @@ function itemClick(num){
 	<ul class="pagination">
 		<li>
 			<c:if test="${startPage > 10 }">
-			<a href="adminNotifyList.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
+			<a href="notify.do?pageNum=${startPage-10}&&filter=${filter}&&search=${search}" class="button">이전</a>
 			</c:if>
 			<c:if test="${startPage <= 10 }">
 			<span class="button disabled">이전</span>
@@ -100,16 +100,16 @@ function itemClick(num){
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pageNum==i }">
-			<li><a href="adminNotifyList.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			<li><a href="notify.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
 			</c:if>
 			<c:if test="${pageNum!=i }">
-			<li><a href="adminNotifyList.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			<li><a href="notify.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
 			</c:if>
 		</c:forEach>
 		
 		<li>
 			<c:if test="${endPage < pageCount }">
-			<a href="adminNotifyList.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
+			<a href="notify.do?pageNum=${startPage+10}&&filter=${filter}&&search=${search}" class="button">다음</a>
 			</c:if>
 			<c:if test="${endPage >= pageCount }">
 			<span class="button disabled">다음</span>

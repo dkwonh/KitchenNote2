@@ -30,7 +30,7 @@ import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
 
 @Controller
-public class HomePageController implements ApplicationContextAware{
+public class HomePageController implements ApplicationContextAware {
 	WebApplicationContext context = null;
 	@Autowired
 	HomePageService homePageService;
@@ -38,14 +38,14 @@ public class HomePageController implements ApplicationContextAware{
 	// 메인화면
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Model model) {
-		
+
 		Set<Integer> set = new HashSet<>();
-		while(set.size()<=3) {
+		while (set.size() <= 3) {
 			Random random = new Random();
-			set.add(random.nextInt(36)+1);
+			set.add(random.nextInt(36) + 1);
 		}
 		List<Integer> category = new ArrayList<>(set);
-		
+
 		List<HomePageRecipeDto> recommand1 = homePageService.recipe_home(category.get(0));
 		List<HomePageRecipeDto> recommand2 = homePageService.recipe_home(category.get(1));
 		List<HomePageRecipeDto> recommand3 = homePageService.recipe_home(category.get(2));
@@ -53,15 +53,21 @@ public class HomePageController implements ApplicationContextAware{
 		List<HomePageCategoryName> categoryList = homePageService.categoryName();
 		List<HomePageNangbuDto> nangbuList = homePageService.nangbuList(1);
 		Map<Integer, String> nangbuCategory = homePageService.nangbuCategoryList();
-		
+
 		model.addAttribute("nangbuList", nangbuList);
 		model.addAttribute("nangbuCategory", nangbuCategory);
-		
+
 		model.addAttribute("recommand1", recommand1);
+		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
 		model.addAttribute("recommand2", recommand2);
+		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
 		model.addAttribute("recommand3", recommand3);
+		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
 		model.addAttribute("recommand4", recommand4);
-		if(categoryList.size()==0) {return "homepage/home";}
+		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
+		if (categoryList.size() == 0) {
+			return "homepage/home";
+		}
 		model.addAttribute("category1", categoryList.subList(0, 8));
 		model.addAttribute("category2", categoryList.subList(8, 16));
 		model.addAttribute("category3", categoryList.subList(16, 26));
@@ -70,8 +76,8 @@ public class HomePageController implements ApplicationContextAware{
 		return "homepage/home";
 	}
 
-	/* 메인 화면 모달창으로 대체됨
-	 * // 냉부 첫화면
+	/*
+	 * 메인 화면 모달창으로 대체됨 // 냉부 첫화면
 	 * 
 	 * @RequestMapping(value = "nangbu.do", method = RequestMethod.GET) public
 	 * String nangbu(Model model) { List<HomePageNangbuDto> list =
@@ -140,6 +146,6 @@ public class HomePageController implements ApplicationContextAware{
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.context = (WebApplicationContext)applicationContext;
+		this.context = (WebApplicationContext) applicationContext;
 	}
 }
