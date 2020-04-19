@@ -45,6 +45,8 @@ public class HomePageController implements ApplicationContextAware {
 			set.add(random.nextInt(36) + 1);
 		}
 		List<Integer> category = new ArrayList<>(set);
+		
+		List<HomePageRecipeDto> test = homePageService.searchFromName("잡채");
 
 		List<HomePageRecipeDto> recommand1 = homePageService.recipe_home(category.get(0));
 		List<HomePageRecipeDto> recommand2 = homePageService.recipe_home(category.get(1));
@@ -57,7 +59,8 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("nangbuList", nangbuList);
 		model.addAttribute("nangbuCategory", nangbuCategory);
 
-		model.addAttribute("recommand1", recommand1);
+		//model.addAttribute("recommand1", recommand1);
+		model.addAttribute("recommand1", homePageService.recipe());
 		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
 		model.addAttribute("recommand2", recommand2);
 		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));

@@ -16,6 +16,10 @@ public class HomePageService {
 
 	@Autowired
 	HomePageDao homePageDao;
+	
+	public List<HomePageRecipeDto> recipe(){
+		return homePageDao.recipe();
+	}
 
 	// 메인화면에 보여질 레시피 리스트
 	public List<HomePageRecipeDto> recipe_home(int category_id) {

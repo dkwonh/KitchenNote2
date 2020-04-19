@@ -11,6 +11,10 @@ import wh.user.home.model.HomePageRecipeDto;
 import wh.admin.manage.model.PayListDto;
 
 public class HomePageDao extends SqlSessionDaoSupport {
+	
+	public List<HomePageRecipeDto> recipe(){
+		return getSqlSession().selectList("home.recipe_home");
+	}
 
 	// 메인화면에 보여질 레시피 리스트
 	public List<HomePageRecipeDto> recipe_home(int category_id) {
