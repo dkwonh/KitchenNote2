@@ -86,10 +86,10 @@
 				</div>
 				<div class="4u 12u$(small)" readonly>
 					공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
+						value="${dto.secret }"> <label for="demo-priority-normal">공개</label>
+					<input type="radio" id="demo-priority-high" name="secret"
 						value="${dto.secret }"> <label
-						for="demo-priority-normal">공개</label> <input type="radio"
-						id="demo-priority-high" name="secret" value="${dto.secret }"
-						> <label for="demo-priority-high">비공개</label>
+						for="demo-priority-high">비공개</label>
 				</div>
 				<div>
 					내용
@@ -176,17 +176,17 @@
 				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

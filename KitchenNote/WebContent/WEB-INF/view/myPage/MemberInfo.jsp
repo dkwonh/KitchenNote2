@@ -48,7 +48,7 @@
 				alert("전화 번호를 입력하세요.");
 				document.form2.tel.focus();
 				return;
-			} 
+			}
 			if (sns_address == "") {
 				alert("SNS주소를 입력하세요.");
 				document.form2.sns_address.focus();
@@ -57,7 +57,7 @@
 				confirm("저장 하시겠습니까?");
 				document.form2.action = "changeUser.do";
 				document.form2.submit();
-			}	
+			}
 		});
 	});
 </script>
@@ -87,73 +87,74 @@
 					type="button" value="고객센터"><br>
 			</div>
 			<hr>
-			<section>
-
-				<h2>회원 정보 수정</h2>
-				<img src="${picture }"></img>
-				<form method="POST" name="form2" >
-					사진 바꾸기
-					<button type="submit" value="첨부">첨부</button>
-					<button type="button" id="btnWrite">쉐프 신청</button>
-					<br>
-					<div>
-						닉네임 : <input type="text" id="nickname" name="nickname" value="${dto.nickname}">
-					</div>
-					<div>
-						이메일 : <input type="text" id="chef" name="chef"  value="${dto.chef}" readonly>
-					</div>
-					<div>
-						연락처 : <input type="text" id="tel" name="tel" value="${dto.tel}">
-					</div>
-					<div>
-						개인 SNS주소 : <input type="text" id="sns_address" name="sns_address" value="${dto.sns_address}">
-					</div>
-					<hr>
-					<button type="button" id="btnChange">계정 정보 변경</button>
-					<button type="button" id="btnPwd">비밀번호 바꾸기</button>
-					<button type="button" id="btnDel">탈퇴 하기</button>
-				</form>
-			</section>
-			<div id="sidebar">
-				<div class="inner">
-					<nav id="menu">
-						<h2>고객센터</h2>
-						<ul>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
-									레시피</a></li>
-
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/list.do">-
-									스크랩</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									댓글</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									알람</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									결제 내역</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
-									회원 정보 수정</a></li>
-
-						</ul>
-					</nav>
+			<h2>회원 정보 수정</h2>
+			<img src="${picture }"></img>
+			<form method="POST" name="form2">
+				사진 바꾸기
+				<button type="submit" value="첨부">첨부</button>
+				<button type="button" id="btnWrite">쉐프 신청</button>
+				<br>
+				<div>
+					닉네임 : <input type="text" id="nickname" name="nickname"
+						value="${dto.nickname}">
 				</div>
+				<div>
+					이메일 : <input type="text" id="chef" name="chef" value="${dto.chef}"
+						readonly>
+				</div>
+				<div>
+					연락처 : <input type="text" id="tel" name="tel" value="${dto.tel}">
+				</div>
+				<div>
+					개인 SNS주소 : <input type="text" id="sns_address" name="sns_address"
+						value="${dto.sns_address}">
+				</div>
+				<hr>
+				<button type="button" id="btnChange">계정 정보 변경</button>
+				<button type="button" id="btnPwd">비밀번호 바꾸기</button>
+				<button type="button" id="btnDel">탈퇴 하기</button>
+			</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<h2>고객센터</h2>
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
+
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
+
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

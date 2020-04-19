@@ -27,11 +27,11 @@
 	$(document).ready(function() {
 		$("#btnConfirm").click(function() {
 			var checkPwd = $("#checkPwd").val();
-			if(checkPwd == ""){
+			if (checkPwd == "") {
 				alert("비밀 번호를 입력하여 주세요.");
 				document.form1.checkPwd.focus();
 				return false;
-				}
+			}
 			document.form1.action = "MemberInfo.do";
 			document.form1.submit();
 		});
@@ -70,56 +70,55 @@
 				<h2>비밀 번호 확인</h2>
 				<br>
 				<div>
-				<input type="text" name="checkPwd" id="checkPwd" placeholder="본인 확인을 위해 비밀번호를 입력해주세요.">
+					<input type="text" name="checkPwd" id="checkPwd"
+						placeholder="본인 확인을 위해 비밀번호를 입력해주세요.">
 				</div>
-				<hr>
+				<br>
 				<button type="submit" id="btnConfirm">확인</button>
 				<button type="submit" id="btnCancel">취소</button>
-
 			</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<h2>마이 페이지</h2>
+					<image src="#">
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
 
-			<div id="sidebar">
-				<div class="inner">
-					<nav id="menu">
-						<h2>마이 페이지</h2>
-						<image src="#">
-						<ul>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
-									레시피</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
 
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/list.do">-
-									스크랩</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									댓글</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									알람</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									결제 내역</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
-									회원 정보 수정</a></li>
-
-						</ul>
-					</nav>
-				</div>
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

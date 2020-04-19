@@ -77,6 +77,7 @@
 	padding: 10px 10px
 }
 </style>
+
 <body>
 	<div id="wrapper">
 		<div id="main">
@@ -101,72 +102,72 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-		</div>
-		<hr>
-		<section>
 			<div>
-				<h1>홈페이지 통계</h1>
-				<br> <select id="statics">
-					<option value="판매량">레시피 판매량</option>
-					<option value="구맨건수">레시피 구매건수</option>
-					<option value="등록건수">레시피 등록건수</option>
-					<option value="price">쿠킹 클래스 매출</option>
-				</select>
+				<article>
+					<h1>홈페이지 통계</h1>
+					<br> <select id="statics">
+						<option value="판매량">레시피 판매량</option>
+						<option value="구맨건수">레시피 구매건수</option>
+						<option value="등록건수">레시피 등록건수</option>
+						<option value="price">쿠킹 클래스 매출</option>
+					</select>
+				</article>
 			</div>
+			<section>
+				<table border="0">
+					<tr>
+						<td><input name="fromDt" type="text" id="fromDt" size="8"
+							maxlength="8" value=""></td>
+						<td>~</td>
+						<td><input name="toDt" type="" id="toDt" size="8"
+							maxlength="8" value=""></td>
+					</tr>
+				</table>
 			</section>
-			<hr>
-		<section>
-			<table border="0">
-				<tr>
-					<td><input name="fromDt" type="text" id="fromDt" size="8"
-						maxlength="8" value=""></td>
-					<td>~</td>
-					<td><input name="toDt" type="" id="toDt" size="8"
-						maxlength="8" value=""></td>
-				</tr>
-			</table>
-		</section>
-		<div id="app">
-			<section class="container">
-				<div class="columns">
-					<div class="column">
-						<chartjs-line :labels="labels" :data="dataset" :bind="true"></chartjs-line>
+			<div id="app">
+				<section class="container">
+					<div class="columns">
+						<div class="column">
+							<chartjs-line :labels="labels" :data="dataset" :bind="true"></chartjs-line>
+						</div>
 					</div>
-				</div>
-			</section>
-		</div>
-		<script src='//cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
-		<script
-			src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
-		<script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
-		<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
-		<script>
-			'use strict';
+				</section>
+			</div>
+			<script src='//cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
+			<script
+				src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
+			<script
+				src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
+			<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
+			<script>
+				'use strict';
 
-			Vue.use(VueCharts);
-			var app = new Vue({
-				el : '#app',
-				data : function data() {
-					return {
-						dataentry : null,
-						datalabel : null,
-						labels : [ 'January', 'February', 'March', 'April',
-								'May', 'June', 'July', 'August', 'September',
-								'October', 'November', 'December' ],
-						dataset : [ 12, 20, 30, 40 ,50 , 60, 70 ]
-					};
-				},
+				Vue.use(VueCharts);
+				var app = new Vue({
+					el : '#app',
+					data : function data() {
+						return {
+							dataentry : null,
+							datalabel : null,
+							labels : [ 'January', 'February', 'March', 'April',
+									'May', 'June', 'July', 'August',
+									'September', 'October', 'November',
+									'December' ],
+							dataset : [ 12, 20, 30, 40, 50, 60, 70 ]
+						};
+					},
 
-				methods : {
-					addData : function addData() {
-						this.dataset.push(this.dataentry);
-						this.labels.push(this.datalabel);
-						this.datalabel = '';
-						this.dataentry = '';
+					methods : {
+						addData : function addData() {
+							this.dataset.push(this.dataentry);
+							this.labels.push(this.datalabel);
+							this.datalabel = '';
+							this.dataentry = '';
+						}
 					}
-				}
-			});
-		</script>
+				});
+			</script>
+		</div>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
@@ -240,7 +241,6 @@
 			</div>
 		</div>
 	</div>
-
 	<footer id="footer">
 		<p class="copyright">
 			&copy; Untitled. All rights reserved. Demo Images: <a
@@ -248,7 +248,7 @@
 				href="https://html5up.net">HTML5 UP</a>.
 		</p>
 	</footer>
-	<script src="assets/js/jquery.min.js"></script>
+	<!-- <script src="assets/js/jquery.min.js"></script> -->
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>

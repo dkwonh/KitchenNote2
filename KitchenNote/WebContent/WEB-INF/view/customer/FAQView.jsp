@@ -56,25 +56,25 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-		</div>
-		<h2>자주 묻는 질문 상세</h2>
-		<form name="form1" method="post">
-			<div>구분 : ${dto.menu}</div>
-			<div>조회수 : ${dto.viewcnt }</div>
-			<div>
-				제목<input value="${dto.title}" name="title" id="title" size="80"
-					readonly>
-			</div>
-			<div>
-				내용
-				<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
-			</div>
+			<h2>자주 묻는 질문 상세</h2>
+			<form name="form1" method="post">
+				<div>구분 : ${dto.menu}</div>
+				<div>조회수 : ${dto.viewcnt }</div>
+				<div>
+					제목<input value="${dto.title}" name="title" id="title" size="80"
+						readonly>
+				</div>
+				<div>
+					내용
+					<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
+				</div>
 
-			<div style="width: 650px; text-align: center;">
-				<input type="hidden" name="bno" value="${dto.bno}">
-				<button type="button" id="btnback">확인</button>
-			</div>
-		</form>
+				<div style="width: 650px; text-align: center;">
+					<input type="hidden" name="bno" value="${dto.bno}">
+					<button type="button" id="btnback">확인</button>
+				</div>
+			</form>
+		</div>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
@@ -96,7 +96,8 @@
 					</ul>
 				</nav>
 			</div>
-			</div>
+		</div>
+	</div>
 	<footer id="footer">
 		<p class="copyright">
 			&copy; Untitled. All rights reserved. Demo Images: <a
@@ -107,8 +108,6 @@
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="../assets/js/main.js"></script>
-
 </body>
 </html>

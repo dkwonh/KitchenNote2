@@ -86,7 +86,7 @@
 				<h2>쉐프 신청하기</h2>
 				<br>
 				<div>
-				<input type="hidden" name="member_id" value="${dto.chef }">
+					<input type="hidden" name="member_id" value="${dto.chef }">
 				</div>
 				<div>
 					연락처 : <input name="tel" id="tel" type="text"
@@ -94,7 +94,8 @@
 				</div>
 				<br>
 				<div>
-					개인 SNS 주소: <input name="sns_address" id="sns_address" type="text" placeholder="승인을 위한 간단한 확인 절차입니다.">
+					개인 SNS 주소: <input name="sns_address" id="sns_address" type="text"
+						placeholder="승인을 위한 간단한 확인 절차입니다.">
 				</div>
 				<br>
 				<div>
@@ -105,51 +106,49 @@
 				<hr>
 				<button type="submit" id="btnSave">쉐프 신청</button>
 				<button type="submit" id="btncalcel">취소</button>
-
 			</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<h2>마이 페이지</h2>
+					<image src="#">
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
 
-			<div id="sidebar">
-				<div class="inner">
-					<nav id="menu">
-						<h2>마이 페이지</h2>
-						<image src="#">
-						<ul>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
-									레시피</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
 
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/list.do">-
-									스크랩</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									댓글</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									알람</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									결제 내역</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
-									회원 정보 수정</a></li>
-
-						</ul>
-					</nav>
-				</div>
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

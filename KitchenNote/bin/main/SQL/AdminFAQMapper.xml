@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto" parameterType="yh.admin.controller.FilterDto">
 		select * 
-		from Admin_FAQ
+		from Admin_FAQ	
 		<where>
 		<if test= 'order == "menu"'>
 		  menu

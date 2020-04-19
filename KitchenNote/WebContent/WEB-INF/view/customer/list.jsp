@@ -34,77 +34,79 @@
 </script>
 </head>
 <body>
-	<nav id="menu">
-		<header id="header">
-				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a> 
-			<section id="search" class="alt 4u 12u$">
-			<form method="post">
-			<input name="search" id="query" type="text">
-			</form>
+	<div id="wrapper">
+		<div id="main">
+			<header id="header">
+				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
+				<section id="search" class="alt 4u 12u$">
+					<form method="post">
+						<input name="search" id="query" type="text">
+					</form>
 				</section>
-			<ul class="icons">
-				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon fa-facebook"><span
-						class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon fa-instagram"><span
-						class="label">Instagram</span></a></li>
-			</ul>
-		</header>
-		<div class="navi c">
-			<input type="button" value="카테고리"> <input type="button"
-				value="레시피"> <input type="button" value="이벤트"> <input
-				type="button" value="고객센터"><br>
-		</div>
-		<section>
-			<h2>내 문의 내역</h2>
-			<h4>내 문의 내역</h4>
-			<div class="12u$">
-				<form name="searchform" method="post">
-					구분 :<select id="select1" name="select1">
-						<option value="0">선택</option>
-						<option value="1">레시피</option>
-						<option value="2">쿠킹 클래스</option>
-						<option value="3">결제 및 환불</option>
-						<option value="4">오류 및 수정</option>
-						<option value="5">신고</option>
-					</select> 검색 :<select id="select2" name="select2">
-						<option value="6">선택</option>
-						<option value="7">제목</option>
-						<option value="8">작성자</option>
-					</select> <input type="search" placeholder="검색 할 내용을 입력하여주세요.">
-				</form>
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span
+							class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span
+							class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span
+							class="label">Instagram</span></a></li>
+				</ul>
+			</header>
+			<div class="navi c">
+				<input type="button" value="카테고리"> <input type="button"
+					value="레시피"> <input type="button" value="이벤트"> <input
+					type="button" value="고객센터"><br>
 			</div>
-		</section>
-		<p>
-			정렬 :<select id="select3">
-				<option value="순번">순번</option>
-				<option value="조회수">조회수</option>
-			</select>
-		<table border="1" width="600px">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일자</th>
-				<th>조회수</th>
-				<th>공개 여부</th>
-				<th>처리 상태</th>
-			</tr>
-			<c:forEach var="row" items="${list}">
+			<section>
+				<h2>내 문의 내역</h2>
+				<h4>내 문의 내역</h4>
+				<div class="12u$">
+					<form name="searchform" method="post">
+						구분 :<select id="select1" name="select1">
+							<option value="0">선택</option>
+							<option value="1">레시피</option>
+							<option value="2">쿠킹 클래스</option>
+							<option value="3">결제 및 환불</option>
+							<option value="4">오류 및 수정</option>
+							<option value="5">신고</option>
+						</select> 검색 :<select id="select2" name="select2">
+							<option value="6">선택</option>
+							<option value="7">제목</option>
+							<option value="8">작성자</option>
+						</select> <input type="search" placeholder="검색 할 내용을 입력하여주세요.">
+					</form>
+				</div>
+			</section>
+			<p>
+				정렬 :<select id="select3">
+					<option value="순번">순번</option>
+					<option value="조회수">조회수</option>
+				</select>
+			<table border="1" width="600px">
 				<tr>
-					<td>${row.num}</td>
-					<td><a href="view.do?num=${row.num}">${row.subject }</a></td>
-					<td>${row.member_id }</td>
-					<td><fmt:formatDate value="${row.reg_date }"
-							pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					<td>${row.readcount }</td>
-					<td>${row.secret}</td>
-					<td>${row.status }</td>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일자</th>
+					<th>조회수</th>
+					<th>공개 여부</th>
+					<th>처리 상태</th>
 				</tr>
-			</c:forEach>
-		</table>
-		<button type="button" id="btnWrite">글쓰기</button>
-		<ul class="pagination">
+				<c:forEach var="row" items="${list}">
+					<tr>
+						<td>${row.num}</td>
+						<td><a href="view.do?num=${row.num}">${row.subject }</a></td>
+						<td>${row.member_id }</td>
+						<td><fmt:formatDate value="${row.reg_date }"
+								pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td>${row.readcount }</td>
+						<td>${row.secret}</td>
+						<td>${row.status }</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<button type="button" id="btnWrite">글쓰기</button>
+			<ul class="pagination">
 				<li><c:if test="${startPage > 10 }">
 						<a href="list.do?pageNum=${startPage-10}" class="button">이전</a>
 					</c:if> <c:if test="${startPage <= 10 }">
@@ -121,23 +123,30 @@
 						<span class="button disabled">다음</span>
 					</c:if></li>
 			</ul>
-		<h2>고객센터</h2>
-		<ul>
-			<li><a href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
-					묻는 질문/FAQ</a></li>
-			<li><span class="opener">1:1 문의</span>
-				<ul>
-					<li><a
-						href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">- 내 문의
-							내역</a></li>
-					<li><a
-						href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">- 1:1
-							문의하기</a></li>
-				</ul></li>
-		</ul>
-
-	</nav>
-
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<p>
+					<h2>고객센터</h2>
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
+								묻는 질문/FAQ</a></li>
+						<li><span class="opener">1:1 문의</span>
+							<ul>
+								<li><a
+									href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
+										내 문의 내역</a></li>
+								<li><a
+									href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
+										1:1 문의하기</a></li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 	<footer id="footer">
 		<p class="copyright">
 			&copy; Untitled. All rights reserved. Demo Images: <a

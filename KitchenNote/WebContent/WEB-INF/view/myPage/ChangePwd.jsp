@@ -29,18 +29,18 @@
 	$(document).ready(function() {
 
 		$("#btnChange").click(function() {
-			var password = "password="+$("#password").val();
+			var password = "password=" + $("#password").val();
 			var url = "pwd.do"
 			$.ajax({
-			type : "POST",
-			url : url,
-			data : password,
-			dataType : "json",
-			error : function() {
-				alert("비밀번호를 확인해주세요");
-			},
-			success : function(data) {
-				alert(data);			
+				type : "POST",
+				url : url,
+				data : password,
+				dataType : "json",
+				error : function() {
+					alert("비밀번호를 확인해주세요");
+				},
+				success : function(data) {
+					alert(data);
 					if ($("#password").val() != data) {
 						alert("비밀번호를 확인해주세요.");
 						document.pwdcheck.password.focus();
@@ -51,14 +51,14 @@
 						document.pwdcheck.pwdcheck2.focus();
 						return;
 					}
-					if($("#pwdcheck1").val() == ""){
+					if ($("#pwdcheck1").val() == "") {
 						alert("바꾸실 비밀 번호를 입력하여 주세요.")
 						document.pwdcheck.pwdcheck1.focus();
-						}
-					if($("#pwdcheck2").val() == ""){
+					}
+					if ($("#pwdcheck2").val() == "") {
 						alert("비밀 번호 확인을 입력하여 주세요.")
 						document.pwdcheck.pwdcheck2.focus();
-						} else {
+					} else {
 						confirm("변경 내용을 저장하시겠습니까?");
 						document.pwdcheck.action = "changePwd.do";
 						document.pwdcheck.submit();
@@ -99,72 +99,69 @@
 					value="레시피"> <input type="button" value="이벤트"> <input
 					type="button" value="고객센터"><br>
 			</div>
-			<hr>
+			<br>
 			<form method="post" name="pwdcheck" id="pwdcheck">
-			<h2>비밀번호 변경</h2>
-			<br>
-			<input type="hidden" name="pwd" value="${pwd}">
-			<div>
-				현재 비밀번호 : <input type="password" name="password" id="password" 
-					placeholder="현재 비밀번호를 입력하여 주세요.">
-			</div>
-			<br>
-			<div>
-				비밀번호 : <input type="password" name="pwdcheck1" id="pwdcheck1" 
-					placeholder="바꾸실 비밀 번호를 입력하여 주세요.">
-			</div>
-			<br>
-			<div>
-				비밀번호 확인 : <input type="password" name="pwdcheck2" id="pwdcheck2" 
-					placeholder="비밀번호 확인을 위해 한번 더 입력하여 주세요.">
-			</div>
-			<hr>
-			<button type="button" id="btnChange">변경</button>
-			<button type="button" id="btnCancel">취소</button>
-			</form>
-
-			<div id="sidebar">
-				<div class="inner">
-					<nav id="menu">
-						<h2>마이 페이지</h2>
-						<image src="#">
-						<ul>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
-									레시피</a></li>
-
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/list.do">-
-									스크랩</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									댓글</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									알람</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									결제 내역</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
-									회원 정보 수정</a></li>
-
-						</ul>
-					</nav>
+				<h2>비밀번호 변경</h2>
+				<br> <input type="hidden" name="pwd" value="${pwd}">
+				<div>
+					현재 비밀번호 : <input type="password" name="password" id="password"
+						placeholder="현재 비밀번호를 입력하여 주세요.">
 				</div>
+				<br>
+				<div>
+					비밀번호 : <input type="password" name="pwdcheck1" id="pwdcheck1"
+						placeholder="바꾸실 비밀 번호를 입력하여 주세요.">
+				</div>
+				<br>
+				<div>
+					비밀번호 확인 : <input type="password" name="pwdcheck2" id="pwdcheck2"
+						placeholder="비밀번호 확인을 위해 한번 더 입력하여 주세요.">
+				</div>
+				<hr>
+				<button type="button" id="btnChange">변경</button>
+				<button type="button" id="btnCancel">취소</button>
+			</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<h2>마이 페이지</h2>
+					<image src="#">
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
+
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

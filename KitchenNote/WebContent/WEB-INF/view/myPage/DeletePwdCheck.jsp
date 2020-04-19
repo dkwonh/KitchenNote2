@@ -42,8 +42,7 @@
 						alert("비밀번호가 틀립니다.");
 						document.form1.password.focus();
 						return;
-					}
-					 else {
+					} else {
 						document.form1.action = "deleteForm.do";
 						document.form1.submit();
 					}
@@ -85,52 +84,53 @@
 
 			<form method="post" name="form1" id="form1">
 				<div>
+				<h4>회원 탈퇴를 하시려면 비밀번호를 입력하여 주세요.</h4>
 					password : <input type="password" name="password" id="password">
 				</div>
 				<input type="button" id="btnCheck" name="btnCheck" value="확인">
 				<input type="button" id="btnCancel" name="btnCancel" value="취소">
 			</form>
+		</div>
+		<div id="sidebar">
+			<div class="inner">
+				<nav id="menu">
+					<h2>고객센터</h2>
+					<ul>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
 
-			<div id="sidebar">
-				<div class="inner">
-					<nav id="menu">
-						<h2>고객센터</h2>
-						<ul>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
-									레시피</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
 
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/list.do">-
-									스크랩</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									댓글</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									알람</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/customer/write.do">-
-									결제 내역</a></li>
-							<li><a
-								href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
-									회원 정보 수정</a></li>
-
-						</ul>
-					</nav>
-				</div>
+					</ul>
+				</nav>
 			</div>
 		</div>
-		<footer id="footer">
-			<p class="copyright">
-				&copy; Untitled. All rights reserved. Demo Images: <a
-					href="https://unsplash.com">Unsplash</a>. Design: <a
-					href="https://html5up.net">HTML5 UP</a>.
-			</p>
-		</footer>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+	</div>
+	<footer id="footer">
+		<p class="copyright">
+			&copy; Untitled. All rights reserved. Demo Images: <a
+				href="https://unsplash.com">Unsplash</a>. Design: <a
+				href="https://html5up.net">HTML5 UP</a>.
+		</p>
+	</footer>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

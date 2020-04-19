@@ -89,7 +89,8 @@
 			<input type="text" id="query" name="search" placeholder="search">
 			</form>
 			</section>
-	
+	<section>
+	<article>
 		<h4>자주 묻는 질문 목록</h4>
 		<p>
 		<table border="1" width="600px">
@@ -109,8 +110,8 @@
 			</c:forEach>
 		</table>
 		<button type="button" id="btnWrite">글쓰기</button>
-		<p />
-		</div>
+		
+		
 			<ul class="pagination">
 				<li><c:if test="${startPage > 10 }">
 						<a href="AdminFAQ.do?pageNum=${startPage-10}" class="button">이전</a>
@@ -128,6 +129,9 @@
 						<span class="button disabled">다음</span>
 					</c:if></li>
 			</ul>
+			</section>
+			</article>
+			</div>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
@@ -211,7 +215,6 @@
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="../assets/js/main.js"></script>
 
 </body>
