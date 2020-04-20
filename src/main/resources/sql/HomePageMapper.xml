@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 메인화면에 보여줄 레시피 리스트 출력 -->
 	<select id="recipe_home" resultType="wh.user.home.model.HomePageRecipeDto">
-		select * from recipe_info natural join members limit 3
+		select * from recipe_info natural join members
 	</select>
 	
 	<!-- 재료로 레시피 검색 -->

@@ -18,6 +18,16 @@
     overflow-y: visible;
 }
 
+.view{
+    width:300px;
+	height:250px;
+	overflow: hidden;
+}
+.scrollBlind{
+	height:100%;
+	overflow-y:scroll;
+} 
+
 }
 .big_sort {
     width: 190px;
@@ -99,6 +109,10 @@ ul li {
    
 }
 
+.posts article{
+	cursor:pointer;
+}
+
 </style>
 </head>
 <script>
@@ -119,11 +133,6 @@ location.replace("home.do");
 
 function closeCategory(){
 	$("div#category").css('display',"none");
-}
-
-function searchCategory(category){
-
-	location.href="searchCategory.do?category1="+category;
 }
 
 function loadCategory(ing_category){
@@ -156,6 +165,65 @@ function loadCategory(ing_category){
 		location.href = "nangbu.do";
 	}
 
+	function attatch(args){
+		$("div.posts").append("<article onclick=itemClick("+args.recipe_Id+")>"
+				+"<a class=image>"+
+		"<img src="+args.image+" width=500 height=300>"+
+	"</a>"+
+	"<h3>"+args.recipe_Name +"</h3>"+
+	"<p>"+
+		args.recipe_Exp+
+	"</p>"+
+	"<span><a class='icon fa-clock-o'></a>"+args.duration+"</span>"+
+	"<span><a class='icon fa-eye'></a>"+args.readcount+"</span>"+
+	"</article>");
+	}
+	
+
+	function searchCategory(){
+		var url = "searchCategoryAjax.do";
+		var params = $('form.form').serialize();
+		$.ajax({
+			type:"get"		
+			,url:url
+			,data:params		
+			,dataType:"json" })
+			.done(function(args){	//응답이 성공 상태 코드를 반환하면 호출되는 함수
+				$("h3.searchParam").html("").append("검색 결과");
+				$("div.posts").html("");
+				for(i = 0; i < args.length; i++){
+					attatch(args[i]);
+			}
+	 			})
+		    .fail(function(e) {
+		    	alert(e.responseText);
+		    })
+		}
+
+	function searchNangbu(){
+		var url = "searchNangbu.do";
+		var params = $('form.nangbu').serialize();
+		$.ajax({
+			type:"get"		
+			,url:url
+			,data:params		
+			,dataType:"json" })
+			.done(function(args){	//응답이 성공 상태 코드를 반환하면 호출되는 함수
+				$("h3.searchParam").html("").append(params);
+				$("div.posts").html("");
+				$("#glayLayer").hide();
+				$("#overLayer").hide();
+				$(".selected").html("");
+				
+				for(i = 0; i < args.length; i++){
+				attatch(args[i]);
+			}
+	 			})
+		    .fail(function(e) {
+		    	alert(e.responseText);
+		    })
+		}
+
 	$(function(){
 		$("button#category").on('click',function(){
 				var s = $("div#category").css('display')
@@ -167,7 +235,6 @@ function loadCategory(ing_category){
 			});
 
 		$("button#recipe").on('click',function(){
-			location.href="recipe.do"
 			});
 
 		$("button#notify").on('click',function(){
@@ -244,7 +311,7 @@ function loadCategory(ing_category){
 					<a href="home.do" class="logo"><img src="images/KakaoTalk_20200420_110749263.png" width="300px" height=150px>
 					KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
-					<form method=get action=searchList.do>
+					<form method=post>
 					<input type=text name=search id=query placeholder="Search">
 					</form>
 					</section>
@@ -270,26 +337,6 @@ function loadCategory(ing_category){
 					</ul>
 				
 				</header> 
-				<section id=banner>
-				
-					<div class="content">
-					<header>
-						<h1>WELCOME TO KITCHEN NOTE!</h1>
-						<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
-					</header>
-					<p>
-						재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br>
-						또한 셰프로 등업하여 더 많은 혜택을 만나보세요.<br>
-						셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
-						 뭔가 내용이 더있어야 할것 같다.<br>
-						ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
-						ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
-					</p>
-					</div>
-					<span class="image object" style="inline:block; height:530px">
-					<img src="images/KakaoTalk_20200417_204831310.png">
-					</span>
-				</section>
 				<div class="navi c">
 				<button id="category">카테고리</button>
 				<button id="recipe">레시피</button>
@@ -298,60 +345,74 @@ function loadCategory(ing_category){
 				</div>
 				
 				<section>
-				<div id="category" class="menu_over" style="display:none" >
-					<form action="searchCategory.do" style="text-align:center">
+				<div id="category">
+					<form style="text-align:center" class="form">
 						<ul style="text-align:center">
 							<li style="display:inline-block;vertical-align:top">
 								<h3>상황별 요리</h3>
+								<div class="view">
+								<div class="scrollBlind">
 								<ul class="first">
 									<c:forEach var="item" items="${category1}">
 										<li><input id="${item.category_id }" type="radio" name="category1" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
 									</c:forEach>
 									<li><input id="no1" type="radio" name="category1" value="0"><label for="no1">선택안함</label></li>
 								</ul>
+								</div>
+								</div>
 							</li>
 							<li style="display:inline-block;vertical-align:top">
 								<h3>나라별 요리</h3>
+								<div class="view">
+								<div class="scrollBlind">
 								<ul class="second">
 								<c:forEach var="item" items="${category2}">
 										<li><input id="${item.category_id }" type="radio" name="category2" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
 									</c:forEach>
 									<li><input id="no2" type="radio" name="category2" value="0"><label for="no2">선택안함</label></li>
 									</ul>
+									</div>
+									</div>
 							</li>
 							<li style="display:inline-block;vertical-align:top">
 								<h3>재료별 요리</h3>
+								<div class="view">
+								<div class="scrollBlind">
 								<ul class="third">
 								<c:forEach var="item" items="${category3}">
 										<li><input id="${item.category_id }" type="radio" name="category3" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
 									</c:forEach>
 									<li><input id="no3" type="radio" name="category3" value="0"><label for="no3">선택안함</label></li>
 									</ul>
+									</div>
+									</div>
 							</li>
 							<li style="display:inline-block;vertical-align:top">
 								<h3>조리별 요리</h3>
+								<div class="view">
+								<div class="scrollBlind">
 								<ul class=last>
 								<c:forEach var="item" items="${category4}">
 										<li><input id="${item.category_id }" type="radio" name="category4" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
 									</c:forEach>
 									<li><input id="no4" type="radio" name="category4" value="0"><label for="no4">선택안함</label></li>
 								</ul>
+								</div>
+								</div>
 							</li>
 						</ul>
-						
-						<input type="submit" value="검색">
-						<input type="button" value="닫기" onclick="closeCategory()">
+						<input type="button" value="검색" onclick="searchCategory()">
 					</form>
 				</div>
 				
-					<hr>
-				<h3 onclick="searchCategory(${r1Category.category_id})"><a href="javascript:;">${r1Category.category_name}</a></h3>
-			
+				<h3 class="searchParam">검색어
+				</h3>
+				<hr>
 				<div class="posts">
-					<c:forEach var="item" items="${recommand1 }">
+					<c:forEach var="item" items="${dto }">
 						<article onclick="itemClick(${item.recipe_Id})">
 							<a class="image">
-								<img src="${item.image}">
+								<img src="${item.image}" width=500 height=300>
 							</a>
 							<h3>${item.recipe_Name }</h3>
 							<p>
@@ -362,64 +423,11 @@ function loadCategory(ing_category){
 						</article>
 					</c:forEach>
 				</div>
-				<hr>
-				<h3 onclick="searchCategory(${r2Category.category_id})"><a href="javascript:;">${r2Category.category_name}</a></h3>
-					
-					<div class="posts">
-					<c:forEach var="item" items="${recommand2 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
-					</div>
-					<hr>
-					<h3 onclick="searchCategory(${r3Category.category_id})"><a href="javascript:;">${r3Category.category_name}</a></h3>
-					
-					<div class="posts">
-					<c:forEach var="item" items="${recommand3 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
-					</div>
-					<hr>
-					<h3 onclick="searchCategory(${r4Category.category_id})"><a href="javascript:;">${r4Category.category_name}</a></h3>
-					<div class="posts">
-					<c:forEach var="item" items="${recommand4 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
-					</div>
-					</section>
+				</section>
 					
 					<div id="nangbu" style="display:none">
-					<form method="post" action="nangbu.do">
-					<input type="submit" value="재료로검색">
+					<form class="nangbu">
+					<input type="button" value="검색" onclick="searchNangbu()">
 					<fieldset class="field1">
 						<ul id="big_sort" class="big_list">
 							<c:forEach var="item" items="${nangbuCategory }">
