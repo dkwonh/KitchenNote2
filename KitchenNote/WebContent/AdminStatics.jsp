@@ -104,12 +104,13 @@
 			</div>
 			<div>
 				<article>
-					<h1>홈페이지 통계</h1>
-					<br> <select id="statics">
+				<br><p>
+					<h2>홈페이지 통계</h2>
+					<form action ="statics.do">
+					<hr> <select id="statics">
 						<option value="판매량">레시피 판매량</option>
-						<option value="구맨건수">레시피 구매건수</option>
+						<option value="구매건수">레시피 구매건수</option>
 						<option value="등록건수">레시피 등록건수</option>
-						<option value="price">쿠킹 클래스 매출</option>
 					</select>
 				</article>
 			</div>
@@ -139,33 +140,144 @@
 			<script
 				src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
 			<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
+			<div style="width: 50%;">
+				<canvas id="canvas"></canvas>
+			</div>
+
 			<script>
-				'use strict';
+				new Chart(
+						document.getElementById("canvas"),
+						{
+							type : 'line',
+							data : {
+								labels : [ '1월', '2월', '3월',
+										'4월', '5월', '6월', '7월',
+										'8월', '9월', '10월',
+										'11월', '12월' ],
+								datasets : [
+										{
+											label : '레시피 판매량',
+											data : [
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50) ],
+											borderColor : "rgba(255, 201, 14, 1)",
+											backgroundColor : "rgba(255, 201, 14, 0.5)",
+											fill : false,
+											lineTension : 0
+										},
+										{
+											label : '가입 회원 수',
+											data : [
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50) ],
+											borderColor : "rgba(54, 162, 235, 1)",
+											backgroundColor : "rgba(54, 162, 235, 0.5)",
+											fill : false,
+											lineTension : 0
+										},
+										{
+											label : '레시피 등록건수',
+											data : [
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50),
+													Math
+															.floor(Math
+																	.random() * 50) ],
+											borderColor : "rgba(75, 192, 192, 1)",
+											backgroundColor : "rgba(75, 192, 192, 0.5)",
+											fill : false,
+											lineTension : 0
+										} ]
+							},
+							options : {
+								responsive : true,
+								title : {
+									display : true,
+									text : '홈페이지 통계'
+								},
+								tooltips : {
+									mode : 'index',
+									intersect : false,
+								},
+								hover : {
+									mode : 'nearest',
+									intersect : true
+								},
+								scales : {
+									xAxes : [ {
+										display : true,
+										scaleLabel : {
+											display : true,
 
-				Vue.use(VueCharts);
-				var app = new Vue({
-					el : '#app',
-					data : function data() {
-						return {
-							dataentry : null,
-							datalabel : null,
-							labels : [ 'January', 'February', 'March', 'April',
-									'May', 'June', 'July', 'August',
-									'September', 'October', 'November',
-									'December' ],
-							dataset : [ 12, 20, 30, 40, 50, 60, 70 ]
-						};
-					},
+										}
+									} ],
+									yAxes : [ {
+										display : true,
+										ticks : {
+											suggestedMin : 0,
+										},
+										scaleLabel : {
+											display : true,
 
-					methods : {
-						addData : function addData() {
-							this.dataset.push(this.dataentry);
-							this.labels.push(this.datalabel);
-							this.datalabel = '';
-							this.dataentry = '';
-						}
-					}
-				});
+										}
+									} ]
+								}
+							}
+						});
 			</script>
 		</div>
 		<div id="sidebar">

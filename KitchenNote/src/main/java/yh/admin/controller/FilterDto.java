@@ -2,46 +2,38 @@ package yh.admin.controller;
 
 public class FilterDto {
 
-	String order; // 구분 : 레시피 / 결제 및 환불 등등..
-	String search; // 제목 , 조회수
-	String content; // 검색 내용
+	String select1; // 구분 : 레시피 / 결제 및 환불 등등..
+	String select2; // 제목 , 내용
+	String select3; // 검색 내용
 	int start; // 시작 고정
-	
-	
-	public String getOrder() {
-		return order;
+
+	public String getSelect1() {
+		return select1;
 	}
 
-
-	public void setOrder(String order) {
-		this.order = order;
+	public void setSelect1(String select1) {
+		this.select1 = select1;
 	}
 
-
-	public String getSearch() {
-		return search;
+	public String getSelect2() {
+		return select2;
 	}
 
-
-	public void setSearch(String search) {
-		this.search = search;
+	public void setSelect2(String select2) {
+		this.select2 = select2;
 	}
 
-
-	public String getContent() {
-		return content;
+	public String getSelect3() {
+		return select3;
 	}
 
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setSelect3(String select3) {
+		this.select3 = select3;
 	}
-
 
 	public int getStart() {
 		return start;
 	}
-
 
 	public void setStart(int start) {
 		this.start = start;
@@ -49,10 +41,8 @@ public class FilterDto {
 
 	@Override
 	public String toString() {
-		return "FilterDto [order=" + order + ", search=" + search + ", content=" + content + ", start=" + start
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+		return "FilterDto [select1=" + select1 + ", select2=" + select2 + ", select3=" + select3 + ", start=" + start
 				+ "]";
 	}
-	
-	
+
 }

@@ -7,14 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.FAQDto;
-import yh.custom.model.FAQDdo;
+import yh.custom.model.FAQDao;
 
 @Service
 public class FAQServiceImpl implements FAQService {
 
 	@Autowired
-	FAQDdo dao;
+	FAQDao dao;
 
 	@Override
 	public FAQDto read(int bno) throws Exception {
@@ -23,8 +24,8 @@ public class FAQServiceImpl implements FAQService {
 	}
 
 	@Override
-	public List<FAQDto> listAll(int start) throws Exception {
-		return dao.listAll(start);
+	public List<FAQDto> listAll(FilterDto dto) throws Exception {
+		return dao.listAll(dto);
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class FAQServiceImpl implements FAQService {
 	}
 	
 	@Override
-	public int count() throws Exception {
-		return dao.count();
+	public int count(FilterDto dto) throws Exception {
+		return dao.count(dto);
 	}
 }

@@ -56,66 +56,59 @@
 				<p>
 			</section>
 			<h4>자주 찾는 도움말</h4>
-			<br>
-			<ul id="choice">
-				<li><a href="#">레시피</a></li>
-				<li><a href="#">쿠킹 클래스</a></li>
-				<li><a href="#">결제 및 환불</a></li>
-				<li><a href="#">오류 및 수정</a></li>
-				<li><a href="#">신고</a></li>
-			</ul>
-			<br> 구분<select id="select1">
-				<option value="선택">선택</option>
-				<option value="레시피">레시피</option>
-				<option value="쿠킹 클래스">쿠킹 클래스</option>
-				<option value="결제 및 환불">결제 및 환불</option>
-				<option value="오류 및 수정">오류 및 수정</option>
-				<option value="신고">신고</option>
-			</select>
-			<p>
-				검색<select id="select2">
-					<option value="6">선택</option>
-					<option value="7">제목</option>
-					<option value="8">작성자</option>
+			<form action="FAQ.do?pageNum=0">
+				<br> 구분 :<select id="select1" name="select1">
+					<option value="레시피">레시피</option>
+					<option value="쿠킹 클래스">쿠킹 클래스</option>
+					<option value="결제 및 환불">결제 및 환불</option>
+					<option value="오류 및 수정">오류 및 수정</option>
+					<option value="신고">신고</option>
 				</select>
-				<input type="search" name="search" id="search" placeholder="검색 할 내용을 입력하여주세요.">
-			</p>
-			<h4>자주 묻는 질문 목록</h4>
-			<p>
-			<table border="1" width="600px">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>구분</th>
-					<th>조회수</th>
-				</tr>
-				<c:forEach var="row" items="${FAQ}">
+				<p>
+					검색 :<select id="select2" name="select2">
+						<option value="전체">전체</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+					</select> <input type="search" name="select3" id="select3"
+						placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden"
+						name="pageNum" value="1">
+				</p>
+				<h4>자주 묻는 질문 목록</h4>
+				<p>
+				<table border="1" width="600px">
 					<tr>
-						<td>${row.bno+(pageNum-1)*10}</td>
-						<td><a href="FAQView.do?bno=${row.bno}">${row.title }</a></td>
-						<td>${row.menu}</td>
-						<td>${row.viewcnt }</td>
+						<th>번호</th>
+						<th>제목</th>
+						<th>구분</th>
+						<th>조회수</th>
 					</tr>
-				</c:forEach>
-			</table>
-			<p />
+					<c:forEach var="row" items="${FAQ}">
+						<tr>
+							<td>${row.bno+(pageNum-1)*10}</td>
+							<td><a href="FAQView.do?bno=${row.bno}">${row.title }</a></td>
+							<td>${row.menu}</td>
+							<td>${row.viewcnt }</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<p />
 				<ul class="pagination">
-				<li><c:if test="${startPage > 10 }">
-						<a href="FAQ.do?pageNum=${startPage-10}" class="button">이전</a>
-					</c:if> <c:if test="${startPage <= 10 }">
-						<span class="button disabled">이전</span>
-					</c:if></li>
+					<li><c:if test="${startPage > 10 }">
+							<a href="FAQ.do?pageNum=${startPage-10}" class="button">이전</a>
+						</c:if> <c:if test="${startPage <= 10 }">
+							<span class="button disabled">이전</span>
+						</c:if></li>
 
-				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<li><a href="FAQ.do?pageNum=${i}" class="page">${i}</a></li>
-				</c:forEach>
+					<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+						<li><a href="FAQ.do?pageNum=${i}" class="page">${i}</a></li>
+					</c:forEach>
 
-				<li><c:if test="${endPage < pageCount }">
-						<a href="FAQ.do?pageNum=${startPage+10}" class="button">다음</a>
-					</c:if> <c:if test="${endPage >= pageCount }">
-						<span class="button disabled">다음</span>
-					</c:if></li>
-			</ul>
+					<li><c:if test="${endPage < pageCount }">
+							<a href="FAQ.do?pageNum=${startPage+10}" class="button">다음</a>
+						</c:if> <c:if test="${endPage >= pageCount }">
+							<span class="button disabled">다음</span>
+						</c:if></li>
+				</ul>
 		</div>
 		<div id="sidebar">
 			<div class="inner">

@@ -59,29 +59,20 @@
 			</div>
 			<section>
 				<h2>내 문의 내역</h2>
+				<br>검색 창을 이용하시면 더 정확한 정보를 검색하실 수 있습니다.
+				<hr>
 				<h4>내 문의 내역</h4>
 				<div class="12u$">
-					<form name="searchform" method="post">
-						구분 :<select id="select1" name="select1">
-							<option value="0">선택</option>
-							<option value="1">레시피</option>
-							<option value="2">쿠킹 클래스</option>
-							<option value="3">결제 및 환불</option>
-							<option value="4">오류 및 수정</option>
-							<option value="5">신고</option>
-						</select> 검색 :<select id="select2" name="select2">
-							<option value="6">선택</option>
-							<option value="7">제목</option>
-							<option value="8">작성자</option>
-						</select> <input type="search" placeholder="검색 할 내용을 입력하여주세요.">
+					<form action="list.do?pageNum=0">
+						검색 :<select id="select2" name="select2">
+							<option value="subject">제목</option>
+							<option value="content">내용</option>
+						</select> <input type="search" id="select3" name="select3"
+							placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden" name="pageNum"
+							value="1">
 					</form>
 				</div>
 			</section>
-			<p>
-				정렬 :<select id="select3">
-					<option value="순번">순번</option>
-					<option value="조회수">조회수</option>
-				</select>
 			<table border="1" width="600px">
 				<tr>
 					<th>번호</th>

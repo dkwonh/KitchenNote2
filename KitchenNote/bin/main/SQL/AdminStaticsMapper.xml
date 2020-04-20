@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminStatics">
+
+	<select id="recipeCount"
+		resultType="int" parameterType="yh.admin.controller.AdminStaticsDto">
+
+		select count(reg_date), MONTH(reg_date),YEAR(reg_date) from
+		recipe_info where YEAR(reg_date)=2020 and MONTH(reg_date) between 4
+		and 12
+		GROUP BY YEAR(reg_date), MONTH(reg_date)
+	</select>
+	<select id="userCount"
+		resultType="int" parameterType="yh.admin.controller.AdminStaticsDto">
+
+		select count(join_date), MONTH(join_date),YEAR(join_date)
+		from Members where YEAR(join_date)=2020 and MONTH(join_date) between 4
+		and 12
+		GROUP BY YEAR(join_date), MONTH(join_date)
+	</select>
+	<select id="recipeSaleCount"
+		resultType="int" parameterType="yh.admin.controller.AdminStaticsDto">
+
+		select count(pur_date), MONTH(pur_date),YEAR(pur_date) from
+		pur_recipe where YEAR(pur_date)=2020 and MONTH(pur_date) between 4 and
+		12
+		GROUP BY YEAR(pur_date), MONTH(pur_date)
+	</select>
+</mapper>

@@ -3,6 +3,7 @@ package yh.custom.model;
 import java.util.List;
 import java.util.Map;
 
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 
 public interface BoardDao {
@@ -15,9 +16,9 @@ public interface BoardDao {
 
 	public void delete(int bno) throws Exception;
 
-	public List<BoardDto> listAll(int start) throws Exception;
+	public List<BoardDto> listAll(FilterDto dto) throws Exception;
 
 	public void increaseViewcnt(int bno) throws Exception;
 	
-	public int count() throws Exception;
+	public int count(FilterDto dto) throws Exception;
 }

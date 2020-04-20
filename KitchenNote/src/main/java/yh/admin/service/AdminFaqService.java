@@ -23,7 +23,7 @@ public interface AdminFaqService {
 	public void delete(int bno) throws Exception;
 
 // 게시글 전체 목록
-	public List<AdminFaqDto> listAll(int start) throws Exception;
+	public List<AdminFaqDto> listAll(FilterDto dto) throws Exception;
 
 // 게시글 조회
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception;

@@ -4,8 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="customer">
 
-	<select id="listAll" resultType="yh.custom.controller.BoardDto">
-		select * from QnA order by
+	<select id="listAll" resultType="yh.custom.controller.BoardDto" parameterType="yh.admin.controller.FilterDto">
+		select * from QnA 
+		<where>
+		<choose>
+			<when test="select2 == 'subject'">
+				  subject
+				like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select2 == 'content'">
+				  content
+				like CONCAT('%',#{select3},'%')
+			</when>
+		</choose>
+		</where>
+		order by
 		num desc, reg_date desc limit #{start},10 
 
 	</select>

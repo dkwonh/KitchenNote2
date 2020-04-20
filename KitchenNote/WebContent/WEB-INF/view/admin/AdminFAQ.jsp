@@ -63,30 +63,23 @@
 
 		<h4>자주 찾는 도움말</h4>
 		<br>
-		<ul id="choice">
-			<li><a href="#">레시피</a></li>
-			<li><a href="#">쿠킹 클래스</a></li>
-			<li><a href="#">결제 및 환불</a></li>
-			<li><a href="#">오류 및 수정</a></li>
-			<li><a href="#">신고</a></li>
-		</ul>
-		<section id=search class="alt">
-		<form action="AdminFAQ.do">
-		 <select name="select1">
-			<option value="선택">선택</option>
+
+		<section id="search" class="alt">
+		<form action="AdminFAQ.do?pageNum=0">
+		 <br> 구분 : <select name="select1">
 			<option value="레시피">레시피</option>
 			<option value="쿠킹 클래스">쿠킹 클래스</option>
 			<option value="결제 및 환불">결제 및 환불</option>
 			<option value="오류 및 수정">오류 및 수정</option>
 			<option value="신고">신고</option>
 		</select>
-		
-			<select name="order">
-				<option value="#">선택</option>
-				<option value="menu">제목</option>
-				<option value="viewcnt">조회수</option>
+		<p>
+			검색 :<select name="select2">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
 			</select>
-			<input type="text" id="query" name="search" placeholder="search">
+			<input type="search" id="select3" name="select3" placeholder="검색 할 내용을 입력하여주세요.">
+			<input type="hidden" name="pageNum" value="1">
 			</form>
 			</section>
 	<section>

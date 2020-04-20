@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 import yh.custom.model.BoardDao;
 
@@ -50,8 +51,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> listAll(int start) throws Exception {
-		return dao.listAll(start);
+	public List<BoardDto> listAll(FilterDto dto) throws Exception {
+		return dao.listAll(dto);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int count() throws Exception {
-		return dao.count();
+	public int count(FilterDto dto) throws Exception {
+		return dao.count(dto);
 	}
 }

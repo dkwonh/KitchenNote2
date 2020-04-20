@@ -17,7 +17,7 @@ public interface AdminFaqDao {
 
 	public void delete(int bno) throws Exception;
 
-	public List<AdminFaqDto> listAll(int start) throws Exception;
+	public List<AdminFaqDto> listAll(FilterDto dto) throws Exception;
 
 	public void increaseViewcnt(int bno) throws Exception;
 	

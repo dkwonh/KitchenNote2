@@ -4,20 +4,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FAQ">
 	<select id="listAll" resultType="yh.custom.controller.FAQDto">
-		select * from Admin_FAQ order by
+		select * from Admin_FAQ
+		<where>
+			<choose>
+				<when test="select1 == '레시피' and select2 == 'title'">
+					menu
+					like CONCAT('%',#{select1},'%') and title like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '쿠킹 클래스' and select2 == 'title'">
+					menu
+					like CONCAT('%',#{select1},'%') and title like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '결제 및 환불' and select2 == 'title'">
+					menu
+					like CONCAT('%',#{select1},'%') and title like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '오류 및 수정' and select2 == 'title'">
+					menu
+					like CONCAT('%',#{select1},'%') and title like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '신고' and select2 == 'title'">
+					menu
+					like CONCAT('%',#{select1},'%') and title like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '레시피' and select2 == 'content'">
+					menu
+					like CONCAT('%',#{select1},'%') and content like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '쿠킹 클래스' and select2 == 'content'">
+					menu
+					like CONCAT('%',#{select1},'%') and content like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '결제 및 환불' and select2 == 'content'">
+					menu
+					like CONCAT('%',#{select1},'%') and content like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '오류 및 수정' and select2 == 'content'">
+					menu
+					like CONCAT('%',#{select1},'%') and content like
+					CONCAT('%',#{select3},'%')
+				</when>
+				<when test="select1 == '신고' and select2 == 'content'">
+					menu
+					like CONCAT('%',#{select1},'%') and content like
+					CONCAT('%',#{select3},'%')
+				</when>
+			</choose>
+		</where>
+		order by
 		bno desc limit #{start}, 10
 	</select>
 
 	<select id="count" resultType="int">
 		select count(*) from Admin_FAQ
 	</select>
-	
+
 	<select id="FAQView" resultType="yh.custom.controller.FAQDto">
-		select * from Admin_FAQ where bno = #{bno}
+		select * from Admin_FAQ where
+		bno = #{bno}
 	</select>
 
 	<update id="increaseViewcnt" parameterType="int">
-		update Admin_FAQ set viewcnt = viewcnt +1 where bno = #{bno}
+		update Admin_FAQ set
+		viewcnt = viewcnt +1 where bno = #{bno}
 	</update>
-	
+
 </mapper>

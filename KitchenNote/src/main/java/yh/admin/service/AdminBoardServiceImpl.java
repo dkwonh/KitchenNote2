@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yh.admin.controller.AdminBoardDto;
+import yh.admin.controller.FilterDto;
 import yh.admin.model.AdminBoardDao;
 
 
@@ -50,8 +51,8 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public List<AdminBoardDto> listAll(int start) throws Exception {
-		return dao.listAll(start);
+	public List<AdminBoardDto> listAll(FilterDto dto) throws Exception {
+		return dao.listAll(dto);
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 	
 	@Override
-	public int count() throws Exception{
-		return dao.count();
+	public int count(FilterDto dto) throws Exception{
+		return dao.count(dto);
 	}
 }

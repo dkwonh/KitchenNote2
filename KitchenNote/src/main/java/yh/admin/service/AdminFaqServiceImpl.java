@@ -43,8 +43,8 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	}
 
 	@Override
-	public List<AdminFaqDto> listAll(int start) throws Exception {
-		return dao.listAll(start);
+	public List<AdminFaqDto> listAll(FilterDto dto) throws Exception {
+		return dao.listAll(dto);
 	}
 
 	@Override

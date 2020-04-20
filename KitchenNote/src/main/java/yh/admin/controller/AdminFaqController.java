@@ -48,21 +48,34 @@ public class AdminFaqController {
 	AdminFaqService Service;
 
 	@RequestMapping("AdminFAQ.do") // 게시글 목록
-	public ModelAndView list(@RequestParam int pageNum, FilterDto f, Model model) throws Exception {
+	public ModelAndView list(@RequestParam /* (value="pageNum",required = false) */int pageNum,@RequestParam (value="select1",required = false)String select1
+			,@RequestParam (value="select2",required = false)String select2
+			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
+		List<AdminFaqDto> dto;
 		if(pageNum==0)
 			pageNum=1;
-		System.out.println(f);
-		int count = Service.count(f);//맵퍼 파일에 선언해둔 count(*) sql
+		int count;
+		FilterDto f = new FilterDto();
+		f.setSelect1(select1);
+		f.setSelect2(select2);
+		f.setSelect3(select3);
+		f.setStart((pageNum -1)  * PAGE_SIZE);
+		count = Service.count(f);
 		pageCount = count/PAGE_SIZE + (count%PAGE_SIZE==0?0:1);
 		model.addAttribute("pageCount",pageCount);
 		pageCalc(pageNum,count);//5번에 선언된 함수
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage",endPage);
 		model.addAttribute("pageBlock",pageBlock);
-		model.addAttribute("AdminFAQ",Service.listAll((pageNum-1)*PAGE_SIZE));//가져오고자 하는 리스트를 한페이지에서 보여줄수 있는 만큼만 가져온다.
+		model.addAttribute("AdminFAQ",Service.listAll(f)); //가져오고자 하는 리스트를 한페이지에서 보여줄수 있는 만큼만 가져온다.
 		model.addAttribute("pageNum",pageNum);
+		model.addAttribute("select1",select1);
+		model.addAttribute("select2",select2);
+		model.addAttribute("select3",select3);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/AdminFAQ");
+		System.out.println(f);
+		System.out.println(pageNum);
 		return mav;
 	}
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 
 public interface BoardService {
@@ -22,12 +23,12 @@ public interface BoardService {
 	public void delete(int bno) throws Exception;
 
 // 게시글 전체 목록
-	public List<BoardDto> listAll(int start) throws Exception;
+	public List<BoardDto> listAll(FilterDto dto) throws Exception;
 
 // 게시글 조회
 	public void increaseViewcnt(int bno, HttpSession session) throws Exception;
 
-	public int count() throws Exception;
+	public int count(FilterDto dto) throws Exception;
 
 
 }

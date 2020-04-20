@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import yh.admin.controller.AdminBoardDto;
+import yh.admin.controller.FilterDto;
 
 public class AdminBoardDaoImpl extends SqlSessionDaoSupport implements AdminBoardDao {
 
@@ -24,16 +25,16 @@ public class AdminBoardDaoImpl extends SqlSessionDaoSupport implements AdminBoar
 		getSqlSession().delete("adminBoard.deleteArticle", num);
 	}
 
-	public List<AdminBoardDto> listAll(int start) throws Exception {
-		return getSqlSession().selectList("adminBoard.listAll", start);
+	public List<AdminBoardDto> listAll(FilterDto dto) throws Exception {
+		return getSqlSession().selectList("adminBoard.listAll", dto);
 	}
 
 	public void increaseViewcnt(int num) throws Exception {
 		getSqlSession().update("adminBoard.increaseViewcnt", num);
 	}
 
-	public int count() throws Exception {
-		return getSqlSession().selectOne("adminBoard.count");
+	public int count(FilterDto dto) throws Exception {
+		return getSqlSession().selectOne("adminBoard.count",dto);
 	}
 
 }

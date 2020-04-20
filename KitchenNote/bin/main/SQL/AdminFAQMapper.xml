@@ -4,33 +4,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-	<select id="listAll" resultType="yh.admin.controller.AdminFaqDto" parameterType="yh.admin.controller.FilterDto">
-		select * 
-		from Admin_FAQ	
+	<select id="listAll"
+		resultType="yh.admin.controller.AdminFaqDto"
+		parameterType="yh.admin.controller.FilterDto">
+		select *
+		from Admin_FAQ
 		<where>
-		<if test= 'order == "menu"'>
-		  menu
-		  like CONCAT('%',#{search},'%')
- 		</if>
- 		
- 		<if test='order == "viewcnt"'>
-		  and viewcnt
-		  like CONCAT('%',#{search},'%')
- 		</if>
- 		</where>
-		order by bno desc 
+		<choose>
+			<when test="select1 == '레시피' and select2 == 'title'">
+				  menu
+				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '쿠킹 클래스' and select2 == 'title'">
+				  menu
+				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '결제 및 환불' and select2 == 'title'">
+				  menu
+				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '오류 및 수정' and select2 == 'title'">
+				  menu
+				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '신고' and select2 == 'title'">
+				  menu
+				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '레시피' and select2 == 'content'">
+				  menu
+				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '쿠킹 클래스' and select2 == 'content'">
+				 menu
+				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '결제 및 환불' and select2 == 'content'">
+				 menu
+				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '오류 및 수정' and select2 == 'content'">
+				 menu
+				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
+			</when>
+			<when test="select1 == '신고' and select2 == 'content'">
+				 menu
+				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
+			</when>
+		</choose>
+		</where>
+		order by bno desc
 		limit #{start}, 10
 
 	</select>
-	
+
 	<select id="count" resultType="int">
 		select count(*) from Admin_FAQ
 	</select>
-	
-	<insert id="insert" parameterType="yh.admin.controller.AdminFaqDto">
+
+	<insert id="insert"
+		parameterType="yh.admin.controller.AdminFaqDto">
 		insert into Admin_FAQ values(
 		#{bno},
-		#{title}, #{content},#{menu},#{viewcnt}
+		#{title},
+		#{content},#{menu},#{viewcnt}
 		)
 	</insert>
 

@@ -41,4 +41,7 @@
 	<bean id="MypageDao" class="yh.mypage.model.MemberInfoDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="StaticsDao" class="yh.admin.model.AdminStaticsDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 </beans>
