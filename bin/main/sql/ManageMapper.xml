@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="admin">
+<mapper namespace="manage">
 	<!-- 유저 리스트 시작 -->
 	<select id="getUserList" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
 		select * from members 
@@ -70,8 +70,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 셰프 리스트 끝 -->
 	
 	<!-- 탈퇴자 리스트 시작 -->
-	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto">
+	<insert id="insertDrop" parameterType="wh.admin.manage.model.DropMembersDto">
+		insert into Drop_members(member_id,nickname) values(#{member_id},#{nickname})
+	</insert>
+	
+	<select id="getDropList" resultType="wh.admin.manage.model.DropMembersDto" parameterType="wh.admin.manage.model.FilterDto">
 		select * from drop_members
+		<where>
+		<if test='filter == "nickname"'>
+		 nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by drop_date limit #{start}, 10
+	</select>
+	
+	<select id="getDropCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from drop_members
+		<where>
+		<if test='filter == "nickname"'>
+		  nickname
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
 	</select>
 	
 	<!-- 탈퇴자 리스트 끝 -->
@@ -81,26 +110,271 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update members set nickname=#{nickname} where member_id = #{member_id}
 	</update>
 	
-	<!-- <select id="getUserFilter" resultType="wh.admin.manage.model.MemberDto" parameterType="wh.admin.manage.model.FilterDto">
-		select * from members where level in(1,2) and
-		 <if test='filter == "nickname"'>
-		  nickname 
- 		</if>
- 		<if test='filter == "member_id"'>
-		  member_id 
- 		</if>
- 		like CONCAT('%',#{search},'%') limit #{start}, 10
+	<delete id="deleteUser" parameterType="string">
+		delete from members where member_id = #{member_id}
+	</delete>
+	<!-- 회원정보 수정 끝 -->
+	
+	<!-- 셰프 정보 수정 -->
+	<update id="updateChef" parameterType="map">
+		update chef set tel = #{tel}, sns_address=#{sns_address} where chef=#{member_id}
+	</update>
+	
+	<delete id="deleteChef" parameterType="string">
+		delete from chef where chef=#{member_id}
+	</delete>
+	<!-- 셰프 정보 수정 끝 -->
+	
+	<!-- 셰프 신청서 리스트 -->
+	<select id="getChefApplyCount" resultType="int">
+		select count(*) from chef_apply
 	</select>
 	
-	<select id="getFilterCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
-		select count(*) from members where level in(1,2) and
-		<if test='filter == "nickname"'>
-		  nickname 
+	<select id="getChefApply" resultType="wh.admin.manage.model.ChefApplyDto" parameterType="int">
+		select * from chef_apply natural join members limit #{start}, 10
+	</select>
+	
+	<insert id="allowChefUp" parameterType="wh.admin.manage.model.ChefApplyDto">
+		insert into chef(chef,tel,sns_address) values(#{member_id},#{tel},#{sns_address})
+	</insert>
+	
+	<update id="upLevel" parameterType="string">
+		update members set level = 2 where member_id = #{member_id}
+	</update>
+	
+	<delete id="denyChefUp" parameterType="string">
+		delete from chef_apply where member_id = #{member_id}
+	</delete>
+	<!-- 셰프 신청서 리스트 끝 -->
+	
+	<!-- 전체 레시피 리스트 -->
+	<select id="getRecipeList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.AdminRecipeDto">
+		select * from recipe_info
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "recipe_name"'>
+		 and recipe_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by recipe_id limit #{start}, 10
+	</select>
+	
+	<select id="getRecipeCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from recipe_info
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
  		</if>
  		<if test='filter == "member_id"'>
-		  member_id 
+		  member_id
+		  like CONCAT('%',#{search},'%') 
  		</if>
- 		like CONCAT('%',#{search},'%')
+		</where>
 	</select>
-	 -->
+	<!-- 전체 레시피 끝 -->
+	
+	<!-- 유료 레시피 -->
+	<select id="getPayList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.AdminRecipeDto">
+		select * from recipe_info
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "recipe_name"'>
+		 and recipe_name
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		price not in(0)	
+		</where>
+		order by recipe_id limit #{start}, 10
+	</select>
+	
+	<select id="getPayCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from recipe_info
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		price not in(0)
+		</where>
+	</select>
+	<!-- 유료 레시피  끝 -->
+	
+	<!-- 삭제 레시피 -->
+	<select id="getDelRecipeList" resultType="wh.admin.manage.model.DelRecipeDto" parameterType="wh.admin.manage.model.FilterDto">
+		select * from del_recipe
+		<where>
+		<if test='filter == "recipe_name"'>
+		 recipe_name 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>	
+		</where>
+		order by del_date limit #{start}, 10
+	</select>
+	
+	<select id="getDelCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from del_recipe
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
+	</select>
+	<!-- 삭제 레시피 끝 -->
+	
+	
+	<!-- 레시피 삭제 -->
+	<delete id="deleteRecipe" parameterType="int">
+		delete from recipe_info where recipe_id = #{recipe_id}
+	</delete>
+	
+	<insert id="insertDelRecipe" parameterType="wh.admin.manage.model.DelRecipeDto">
+		insert into Del_Recipe(recipe_id,image,member_id,recipe_name,reason) value(#{recipe_id},#{image},#{member_id},#{recipe_name},#{reason})
+	</insert>
+	<!-- 레시피 삭제 끝 -->
+	
+	<!-- 레시피 구매 내역 -->
+	<select id="getPurRecipeList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PurchaseRecipeDto">
+		select * from pur_recipe natural join recipe_info natural join members
+		<where>
+		<if test='filter == "recipe_name"'>
+		 recipe_name 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		 and member_id 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+ 		<if test='filter == "nickname"'>
+ 		and nickname 
+		  like CONCAT('%',#{search},'%')
+ 		</if>
+		</where>
+		order by pur_date limit #{start}, 10
+	</select>
+	
+	<select id="getPurRecipeCount" resultType="int" parameterType="wh.admin.manage.model.FilterDto">
+		select count(*) from pur_recipe natural join recipe_info natural join members
+		<where>
+		<if test='filter == "recipe_name"'>
+		  recipe_name
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "nickname"'>
+ 		and nickname 
+		  like CONCAT('%',#{search},'%')
+		 </if>
+		</where>
+	</select>
+	<!-- 구매 내역 끝 -->
+	
+	<!-- 결제 내역 리스트 -->
+	<select id="getPaymentList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PayListDto">
+		select * from pay_list
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		 like CONCAT('%',#{search},'%')
+		 and fork > 0
+ 		 </if>
+ 		</where>
+ 		 order by fork_date limit #{start}, 10
+	</select>
+	
+	
+	
+	<select id="getPaymentCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from pay_list
+		<where>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%')
+		  and fork > 0
+ 		</if>
+ 		</where>
+	</select>
+	<!-- 결제 내역 리스트 끝 -->
+	
+	
+	
+	<!-- 공지사항 -->
+	<select id="getNotifyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.NotifyDto">
+		select * from notify
+		<where>
+		<if test='filter == "member_id"'>
+		 member_id 
+		 like CONCAT('%',#{search},'%')
+ 		</if>
+ 		 <if test='filter == "subject"'>
+		 subject 
+		 like CONCAT('%',#{search},'%')
+		 </if>
+		 <if test='filter == "content"'>
+		 content 
+		 like CONCAT('%',#{search},'%')
+		 </if>
+		 </where>
+ 		 order by num limit #{start}, 10	
+
+	</select>
+	
+	
+	
+	<select id="getNotifyCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from notify
+		<where>
+		<if test='filter == "subject"'>
+		  subject
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "member_id"'>
+		  member_id
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+ 		<if test='filter == "content"'>
+		  content
+		  like CONCAT('%',#{search},'%') 
+ 		</if>
+		</where>
+	</select>
+	
+	<insert id="insertNotify" parameterType="wh.admin.manage.model.NotifyDto">
+		insert into notify(subject,content,member_id) values(#{subject},#{content},#{member_id})
+	</insert>
+	
+	<update id="updateNotify" parameterType="wh.admin.manage.model.NotifyDto">
+		update notify set subject = #{subject}, content = #{content}, member_id = #{member_id} where num = #{num}
+	</update>
+	
+	<delete id="deleteNotify" parameterType="int">
+		delete from notify where num = #{num}
+	</delete>
+	
+	<select id="getNotify" parameterType="int" resultType="wh.admin.manage.model.NotifyDto">
+		select * from notify where num = #{num}
+	</select>
 </mapper>

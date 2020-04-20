@@ -6,8 +6,7 @@
 </head>
 <body>
 <script>
-	location.href="home.do";
+	location.replace("home.do");
 </script>
-<a href="home.do">list</a>
 </body>
 </html>

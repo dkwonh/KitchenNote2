@@ -36,11 +36,21 @@ div#glayLayer{
 }
 </style>
 <script>
+
+function deleteInfo(){
+	var form = $("form[name='form']");
+	form.attr("action","delete.do");
+	
+	form.submit();
+
+	form.attr("action","update.do");
+}
+
 $(function(){
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
 	
 	$("#glayLayer").click(function(){
-		$(this).hide()
+		$(this).hide();
 		$("#overLayer").hide();
 	});
 	
@@ -48,9 +58,11 @@ $(function(){
 		var nickname = $(this).find("td.nickname").text();
 		var member_id = $(this).find("td.member_id").text();
 		var join_date = $(this).find("td.join_date").text();
+		
 		$("input#nickBox").attr("value",nickname);
 		$("input#idBox").attr("value",member_id);
 		$("input#joinBox").attr("value",join_date);
+		
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -92,7 +104,7 @@ $(function(){
 		</thead>
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
-		<tr onclick="popUpInfo('${item.nickname}','${item.member_id}','${item.join_date}')" class="modal">
+		<tr class="modal">
 			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="nickname">${item.nickname }</td>
 			<td class="member_id">${item.member_id }</td>
@@ -113,7 +125,12 @@ $(function(){
 		</li>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+			<c:if test="${pageNum==i }">
+			<li><a href="admin.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			</c:if>
+			<c:if test="${pageNum!=i }">
 			<li><a href="admin.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			</c:if>
 		</c:forEach>
 		
 		<li>
@@ -127,79 +144,11 @@ $(function(){
 	</ul>
 	</div>
 </div>
-
-<div id="sidebar">
-<div class="inner">
-<nav id=menu>
-<ul>
-	<li>
-		<span class="opener">사용자 관리</span>
-		<ul>
-			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
-			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">레시피 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">결제 내역 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">이벤트 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">문의 사항</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">홈페이지 통계</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-</ul>
-</nav>
-</div>
-</div>
+<%@ include file="sideMenu.jsp" %>
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="update.do">
+	<form style="background:white" name="form" action="update.do">
 	<div class="row uniform">
 		<div class="12u$">
 		<h3>닉네임</h3>
@@ -213,8 +162,7 @@ $(function(){
 		
 		<ul class="actions">
 			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제"></li>
-			<li><input type="button" value="취소"></li>
+			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
 		</div>
 		</div>

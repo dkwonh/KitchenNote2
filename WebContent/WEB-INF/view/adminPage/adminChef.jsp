@@ -37,13 +37,25 @@ div#glayLayer{
 
 </style>
 <script>
+function deleteInfo(){
+	var form = $("form[name='form']");
+	form.attr("action","deleteChef.do");
+	
+	form.submit();
+
+	form.attr("action","updateChef.do");
+}
+
 $(function(){
+
+	
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
-	$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
-		$("#glayLayer").click(function(){
-		$(this).hide()
+
+	$("#glayLayer").click(function(){
+		$(this).hide();
 		$("#overLayer").hide();
 	});
+
 	
 	$("tr.modal").click(function(){
 		var nickname = $(this).find("td.nickname").text();
@@ -52,10 +64,10 @@ $(function(){
 		var tel = $(this).find("td.tel").text();
 		var sns = $(this).find("td.sns_address").text();
 		$("input#nickBox").attr("value",nickname);
-		$("div#idBox").text(member_id);
-		$("div#joinBox").text(join_date);
-		$("div#telBox").text(tel);
-		$("div#snsBox").text(sns);
+		$("input#idBox").attr("value",member_id);
+		$("input#joinBox").attr("value",join_date);
+		$("input#telBox").attr("value",tel);
+		$("input#snsBox").attr("value",sns);
 		$("#glayLayer").show();
 		$("#overLayer").show().html($("div#popupWindow").html());
 		return false;
@@ -97,7 +109,7 @@ $(function(){
 		</thead>
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
-		<tr onclick="popUpInfo('${item.nickname}','${item.member_id}','${item.join_date}')" class="modal">
+		<tr class="modal">
 			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="nickname">${item.nickname }</td>
 			<td class="member_id">${item.member_id }</td>
@@ -120,7 +132,12 @@ $(function(){
 		</li>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+			<c:if test="${pageNum==i }">
+			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page active">${i}</a></li>
+			</c:if>
+			<c:if test="${pageNum!=i }">
 			<li><a href="adminChef.do?pageNum=${i}&&filter=${filter}&&search=${search}" class="page">${i}</a></li>
+			</c:if>
 		</c:forEach>
 		
 		<li>
@@ -134,107 +151,31 @@ $(function(){
 	</ul>
 	</div>
 </div>
-
-<div id="sidebar">
-<div class="inner">
-<nav id=menu>
-<ul>
-	<li>
-		<span class="opener">사용자 관리</span>
-		<ul>
-			<li><a href="admin.do?pageNum=1&&filter=&&search=&&">일반 사용자 관리</a></li>
-			<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">셰프 사용자 관리</a></li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">레시피 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">결제 내역 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">이벤트 관리</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">문의 사항</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-	<li>
-		<span class="opener">홈페이지 통계</span>
-		<ul>
-			<li>일반 사용자 관리</li>
-			<li>셰프 사용자 관리</li>
-			<li>셰프 등업 신청 확인</li>
-			<li>탈퇴자 관리</li>
-		</ul>
-	</li>
-	
-</ul>
-</nav>
-</div>
-</div>
+<%@ include file="sideMenu.jsp" %>
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white">
+	<form style="background:white" action="updateChef.do" name="form">
 	<div class="row uniform modal-dialog">
 		<div class="12u$ modal-body">
 		<h5>닉네임</h5>
-		<input type="text" name="nickname" id=nickBox><br>
+		<input type="text" name="nickname" id=nickBox>
 		
 		<h5>아이디</h5>
-		<div class="box" id=idBox>
-		
-		</div>
+		<input type="text" name="member_id" id=idBox readonly>
 		
 		<h5>SNS주소</h5>
-		<div class="box" id="snsBox">
-		
-		</div>
-		
+		<input type="text" name="sns_address" id=snsBox>
+
 		<h5>연락처</h5>
-		<div class="box" id="telBox">
-		
-		</div>
+		<input type="text" name="tel" id="telBox">
 		
 		<h5>가입일</h5>
-		<div class="box" id=joinBox>
+		<input type="text" name="join_date" id="joinBox" readonly>
 		
-		</div>
 		<ul class="actions">
 			<li><input type="submit" value="수정" class="special"></li>
-			<li><input type="button" value="삭제"></li>
-			<li><input type="button" value="취소"></li>
+			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
 		</div>
 		</div>

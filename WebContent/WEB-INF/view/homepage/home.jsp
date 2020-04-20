@@ -74,6 +74,10 @@ div#glayLayer{
 float:left;
 }
 
+.first, .second, .third, .last{
+	text-align:left;
+}
+
 .navi button{
 float: left;
 }
@@ -82,9 +86,42 @@ float: left;
 ul li {
 	list-style-type:none;
 }
+
+.menu_over{
+	clear: both;
+    border-bottom: 1px solid #adadad;
+    position: absolute;
+    top: 250px;
+    left:4em;
+    right:4em;
+    background-color: rgba(255,255,255,0.95);
+    z-index: 30;
+   
+}
+
 </style>
 </head>
 <script>
+<%
+	String member_id = (String)session.getAttribute("MINFO");
+	String level = (String)session.getAttribute("LEVEL");
+	
+	if(member_id == null){
+		member_id = "guest";
+	}
+%>
+function logout(){
+<%
+	session.invalidate();
+%>
+location.replace("home.do");
+}
+
+function searchCategory(category){
+
+	location.href="searchCategory.do?category1="+category;
+}
+
 function loadCategory(ing_category){
 	var url = "category.do"
 	var params = "ing_category="+ing_category
@@ -136,7 +173,22 @@ function loadCategory(ing_category){
 		$("button#support").on('click',function(){
 			alert("고객센터 보기");
 			});
+		
+		if("<%=member_id%>"=="guest"){
+			$("li.out").css("display","inline-block");
+			$("li.in").css("display","none");
+		}
+		else{
+			$("li.in").css("display","inline-block");
+			$("li.out").css("display","none");
+		}
 
+		if("<%=level%>"!="0"){
+			$("li.admin").css("display","none");
+		}
+		else{
+			$("li.admin").css("display","inline-block");
+		}
 
 
 		$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
@@ -185,7 +237,7 @@ function loadCategory(ing_category){
 		<div id=main>
 			<div class=inner>
 				<header id="header">
-					<a href="index.html" class="logo"><strong>Editorial</strong>
+					<a href="home.do" class="logo"><img src="images/KakaoTalk_20200420_110749263.png" width="300px" height=150px>
 					KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 					<form method=post>
@@ -193,27 +245,59 @@ function loadCategory(ing_category){
 					</form>
 					</section>
 					<ul class="icons"> 
-						<li><a  class="icon fa-twitter modal"><span
-								class="label">twitter</span></a></li>
-						<li><a href="kakaoPay.do" class="icon fa-facebook"><span
+						<li class="out" onclick="logout()"><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
+							sign-in
+						</span></a>
+						<li class="in"><a href="#" class="icon fa-sign-out"><span class=label>
+							sign-out
+						</span></a>
+						
+						<li class="in"><a href=# class="icon fa-user"><span
+								class="label">mypage</span></a></li>
+								
+						<li><a href=# class="icon fa-archive modal"><span
+								class="label">nangbu</span></a></li>
+
+						<li class="in"><a href="#" class="icon fa-edit"><span
 								class="label">Facebook</span></a></li>
-						<li><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
+								
+						<li class="admin"><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
 								class="label">Snapchat</span></a></li>
 					</ul>
-					
-				</header>
 				
+				</header> 
+				<section id=banner>
+				
+					<div class="content">
+					<header>
+						<h1>WELCOME TO KITCHEN NOTE!</h1>
+						<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
+					</header>
+					<p>
+						재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br>
+						또한 셰프로 등업하여 더 많은 혜택을 만나보세요.<br>
+						셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
+						 뭔가 내용이 더있어야 할것 같다.<br>
+						ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
+						ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
+					</p>
+					</div>
+					<span class="image object" style="inline:block; height:530px">
+					<img src="images/KakaoTalk_20200417_204831310.png">
+					</span>
+				</section>
 				<div class="navi c">
 				<button id="category">카테고리</button>
 				<button id="recipe">레시피</button>
 				<button id="event">이벤트</button>
 				<button id="support">고객센터</button>
 				</div>
+				
 				<section>
-				<div id="category" class="4u 12u$(small)" style="display:none">
+				<div id="category" class="menu_over" style="display:none" >
 					<form action="searchCategory.do">
-						<ul>
-							<li style="display:inline-block">
+						<ul style="text-align:center">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>상황별 요리</h3>
 								<ul class="first">
 									<c:forEach var="item" items="${category1}">
@@ -222,7 +306,7 @@ function loadCategory(ing_category){
 									<li><input id="no1" type="radio" name="category1" value="0"><label for="no1">선택안함</label></li>
 								</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>나라별 요리</h3>
 								<ul class="second">
 								<c:forEach var="item" items="${category2}">
@@ -231,7 +315,7 @@ function loadCategory(ing_category){
 									<li><input id="no2" type="radio" name="category2" value="0"><label for="no2">선택안함</label></li>
 									</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>재료별 요리</h3>
 								<ul class="third">
 								<c:forEach var="item" items="${category3}">
@@ -240,7 +324,7 @@ function loadCategory(ing_category){
 									<li><input id="no3" type="radio" name="category3" value="0"><label for="no3">선택안함</label></li>
 									</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>조리별 요리</h3>
 								<ul class=last>
 								<c:forEach var="item" items="${category4}">
@@ -254,46 +338,76 @@ function loadCategory(ing_category){
 						<input type="submit" value="검색">
 					</form>
 				</div>
-			
-					1:<br>
+				
+				<h3 onclick="searchCategory(${r1Category.category_id})"><a href="javascript:;">${r1Category.category_name}</a></h3>
+				<hr>
+				<div class="posts">
 					<c:forEach var="item" items="${recommand1 }">
-						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
-							<img src="${item.image}"><br> ${item.recipe_Name }<br>
-							${item.recipe_Exp}<br> ${item.nickname }<br>
-							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
-						</fieldset>
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
+								<img src="${item.image}">
+							</a>
+							<h3>${item.recipe_Name }</h3>
+							<p>
+								${item.recipe_Exp}
+							</p>
+							<div>${item.duration}</div>
+							<div>${readcount}</div>
+						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
-					<br>
-					2:<br>
+				</div>
+				<h3 onclick="searchCategory(${r2Category.category_id})"><a href="javascript:;">${r2Category.category_name}</a></h3>
+					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand2 }">
-						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
-							<img src="${item.image}"><br> ${item.recipe_Name }<br>
-							${item.recipe_Exp}<br> ${item.nickname }<br>
-							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
-						</fieldset>
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
+								<img src="${item.image}">
+							</a>
+							<h3>${item.recipe_Name }</h3>
+							<p>
+								${item.recipe_Exp}
+							</p>
+							<div>${item.duration}</div>
+							<div>${readcount}</div>
+						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
-					<br>
-					3:<br>
+					</div>
+					<h3 onclick="searchCategory(${r3Category.category_id})"><a href="javascript:;">${r3Category.category_name}</a></h3>
+					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand3 }">
-						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
-							<img src="${item.image}"><br> ${item.recipe_Name }<br>
-							${item.recipe_Exp}<br> ${item.nickname }<br>
-							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
-						</fieldset>
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
+								<img src="${item.image}">
+							</a>
+							<h3>${item.recipe_Name }</h3>
+							<p>
+								${item.recipe_Exp}
+							</p>
+							<div>${item.duration}</div>
+							<div>${readcount}</div>
+						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
-					<br>
-					4:<br>
+					</div>
+					
+					<h3 onclick="searchCategory(${r4Category.category_id})"><a href="javascript:;">${r4Category.category_name}</a></h3>
+					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand4 }">
-						<fieldset class=float onclick="itemClick(${item.recipe_Id})">
-							<img src="${item.image}"><br> ${item.recipe_Name }<br>
-							${item.recipe_Exp}<br> ${item.nickname }<br>
-							<p>시간:${item.duration }, 조회수:${item.readcount }</p>
-						</fieldset>
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
+								<img src="${item.image}">
+							</a>
+							<h3>${item.recipe_Name }</h3>
+							<p>
+								${item.recipe_Exp}
+							</p>
+							<div>${item.duration}</div>
+							<div>${readcount}</div>
+						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
+					</div>
 					</section>
 					
 					<div id="nangbu" style="display:none">

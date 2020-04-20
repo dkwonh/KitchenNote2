@@ -1,10 +1,9 @@
 package wh.admin.manage.model;
 
 public class FilterDto {
-	String filter;
-	String search;
-	int start;
-	
+	String filter;//구분자 닉네임 아이디 제목 내용
+	String search;//검색 내용 
+	int start;//시작페이지
 	
 	public int getStart() {
 		return start;
@@ -24,7 +23,4 @@ public class FilterDto {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	
-	
-
 }
