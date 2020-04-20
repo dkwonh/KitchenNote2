@@ -46,8 +46,6 @@ public class HomePageController implements ApplicationContextAware {
 		}
 		List<Integer> category = new ArrayList<>(set);
 		
-		List<HomePageRecipeDto> test = homePageService.searchFromName("잡채");
-
 		List<HomePageRecipeDto> recommand1 = homePageService.recipe_home(category.get(0));
 		List<HomePageRecipeDto> recommand2 = homePageService.recipe_home(category.get(1));
 		List<HomePageRecipeDto> recommand3 = homePageService.recipe_home(category.get(2));
@@ -59,15 +57,15 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("nangbuList", nangbuList);
 		model.addAttribute("nangbuCategory", nangbuCategory);
 
-		//model.addAttribute("recommand1", recommand1);
-		model.addAttribute("recommand1", homePageService.recipe());
+		model.addAttribute("recommand1", recommand1);
+		//model.addAttribute("recommand1", homePageService.recipe());
 		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
 		model.addAttribute("recommand2", recommand2);
-		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
+		model.addAttribute("r2Category", homePageService.recommandName(category.get(1)));
 		model.addAttribute("recommand3", recommand3);
-		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
+		model.addAttribute("r3Category", homePageService.recommandName(category.get(2)));
 		model.addAttribute("recommand4", recommand4);
-		model.addAttribute("r1Category", homePageService.recommandName(category.get(0)));
+		model.addAttribute("r4Category", homePageService.recommandName(category.get(3)));
 		if (categoryList.size() == 0) {
 			return "homepage/home";
 		}
@@ -140,9 +138,17 @@ public class HomePageController implements ApplicationContextAware {
 
 		for (int j = 0; j < integer.size(); j++) {
 			c[j] = integer.get(j);
+			
+		}
+		
+		List<HomePageRecipeDto> list = new ArrayList<>();
+		if(c.length==0) {
+			list = homePageService.recipe();
 		}
 
-		List<HomePageRecipeDto> list = homePageService.searchFromCategory(c);
+		else {
+			list = homePageService.searchFromCategory(c);
+		}
 		model.addAttribute("dto", list);
 		return "homepage/searchList";
 	}

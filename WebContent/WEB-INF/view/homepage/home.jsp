@@ -74,6 +74,10 @@ div#glayLayer{
 float:left;
 }
 
+.first, .second, .third, .last{
+	text-align:left;
+}
+
 .navi button{
 float: left;
 }
@@ -94,9 +98,26 @@ ul li {
     z-index: 30;
    
 }
+
 </style>
 </head>
 <script>
+<%
+	String member_id = (String)session.getAttribute("MINFO");
+	String level = (String)session.getAttribute("LEVEL");
+	
+	if(member_id == null){
+		member_id = "guest";
+	}
+	System.out.println(member_id+":"+level);
+%>
+function logout(){
+<%
+	session.invalidate();
+%>
+location.replace("home.do");
+}
+
 function loadCategory(ing_category){
 	var url = "category.do"
 	var params = "ing_category="+ing_category
@@ -148,7 +169,22 @@ function loadCategory(ing_category){
 		$("button#support").on('click',function(){
 			alert("고객센터 보기");
 			});
+		
+		if("<%=member_id%>"=="guest"){
+			$("li.out").css("display","inline-block");
+			$("li.in").css("display","none");
+		}
+		else{
+			$("li.in").css("display","inline-block");
+			$("li.out").css("display","none");
+		}
 
+		if("<%=level%>"!="0"){
+			$("li.admin").css("display","none");
+		}
+		else{
+			$("li.admin").css("display","inline-block");
+		}
 
 
 		$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
@@ -205,15 +241,23 @@ function loadCategory(ing_category){
 					</form>
 					</section>
 					<ul class="icons"> 
-						<li><a class="icon fa-login"><span class=label>
-							로그인
+						<li class="out" onclick="logout()"><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
+							sign-in
 						</span></a>
-					
-						<li><a href=# class="icon fa-twitter modal"><span
-								class="label">twitter</span></a></li>
-						<li><a href="kakaoPay.do" class="icon fa-facebook"><span
+						<li class="in"><a href="#" class="icon fa-sign-out"><span class=label>
+							sign-out
+						</span></a>
+						
+						<li class="in"><a href=# class="icon fa-user"><span
+								class="label">mypage</span></a></li>
+								
+						<li><a href=# class="icon fa-archive modal"><span
+								class="label">nangbu</span></a></li>
+
+						<li class="in"><a href="#" class="icon fa-edit"><span
 								class="label">Facebook</span></a></li>
-						<li><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
+								
+						<li class="admin"><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
 								class="label">Snapchat</span></a></li>
 					</ul>
 				
@@ -226,12 +270,15 @@ function loadCategory(ing_category){
 						<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
 					</header>
 					<p>
-						재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.
-						또한 셰프로 등업하여 더 많은 혜택을 만나보세요.
-						셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!
+						재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br>
+						또한 셰프로 등업하여 더 많은 혜택을 만나보세요.<br>
+						셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
+						 뭔가 내용이 더있어야 할것 같다.<br>
+						ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
+						ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
 					</p>
 					</div>
-					<span class="image object" style="inline:block; height:250px">
+					<span class="image object" style="inline:block; height:530px">
 					<img src="images/KakaoTalk_20200417_204831310.png">
 					</span>
 				</section>
@@ -245,8 +292,8 @@ function loadCategory(ing_category){
 				<section>
 				<div id="category" class="menu_over" style="display:none" >
 					<form action="searchCategory.do">
-						<ul>
-							<li style="display:inline-block">
+						<ul style="text-align:center">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>상황별 요리</h3>
 								<ul class="first">
 									<c:forEach var="item" items="${category1}">
@@ -255,7 +302,7 @@ function loadCategory(ing_category){
 									<li><input id="no1" type="radio" name="category1" value="0"><label for="no1">선택안함</label></li>
 								</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>나라별 요리</h3>
 								<ul class="second">
 								<c:forEach var="item" items="${category2}">
@@ -264,7 +311,7 @@ function loadCategory(ing_category){
 									<li><input id="no2" type="radio" name="category2" value="0"><label for="no2">선택안함</label></li>
 									</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>재료별 요리</h3>
 								<ul class="third">
 								<c:forEach var="item" items="${category3}">
@@ -273,7 +320,7 @@ function loadCategory(ing_category){
 									<li><input id="no3" type="radio" name="category3" value="0"><label for="no3">선택안함</label></li>
 									</ul>
 							</li>
-							<li style="display:inline-block">
+							<li style="display:inline-block;vertical-align:top">
 								<h3>조리별 요리</h3>
 								<ul class=last>
 								<c:forEach var="item" items="${category4}">
@@ -288,12 +335,12 @@ function loadCategory(ing_category){
 					</form>
 				</div>
 				
-				<h3 style="float:left">상황별 추천 1<%-- ${r1Category} --%></h3><span style="position:realative">더보기</span>
+				<h3 style="float:left">${r1Category}</h3><span style="position:realative">더보기</span>
 				<hr>
 				<div class="posts">
 					<c:forEach var="item" items="${recommand1 }">
-						<article>
-							<a onclick="itemClick(${item.recipe_Id})" class="image">
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
 								<img src="${item.image}">
 							</a>
 							<h3>${item.recipe_Name }</h3>
@@ -305,11 +352,11 @@ function loadCategory(ing_category){
 						</article>
 					</c:forEach>
 				</div>
-					<h3>${r2Category}</h3>
-					<hr>
+				<h3 style="float:left">${r2Category}</h3><span style="position:realative">더보기</span>					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand2 }">
-						<article>
-							<a onclick="itemClick(${item.recipe_Id})" class="image">
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
 								<img src="${item.image}">
 							</a>
 							<h3>${item.recipe_Name }</h3>
@@ -320,12 +367,13 @@ function loadCategory(ing_category){
 							<div>${readcount}</div>
 						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
-					<h3>${r3Category}</h3>
+					</div>
+					<h3 style="float:left">${r3Category}</h3><span style="position:realative">더보기</span>
 					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand3 }">
-						<article>
-							<a onclick="itemClick(${item.recipe_Id})" class="image">
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
 								<img src="${item.image}">
 							</a>
 							<h3>${item.recipe_Name }</h3>
@@ -336,12 +384,14 @@ function loadCategory(ing_category){
 							<div>${readcount}</div>
 						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>
-					<h3>${r4Category}</h3>
+					</div>
+					
+					<h3 style="float:left">${r4Category}</h3><span style="position:realative">더보기</span>
 					<hr>
+					<div class="posts">
 					<c:forEach var="item" items="${recommand4 }">
-						<article>
-							<a onclick="itemClick(${item.recipe_Id})" class="image">
+						<article onclick="itemClick(${item.recipe_Id})">
+							<a class="image">
 								<img src="${item.image}">
 							</a>
 							<h3>${item.recipe_Name }</h3>
@@ -352,7 +402,8 @@ function loadCategory(ing_category){
 							<div>${readcount}</div>
 						</article>
 					</c:forEach>
-					<button id="recipe">더보기</button>					</section>
+					</div>
+					</section>
 					
 					<div id="nangbu" style="display:none">
 					<form method="post" action="nangbu.do">
