@@ -30,6 +30,12 @@ public class memberService {
 	public List<MemberDto> update(MemberDto mdto) {
 		return dao.update(mdto);
 	}
+
+	// 비밀번호 찾기 서비스
+	public List<MemberDto> updatePW(MemberDto mdto) {
+		return dao.updatePW(mdto);
+	}
+
 	//탈퇴
 	public List<MemberDto> delete(String mem) {
 		return dao.delete(mem);

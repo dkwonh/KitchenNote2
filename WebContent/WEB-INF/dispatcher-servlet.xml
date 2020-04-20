@@ -25,12 +25,12 @@
 	
 	<!-- <bean id="menuPreparer" class="spring.tailes.MenuPreparer" /> --> 
 		
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
+	</bean> 
 </beans>

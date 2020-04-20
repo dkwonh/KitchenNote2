@@ -8,7 +8,7 @@
 
 	<context:annotation-config></context:annotation-config>
 	
-	<context:property-placeholder location="classpath:db.properties" local-override="true"/>
+	<context:property-placeholder location="classpath:db.properties" local-override="true"/>	
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driver}"></property>
@@ -18,11 +18,10 @@
 	</bean>
 
 	<!-- 커넥션 풀과 맵퍼 파일로 세션 팩토리 만듦 -->
-	
+
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations" value="classpath:sql/*.xml"></property>
 		<property name="configLocation" value="classpath:config.xml"></property>
 	</bean>
-	
 </beans> 

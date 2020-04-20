@@ -65,6 +65,7 @@ public class MemberController {
 		} 
 	}
 	//로그아웃
+	@RequestMapping(value = "login/logoutOk.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/index.jsp";
@@ -133,10 +134,19 @@ public class MemberController {
 
 		email.setContent(content);
 
-		boolean result = emailService.sendMail(email);
+		String result = emailService.sendMail(email);
 
-		return "이메일이 전송 되었습니다: " + result
-				+ "<p><button type='button'  onclick=\"window.close();\">확인</button></p>";
+		return /* "이메일이 전송 */ 
+				"<link rel=\"stylesheet\" href=\"/KitchenNote2/assets/css/main.css\" />"
+				+ "<div id=\"main\">\r\n" + 
+				"<div class=\"inner\" style=\"margin-top: 50px\">"
+				+result
+				+ "<br><br><button type='button'  onclick=\"window.close();\">닫기</button>"
+				+ "</div></div>"
+				+ "<script src=\"/KitchenNote2/assets/js/jquery.min.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/skel.min.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/util.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/main.js\"></script>";
 
 	}
 	

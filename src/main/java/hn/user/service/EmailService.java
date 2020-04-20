@@ -25,7 +25,7 @@ import hn.user.model.MemberDto;
 			this.dao = dao;
 		}
 
-		public boolean sendMail(EmailVO email) throws Exception {
+		public String sendMail(EmailVO email) throws Exception {
 
 			try {
 				MemberDto dto = new MemberDto();
@@ -43,12 +43,12 @@ import hn.user.model.MemberDto;
 				msg.setText(email.getContent());
 
 				// HTML 컨텐츠를 전송하려면.
-			msg.setContent("<p>안녕하세요. 최고의 레시피 [KitchenNote] 입니다.<br> "
-					+ "회원님의 임시 비밀번호는 " + ranPw + " 입니다."
-					+ "로그인 후 보안을 위해 꼭 비밀번호를 변경해주세요.^^"
-					+ "<a href='http://localhost:8080/Login/login/loginForm.do'>변경하러 가기</a></p>" 
-					//마이페이지 비밀번호 변경
-					, "text/html;charset=utf-8");
+				msg.setContent("<p>안녕하세요. 최고의 레시피 [KitchenNote] 입니다.<br> "
+						+ "회원님의 임시 비밀번호는 " + ranPw + " 입니다.<br>"
+						+ "로그인 후 보안을 위해 꼭 비밀번호를 변경해주세요.^^<br>"
+						+ "<a href='http://localhost:8080/Login/login/loginForm.do'>변경하러 가기</a></p>" 
+						//마이페이지 비밀번호 변경
+						, "text/html;charset=utf-8");
 			
 			
 			
@@ -62,7 +62,7 @@ import hn.user.model.MemberDto;
 
 				mailSender.send(msg);
 
-				return true;
+				return "메일을 발송을 완료했습니다. 확인해주세요.";
 
 			} catch (Exception ex) {
 
@@ -70,7 +70,8 @@ import hn.user.model.MemberDto;
 
 			}
 
-			return false;
+			return "보내기에 실패했습니다. 다시 입력해 주세요.";
+
  
 		}
 		//랜덤값 생성

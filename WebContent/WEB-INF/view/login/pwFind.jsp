@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/KitchenNote2/assets/css/main.css" />
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -32,9 +33,7 @@
 			url : "emChk.do",
 			type : "post",
 			dataType : "json",
-			data : {
-				"member_id" : $("#member_id").val()
-			},
+			data : {"member_id" : $("#member_id").val()},
 			success : function(data) {
 				if (data == 1) {
 					alert("회원인 이메일 입니다.");
@@ -82,5 +81,9 @@
 			</div>
 		</div>
 	</form>
+	<script src="/KitchenNote2/assets/js/jquery.min.js"></script>
+<script src="/KitchenNote2/assets/js/skel.min.js"></script>
+<script src="/KitchenNote2/assets/js/util.js"></script>
+<script src="/KitchenNote2/assets/js/main.js"></script>
 </body>
 </html>
