@@ -56,7 +56,7 @@ public class HomePageService {
 		return homePageDao.searchFromCategory(category);
 	}
 	
-	public String recommandName(int category_id) {
+	public HomePageCategoryName recommandName(int category_id) {
 		return homePageDao.recommandName(category_id);
 	}
 }

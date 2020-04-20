@@ -109,13 +109,17 @@ ul li {
 	if(member_id == null){
 		member_id = "guest";
 	}
-	System.out.println(member_id+":"+level);
 %>
 function logout(){
 <%
 	session.invalidate();
 %>
 location.replace("home.do");
+}
+
+function searchCategory(category){
+
+	location.href="searchCategory.do?category1="+category;
 }
 
 function loadCategory(ing_category){
@@ -233,7 +237,7 @@ function loadCategory(ing_category){
 		<div id=main>
 			<div class=inner>
 				<header id="header">
-					<a href="home.do" class="logo"><strong>Editorial</strong>
+					<a href="home.do" class="logo"><img src="images/KakaoTalk_20200420_110749263.png" width="300px" height=150px>
 					KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 					<form method=post>
@@ -335,7 +339,7 @@ function loadCategory(ing_category){
 					</form>
 				</div>
 				
-				<h3 style="float:left">${r1Category}</h3><span style="position:realative">더보기</span>
+				<h3 onclick="searchCategory(${r1Category.category_id})"><a href="javascript:;">${r1Category.category_name}</a></h3>
 				<hr>
 				<div class="posts">
 					<c:forEach var="item" items="${recommand1 }">
@@ -352,7 +356,8 @@ function loadCategory(ing_category){
 						</article>
 					</c:forEach>
 				</div>
-				<h3 style="float:left">${r2Category}</h3><span style="position:realative">더보기</span>					<hr>
+				<h3 onclick="searchCategory(${r2Category.category_id})"><a href="javascript:;">${r2Category.category_name}</a></h3>
+					<hr>
 					<div class="posts">
 					<c:forEach var="item" items="${recommand2 }">
 						<article onclick="itemClick(${item.recipe_Id})">
@@ -368,7 +373,7 @@ function loadCategory(ing_category){
 						</article>
 					</c:forEach>
 					</div>
-					<h3 style="float:left">${r3Category}</h3><span style="position:realative">더보기</span>
+					<h3 onclick="searchCategory(${r3Category.category_id})"><a href="javascript:;">${r3Category.category_name}</a></h3>
 					<hr>
 					<div class="posts">
 					<c:forEach var="item" items="${recommand3 }">
@@ -386,7 +391,7 @@ function loadCategory(ing_category){
 					</c:forEach>
 					</div>
 					
-					<h3 style="float:left">${r4Category}</h3><span style="position:realative">더보기</span>
+					<h3 onclick="searchCategory(${r4Category.category_id})"><a href="javascript:;">${r4Category.category_name}</a></h3>
 					<hr>
 					<div class="posts">
 					<c:forEach var="item" items="${recommand4 }">

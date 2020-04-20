@@ -51,7 +51,7 @@ public class HomePageDao extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("home.searchFromCategory", category);
 	}
 	
-	public String recommandName(int category_id) {
+	public HomePageCategoryName recommandName(int category_id) {
 		return getSqlSession().selectOne("home.recommandName",category_id);
 	}
 }
