@@ -8,10 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="int" parameterType="yh.admin.controller.AdminStaticsDto">
 
 		select count(reg_date), MONTH(reg_date),YEAR(reg_date) from
-		recipe_info where YEAR(reg_date)=2020 and MONTH(reg_date) between 4
+		recipe_info where YEAR(reg_date)=2020 and MONTH(reg_date) between 1
 		and 12
 		GROUP BY YEAR(reg_date), MONTH(reg_date)
-	</select>
+	</select> 
 	<select id="userCount"
 		resultType="int" parameterType="yh.admin.controller.AdminStaticsDto">
 

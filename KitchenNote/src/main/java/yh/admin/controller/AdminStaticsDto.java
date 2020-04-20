@@ -5,6 +5,7 @@ public class AdminStaticsDto {
 	int recipeCount;
 	int userCount;
 	int recipeSaleCount;
+	
 	public int getRecipeCount() {
 		return recipeCount;
 	}
