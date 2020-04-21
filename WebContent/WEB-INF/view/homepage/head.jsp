@@ -10,7 +10,7 @@
 						<li class="out" ><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
 							sign-in
 						</span></a>
-						<li class="in"><a href="logout.do" class="icon fa-sign-out"><span class=label>
+						<li class="in"><a href="login/logoutOk.do" class="icon fa-sign-out"><span class=label>
 							sign-out
 						</span></a>
 						
