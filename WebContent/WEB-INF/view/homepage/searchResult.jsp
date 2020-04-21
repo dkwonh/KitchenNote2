@@ -12,31 +12,28 @@
 <script src="homeJs/home.js"></script>
 </head>
 <script>
-function logout(){
-	<%
-		session.invalidate();
-	%>
-		location.replace("home.do");
-	}
+<%
+String member_id = (String)session.getAttribute("MINFO");
+Integer level = (Integer)session.getAttribute("LEVEL");
+%>
 
-	$(function(){
-		if(${MINFO == null}){
-			$("li.out").css("display","inline-block");
-			$("li.in").css("display","none");
-		}
-		else{
-			$("li.in").css("display","inline-block");
-			$("li.out").css("display","none");
-		}
+$(function(){
+if("<%=member_id%>"== "null"){
+	$("li.out").css("display","inline-block");
+	$("li.in").css("display","none");
+}
+else{
+	$("li.in").css("display","inline-block");
+	$("li.out").css("display","none");
+}
 
-		if(${LEVEL != 0 }){
-			$("li.admin").css("display","none");
-		}
-		else{
-			$("li.admin").css("display","inline-block");
-		}
-	});
-
+if("<%=level%>"!= 0 ){
+	$("li.admin").css("display","none");
+}
+else{
+	$("li.admin").css("display","inline-block");
+}
+});
 	function attatch(args){
 		$("div.posts").append("<article onclick=itemClick("+args.recipe_Id+")>"
 				+"<a class=image>"+

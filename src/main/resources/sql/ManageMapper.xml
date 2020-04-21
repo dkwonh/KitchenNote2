@@ -325,10 +325,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getNotifyList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.NotifyDto">
 		select * from notify
 		<where>
-		<if test='filter == "member_id"'>
-		 member_id 
-		 like CONCAT('%',#{search},'%')
- 		</if>
  		 <if test='filter == "subject"'>
 		 subject 
 		 like CONCAT('%',#{search},'%')
@@ -351,10 +347,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  subject
 		  like CONCAT('%',#{search},'%') 
  		</if>
- 		<if test='filter == "member_id"'>
-		  member_id
-		  like CONCAT('%',#{search},'%') 
- 		</if>
  		<if test='filter == "content"'>
 		  content
 		  like CONCAT('%',#{search},'%') 
@@ -363,11 +355,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertNotify" parameterType="wh.admin.manage.model.NotifyDto">
-		insert into notify(subject,content,member_id) values(#{subject},#{content},#{member_id})
+		insert into notify(subject,content) values(#{subject},#{content})
 	</insert>
 	
 	<update id="updateNotify" parameterType="wh.admin.manage.model.NotifyDto">
-		update notify set subject = #{subject}, content = #{content}, member_id = #{member_id} where num = #{num}
+		update notify set subject = #{subject}, content = #{content} where num = #{num}
 	</update>
 	
 	<delete id="deleteNotify" parameterType="int">

@@ -11,15 +11,13 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <script>
-function logout(){
 <%
-	session.invalidate();
+	String member_id = (String)session.getAttribute("MINFO");
+	Integer level = (Integer)session.getAttribute("LEVEL");
 %>
-	location.replace("home.do");
-}
 
 $(function(){
-	if(${MINFO == null}){
+	if("<%=member_id%>"== "null"){
 		$("li.out").css("display","inline-block");
 		$("li.in").css("display","none");
 	}
@@ -28,7 +26,7 @@ $(function(){
 		$("li.out").css("display","none");
 	}
 
-	if(${LEVEL != 0 }){
+	if("<%=level%>"!= 0 ){
 		$("li.admin").css("display","none");
 	}
 	else{
