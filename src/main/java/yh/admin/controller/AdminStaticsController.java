@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class AdminStaticsController {
 
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
+		// PrintWriter out = response.getWriter();
 
 		/* data = json.toJson(statics); */
 
@@ -76,58 +75,47 @@ public class AdminStaticsController {
 		}
 		return data;
 	};
-	@RequestMapping(value = "recipeAction.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String recipe(String statics, HttpServletResponse response) throws Exception {
-
-		String data = "";
-		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
-		recipe = service.recipeCount();
-		Gson json = new Gson();
-		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
-
-		/* data = json.toJson(statics); */
-
-		if (recipe != null) {
-			data += json.toJson(recipe);
-		}
-		return data;
-	};
-	@RequestMapping(value = "userAction.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String user(String statics, HttpServletResponse response) throws Exception {
-
-		String data = "";
-		List<AdminUserDto> user = new ArrayList<AdminUserDto>();
-		user = service.userCount();
-		Gson json = new Gson();
-		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
-
-		/* data = json.toJson(statics); */
-
-		if (user != null) {
-			data += json.toJson(user);
-		}
-		return data;
-	};
-	@RequestMapping(value = "saleAction.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String sale(String statics, HttpServletResponse response) throws Exception {
-
-		String data = "";
-		List<AdminSaleDto> sale = new ArrayList<AdminSaleDto>();
-		sale = service.recipeSaleCount();
-		Gson json = new Gson();
-		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
-
-		/* data = json.toJson(statics); */
-
-		if (sale != null) {
-			data += json.toJson(sale);
-		}
-		return data;
-	};
+	/*
+	 * @RequestMapping(value = "recipeAction.do", method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody public String recipe(String statics, HttpServletResponse
+	 * response) throws Exception {
+	 * 
+	 * String data = ""; List<AdminRecipeDto> recipe = new
+	 * ArrayList<AdminRecipeDto>(); recipe = service.recipeCount(); Gson json = new
+	 * Gson(); response.setContentType("text/html;charset=utf-8"); // PrintWriter
+	 * out = response.getWriter();
+	 * 
+	 * data = json.toJson(statics);
+	 * 
+	 * if (recipe != null) { data += json.toJson(recipe); } return data; };
+	 * 
+	 * @RequestMapping(value = "userAction.do", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String user(String statics, HttpServletResponse
+	 * response) throws Exception {
+	 * 
+	 * String data = ""; List<AdminUserDto> user = new ArrayList<AdminUserDto>();
+	 * user = service.userCount(); Gson json = new Gson();
+	 * response.setContentType("text/html;charset=utf-8"); // PrintWriter out =
+	 * response.getWriter();
+	 * 
+	 * data = json.toJson(statics);
+	 * 
+	 * if (user != null) { data += json.toJson(user); } return data; };
+	 * 
+	 * @RequestMapping(value = "saleAction.do", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String sale(String statics, HttpServletResponse
+	 * response) throws Exception {
+	 * 
+	 * String data = ""; List<AdminSaleDto> sale = new ArrayList<AdminSaleDto>();
+	 * sale = service.recipeSaleCount(); Gson json = new Gson();
+	 * response.setContentType("text/html;charset=utf-8"); // PrintWriter out =
+	 * response.getWriter();
+	 * 
+	 * data = json.toJson(statics);
+	 * 
+	 * if (sale != null) { data += json.toJson(sale); } return data; };
+	 */
 }
