@@ -165,7 +165,7 @@
 							1:1 문의</a></li>
 				</ul></li>
 			<li><a
-				href="http://localhost:8082/KitchenNote/customer/write.do">홈페이지
+				href="adminStatics/adminStatics.do">홈페이지
 					통계 </a></li>
 		</ul>
 	</nav>
