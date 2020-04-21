@@ -11,29 +11,28 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="homeJs/home.js"></script>
 <script>
-function logout(){
 <%
-	session.invalidate();
+String member_id = (String)session.getAttribute("MINFO");
+Integer level = (Integer)session.getAttribute("LEVEL");
 %>
-	location.replace("home.do");
-}
 
 $(function(){
-	if(${MINFO == null}){
-		$("li.out").css("display","inline-block");
-		$("li.in").css("display","none");
-	}
-	else{
-		$("li.in").css("display","inline-block");
-		$("li.out").css("display","none");
-	}
+	
+if("<%=member_id%>"== "null"){
+	$("li.out").css("display","inline-block");
+	$("li.in").css("display","none");
+}
+else{
+	$("li.in").css("display","inline-block");
+	$("li.out").css("display","none");
+}
 
-	if(${LEVEL != 0 }){
-		$("li.admin").css("display","none");
-	}
-	else{
-		$("li.admin").css("display","inline-block");
-	}
+if("<%=level%>"!= 0 ){
+	$("li.admin").css("display","none");
+}
+else{
+	$("li.admin").css("display","inline-block");
+}
 });
 function itemClick(num){
 	location.href="notifyItem.do?num="+num

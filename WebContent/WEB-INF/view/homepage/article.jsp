@@ -1,6 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <article onclick="itemClick(${item.recipe_Id})">
-	<a class="image"> <img src="${item.image}" width=500 height=300>
+	<a class="image"> 
+	<c:set var="image" value="${item.image }" />
+	
+					<c:if test="${fn:contains(image,'okdab') }">
+						<c:set var="mainImg" value="${item.image }" />
+						<img id="main_img" src="${item.image }" width=500 height=300>
+					</c:if>
+					
+					
+					<c:if test="${fn:contains(image,'note')}">
+						<c:set var="mainImg"
+							value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${item.image }" />
+						<img id="main_img" src="/img/${item.image }" width=500 height=300>
+					</c:if>
 	</a>
 	<h3>${item.recipe_Name }</h3>
 	<p>${item.recipe_Exp}</p>

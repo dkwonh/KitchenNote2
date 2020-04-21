@@ -56,7 +56,7 @@ function loadCategory(ing_category){
 			});
 			
 		$("button#support").on('click',function(){
-			alert("고객센터 보기");
+			location.href="customer/FAQ.do?pageNum=0"
 			});
 
 		$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
