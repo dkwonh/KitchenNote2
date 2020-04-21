@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="recipeCount"
 		resultType="yh.admin.controller.AdminRecipeDto"
-		parameterType="yh.admin.controller.AdminRecipeDto">
+		parameterType="string">
 
 		select count(reg_date) as recipeCount , MONTH(reg_date) as monthRecipe
 		,YEAR(reg_date) as yearRecipe from
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="userCount"
 		resultType="yh.admin.controller.AdminUserDto"
-		parameterType="yh.admin.controller.AdminUserDto">
+		parameterType="string">
 
 		select count(join_date) as userCount, MONTH(join_date)
 		as monthUser,
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="recipeSaleCount"
 		resultType="yh.admin.controller.AdminSaleDto"
-		parameterType="yh.admin.controller.AdminSaleDto">
+		parameterType="string">
 
 		select count(pur_date) as recipeSaleCount,
 		MONTH(pur_date) as

@@ -39,9 +39,9 @@ public class AdminStaticsController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adminStatics/AdminStatics");
 
-		recipe = service.recipeCount();
-		sale = service.recipeSaleCount();
-		user = service.userCount();
+		recipe = service.recipeCount(statics);
+		sale = service.recipeSaleCount(statics);
+		user = service.userCount(statics);
 
 		mav.addObject("statics", statics);
 		mav.addObject("recipe", recipe);
@@ -55,79 +55,63 @@ public class AdminStaticsController {
 	@ResponseBody
 	public String action(String statics, HttpServletResponse response) throws Exception {
 
+		System.out.println(statics);
 		String data = "";
 
 		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
-		List<AdminSaleDto> sale = new ArrayList<AdminSaleDto>();
-		List<AdminUserDto> user = new ArrayList<AdminUserDto>();
 
-		recipe = service.recipeCount();
-		sale = service.recipeSaleCount();
-		user = service.userCount();
+		recipe = service.recipeCount(statics);
 
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
+		// PrintWriter out = response.getWriter();
 
 		/* data = json.toJson(statics); */
 
 		if (recipe != null) {
 			data += json.toJson(recipe);
 		}
+		System.out.println(data);
 		return data;
 	};
-	@RequestMapping(value = "recipeAction.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String recipe(String statics, HttpServletResponse response) throws Exception {
 
-		String data = "";
-		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
-		recipe = service.recipeCount();
-		Gson json = new Gson();
-		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
-
-		/* data = json.toJson(statics); */
-
-		if (recipe != null) {
-			data += json.toJson(recipe);
-		}
-		return data;
-	};
 	@RequestMapping(value = "userAction.do", method = RequestMethod.POST)
+
 	@ResponseBody
 	public String user(String statics, HttpServletResponse response) throws Exception {
 
+		System.out.println(statics);
 		String data = "";
 		List<AdminUserDto> user = new ArrayList<AdminUserDto>();
-		user = service.userCount();
+		user = service.userCount(statics);
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
+		// PrintWriter out = response.getWriter();
 
-		/* data = json.toJson(statics); */
+		// data = json.toJson(statics);
 
 		if (user != null) {
 			data += json.toJson(user);
 		}
+		System.out.println(data);
 		return data;
 	};
+
 	@RequestMapping(value = "saleAction.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String sale(String statics, HttpServletResponse response) throws Exception {
 
 		String data = "";
 		List<AdminSaleDto> sale = new ArrayList<AdminSaleDto>();
-		sale = service.recipeSaleCount();
+		sale = service.recipeSaleCount(statics);
 		Gson json = new Gson();
-		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter(); 
-
-		/* data = json.toJson(statics); */
+		response.setContentType("text/html;charset=utf-8"); 
 
 		if (sale != null) {
-			data += json.toJson(sale);
+			data = json.toJson(sale);
 		}
+		System.out.println(data);
 		return data;
 	};
+
 }
