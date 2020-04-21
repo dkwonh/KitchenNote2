@@ -13,7 +13,7 @@
 <script>
 <%
 String member_id = (String)session.getAttribute("MINFO");
-String level = (String)session.getAttribute("LEVEL");
+Integer level = (Integer)session.getAttribute("LEVEL");
 
 if(member_id == null){
 	member_id = "guest";
@@ -37,7 +37,7 @@ location.replace("home.do");
 		$("li.out").css("display","none");
 	}
 
-	if("<%=level%>"!="0"){
+	if("<%=level%>"!=0){
 		$("li.admin").css("display","none");
 	}
 	else{
