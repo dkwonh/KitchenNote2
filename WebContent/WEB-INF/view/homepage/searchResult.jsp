@@ -12,39 +12,30 @@
 <script src="homeJs/home.js"></script>
 </head>
 <script>
-<%
-	String member_id = (String)session.getAttribute("MINFO");
-	Integer level = (Integer)session.getAttribute("LEVEL");
-	
-	if(member_id == null){
-		member_id = "guest";
-	}
-%>
 function logout(){
-<%
-	session.invalidate();
-%>
-location.replace("home.do");
-}
-
-$(function(){
-	if("<%=member_id%>"=="guest"){
-		$("li.out").css("display","inline-block");
-		$("li.in").css("display","none");
-	}
-	else{
-		$("li.in").css("display","inline-block");
-		$("li.out").css("display","none");
+	<%
+		session.invalidate();
+	%>
+		location.replace("home.do");
 	}
 
-	if("<%=level%>"!=0){
-		$("li.admin").css("display","none");
-	}
-	else{
-		$("li.admin").css("display","inline-block");
-	}
-	
-})
+	$(function(){
+		if(${MINFO == null}){
+			$("li.out").css("display","inline-block");
+			$("li.in").css("display","none");
+		}
+		else{
+			$("li.in").css("display","inline-block");
+			$("li.out").css("display","none");
+		}
+
+		if(${LEVEL != 0 }){
+			$("li.admin").css("display","none");
+		}
+		else{
+			$("li.admin").css("display","inline-block");
+		}
+	});
 
 	function attatch(args){
 		$("div.posts").append("<article onclick=itemClick("+args.recipe_Id+")>"

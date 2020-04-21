@@ -29,7 +29,7 @@ function loadCategory(ing_category){
 	}
 
 	function itemClick(item) {
-		alert("레시피 읽기 기능 ID :" + item);
+		location.href = "recipe/read.do?recipe_id="+item;
 	}
 
 	function nangbu() {
@@ -37,6 +37,7 @@ function loadCategory(ing_category){
 	}
 
 	$(function(){
+		
 		$("button#category").on('click',function(){
 				var s = $("div#category").css('display')
 				if($("div#category").css('display')=='none'){

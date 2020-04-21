@@ -11,24 +11,15 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="homeJs/home.js"></script>
 <script>
-<%
-String member_id = (String)session.getAttribute("MINFO");
-Integer level = (Integer)session.getAttribute("LEVEL");
-
-if(member_id == null){
-	member_id = "guest";
-}
-%>
 function logout(){
 <%
-session.invalidate();
+	session.invalidate();
 %>
-location.replace("home.do");
+	location.replace("home.do");
 }
 
-	$(function(){
-	
-	if("<%=member_id%>"=="guest"){
+$(function(){
+	if(${MINFO == null}){
 		$("li.out").css("display","inline-block");
 		$("li.in").css("display","none");
 	}
@@ -37,13 +28,13 @@ location.replace("home.do");
 		$("li.out").css("display","none");
 	}
 
-	if("<%=level%>"!=0){
+	if(${LEVEL != 0 }){
 		$("li.admin").css("display","none");
 	}
 	else{
 		$("li.admin").css("display","inline-block");
 	}
-	})
+});
 function itemClick(num){
 	location.href="notifyItem.do?num="+num
 }
