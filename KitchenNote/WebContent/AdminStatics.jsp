@@ -26,34 +26,34 @@
 <title>홈페이지 통계</title>
 <!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 -->
-<script language="javascript" type="text/javascript">
-	$(document).ready(function() {
-		
-		var clareCalendar = {
-			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월',
-					'6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-			weekHeader : 'Wk',
-			dateFormat : 'yymmdd', //형식(20120303)
-			autoSize : false, //오토리사이즈(body등 상위태그의 설정에 따른다)
-			changeMonth : true, //월변경가능
-			changeYear : true, //년변경가능
-			showMonthAfterYear : true, //년 뒤에 월 표시
-			buttonImageOnly : true, //이미지표시
-			buttonText : '달력선택', //버튼 텍스트 표시
-			buttonImage : 'cale_bg.jpg', //이미지주소
-			showOn : "both", //엘리먼트와 이미지 동시 사용(both,button)
-			yearRange : '1990:2020' //1990년부터 2020년까지
-		};
-		$("#fromDt").datepicker(clareCalendar);
-		$("#toDt").datepicker(clareCalendar);
-		$("img.ui-datepicker-trigger")
-				.attr("style",
-						"margin-left:5px; vertical-align:middle; cursor:pointer;"); //이미지버튼 style적용
-		$("#ui-datepicker-div").hide(); //자동으로 생성되는 div객체 숨김 
-		
-	});
-</script>
+<!-- <script language="javascript" type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						var clareCalendar = {
+							monthNamesShort : [ '1월', '2월', '3월', '4월', '5월',
+									'6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+							dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+							weekHeader : 'Wk',
+							dateFormat : 'yymmdd', //형식(20120303)
+							autoSize : false, //오토리사이즈(body등 상위태그의 설정에 따른다)
+							changeMonth : true, //월변경가능
+							changeYear : true, //년변경가능
+							showMonthAfterYear : true, //년 뒤에 월 표시
+							buttonImageOnly : true, //이미지표시
+							buttonText : '달력선택', //버튼 텍스트 표시
+							buttonImage : 'cale_bg.jpg', //이미지주소
+							showOn : "both", //엘리먼트와 이미지 동시 사용(both,button)
+							yearRange : '1990:2020' //1990년부터 2020년까지
+						};
+						$("#fromDt").datepicker(clareCalendar);
+						$("#toDt").datepicker(clareCalendar);
+						$("img.ui-datepicker-trigger")
+								.attr("style",
+										"margin-left:5px; vertical-align:middle; cursor:pointer;"); //이미지버튼 style적용
+						$("#ui-datepicker-div").hide(); //자동으로 생성되는 div객체 숨김 
+					});
+</script>   -->
 </head>
 <style>
 .container {
@@ -104,14 +104,17 @@
 			</div>
 			<div>
 				<article>
-				<br><p>
+					<br>
+					<p>
 					<h2>홈페이지 통계</h2>
-					<form action ="statics.do">
-					<hr> <select id="statics">
-						<option value="판매량">레시피 판매량</option>
-						<option value="구매건수">레시피 구매건수</option>
-						<option value="등록건수">레시피 등록건수</option>
-					</select>
+					<form method="GET">
+						<hr>
+						<select id="statics">
+							<option value="recipe">월별 레시피 등록건수</option>
+							<option value="user">월별 회원 가입자수</option>
+							<option value="sale">월별 레시피 판매건수</option>
+						</select>
+						</form>
 				</article>
 			</div>
 			<section>
@@ -145,34 +148,29 @@
 			</div>
 
 			<script>
-
 			$(document).ready(function(){
-				var statics = $("#statics").val();
-				$.ajax({
-					type : "GET",
-					url : "dminStatics.do",
-					dataType : "json",
-					success : function(data) {
-						alert(data);
-						
-					},
-					error : function() {
-						alert("비밀번호를 확인해주세요");
-					}
-				});
-			     /*  $.ajax({
-			       url: "dminStatics.do",
-			       method: "GET",
+			 /* var statics = $("#statics").val();
+			   
+			      $.ajax({
+				      type : "GET",
+			    	  url : "adminStatics.do",
+						data : statics,
+						dataType : "json",
+						fail : function() {
+							alert("에러");
+						},
 			       success: function(data) {
-				       alert("dff");
-			           // console.log(data);
-			           var source = []; */
-			           
-			          /*  for(var i in data) {
-			               source.push(data[i].source);
+			           alert(data);
+			           var source = [];
+			           var event = [];
+
+			           for(var i in data) {
+			               source.push("Source" + data[i].source);
 			               event.push(data[i].events);
 			           } */
-			           /* new Chart( document.getElementById("canvas"),{
+				 new Chart(
+						document.getElementById("canvas"),
+						{
 							type : 'line',
 							data : {
 								labels : [ '1월', '2월', '3월',
@@ -182,21 +180,10 @@
 								datasets : [
 										{
 											label : '레시피 판매량',
-											data : [Math.floor(Math.random() * 50),
-													Math.floor(Math.random() * 50),
-													Math.floor(Math.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+											data : [
+													data, data, data, data, data, data,
+													 data, data, data, data, data, data
+													 ],
 											borderColor : "rgba(255, 201, 14, 1)",
 											backgroundColor : "rgba(255, 201, 14, 0.5)",
 											fill : false,
@@ -205,27 +192,9 @@
 										{
 											label : '가입 회원 수',
 											data : [
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+												data, data, data, data, data, data,
+												 data, data, data, data, data, data
+												 ],
 											borderColor : "rgba(54, 162, 235, 1)",
 											backgroundColor : "rgba(54, 162, 235, 0.5)",
 											fill : false,
@@ -234,21 +203,9 @@
 										{
 											label : '레시피 등록건수',
 											data : [
-													Math.floor(Math.random() * 50),
-													Math.floor(Math.random() * 50),
-													Math.floor(Math.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+												data, data, data, data, data, data,
+												 data, data, data, data, data, data
+												 ],
 											borderColor : "rgba(75, 192, 192, 1)",
 											backgroundColor : "rgba(75, 192, 192, 0.5)",
 											fill : false,
@@ -289,11 +246,10 @@
 									} ]
 								}
 							}
-						}); 
-				
-					}
-			});*/
-			});    
+						});
+			/*        }
+			      });
+			}); */
 			</script>
 		</div>
 		<div id="sidebar">
@@ -376,7 +332,7 @@
 				href="https://html5up.net">HTML5 UP</a>.
 		</p>
 	</footer>
-	<!-- <script src="assets/js/jquery.min.js"></script> -->
+	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>

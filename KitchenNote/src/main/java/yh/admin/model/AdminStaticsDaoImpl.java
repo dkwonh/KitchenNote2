@@ -1,21 +1,25 @@
 package yh.admin.model;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import yh.admin.controller.AdminStaticsDto;
+import yh.admin.controller.AdminRecipeDto;
+import yh.admin.controller.AdminSaleDto;
+import yh.admin.controller.AdminUserDto;
 
 public class AdminStaticsDaoImpl extends SqlSessionDaoSupport implements AdminStaticsDao {
 
-	public AdminStaticsDto recipeCount(int recipeCount) throws Exception{
-		return getSqlSession().selectOne("adminStatics.recipeCount", recipeCount);
+	public List<AdminRecipeDto> recipeCount() throws Exception {
+		return getSqlSession().selectList("adminStatics.recipeCount");
 	}
-	
-	public AdminStaticsDto userCount(int userCount) throws Exception{
-		return getSqlSession().selectOne("adminStatics.userCount",userCount);
+
+	public List<AdminUserDto> userCount() throws Exception {
+		return getSqlSession().selectList("adminStatics.userCount");
 	}
-	
-	public AdminStaticsDto recipeSaleCount(int recipeSaleCount) throws Exception{
-		return getSqlSession().selectOne("adminStatics.recipeSaleCount",recipeSaleCount);
+
+	public List<AdminSaleDto> recipeSaleCount() throws Exception {
+		return getSqlSession().selectList("adminStatics.recipeSaleCount");
 	}
-	
+
 }

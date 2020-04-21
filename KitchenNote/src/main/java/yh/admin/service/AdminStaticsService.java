@@ -1,12 +1,17 @@
 package yh.admin.service;
 
-import yh.admin.controller.AdminStaticsDto;
+import java.util.List;
+
+import yh.admin.controller.AdminRecipeDto;
+import yh.admin.controller.AdminSaleDto;
+import yh.admin.controller.AdminUserDto;
 
 public interface AdminStaticsService {
 
-	public AdminStaticsDto recipeCount(int recipeCount) throws Exception;
-	
-	public AdminStaticsDto userCount(int userCount) throws Exception;
-	
-	public AdminStaticsDto recipeSaleCount(int recipeSaleCount) throws Exception;
+	public List<AdminRecipeDto> recipeCount() throws Exception;
+
+	public List<AdminUserDto> userCount() throws Exception;
+
+	public List<AdminSaleDto> recipeSaleCount() throws Exception;
+
 }

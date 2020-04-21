@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale = 1">
 <meta http-equiv="Content-Type" content="text/html; charset = utf-8"
 	pageEncoding="utf-8">
-<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
 <link
 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
 	rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
 <title>홈페이지 통계</title>
 <!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 -->
-<script language="javascript" type="text/javascript">
+<!-- <script language="javascript" type="text/javascript">
 	$(document)
 			.ready(
 					function() {
@@ -53,7 +53,7 @@
 										"margin-left:5px; vertical-align:middle; cursor:pointer;"); //이미지버튼 style적용
 						$("#ui-datepicker-div").hide(); //자동으로 생성되는 div객체 숨김 
 					});
-</script>
+</script>   -->
 </head>
 <style>
 .container {
@@ -81,6 +81,7 @@
 <body>
 	<div id="wrapper">
 		<div id="main">
+		<div class="inner">
 			<header id="header">
 				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
 				<section id="search" class="alt 4u 12u$">
@@ -104,17 +105,20 @@
 			</div>
 			<div>
 				<article>
-				<br><p>
+					<br>
+					<p>
 					<h2>홈페이지 통계</h2>
-					<form action ="statics.do">
-					<hr> <select id="statics">
-						<option value="판매량">레시피 판매량</option>
-						<option value="구매건수">레시피 구매건수</option>
-						<option value="등록건수">레시피 등록건수</option>
-					</select>
+					<form method="GET">
+						<hr>
+						<select id="statics" name="statics">
+							<option value="recipe">월별 레시피 등록건수</option>
+							<option value="user">월별 회원 가입자수</option>
+							<option value="sale">월별 레시피 판매건수</option>
+						</select>
+						</form>
 				</article>
 			</div>
-			<section>
+			<%--  <section>
 				<table border="0">
 					<tr>
 						<td><input name="fromDt" type="text" id="fromDt" size="8"
@@ -124,7 +128,7 @@
 							maxlength="8" value=""></td>
 					</tr>
 				</table>
-			</section>
+			</section> 
 			<div id="app">
 				<section class="container">
 					<div class="columns">
@@ -133,7 +137,7 @@
 						</div>
 					</div>
 				</section>
-			</div>
+			</div> --%>
 			<script src='//cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
 			<script
 				src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
@@ -146,20 +150,32 @@
 
 			<script>
 			$(document).ready(function(){
+			 var statics = $("#statics").val();
+			   
 			      $.ajax({
-			       url: "http://localhost/data.php",
-			       method: "GET",
+				      type : "POST",
+			    	  url : "recipeAction.do",
+						data : statics,
+						dataType : "json",
+						error : function(error) {
+							alert("에러"+error.status);
+						},
 			       success: function(data) {
-			           console.log(data);
-			           var source = [];
-			           var event = [];
+			           var recipe = [];
 
-			           for(var i in data) {
-			               source.push("Source" + data[i].source);
-			               event.push(data[i].events);
+			           for(var i =0 ; i < 12; i++) {
+				           for(var j in data){
+				           if(data[j].monthRecipe != (i+1)){
+					           recipe[i] = 0;
+			               }else{
+			            	   recipe[i] = data[j].recipeCount;
+				           }
+				           }
+			               /* user.push(data[i].user);
+			               sale.push(data[i].sale); */
 			           }
 
-				new Chart(
+				 new Chart(
 						document.getElementById("canvas"),
 						{
 							type : 'line',
@@ -171,28 +187,7 @@
 								datasets : [
 										{
 											label : '레시피 판매량',
-											data : [
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+											data :recipe,
 											borderColor : "rgba(255, 201, 14, 1)",
 											backgroundColor : "rgba(255, 201, 14, 0.5)",
 											fill : false,
@@ -201,27 +196,9 @@
 										{
 											label : '가입 회원 수',
 											data : [
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+												data, data, data, data, data, data,
+												 data, data, data, data, data, data
+												 ],
 											borderColor : "rgba(54, 162, 235, 1)",
 											backgroundColor : "rgba(54, 162, 235, 0.5)",
 											fill : false,
@@ -230,27 +207,9 @@
 										{
 											label : '레시피 등록건수',
 											data : [
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50),
-													Math
-															.floor(Math
-																	.random() * 50) ],
+												data, data, data, data, data, data,
+												 data, data, data, data, data, data
+												 ],
 											borderColor : "rgba(75, 192, 192, 1)",
 											backgroundColor : "rgba(75, 192, 192, 0.5)",
 											fill : false,
@@ -292,12 +251,18 @@
 								}
 							}
 						});
+			       }
+			      });
+			});
 			</script>
 		</div>
-		<div id="sidebar">
+		</div>
+		<div id="sidebar" class="inactive">
 			<div class="inner">
 				<nav id="menu">
+				<header class="major">
 					<h2>고객센터</h2>
+					</header>
 					<ul>
 						<li><span class="opener">사용자 관리</span>
 							<ul>
@@ -374,9 +339,9 @@
 				href="https://html5up.net">HTML5 UP</a>.
 		</p>
 	</footer>
-	<!-- <script src="assets/js/jquery.min.js"></script> -->
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>
