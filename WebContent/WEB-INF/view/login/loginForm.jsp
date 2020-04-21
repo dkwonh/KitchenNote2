@@ -34,6 +34,10 @@
 #pw {
 	font-family: 'BBTreeTR';
 }
+input{
+font-size: 13pt;
+color: #3d4449;
+}
 </style>
 <script type="text/javascript">
 function Login(){
@@ -112,7 +116,7 @@ function open_pw(){
 					</div>
 					<br>
 					<div align="center">
-						<button onclick="open_pw()">비밀번호 찾기</button>
+						<button class="special" onclick="open_pw()">비밀번호 찾기</button>
 					</div>
 				</form>
 			</div>
