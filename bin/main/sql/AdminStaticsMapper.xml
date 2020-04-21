@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminStatics">
+
+	<select id="recipeCount"
+		resultType="yh.admin.controller.AdminRecipeDto"
+		parameterType="yh.admin.controller.AdminRecipeDto">
+
+		select count(reg_date) as recipeCount , MONTH(reg_date) as monthRecipe
+		,YEAR(reg_date) as yearRecipe from
+		recipe_info
+		<where>
+			<if test="statics == 'recipe'">
+				YEAR(reg_date)=2020 and MONTH(reg_date) between 1
+				and 12 GROUP BY YEAR(reg_date), MONTH(reg_date)
+			</if>
+		</where>
+	</select>
+	<select id="userCount"
+		resultType="yh.admin.controller.AdminUserDto"
+		parameterType="yh.admin.controller.AdminUserDto">
+
+		select count(join_date) as userCount, MONTH(join_date)
+		as monthUser,
+		YEAR(join_date) as yearUser
+		from Members
+		<where>
+			<if test="statics == 'user'">
+				YEAR(join_date)=2020 and MONTH(join_date) between 1
+				and 12
+				GROUP BY YEAR(join_date), MONTH(join_date)
+			</if>
+		</where>
+	</select>
+	<select id="recipeSaleCount"
+		resultType="yh.admin.controller.AdminSaleDto"
+		parameterType="yh.admin.controller.AdminSaleDto">
+
+		select count(pur_date) as recipeSaleCount,
+		MONTH(pur_date) as
+		monthSale, YEAR(pur_date) as yearSale from
+		pur_recipe
+		<where>
+			<if test="statics == 'sale'">
+				YEAR(pur_date)=2020 and MONTH(pur_date) between 1
+				and 12
+				GROUP BY YEAR(pur_date), MONTH(pur_date)
+			</if>
+		</where>
+	</select>
+</mapper>
