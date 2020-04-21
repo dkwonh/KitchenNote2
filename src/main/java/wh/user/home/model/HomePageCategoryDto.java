@@ -29,6 +29,13 @@ public class HomePageCategoryDto {
 	public void setCategory4(int category4) {
 		this.category4 = category4;
 	}
+	@Override
+	public String toString() {
+		return "HomePageCategoryDto [category1=" + category1 + ", category2=" + category2 + ", category3=" + category3
+				+ ", category4=" + category4 + "]";
+	}
+	
+	
 	
 	
 }
