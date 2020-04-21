@@ -49,7 +49,7 @@ function Login(){
                     form.password.focus();//포커스를 Password박스로 이동.
                     return;
                }
-               if(pw_Chk.test(passwd)==false){      
+               /* if(pw_Chk.test(passwd)==false){      
                    alert("비밀번호 형식이 올바르지 않습니다.");
                    form.password.focus();
                    return false;
@@ -61,7 +61,7 @@ function Login(){
 
                     form.password.select();
                     return;
-               }
+               } */
 
       form.submit();
       }
