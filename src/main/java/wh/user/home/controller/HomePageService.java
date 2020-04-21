@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import wh.admin.manage.model.FilterDto;
+import wh.admin.manage.model.NotifyDto;
 import wh.user.home.dao.HomePageDao;
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
@@ -58,5 +60,17 @@ public class HomePageService {
 	
 	public HomePageCategoryName recommandName(int category_id) {
 		return homePageDao.recommandName(category_id);
+	}
+	
+	public List<NotifyDto> getNotifyList(FilterDto f){
+		return homePageDao.getNotifyList(f);
+	}
+	
+	public int getNotifyCount(FilterDto f) {
+		return homePageDao.getNotifyCount(f);
+	}
+	
+	public NotifyDto getNotify(int num) {
+		return homePageDao.getNotify(num);
 	}
 }
