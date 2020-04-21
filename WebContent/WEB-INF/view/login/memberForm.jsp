@@ -2,7 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/KitchenNote2/assets/css/main.css" />
 <title>회원 가입</title>
+<style>
+.u5 {
+	margin: auto;
+}
+
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'BBTreeTR';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeTR.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+} /* 패스워드 폰트 */
+
+#main * {
+	font-family: 'Cafe24Oneprettynight';
+}
+</style>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -12,6 +40,8 @@ function checkId(){
 	var form = document.memChk;
 	var e_Chk = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	var email = document.getElementById("member_id").value;  
+	var pw_Chk = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/; //  8 ~ 20자 영문, 숫자 조합
+    var passwd = document.getElementById("pw").value;
 
 
 	if(form.member_id.value ==""){
@@ -29,13 +59,26 @@ function checkId(){
 		alert("이메일 중복체크를 해주세요.")
 		return false; 
 		}
+
+	if(form.chkMail.value == ""){
+		alert("이메일 인증을 해주세요.")
+		return false; 
+		}
+	
 	if(form.pw.value == ""){
 		alert("패스워드를 입력하세요.");
 		form.pw.focus();
 		return false;
 		}
-	if(form.pw.value.length < 4 || form.pw.value.length > 20){
-		 alert("비밀번호는 4~20자 이내로 입력 가능 합니다!");
+	
+	if(pw_Chk.test(passwd)==false){      
+        alert("비밀번호 형식이 올바르지 않습니다.");
+        form.password.focus();
+        return false;
+    } 
+    
+	if(form.pw.value.length < 8 || form.pw.value.length > 20){
+		 alert("비밀번호는 8~20자 이내로 입력 가능 합니다!");
                          form.pw.select();
                          return false;
                         }
@@ -95,64 +138,83 @@ function nickChk(){
     });
  }
 
+//이메일 인증번호 받기
+function fn_email(){
+	   var windowObj;
+       var email = document.getElementById('member_id').value;
+     
+     var settings ='scrollbars=no,resizable=no,width=600,height=400';
+         /* 'toolbar=yes,directories=yes,status=yes,menubar=no,scrollbars=auto,resizable=no,height=400,width=400,left=0,top=0' */
+      // 자식창을 열고 자식창의 window 객체를 windowObj 변수에 저장
+      windowObj = window.open("<%=request.getContextPath()%>/login/emailCode.do?email="+email,"인증받기",settings);
+}
 
 </script>
 </head>
 <body>
+<div id="main">
+		<div class="inner" style="margin-top: 100px;">
 	<div style="margin: 0 auto; margin-top: 100px;" class="text-center" align="center">
-		<h1>회원가입</h1>
+		<h2>회원가입</h2>
 	</div>
+	<div class="5u u5">
 	<br>
-	<div style="padding: 15px; margin: 0 auto; max-width: 700px">
+	<div style="padding: 15px; margin: 0 auto; max-width: 700px;">
 
 		<form name="memChk" action="mem.do" onsubmit="return checkId()" Method="post">
-			<table width="600" height="400" align="center" cellspacing="0">
+			<table width="600" height="300" align="center" cellspacing="0">
 				<tr height="10" align="center">
 				</tr>
 
 				<tr>
-					<td><b>Email:</b></td>
+					<td><b>Email</b></td>
 					<!-- name="e_id" -->
-					<td><input type="text" id="member_id" name="member_id"
-						maxlength="45" placeholder=" ex)your@email.com" />
-						<button type="button" id="em_Chk" name="em_Chk"
-							value="N" OnClick="fn_emChk()">중복확인</button>
-							<button type="button" id="email2" name="email2"
-							value="N" OnClick="fn_email()">이메일인증</button>
-							 <!--  <input type="hidden" name="idDuplicateion" value="idUnCheck"> --></td>
+					<td><input type="text" style="width: 250px;" id="member_id" name="member_id"
+						maxlength="45" placeholder=" ex)your@email.com" /></td>
+						<td><button type="button" id="em_Chk" name="em_Chk" 
+							value="N" OnClick="fn_emChk()">중복확인</button></td>
+							<td><button type="button" id="email2" name="email2"
+							value="" OnClick="fn_email()">이메일인증</button>
+							 <input type="hidden" name="chkMail" id="checkM" value=""></td>
 				</tr>
 				<tr>
-					<td><b>PW:</b></td>
-					<td><input type="password" id="pw" name="password"
-						maxlength="20" /> <!-- placeholder=" ※8~20자의 영문 대소문자와 숫자로만 입력" --></td>
+					<td><b>PW</b></td>
+					<td colspan="3"><input type="password" style="width: 350px; font-family: 'BBTreeTR';" id="pw" name="password"
+						maxlength="20"  placeholder="8~20자의 영문 대소문자와 숫자로만 입력하세요." /></td>
 				</tr>
 				<tr>
-					<td><b>PW:</b></td>
-					<td><input type="password" id="pw2" name="password2"
+					<td><b>PW</b></td>
+					<td colspan="3"><input type="password" style="width: 350px; font-family: 'BBTreeTR';" id="pw2" name="password2"
 						maxlength="20" /></td>
 				</tr>
 				<tr>
-					<td><b>NickName:</b></td>
-					<td><input type="text" id="nickname" name="nickname"
+					<td><b>NickName</b></td>
+					<td colspan="2"><input type="text" style="width:350px;" id="nickname" name="nickname"
 						maxlength="45" />
-						<button type="button" id="nick2" name="nickname2" value="N"
+						<td><button type="button" id="nick2" name="nickname2" value="N"
 							OnClick="nickChk()">중복확인</button> <!-- <input type="hidden" name="nickDuplicateion" value="nameUnCheck"> --></td>
+				</td>
 				</tr>
 
 			</table>
 			<br>
 			<!-- 버튼 -->
-			<table width="400" height="50" align="center" cellspacing="0">
+			<div width="200" height="50" align="center" cellspacing="0">
 				<tbody>
-					<tr height="10" align="center">
-					</tr>
-					<tr>
-						<td><input type="submit" value="회원 가입"></td>
-						<td><input type="reset" name="reset" value="다시 입력"></td>
-					</tr>
+					<div height="10" align="center">
+						<input type="submit" value="회원 가입" style="margin-right:50px;">
+						<input type="reset" name="reset" value="다시 입력" style="margin-left:50px;">
+					</div>
 				</tbody>
-			</table>
+			</div>
 		</form>
+		</div>
+		</div>
+		</div>
 	</div>
+	<script src="/KitchenNote2/assets/js/jquery.min.js"></script>
+<script src="/KitchenNote2/assets/js/skel.min.js"></script>
+<script src="/KitchenNote2/assets/js/util.js"></script>
+<script src="/KitchenNote2/assets/js/main.js"></script>
 </body>
 </html>
