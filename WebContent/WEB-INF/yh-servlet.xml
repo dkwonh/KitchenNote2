@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
 		
-	<bean id="dao" class="yh.custom.model.BoardDaoImpl">
+	<bean id="Boarddao" class="yh.custom.model.BoardDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	<bean id="FAQdao" class="yh.custom.model.FAQDaoImpl">
