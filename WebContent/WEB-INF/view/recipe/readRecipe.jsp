@@ -17,7 +17,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
-
 //댓글가져오기
 function getComments(page){
 	$.ajax({
