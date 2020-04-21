@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,122 +7,44 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/home.css" />
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<style type="text/css">
-	.field1>ul {
-    height: 270px;
-    border: 1px solid #a73f40;
-    background: #fff;
-    float: left;
-    overflow-x: hidden;
-    overflow-y: visible;
-}
-
-}
-.big_sort {
-    width: 190px;
-    margin-right: 9px;
-    box-sizing: border-box;
-}
-
-ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-
-.small_sort {
-    width: 396px;
-    height: 270px;
-    float: left;
-    padding: 10px 13px;
-    box-sizing: border-box;
-    font-family: Microsoft YaHei,'NS';
-    box-sizing: border-box;
-}
-
-div#glayLayer{
-	display:none;
-	position:fixed;
-	left:0;
-	top:0;
-	height:100%;
-	width:100%;
-	background:black;
-	filter:alpha(opacity=60);
-	opacity: 0.60;
-}
-* html div#glayLayer{
-	position:absolute;
-}
-#overLayer{
-	display:none;
-	position: fixed;
-	top:50%;
-	left:50%;
-	margin-top:-244px;
-	margin-left:-325px;
-}
-* html #overLayer{
-	position: absolute;
-}
-.float {
-float:left;
-}
-
-.first, .second, .third, .last{
-	text-align:left;
-}
-
-.navi button{
-float: left;
-}
-.c button 
-{width:25%}
-ul li {
-	list-style-type:none;
-}
-
-.menu_over{
-	clear: both;
-    border-bottom: 1px solid #adadad;
-    position: absolute;
-    top: 300px;
-    left:4em;
-    right:4em;
-    background-color: rgba(255,255,255,0.95);
-    z-index: 30;
-   
-}
-
-</style>
 </head>
 <script>
-<%
-	String member_id = (String)session.getAttribute("MINFO");
-	String level = (String)session.getAttribute("LEVEL");
-	
-	if(member_id == null){
-		member_id = "guest";
-	}
-%>
+<%String member_id = (String) session.getAttribute("MINFO");
+			String level = (String) session.getAttribute("LEVEL");
+
+			if (member_id == null) {
+				member_id = "guest";
+}%>
 function logout(){
-<%
-	session.invalidate();
-%>
+<%session.invalidate();%>
 location.replace("home.do");
 }
 
+$(function(){
+	if("<%=member_id%>"=="guest"){
+		$("li.out").css("display","inline-block");
+		$("li.in").css("display","none");
+	}
+	else{
+		$("li.in").css("display","inline-block");
+		$("li.out").css("display","none");
+	}
+
+	if("<%=level%>"!="0"){
+		$("li.admin").css("display","none");
+	}
+	else{
+		$("li.admin").css("display","inline-block");
+	}
+})
+<%-- 
 function closeCategory(){
 	$("div#category").css('display',"none");
 }
 
 function searchCategory(category){
-
 	location.href="searchCategory.do?category1="+category;
 }
 
@@ -171,7 +93,7 @@ function loadCategory(ing_category){
 			});
 
 		$("button#notify").on('click',function(){
-			alert("공지사항 보기");
+			location.href="notifyList.do?pageNum=1"
 			});
 			
 		$("button#support").on('click',function(){
@@ -232,219 +154,92 @@ function loadCategory(ing_category){
 		$(".selected li[data-ing="+str+"]").remove();
 	}
 
-	
+	 --%>
 </script>
+<script src="./homeJs/home.js"></script>
 <body>
 
 	<div id=wrapper>
 
 		<div id=main>
 			<div class=inner>
-				<header id="header">
-					<a href="home.do" class="logo"><img src="images/KakaoTalk_20200420_110749263.png" width="300px" height=150px>
-					KitchenNote</a>
-					<section id=search class="alt 4u 12u$">
-					<form method=get action=searchList.do>
-					<input type=text name=search id=query placeholder="Search">
-					</form>
-					</section>
-					<ul class="icons"> 
-						<li class="out" onclick="logout()"><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
-							sign-in
-						</span></a>
-						<li class="in"><a href="#" class="icon fa-sign-out"><span class=label>
-							sign-out
-						</span></a>
-						
-						<li class="in"><a href=# class="icon fa-user"><span
-								class="label">mypage</span></a></li>
-								
-						<li><a href=# class="icon fa-archive modal"><span
-								class="label">nangbu</span></a></li>
-
-						<li class="in"><a href="#" class="icon fa-edit"><span
-								class="label">Facebook</span></a></li>
-								
-						<li class="admin"><a href="admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
-								class="label">Snapchat</span></a></li>
-					</ul>
-				
-				</header> 
+				<%@ include file="head.jsp"%>
 				<section id=banner>
-				
+
 					<div class="content">
-					<header>
-						<h1>WELCOME TO KITCHEN NOTE!</h1>
-						<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
-					</header>
-					<p>
-						재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br>
-						또한 셰프로 등업하여 더 많은 혜택을 만나보세요.<br>
-						셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
-						 뭔가 내용이 더있어야 할것 같다.<br>
-						ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
-						ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
-					</p>
+						<header>
+							<h1>WELCOME TO KITCHEN NOTE!</h1>
+							<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
+						</header>
+						<p>
+							재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br> 또한 셰프로 등업하여 더 많은
+							혜택을 만나보세요.<br> 셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
+							뭔가 내용이 더있어야 할것 같다.<br> ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
+							ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
+						</p>
 					</div>
-					<span class="image object" style="inline:block; height:530px">
-					<img src="images/KakaoTalk_20200417_204831310.png">
+					<span class="image object" style="inline: block; height: 400px">
+						<img src="images/KakaoTalk_20200417_204831310.png">
 					</span>
 				</section>
 				<div class="navi c">
-				<button id="category">카테고리</button>
-				<button id="recipe">레시피</button>
-				<button id="notify">공지사항</button>
-				<button id="support">고객센터</button>
+					<button id="category">카테고리</button>
+					<button id="recipe">레시피</button>
+					<button id="notify">공지사항</button>
+					<button id="support">고객센터</button>
 				</div>
-				
+
 				<section>
-				<div id="category" class="menu_over" style="display:none" >
-					<form action="searchCategory.do" style="text-align:center">
-						<ul style="text-align:center">
-							<li style="display:inline-block;vertical-align:top">
-								<h3>상황별 요리</h3>
-								<ul class="first">
-									<c:forEach var="item" items="${category1}">
-										<li><input id="${item.category_id }" type="radio" name="category1" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
-									</c:forEach>
-									<li><input id="no1" type="radio" name="category1" value="0"><label for="no1">선택안함</label></li>
-								</ul>
-							</li>
-							<li style="display:inline-block;vertical-align:top">
-								<h3>나라별 요리</h3>
-								<ul class="second">
-								<c:forEach var="item" items="${category2}">
-										<li><input id="${item.category_id }" type="radio" name="category2" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
-									</c:forEach>
-									<li><input id="no2" type="radio" name="category2" value="0"><label for="no2">선택안함</label></li>
-									</ul>
-							</li>
-							<li style="display:inline-block;vertical-align:top">
-								<h3>재료별 요리</h3>
-								<ul class="third">
-								<c:forEach var="item" items="${category3}">
-										<li><input id="${item.category_id }" type="radio" name="category3" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
-									</c:forEach>
-									<li><input id="no3" type="radio" name="category3" value="0"><label for="no3">선택안함</label></li>
-									</ul>
-							</li>
-							<li style="display:inline-block;vertical-align:top">
-								<h3>조리별 요리</h3>
-								<ul class=last>
-								<c:forEach var="item" items="${category4}">
-										<li><input id="${item.category_id }" type="radio" name="category4" value="${item.category_id }"><label for="${item.category_id }">${item.category_name }</label></li>
-									</c:forEach>
-									<li><input id="no4" type="radio" name="category4" value="0"><label for="no4">선택안함</label></li>
-								</ul>
-							</li>
-						</ul>
-						
-						<input type="submit" value="검색">
-						<input type="button" value="닫기" onclick="closeCategory()">
-					</form>
-				</div>
-				
+					<%@ include file="category.jsp"%>
+
 					<hr>
-				<h3 onclick="searchCategory(${r1Category.category_id})"><a href="javascript:;">${r1Category.category_name}</a></h3>
-			
-				<div class="posts">
-					<c:forEach var="item" items="${recommand1 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
-				</div>
-				<hr>
-				<h3 onclick="searchCategory(${r2Category.category_id})"><a href="javascript:;">${r2Category.category_name}</a></h3>
-					
+					<h3 onclick="searchCategory(${r1Category.category_id})">
+						<a href="javascript:;">${r1Category.category_name}</a>
+					</h3>
+
 					<div class="posts">
-					<c:forEach var="item" items="${recommand2 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
+						<c:forEach var="item" items="${recommand1 }">
+							<%@ include file="article.jsp"%>
+						</c:forEach>
 					</div>
 					<hr>
-					<h3 onclick="searchCategory(${r3Category.category_id})"><a href="javascript:;">${r3Category.category_name}</a></h3>
-					
+					<h3 onclick="searchCategory(${r2Category.category_id})">
+						<a href="javascript:;">${r2Category.category_name}</a>
+					</h3>
+
 					<div class="posts">
-					<c:forEach var="item" items="${recommand3 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
+						<c:forEach var="item" items="${recommand2 }">
+							<%@ include file="article.jsp"%>
+						</c:forEach>
 					</div>
 					<hr>
-					<h3 onclick="searchCategory(${r4Category.category_id})"><a href="javascript:;">${r4Category.category_name}</a></h3>
+					<h3 onclick="searchCategory(${r3Category.category_id})">
+						<a href="javascript:;">${r3Category.category_name}</a>
+					</h3>
+
 					<div class="posts">
-					<c:forEach var="item" items="${recommand4 }">
-						<article onclick="itemClick(${item.recipe_Id})">
-							<a class="image">
-								<img src="${item.image}">
-							</a>
-							<h3>${item.recipe_Name }</h3>
-							<p>
-								${item.recipe_Exp}
-							</p>
-							<span><a class="icon fa-clock-o"></a>${item.duration}</span>
-							<span><a class="icon fa-eye"></a>${item.readcount}</span>
-						</article>
-					</c:forEach>
+						<c:forEach var="item" items="${recommand3 }">
+							<%@ include file="article.jsp"%>
+						</c:forEach>
 					</div>
-					</section>
-					
-					<div id="nangbu" style="display:none">
-					<form method="post" action="nangbu.do">
-					<input type="submit" value="재료로검색">
-					<fieldset class="field1">
-						<ul id="big_sort" class="big_list">
-							<c:forEach var="item" items="${nangbuCategory }">
-								<li id="${item.key}" onclick="loadCategory(${item.key})">${item.value.category_name}</li>
-							</c:forEach>
-						</ul>
-						<ul id="small_sort" class="small_list">
-							<c:forEach var="item" items="${nangbuList }">
-							<li data-ing="${item.ing_id }" onclick="ingredients(${item.ing_id},'${item.ing_name }')">${item.ing_name } </li>
-							</c:forEach>
-						</ul>
-						<div id="selected" class="selected">
-						재료를 선택하세요
-						</div>
-					</fieldset>
-					</form>
+					<hr>
+					<h3 onclick="searchCategory(${r4Category.category_id})">
+						<a href="javascript:;">${r4Category.category_name}</a>
+					</h3>
+					<div class="posts">
+						<c:forEach var="item" items="${recommand4 }">
+							<%@ include file="article.jsp"%>
+						</c:forEach>
 					</div>
-				
+				</section>
+				<%@ include file="nangbu.jsp"%>
 			</div>
 		</div>
 	</div>
-	
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 </body>
 </html>

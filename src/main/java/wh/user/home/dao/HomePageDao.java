@@ -8,6 +8,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeDto;
+import wh.admin.manage.model.FilterDto;
+import wh.admin.manage.model.NotifyDto;
 import wh.admin.manage.model.PayListDto;
 
 public class HomePageDao extends SqlSessionDaoSupport {
@@ -53,5 +55,17 @@ public class HomePageDao extends SqlSessionDaoSupport {
 	
 	public HomePageCategoryName recommandName(int category_id) {
 		return getSqlSession().selectOne("home.recommandName",category_id);
+	}
+	
+	public List<NotifyDto> getNotifyList(FilterDto f){
+		return getSqlSession().selectList("manage.getNotifyList",f);
+	}
+	
+	public int getNotifyCount(FilterDto f) {
+		return getSqlSession().selectOne("manage.getNotifyCount",f);
+	}
+	
+	public NotifyDto getNotify(int num) {
+		return getSqlSession().selectOne("manage.getNotify",num);
 	}
 }
