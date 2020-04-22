@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 메인화면에 보여줄 레시피 리스트 출력 -->
 	<select id="recipe_home" resultType="wh.user.home.model.HomePageRecipeDto">
-		select * from recipe_info natural join members limit 5
+		select * from recipe_info natural join members
 	</select>
 	
 	<!-- 재료로 레시피 검색 -->
@@ -69,7 +69,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 홈페이지 카테고리별 추천 -->
 	<select id="recommandRecipe" resultType="wh.user.home.model.HomePageRecipeDto" parameterType="int">
-		select * from recipe_info natural join recipe_category natural join category natural join members where category_id = #{category_id} limit 5;
+		select * from recipe_info natural join recipe_category natural join category natural join members where category_id = #{category_id} limit 3;
 	</select>
-
+	
+	<!-- 카테고리 이름 출력 -->
+	<select id="recommandName" resultType="wh.user.home.model.HomePageCategoryName" parameterType="int">
+		select * from category where category_id = #{category_id}
+	</select>
+	
+	<!-- 레시피 체크 -->
+	<select id="getConfirm" parameterType="wh.user.home.model.HomePageRecipeConfirmDto" resultType="wh.user.home.model.HomePageRecipeConfirmDto">
+		select mem.fork, info.recipe_id,mem.member_id, info.price, pur_member_id, info.member_id reg_member_id from recipe_info info join pur_recipe pur join members mem on info.recipe_id = pur.recipe_id and pur.pur_member_id = mem.member_id where info.recipe_id = #{recipe_id} and mem.member_id = #{member_id};
+	</select>
+	
+	
 </mapper>

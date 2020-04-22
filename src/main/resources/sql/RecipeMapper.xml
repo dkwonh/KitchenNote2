@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recipe">
+
+<!-- 재료 자동완성 -->
+<select id="ing_names" parameterType="String" resultType="String">
+select ing_name from ingredient where ing_name like concat('%',#{ing_name},'%')
+</select>
+
+<!-- 레시피 쓰기 -->
+<insert id="addRecipeInfo" parameterType="yk.user.model.WriteRecipeDto">
+insert into recipe_info(image, member_id, price, recipe_name, recipe_exp, duration)
+ values(#{image},#{member_id},#{price},#{recipe_name},#{recipe_exp},#{duration})
+</insert>
+
+<select id="getRecipeId" parameterType="String" resultType="int">
+select max(recipe_id) from recipe_info where member_id=#{member_id}
+</select>
+
+<!-- 카테고리 -->
+<insert id="addRecipeCategory" parameterType="yk.user.model.Recipe_CategoryDto">
+insert into recipe_category values(#{recipe_id},#{category_id})
+</insert>
+
+<!-- 재료찾기 - 있나/있으면 몇 번인가 -->
+<select id="checkIng" parameterType="String" resultType="int">
+select count(*) from Ingredient where ing_name=#{ing_name}
+</select>
+
+<select id="getIngId" parameterType="String" resultType="int">
+select ing_id from Ingredient where ing_name = #{ing_name}
+</select>
+
+<!-- 재료없으면 -->
+<select id="getMaxIngId" resultType="int">
+select max(ing_id) from ingredient
+</select>
+
+<insert id="addIng" parameterType="map">
+insert into ingredient values(#{ing_id},#{ing_name},20,'기타')
+</insert>
+
+<!-- 재료 -->
+<insert id="addRecipeIng" parameterType="map">
+insert into recipe_ingre values(#{recipe_id},#{capacity},#{ing_id})
+</insert>
+
+<!-- 과정 -->
+<insert id="addRecipePro" parameterType="yk.user.model.Recipe_ProDto">
+insert into recipe_pro values(#{recipe_id},#{process_content},#{process_image},#{process_num})
+</insert>
+
+<!-- 태그 -->
+<insert id="addRecipeTag" parameterType="yk.user.model.TagDto">
+insert into tag values(#{recipe_id},#{tag_name})
+</insert>
+<!-- 레시피 추가 끝  -->
+
+<!-- 레시피 읽어오기 -->
+<!-- 조회수 증가 -->
+<update id="plusReadcount" parameterType="int">
+update recipe_info set readcount = readcount+1 where recipe_id = #{recipe_id}
+</update>
+<!-- 레시피 기본정보 -->
+<select id="getRecipeInfo" resultType="yk.user.model.Recipe_InfoDto" parameterType="int">
+select * from recipe_info where recipe_id = #{recipe_id}
+</select>
+
+<!-- 작성자 -->
+<select id="getWriter" resultType="yk.user.model.MembersDto" parameterType="String">
+select * from Members where member_id = #{member_id}
+</select>
+
+<!-- 셰프인지 확인 후에 sns계정 찾아오기 -->
+<select id="getSNS" resultType="String" parameterType="String">
+select sns_address from chef where chef=#{chef}
+</select>
+
+<!-- 카테고리 -->
+<select id="getRecipeCategory" resultType="String" parameterType="int">
+select category_name from recipe_category natural join category where recipe_id=#{recipe_id}
+</select>
+
+<!-- 재료 -->
+<select id="getIng" resultType="yk.user.model.RecipeIngredientDto" parameterType="int">
+select ing_name,capacity from ingredient natural join recipe_ingre
+ where recipe_id = #{recipe_id}
+</select>
+
+<!-- 과정 -->
+<select id="getPro" resultType="yk.user.model.Recipe_ProDto" parameterType="int">
+select * from recipe_pro where recipe_id = #{recipe_id}
+</select>
+
+<!-- 태그 -->
+<select id="getTag" resultType="String" parameterType="int">
+select tag_name from tag where recipe_id = #{recipe_id}
+</select>
+<!-- 레시피 읽어오기 끝 -->
+
+<!-- 레시피 읽기페이지에서 스크랩 -->
+<select id="checkScrap" resultType="int" parameterType="yk.user.model.Recipe_ScrapDto">
+select count(*) from recipe_scrap where recipe_id=#{recipe_id} and scrap_member_id=#{scrap_member_id}
+</select>
+
+<insert id="addScrap" parameterType="yk.user.model.Recipe_ScrapDto">
+insert into recipe_scrap values(#{recipe_id},#{scrap_member_id})
+</insert>
+
+<update id="plusScrap" parameterType="int">
+update recipe_info set scrap = scrap+1 where recipe_id = #{recipe_id} 
+</update>
+
+<delete id="deleteScrap" parameterType="yk.user.model.Recipe_ScrapDto">
+delete from recipe_scrap where recipe_id=#{recipe_id} and scrap_member_id=#{scrap_member_id}
+</delete>
+
+<update id="minusScrap" parameterType="int">
+update recipe_info set scrap = scrap-1 where recipe_id = #{recipe_id}
+</update>
+
+<!-- 스크랩수 가져오기 -->
+<select id="scrapcount" resultType="int" parameterType="int">
+select scrap from recipe_info where recipe_id=#{recipe_id}
+</select>
+
+<!-- 레시피 수정 -->
+<update id="updateInfo" parameterType="yk.user.model.Recipe_InfoDto">
+update recipe_info set image=#{image}, price=#{price}, recipe_name=#{recipe_name}, recipe_exp=#{recipe_exp}, duration=#{duration} where recipe_id=#{recipe_id}
+</update>
+
+<!-- 카테고리 번호 가져오기 -->
+<select id="getCagetoryid" resultType="int" parameterType="int">
+select category_id from recipe_category where recipe_id=#{recipe_id}
+</select>
+
+<!-- 기존 카테고리 삭제 -->
+<delete id="delCategory" parameterType="int">
+delete from recipe_category where recipe_id=#{recipe_id}
+</delete>
+
+<!-- 기존 재료 삭제 -->
+<delete id="delIng" parameterType="int">
+delete from recipe_ingre where recipe_id=#{recipe_id}
+</delete>
+
+<!-- 기존 과정 삭제 -->
+<delete id="delPro" parameterType="int">
+delete from recipe_pro where recipe_id=#{recipe_id}
+</delete>
+
+<!-- 기존 태그 삭제 -->
+<delete id="delTag" parameterType="int">
+delete from tag where recipe_id=#{recipe_id}
+</delete>
+
+</mapper>

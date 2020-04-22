@@ -7,9 +7,17 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
+import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
+import wh.admin.manage.model.FilterDto;
+import wh.admin.manage.model.NotifyDto;
+import wh.admin.manage.model.PayListDto;
 
 public class HomePageDao extends SqlSessionDaoSupport {
+	
+	public List<HomePageRecipeDto> recipe(){
+		return getSqlSession().selectList("home.recipe_home");
+	}
 
 	// 메인화면에 보여질 레시피 리스트
 	public List<HomePageRecipeDto> recipe_home(int category_id) {
@@ -44,5 +52,25 @@ public class HomePageDao extends SqlSessionDaoSupport {
 	// 카테고리로 레시피 검색
 	public List<HomePageRecipeDto> searchFromCategory(int category[]) {
 		return getSqlSession().selectList("home.searchFromCategory", category);
+	}
+	
+	public HomePageCategoryName recommandName(int category_id) {
+		return getSqlSession().selectOne("home.recommandName",category_id);
+	}
+	
+	public List<NotifyDto> getNotifyList(FilterDto f){
+		return getSqlSession().selectList("manage.getNotifyList",f);
+	}
+	
+	public int getNotifyCount(FilterDto f) {
+		return getSqlSession().selectOne("manage.getNotifyCount",f);
+	}
+	
+	public NotifyDto getNotify(int num) {
+		return getSqlSession().selectOne("manage.getNotify",num);
+	}
+	
+	public HomePageRecipeConfirmDto getConfirm(HomePageRecipeConfirmDto req) {
+		return getSqlSession().selectOne("home.getConfirm",req);
 	}
 }
