@@ -86,7 +86,7 @@ $(function(){
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<div class="table-wrapper">
 	<table>
 		<thead>

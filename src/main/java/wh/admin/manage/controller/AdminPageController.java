@@ -332,7 +332,7 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"번호","아이디","포크 충전 수","충전 가격","충전 날짜"});
+		model.addAttribute("type",new String[] {"번호","아이디","수량","가격","구매일"});
 		model.addAttribute("userList",list);
 		model.addAttribute("pageNum", pageNum);		
 		return "adminPage/adminPayList";
@@ -357,7 +357,7 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"레시피 아이디","닉네임","구매자","레시피 이름","결제일"});
+		model.addAttribute("type",new String[] {"레시피 아이디","판매자","구매자","레시피 이름","결제일"});
 		model.addAttribute("userList",list);
 		model.addAttribute("pageNum", pageNum);
 		
@@ -383,7 +383,7 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageBlock", pageBlock);
-		model.addAttribute("type",new String[] {"글번호","제목","작성자","작성일"});
+		model.addAttribute("type",new String[] {"글번호","제목","작성일"});
 		model.addAttribute("userList",list);
 		model.addAttribute("pageNum", pageNum);
 		

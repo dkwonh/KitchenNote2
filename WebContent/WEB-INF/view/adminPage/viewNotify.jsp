@@ -11,7 +11,7 @@
 	function updateNotify(num){
 		location.replace("updateNotify.do?num="+num);
 		}
-	function close(){
+	function goBack(){
 		location.replace("notify.do?pageNum=1");
 		}
 </script>
@@ -32,7 +32,7 @@ ${dto.reg_date }
 <c:if test="${dto.num>0 }">
 <button onclick="updateNotify(${dto.num})">수정</button>
 </c:if>
-<button onclick="close()">목록으로</button>
+<button onclick="goBack()">목록으로</button>
 </body>
 
 <script src="assets/js/jquery.min.js"></script>
