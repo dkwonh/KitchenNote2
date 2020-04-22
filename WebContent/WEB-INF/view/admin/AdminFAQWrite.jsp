@@ -57,7 +57,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="images/KakaoTalk_20200420_110749263.png" width="300px"
+						src="../../../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
@@ -126,58 +126,49 @@
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
+				<header class="major">
 					<h2>고객센터</h2>
+					</header>
 					<ul>
 						<li><span class="opener">사용자 관리</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="admin.do?pageNum=1&&filter=&&search=&&">-
 										일반 사용자 관리</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="adminChef.do?pageNum=1&&filter=&&search=&&">-
 										쉐프 사용자 관리 </a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
-										쉐프 등업 신청확인 </a></li>
+									href="adminChefUp.do?pageNum=1">-
+										쉐프 신청서 </a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="dropUser.do?pageNum=1&&filter=&&search=&&">-
 										탈퇴자 관리 </a></li>
 							</ul></li>
 						<li><span class="opener">레시피 관리</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
-										레시피 목록</a></li>
+									href="adminRecipe.do?pageNum=1&&filter=&&search=&&">-
+										전체 레시피 목록</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="adminPayRecipe.do?pageNum=1&&filter=&&search=&&">-
 										유료 레시피 목록</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="adminDropRecipe.do?pageNum=1&&filter=&&search=&&">-
 										삭제 레시피 목록 </a></li>
-								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
-										레시피 통계 </a></li>
 							</ul></li>
 						<li><span class="opener">결제 내역 관리</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="forkList.do?pageNum=1">-
+										포크 충전 내역</a></li>
+								<li><a
+									href="purRecipe.do?pageNum=1">-
 										레시피 결제 내역</a></li>
-								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
-										쿠킹 클래스 결제 내역</a></li>
 							</ul></li>
-						<li><span class="opener">이벤트 관리</span>
+						<li><span class="opener">공지 사항</span>
 							<ul>
-								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
-										쿠킹 클래스</a></li>
-								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
-										강사 모집</a></li>
-								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
-										종료된 이벤트 </a></li>
+								<li><a href="notify.do?pageNum=1">- 공지 사항</a></li>
 							</ul></li>
 						<li><span class="opener">문의 사항</span>
 							<ul>
