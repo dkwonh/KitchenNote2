@@ -38,7 +38,6 @@ font-family: 'Cafe24Oneprettynight';
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="/kitchennote/homeJs/home.js">
 </script>
-
 </head>
 <body>
 	<div id="wrapper">
