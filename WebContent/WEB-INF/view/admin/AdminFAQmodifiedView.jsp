@@ -157,14 +157,14 @@
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=0">-
+									href="admin/AdminFAQ.do?pageNum=0">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">-
+									href="admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/adminStatics/adminStatics.do">홈페이지
+							href="adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>

@@ -100,29 +100,26 @@
 				<script
 								src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
 				<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
-				<div style="width: 50%;">
+				<div style="width: 60%; , align:center">
 					<canvas id="canvas"></canvas>
 				</div>
 
 				<script>
 					$(document).ready(function() {
-										var statics = "statics="
-												+ $("#statics").val();
+
+						$('#statics').change( function(){	
+										var statics = "statics="+ $("#statics").val();
 										var url;
 
-										if ($("#statics").val("recipe").prop(
-												"selected", true)) {
+										if ($("#statics").val() == "recipe") {
 											url = "recipeAction.do";
-										} else if ($("#statics").val("user")
-												.prop("selected", true)) {
+										} else if ($("#statics").val()=="user") {
 											url = "userAction.do";
-										} else if ($("#statics").val("sale")
-												.prop("selected", true)) {
+										} else if ($("#statics").val()=="sale") {
 											url = "saleAction.do";
 										}
 										$.ajax({
 													type : "POST",
-
 													url : url,
 													data : statics,
 													dataType : "json",
@@ -138,7 +135,7 @@
 
 														if ($("#statics").val() == "recipe") {
 															color = "rgba(255, 201, 14, 1)";
-															label = "레시피 판매량";
+															label = "레시피 등록건수";
 															for (var i = 0; i < 12; i++) {
 																for ( var j in args) {
 																	if (args[j].monthRecipe == (i + 1)) {
@@ -159,11 +156,11 @@
 																	}
 																}
 															}
-															alert(arrayData);
+														
 														} else if ($("#statics")
 																.val() == "sale") {
 															color = "rgba(75, 192, 192, 1)";
-															label = '레시피 등록건수';
+															label = '레시피 판매건수';
 
 															for (var i = 0; i < 12; i++) {
 																for ( var j in args) {
@@ -173,7 +170,7 @@
 																}
 
 															}
-															alert(arrayData);
+															
 														}
 														new Chart(
 																document.getElementById("canvas"),
@@ -238,6 +235,8 @@
 																});
 													}
 												});//ajax
+
+						 					});
 									});//ready
 				</script>
 			</div>
@@ -292,14 +291,14 @@
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do">-
+									href="admin/AdminFAQ.do?pageNum=0">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do">-
+									href="admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/adminStatics/adminStatics.do">홈페이지
+							href="adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>
