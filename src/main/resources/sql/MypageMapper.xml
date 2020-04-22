@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MypageMapper">
+	
+	<!-- 마이페이지/레시피-내가 작성한 레시피 -->
+	<select id="recipelist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		 <!-- select recipe_id, recipe_name, price, scrap, image, readcount from recipe_info natural join members where member_id = 'admin123@kitchen.com' -->
+		 select recipe_id, recipe_name, price, scrap, image, readcount from recipe_info natural join members where member_id = #{member_id}
+	</select>
+	
+	<!-- 마이페이지/레시피-내가구매한 레시피 -->
+	<select id="paidlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		<!-- select r.recipe_id,r.image, r.recipe_name, r.scrap from pur_recipe p inner join recipe_info r on p.recipe_id = r.recipe_id where p.pur_member_id = 'test12@ki.com' -->
+		select r.recipe_id,r.image, r.recipe_name, r.scrap from pur_recipe p inner join recipe_info r on p.recipe_id = r.recipe_id where p.pur_member_id = #{member_id}
+	</select>
+
+	<!-- 마이페이지/스크랩 -->
+	<select id="scraplist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		<!-- select recipe_id, recipe_name, scrap, readcount, image from recipe_scrap s natural join recipe_info r where s.scrap_member_id='javahell09@gmail.com' -->
+		select recipe_id, recipe_name, scrap, readcount, image from recipe_scrap s natural join recipe_info r where s.scrap_member_id=#{member_id}
+	</select>
+	
+	<!-- 마이페이지/댓글-리스트 -->
+	<select id="commentlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		<!-- select recipe_id, com_member_id, comment, comment_date, image, recipe_name from recipe_comment c natural join recipe_info r where r.member_id='admin123@kitchen.com' order by comment_date desc --> 
+		select recipe_id, com_member_id, comment, comment_date, image, recipe_name from recipe_comment c natural join recipe_info r where r.member_id=#{member_id} order by comment_date desc 
+	</select>
+	
+	<!-- 팔로워 수 가져오기 --><!-- member_id의 소식을 받는 사람의 수 -->
+	<select id="follower" resultType="int" parameterType="String">
+		<!-- select count(*) from Subscribe where following = 'test12@ki.com' -->
+		select count(*) from Subscribe where following = #{member_id}
+	</select>
+	<!-- 팔로잉 수 가져오기 --><!-- member_id가 소식을 받아오는 사람들의 수 -->
+	<select id="following" resultType="int" parameterType="String">
+		select count(*) from Subscribe where follower = #{member_id}
+	</select>
+	<!-- 팔로워 리스트 --><!-- member_id의 소식을 받는 사람들 리스트 -->
+	<select id="followerlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		<!-- select nickname, member_id from members where member_id in (select follower from subscribe where following = 'test12@ki.com') -->
+		select nickname, member_id from members where member_id in (select follower from subscribe where following = #{memeber_id})
+	</select>
+	<!-- 팔로잉 리스트 --><!-- member_id가 소식을 받아오는 사람들 리스트 -->
+	<select id="followinglist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
+		<!-- select nickname, member_id from members where member_id in (select following from subscribe where follower = 'test12@ki.com') -->
+		select nickname, member_id from members where member_id in (select following from subscribe where follower = '#{member_id})
+	</select>
+</mapper>
