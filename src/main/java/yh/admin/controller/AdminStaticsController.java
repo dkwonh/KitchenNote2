@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import yh.admin.service.AdminStaticsService;
 
 @Controller
+@RequestMapping(value = "/adminStatics/")
 public class AdminStaticsController {
 
 	@Autowired
@@ -67,7 +68,6 @@ public class AdminStaticsController {
 	};
 
 	@RequestMapping(value = "userAction.do", method = RequestMethod.POST)
-
 	@ResponseBody
 	public String user(String statics, HttpServletResponse response) throws Exception {
 

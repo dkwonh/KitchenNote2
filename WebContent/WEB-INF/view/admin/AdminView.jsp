@@ -5,7 +5,7 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../../../assets/css/main.css" />
 <title>1:1 문의하기</title>
 <!-- 내 문의 내역 게시물 상세내용 보기 -->
 <style type="text/css">
@@ -184,9 +184,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/skel.min.js"></script>
-	<script src="../assets/js/util.js"></script>
-	<script src="../assets/js/main.js"></script>
+	<script src="../../../assets/js/jquery.min.js"></script>
+	<script src="../../../assets/js/skel.min.js"></script>
+	<script src="../../../assets/js/util.js"></script>
+	<script src="../../../assets/js/main.js"></script>
 </body>
 </html>
