@@ -9,7 +9,7 @@
 	font-style: normal;
 }
 
-#main *{
+#main, #menu *{
 	font-family:'Cafe24Oneprettynight';
 }
 </style>

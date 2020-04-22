@@ -7,7 +7,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
 </head>
+<%request.getParameter("MINFO"); %>
 <body>
 
 	<div id="paidlist_main">

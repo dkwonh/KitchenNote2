@@ -155,8 +155,8 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="allow.do" name="form">
-	<div class="row uniform modal-dialog">
+	<form style="background:white" action="allow.do" name="form" class="row gtr-uniform">
+
 		<div class="12u$ modal-body">
 		<h5>닉네임</h5>
 		<input type="text" name="nickname" id=nickBox readonly>
@@ -178,7 +178,6 @@ $(function(){
 			<li><input type="submit" value="승인" class="special"></li>
 			<li><input type="button" value="거부" onclick="deleteInfo()"></li>
 		</ul>
-		</div>
 		</div>
 	</form>
 	
