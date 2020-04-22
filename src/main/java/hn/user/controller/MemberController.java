@@ -61,9 +61,10 @@ public class MemberController {
 		int i = list.size();
 		if (i == 0) {
 			session.setAttribute("NOT", 0);
-			return "login/loginForm"; //로그인 실패
+			return "redirect:/login/loginForm.do"; //로그인 실패
 		}else {
 			session.setAttribute("MINFO", lc.getMember_id());
+			session.setAttribute("NICK", lc.getNickname());
 			session.setAttribute("LEVEL", list.get(0).getLevel());
 			return "redirect:/index.jsp"; //로그인 성공
 		} 
@@ -175,10 +176,10 @@ public class MemberController {
 				"	font-weight: normal;\r\n" + 
 				"	font-style: normal;\r\n" + 
 				"}</style>"
-				+ "<div id=\"main\">\r\n" + 
-				"<div class=\"inner\" style=\"margin-top: 50px; font-family: 'Cafe24Oneprettynight';\">"
-				+result
-				+ "<br><br><button type='button'  onclick=\"window.close();\">닫기</button>"
+				+ "<div id=\"main\" align=\"center\">\r\n" + 
+				"<div class=\"inner\" style=\"margin-top: 100px;\">"
+				+"<h2 style=\"font-family: 'Cafe24Oneprettynight';\">"+result+"</h2>"
+				+ "<br><br><button type='button' onclick=\"window.close();\">닫기</button>"
 				+ "</div></div>"
 				+ "<script src=\"/KitchenNote2/assets/js/jquery.min.js\"></script>\r\n" + 
 				"<script src=\"/KitchenNote2/assets/js/skel.min.js\"></script>\r\n" + 

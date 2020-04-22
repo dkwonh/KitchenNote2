@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="yh.custom.controller.BoardDto">
 		insert into QnA (num,subject,content,member_id,reg_date,status,readcount,secret)values(
 		#{num},
-		#{subject}, #{content}, 'admin123@kitchen.com' ,#{reg_date},'답변대기',#{readcount} ,#{secret}
+		#{subject}, #{content}, #{member_id} ,#{reg_date},'답변대기',#{readcount} ,#{secret}
 		)
 	</insert>
 
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateArticle">
 		update QnA set subject = #{subject}, content =
-		#{content}, member_id = 'admin123@kitchen.com',
+		#{content}, member_id = #{member_id},
 		reg_date = #{reg_date},secret = #{secret} where num = #{num}
 	</update>
 

@@ -26,13 +26,15 @@
 	font-weight: normal;
 	font-style: normal;
 } /* 패스워드 폰트 */
-
 #main * {
 	font-family: 'Cafe24Oneprettynight';
 }
+
+td b {
+	font-size: 15pt;
+}
 </style>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 
 
@@ -152,69 +154,68 @@ function fn_email(){
 </script>
 </head>
 <body>
-<div id="main">
-		<div class="inner" style="margin-top: 100px;">
-	<div style="margin: 0 auto; margin-top: 100px;" class="text-center" align="center">
-		<h2>회원가입</h2>
-	</div>
-	<div class="5u u5">
-	<br>
-	<div style="padding: 15px; margin: 0 auto; max-width: 700px;">
-
-		<form name="memChk" action="mem.do" onsubmit="return checkId()" Method="post">
-			<table width="600" height="300" align="center" cellspacing="0">
-				<tr height="10" align="center">
-				</tr>
-
-				<tr>
-					<td><b>Email</b></td>
-					<!-- name="e_id" -->
-					<td><input type="text" style="width: 250px;" id="member_id" name="member_id"
-						maxlength="45" placeholder=" ex)your@email.com" /></td>
-						<td><button type="button" id="em_Chk" name="em_Chk" 
-							value="N" OnClick="fn_emChk()">중복확인</button></td>
-							<td><button type="button" id="email2" name="email2"
-							value="" OnClick="fn_email()">이메일인증</button>
-							 <input type="hidden" name="chkMail" id="checkM" value=""></td>
-				</tr>
-				<tr>
-					<td><b>PW</b></td>
-					<td colspan="3"><input type="password" style="width: 350px; font-family: 'BBTreeTR';" id="pw" name="password"
-						maxlength="20"  placeholder="8~20자의 영문 대소문자와 숫자로만 입력하세요." /></td>
-				</tr>
-				<tr>
-					<td><b>PW</b></td>
-					<td colspan="3"><input type="password" style="width: 350px; font-family: 'BBTreeTR';" id="pw2" name="password2"
-						maxlength="20" /></td>
-				</tr>
-				<tr>
-					<td><b>NickName</b></td>
-					<td colspan="2"><input type="text" style="width:350px;" id="nickname" name="nickname"
-						maxlength="45" />
-						<td><button type="button" id="nick2" name="nickname2" value="N"
-							OnClick="nickChk()">중복확인</button> <!-- <input type="hidden" name="nickDuplicateion" value="nameUnCheck"> --></td>
-				</td>
-				</tr>
-
-			</table>
-			<br>
-			<!-- 버튼 -->
-			<div width="200" height="50" align="center" cellspacing="0">
-				<tbody>
-					<div height="10" align="center">
-						<input type="submit" value="회원 가입" style="margin-right:50px;">
-						<input type="reset" name="reset" value="다시 입력" style="margin-left:50px;">
-					</div>
-				</tbody>
+	<div id="main">
+		<div class="inner">
+			<%@ include file="../homepage/head.jsp"%>
+			<div class="text-center" align="center">
+				<h1 style="margin: 0.5em auto;">회원가입</h1>
 			</div>
-		</form>
-		</div>
-		</div>
+			<div class="5u u5">
+				<form name="memChk" action="mem.do" onsubmit="return checkId()"
+					Method="post">
+					<table width="600" height="300" align="center" cellspacing="0">
+						<tr height="10" align="center">
+						</tr>
+
+						<tr>
+							<td><b>Email</b></td>
+							<!-- name="e_id" -->
+							<td><input type="text" style="width: 250px;" id="member_id"
+								name="member_id" maxlength="45" placeholder=" ex)your@email.com" /></td>
+							<td><button type="button" id="em_Chk" name="em_Chk"
+									value="N" OnClick="fn_emChk()">중복확인</button></td>
+							<td><button type="button" id="email2" name="email2" value=""
+									OnClick="fn_email()">이메일인증</button> <input type="hidden"
+								name="chkMail" id="checkM" value=""></td>
+						</tr>
+						<tr>
+							<td><b>PW</b></td>
+							<td colspan="3"><input type="password"
+								style="width: 350px; font-family: 'BBTreeTR';" id="pw"
+								name="password" maxlength="20"
+								placeholder="8~20자의 영문 대소문자와 숫자로만 입력하세요." /></td>
+						</tr>
+						<tr>
+							<td><b>PW</b></td>
+							<td colspan="3"><input type="password"
+								style="width: 350px; font-family: 'BBTreeTR';" id="pw2"
+								name="password2" maxlength="20" /></td>
+						</tr>
+						<tr>
+							<td><b>NickName</b></td>
+							<td colspan="2"><input type="text" style="width: 350px;"
+								id="nickname" name="nickname" maxlength="45" />
+							<td><button type="button" id="nick2" name="nickname2"
+									value="N" OnClick="nickChk()">중복확인</button></td>
+						</tr>
+
+					</table>
+					<!-- 버튼 -->
+					<div class="8u" style="margin: auto;">
+						<div align="center">
+							<input class="special" type="submit" value="회원 가입"
+								style="float: left;"> <input type="reset" name="reset"
+								value="다시 입력" style="float: right;">
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
+
 	<script src="/KitchenNote2/assets/js/jquery.min.js"></script>
-<script src="/KitchenNote2/assets/js/skel.min.js"></script>
-<script src="/KitchenNote2/assets/js/util.js"></script>
-<script src="/KitchenNote2/assets/js/main.js"></script>
+	<script src="/KitchenNote2/assets/js/skel.min.js"></script>
+	<script src="/KitchenNote2/assets/js/util.js"></script>
+	<script src="/KitchenNote2/assets/js/main.js"></script>
 </body>
 </html>

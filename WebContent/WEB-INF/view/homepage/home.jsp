@@ -11,28 +11,12 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
 <script>
-<%
-	String member_id = (String)session.getAttribute("MINFO");
-	Integer level = (Integer)session.getAttribute("LEVEL");
-%>
-$(function(){
-	if("<%=member_id%>"== "null"){
-		$("li.out").css("display","inline-block");
-		$("li.in").css("display","none");
-	}
-	else{
-		$("li.in").css("display","inline-block");
-		$("li.out").css("display","none");
-	}
-	if("<%=level%>"!= 0 ){
-		$("li.admin").css("display","none");
-	}
-	else{
-		$("li.admin").css("display","inline-block");
-	}
-});
+function resultCategory(){
+	location.href="searchCategory.do?"+$('form.form').serialize();
+}
 </script>
 <script src="./homeJs/home.js"></script>
+
 <body>
 
 	<div id=wrapper>
@@ -66,8 +50,12 @@ $(function(){
 				</div>
 
 				<section>
-					<%@ include file="category.jsp"%>
-
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
 					<hr>
 					<h3 onclick="searchCategory(${r1Category.category_id})">
 						<a href="javascript:;">${r1Category.category_name}</a>

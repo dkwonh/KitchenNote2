@@ -11,6 +11,7 @@ import wh.admin.manage.model.NotifyDto;
 import wh.user.home.dao.HomePageDao;
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
+import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
 
 @Service
@@ -52,7 +53,7 @@ public class HomePageService {
 	public Map<Integer, String> nangbuCategoryList() {
 		return homePageDao.nangbuCategoryList();
 	}
-
+	
 	// 카테고리로 레시피 검색
 	public List<HomePageRecipeDto> searchFromCategory(int category[]) {
 		return homePageDao.searchFromCategory(category);
@@ -73,4 +74,9 @@ public class HomePageService {
 	public NotifyDto getNotify(int num) {
 		return homePageDao.getNotify(num);
 	}
+	
+	public HomePageRecipeConfirmDto getConfirm(HomePageRecipeConfirmDto req) {
+		return homePageDao.getConfirm(req);
+	}
+	
 }

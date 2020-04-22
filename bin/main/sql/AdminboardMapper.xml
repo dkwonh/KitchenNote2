@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into QnA
 		(num,subject,content,member_id,reg_date,readcount,secret)values(
 		#{num},
-		#{subject}, #{content}, 'admin123@kitchen.com'
+		#{subject}, #{content}, #{member_id}
 		,#{reg_date},#{readcount} ,#{secret}
 		)
 	</insert>

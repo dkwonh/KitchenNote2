@@ -77,7 +77,7 @@
 	<form name="pwfind" class="#" action="find_pass.do"
 		onsubmit="return fn_pwfind()" method="post">
 		<div align="center">
-			<label class="#">키친노트 계정</label>
+			<label class="#"><h3>키친노트 계정</h3></label>
 			<div class="#">
 				<input type="text" id="member_id" style="width: 200px" name="member_id" maxlength="45"
 					placeholder="이메일을 작성해주세요">

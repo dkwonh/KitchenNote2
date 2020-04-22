@@ -6,6 +6,10 @@ function searchCategory(category){
 	location.href="searchCategory.do?category1="+category;
 }
 
+function resultCategory(){
+	location.href="searchCategory.do?"+$('form.form').serialize();
+}
+
 function loadCategory(ing_category){
 	var url = "category.do"
 	var params = "ing_category="+ing_category
@@ -28,8 +32,34 @@ function loadCategory(ing_category){
 	    })
 	}
 
-	function itemClick(item) {
+	function infoAjax(item){
+		var url = "confirmRecipe.do"
+		var params = "recipe_id="+item;
+		$.ajax({
+			type:"get"		
+			,url:url
+			,data:params		
+			,dataType:"json" })
+			.done(function(args){	//응답이 성공 상태 코드를 반환하면 호출되는 함수
+				alert("s");
+	 			})
+		    .fail(function(e) {
+		    	alert(e.responseText);
+		    	return;
+		    })
+	}
+
+	function itemClick(item,price) {
+		if(price>0){
+			if(confirm("구매하시겠습니까?")){
+				infoAjax(item);
+			}
+			else{
+				
+			}
+		} else{
 		location.href = "recipe/read.do?recipe_id="+item;
+		}
 	}
 
 	function nangbu() {
@@ -93,5 +123,6 @@ function loadCategory(ing_category){
 	}
 
 	function diselectIngredients(id){
+		var str = String(id);
 		$(".selected li[data-ing="+str+"]").remove();
 	}
