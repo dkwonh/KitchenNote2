@@ -88,7 +88,7 @@
 								if (tag != "" && !existed) {
 									$("#hash_inbox")
 											.append(
-													'<span class="added_tag">#'
+													'<span class="added_tag icon fa-hashtag"> '
 															+ tag
 															+ ' <a href="javascript:;">X</a>'
 															+ '<input type="hidden" class="htag_name" name="tag_name" value="'+tag+'"></span>')
@@ -189,12 +189,12 @@
 	function add_pro() {
 		$("#process")
 				.append(
-						'<li><input type="hidden" value="1" name="process_num">'
+						'<li class="box"><input type="hidden" value="1" name="process_num">'
 								+ '<div class="9u 12u$(small)">'
 								+ '<textarea name="process_content" placeholder="설명" required></textarea><br>'
-								+ '<div class="imgfile"><input name="process_imagefile" type="file" accept="image/*" required><a class="button small icon fa-trash delProImg">파일삭제</a></div>'
+								+ '<div class="imgfile"><input name="process_imagefile" type="file" accept="image/*" required><a class="icon fa-trash delProImg">사진삭제</a></div>'
 								+ '</div>'
-								+ '<div class="proImg 2u 10u(small)"></div> <a class="button icon fa-remove" onclick="del_pro(this)"></a></li>');
+								+ '<div class="proImg 2u 10u(small)"></div> <a class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>');
 		set_num();
 	}
 
@@ -333,22 +333,30 @@ input[type=reset], input[type=submit] {
 	border-radius: 0.375em;
 }
 
+#hash_inbox strong{
+font-size: 20px;
+}
+
 #hash_inbox span {
 	margin-bottom: 10px;
 }
 
 .added_tag {
+	font-size:17px;
+	font-weight:bolder;
 	cursor: pointer;
-	background-color: #ffcc80;
+	background-color: #f56a6a;
+	color:#FFF;
 	padding: 2px 5px;
 	margin: 2px 2px;
-	border-radius: 10%;
+	border-radius: 0.375em;
 	display: inline-block;
 }
 
 .added_tag a {
 	color: black;
-	text-decoration: none;
+	border-bottom: 0;
+	font-weight: normal;
 }
 
 .removefile {
@@ -360,37 +368,45 @@ li {
 	display: flex;
 }
 
+#delMainImg, .delProImg{
+font-size: larger;
+padding: 5px;
+cursor: pointer;
+}
+
 </style>
 </head>
 <body>
 	<div id="main">
-		<div class="inner 10u">
+		<div class="inner">
+		<%@ include file="../homepage/head.jsp"%>
+		<div class="10u" style="margin: 1em auto;">
 			<header class="main">
-				<h2>레시피 등록하기</h2>
+				<h1 style="margin-top: 0.5em;">레시피 등록하기</h1>
 			</header>
 			<hr class="major">
 			<form method="post" enctype="multipart/form-data"
 				action="writePro.do">
 				<div class="form1 row">
 					<input type="hidden" name="member_id" value="${MINFO }">
-					<h3 class="3u">레시피 제목</h3>
+					<h2 class="3u">레시피 제목</h2>
 					<div class="9u$">
 						<input type="text" name="recipe_name" required />
 					</div>
-					<h3 class="3u">요리소개</h3>
+					<h2 class="3u">요리소개</h2>
 					<div class="9u$">
 						<input type="text" name="recipe_exp" required />
 					</div>
-					<h3 class="3u">요리 대표사진</h3>
+					<h2 class="3u">요리 대표사진</h2>
 					<div class="9u$">
-						<input type="file" name="imagefile" accept="image/*" required><a class="button small icon fa-trash" id="delMainImg">파일삭제</a>
+						<input type="file" name="imagefile" accept="image/*" required><a class="icon fa-trash" id="delMainImg">사진삭제</a>
 					</div>
 					<div id="mainImg" class="6u$ 12u$(small)"></div>
 					<br>
 
 					<c:if test="${LEVEL ==2 }">
 					<div class="row" style="width:100%;">
-						<h3 class="3u">가격</h3>
+						<h2 class="3u">가격</h2>
 						<div class="6u">
 							<input name="price" type="number" min="0" required value="0" />
 						</div>
@@ -401,7 +417,7 @@ li {
 
 				<hr class="major">
 
-				<h3>카테고리</h3>
+				<h2>카테고리</h2>
 				<div class="row 12u$" style="margin: 0;">
 					<select name="category_id" class="3u 12u$(small)">
 						<option value="-1">:: 상황 ::</option>
@@ -452,7 +468,7 @@ li {
 
 				<hr class="major">
 
-				<h3>재료</h3>
+				<h2>재료</h2>
 				<ul id="ingredient">
 					<li><input type="text" name="ing_name" placeholder="재료명"
 						required>&nbsp;&nbsp;<input type="text" name="capacity"
@@ -473,46 +489,46 @@ li {
 
 				<hr class="major">
 
-				<h3>요리순서</h3>
+				<h2>요리순서</h2>
 				<br>
 				<p>
 					조리시간 총 <input name="duration" type="number"
 						placeholder="조리시간(숫자만 입력)" required style="width:200px;">분 소요
 				</p>
 				<ul id="process">
-					<li><input type="hidden" value="1" name="process_num">
+					<li class="box"><input type="hidden" value="1" name="process_num">
 						<div class="9u 12u$(small)">
 							<textarea name="process_content" placeholder="설명" required></textarea>
 							<br>
 							<div class="imgfile">
 								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="button small icon fa-trash delProImg">파일삭제</a>
+									required><a class="icon fa-trash delProImg">사진삭제</a>
 							</div>
 						</div>
-						<div class="proImg 2u 10u(small)"></div> <a
-						class="button icon fa-remove" onclick="del_pro(this)"></a></li>
-					<li><input type="hidden" value="2" name="process_num">
+						<div class="proImg 2u 10u(small)"></div><a
+						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
+					<li class="box"><input type="hidden" value="2" name="process_num">
 						<div class="9u 12u$(small)">
 							<textarea name="process_content" placeholder="설명" required></textarea>
 							<br>
 							<div class="imgfile">
 								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="button small icon fa-trash delProImg">파일삭제</a>
+									required><a class="icon fa-trash delProImg">사진삭제</a>
 							</div>
 						</div>
 						<div class="proImg 2u 10u(small)"></div> <a
-						class="button icon fa-remove" onclick="del_pro(this)"></a></li>
-					<li><input type="hidden" value="3" name="process_num">
+						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
+					<li class="box"><input type="hidden" value="3" name="process_num">
 						<div class="9u 12u$(small)">
 							<textarea name="process_content" placeholder="설명" required></textarea>
 							<br>
 							<div class="imgfile">
 								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="button small icon fa-trash delProImg">파일삭제</a>
+									required><a class="icon fa-trash delProImg">사진삭제</a>
 							</div>
 						</div>
 						<div class="proImg 2u 10u(small)"></div> <a
-						class="button icon fa-remove" onclick="del_pro(this)"></a></li>
+						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
 				</ul>
 				<div class="12u$ plusbtn">
 					<a class="button special icon fa-plus" onclick="add_pro()">조리과정추가</a>
@@ -520,7 +536,7 @@ li {
 
 				<hr class="major">
 				<div class="row">
-					<h3 class="3u 12u$(small)">태그</h3>
+					<h2 class="3u 12u$(small)">태그</h2>
 					<div id="hashtag" class="9u$ 12u$(small)">
 						<input type="text" id="tag_input" placeholder="태그 입력">
 						<div id="hash_inbox">
@@ -533,6 +549,7 @@ li {
 				<input type="submit" value="등록"><input type="reset"
 					value="다시쓰기" onclick="del_tag()">
 			</form>
+			</div>
 		</div>
 	</div>
 	<script src="/KitchenNote2/assets/js/skel.min.js"></script>
