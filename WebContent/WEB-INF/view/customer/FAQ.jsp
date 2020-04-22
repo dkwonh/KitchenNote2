@@ -7,6 +7,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
 .navi input {
@@ -20,6 +22,14 @@
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
+}
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -38,8 +48,6 @@
 						</form>
 					</section>
 					<ul class="icons">
-						<li class="out"><a href="login/loginForm.do"
-							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 							<li class="in"><a href="login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label>
 							sign-out

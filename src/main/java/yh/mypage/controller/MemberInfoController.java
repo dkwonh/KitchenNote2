@@ -33,7 +33,6 @@ public class MemberInfoController {
 	public ModelAndView view(@RequestParam(required = false) String member_id, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myPage/MemberInfo");
-		member_id = "test2@ki.com";
 		MemberInfoDto dto = service.view(member_id);
 		mav.addObject("dto", dto);
 		return mav;

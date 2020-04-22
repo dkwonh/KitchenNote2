@@ -9,27 +9,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		m.picture, m.Level, c.tel, c.sns_address
 		from members m inner join chef
 		c
-		where m.member_id='test2@ki.com' and c.chef='test2@ki.com'
+		where m.member_id= #{member_id} and c.chef= #{chef}
 	</select>
 
 	<insert id="submit"
 		parameterType="yh.mypage.controller.Chef_applyDto">
 		insert into Chef_apply
-		values ('test2@ki.com',
+		values (#{member_id},
 		#{sns_address}, #{tel},#{content})
 	</insert>
 
 	<update id="memupdate"
 		parameterType="yh.mypage.controller.MemberInfoDto">
 		update members set nickname=#{nickname} where
-		member_id='test2@ki.com'
+		member_id= #{member_id}
 	</update>
 
 	<update id="chefupdate"
 		parameterType="yh.mypage.controller.ChefDto">
 		update chef set tel=#{tel}, sns_address = #{sns_address}
-		where chef =
-		'test2@ki.com'
+		where chef = #{chef}
 	</update>
 
 	<select id="checkPwd"
@@ -38,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<delete id="delete" parameterType="String">
-		delete from members where member_id = 'test2@ki.com' 
+		delete from members where member_id = #{member_id} 
 	</delete>
 
 	<update id="changePwd"
@@ -46,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update members m inner join chef c
 		on m.member_id = c.chef
 		set password = #{pwdcheck1}
-		where m.member_id = 'test2@ki.com' and c.chef='test2@ki.com'
+		where m.member_id = #{member_id} and c.chef= #{chef}
 	</update>
 
 	<select id="pwd"
@@ -54,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		password
 		from members m inner join chef c
-		where m.member_id = 'test2@ki.com' and c.chef='test2@ki.com'
+		where m.member_id = #{member_id} and c.chef= #{chef}
 	</select>
 
 </mapper>
