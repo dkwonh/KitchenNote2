@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import jb.sample.dao.BoardDAO;
-import jb.sample.model.BoardDTO;
 import jb.sample.model.RecipeDTO;
 
 @Service("mypageService")

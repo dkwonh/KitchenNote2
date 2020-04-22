@@ -1,6 +1,5 @@
 package jb.sample.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import jb.sample.model.BoardDTO;
 import jb.sample.model.RecipeDTO;
 
 @Repository("mypageDAO")
@@ -17,7 +15,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Inject
 	private SqlSession sql;
 
-	private static String namespace = "boardMapper";
+	private static String namespace = "mypageMapper";
 
 	// 마이페이지/레시피-내가 작성한 레시피
 	public List<RecipeDTO> recipelist() throws Exception {
