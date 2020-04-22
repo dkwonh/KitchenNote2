@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../../../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
@@ -48,8 +48,6 @@
 						</form>
 					</section>
 					<ul class="icons">
-						<li class="out"><a href="login/loginForm.do"
-							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 							<li class="in"><a href="login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label>
 							sign-out
@@ -167,9 +165,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../../assets/js/jquery.min.js"></script>
-	<script src="../../../assets/js/skel.min.js"></script>
-	<script src="../../../assets/js/util.js"></script>
-	<script src="../../../assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

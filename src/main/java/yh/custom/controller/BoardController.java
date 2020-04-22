@@ -19,7 +19,6 @@ import yh.admin.controller.FilterDto;
 import yh.custom.service.BoardService;
 
 @Controller
-@RequestMapping(value = "/customer/")
 public class BoardController {
 	
 	public static final int PAGE_SIZE = 10;

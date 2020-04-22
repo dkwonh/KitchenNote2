@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale = 1">
 <meta http-equiv="Content-Type" content="text/html; charset = utf-8"
 	pageEncoding="utf-8">
-<link rel="stylesheet" href="../../../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
@@ -315,9 +315,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../../assets/js/jquery.min.js"></script>
-	<script src="../../../assets/js/skel.min.js"></script>
-	<script src="../../../assets/js/util.js"></script>
-	<script src="../../../assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

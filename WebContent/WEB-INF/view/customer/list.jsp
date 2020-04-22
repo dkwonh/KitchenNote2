@@ -7,7 +7,7 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=0.7, user-scalable=no" />
-<link rel="stylesheet" href="../../../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>1:1 문의하기</title>
@@ -158,7 +158,7 @@
 						<li><span class="opener">1:1 문의</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
+									href="customer/list.do?pageNum=0">-
 										내 문의 내역</a></li>
 								<li><a
 									href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
@@ -169,9 +169,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../../assets/js/jquery.min.js"></script>
-	<script src="../../../assets/js/skel.min.js"></script>
-	<script src="../../../assets/js/util.js"></script>
-	<script src="../../../assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>
