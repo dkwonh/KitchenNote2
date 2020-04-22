@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -31,43 +31,64 @@
 	font-weight: normal;
 	font-style: normal;
 }
+#main *{
+font-family: 'Cafe24Oneprettynight';
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="/kitchennote/homeJs/home.js">
+</script>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="main">
 			<div class="inner">
 				<header id="header">
-					<a href="home.do" class="logo"><img
-						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+					<a href="/KitchenNote2/home.do" class="logo"><img
+						src="../images/kitchennote-logo.png" width="300px" height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
 						</form>
 					</section>
 					<ul class="icons">
-							<li class="in"><a href="login/logoutOk.do"
-							class="icon fa-sign-out"><span class=label>
-							sign-out
-						</span></a>
-						
-						
+						<li class="out"><a href="/KitchenNote2/login/loginForm.do"
+							class="icon fa-sign-in"><span class=label> sign-in </span></a>
+						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
+							class="icon fa-sign-out"><span class=label> sign-out </span></a>
 						<li class="in"><a href=# class="icon fa-user"><span
 								class="label">mypage</span></a></li>
-								
-						<li><a href=# class="icon fa-archive modal"><span
+
+						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
 								class="label">nangbu</span></a></li>
 
-						<li class="in"><a href="#" class="icon fa-edit"><span
-								class="label">Facebook</span></a></li>
-								
+						<li class="in"><a href="/KitchenNote2/recipe/write.do" class="icon fa-edit"><span
+								class="label">writeRecipe</span></a></li>
+
 						<li class="admin"><a
-							href="admin.do?pageNum=1&&filter=&&search="
+							href="/KitchenNote2/admin.do?pageNum=1&&filter=&&search="
 							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 					</ul>
-				
+				<script>
+				<%String member_id = (String) session.getAttribute("MINFO");
+			Integer level = (Integer) session.getAttribute("LEVEL");%>
+				$(function(){
+					if("<%=member_id%>"== "null"){
+						$("li.out").css("display","inline-block");
+						$("li.in").css("display","none");
+					}
+					else{
+						$("li.in").css("display","inline-block");
+						$("li.out").css("display","none");
+					}
+
+					if("<%=level%>" != "0") {
+							$("li.admin").css("display", "none");
+						} else {
+							$("li.admin").css("display", "inline-block");
+						}
+					});
+				</script>
 				</header> 
 				<div class="navi c">
 								<input type="button" value="카테고리"> <input type="button"
@@ -79,8 +100,8 @@
 					
 								<h3>자주 묻는 질문/FAQ</h3>
 					<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
-					질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.<br>
-					<p>
+					질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.
+					<hr>
 				
 							</section>
 				<h4>자주 찾는 도움말</h4>
@@ -102,6 +123,7 @@
 										name="pageNum" value="1">
 					</p>
 					</form>
+					<hr>
 					<h4>자주 묻는 질문 목록</h4>
 					<p>
 					
@@ -166,6 +188,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
