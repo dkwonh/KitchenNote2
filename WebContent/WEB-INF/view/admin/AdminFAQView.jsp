@@ -7,6 +7,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
 .navi input {
@@ -20,6 +22,14 @@
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
+}
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -147,17 +157,17 @@
 							<ul>
 								<li><a href="notify.do?pageNum=1">- 공지 사항</a></li>
 							</ul></li>
-						<li><span class="opener">문의 사항</span>
+					<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/admin/AdminFAQ.do?pageNum=0">-
+									href="admin/AdminFAQ.do?pageNum=0">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/admin/AdminList.do?pageNum=0">-
+									href="admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/adminStatics/adminStatics.do">홈페이지
+							href="adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>

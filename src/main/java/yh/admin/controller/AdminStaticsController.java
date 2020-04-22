@@ -52,8 +52,6 @@ public class AdminStaticsController {
 	@RequestMapping(value = "recipeAction.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String action(String statics, HttpServletResponse response) throws Exception {
-
-		System.out.println(statics);
 		String data = "";
 
 		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
@@ -62,36 +60,26 @@ public class AdminStaticsController {
 
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter();
-
-		/* data = json.toJson(statics); */
 
 		if (recipe != null) {
 			data += json.toJson(recipe);
 		}
-		System.out.println(data);
 		return data;
 	};
 
 	@RequestMapping(value = "userAction.do", method = RequestMethod.POST)
-
 	@ResponseBody
 	public String user(String statics, HttpServletResponse response) throws Exception {
 
-		System.out.println(statics);
 		String data = "";
 		List<AdminUserDto> user = new ArrayList<AdminUserDto>();
 		user = service.userCount(statics);
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter();
-
-		// data = json.toJson(statics);
 
 		if (user != null) {
 			data += json.toJson(user);
 		}
-		System.out.println(data);
 		return data;
 	};
 
@@ -108,7 +96,6 @@ public class AdminStaticsController {
 		if (sale != null) {
 			data = json.toJson(sale);
 		}
-		System.out.println(data);
 		return data;
 	};
 
