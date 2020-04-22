@@ -42,14 +42,14 @@ div#glayLayer{
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
 	<select name="filter">
 		<option selected value="recipe_name">레시피 이름</option>
-		<option value="member_id">작성자</option>
-		<option value="nickname">닉네임</option>
+		<option value="member_id">판매자</option>
+		<option value="pur_member_id">구매자</option>
 	</select>
 	<input type=text name=search id=query placeholder="Search">
 	<input type=hidden name="pageNum" value="1">
@@ -68,10 +68,10 @@ div#glayLayer{
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
 			<td class="recipe_id">${item.recipe_id}</td>
-			<td class="nickname">${item.nickname }</td>
 			<td class="member_id">${item.member_id }</td>
+			<td class="pur_member_id">${item.pur_member_id }</td>
 			<td class="recipe_name">${item.recipe_name }</td>
-			<td class="price">${item.price }</td>
+			<td class="pur_date">${item.pur_date}</td>
 		</tr>
 		</c:forEach>
 		</tbody>

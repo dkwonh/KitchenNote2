@@ -42,7 +42,7 @@ div#glayLayer{
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -65,6 +65,7 @@ div#glayLayer{
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
+			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="member_id">${item.member_id }</td>
 			<td class="fork">${item.fork }</td>
 			<td class="price">${item.purchase_amount }</td>

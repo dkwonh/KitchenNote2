@@ -52,7 +52,7 @@ function itemClick(num){
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -81,7 +81,6 @@ function itemClick(num){
 		<tr class="modal" onclick="itemClick(${item.num})">
 			<td class="num">${item.num}</td>
 			<td class="subject">${item.subject }</td>
-			<td class="member_id">${item.member_id }</td>
 			<td class="reg_date">${item.reg_date }</td>
 		</tr>
 		</c:forEach>

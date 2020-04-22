@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import wh.user.home.model.HomePageCategoryName;
+import wh.user.home.model.HomePageMemberDto;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
@@ -72,5 +73,17 @@ public class HomePageDao extends SqlSessionDaoSupport {
 	
 	public HomePageRecipeConfirmDto getConfirm(HomePageRecipeConfirmDto req) {
 		return getSqlSession().selectOne("home.getConfirm",req);
+	}
+	
+	public HomePageMemberDto getMember(String member_id) {
+		return getSqlSession().selectOne("home.getMember",member_id);
+	}
+	
+	public int insertPur(HomePageRecipeConfirmDto recipe) {
+		return getSqlSession().insert("home.insertPur",recipe);
+	}
+	
+	public int updateFork(String member_id) {
+		return getSqlSession().update("home.updateFork",member_id);
 	}
 }

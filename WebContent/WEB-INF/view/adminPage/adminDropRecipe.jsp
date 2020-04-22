@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@ function replacePage(url){
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -72,7 +73,21 @@ function replacePage(url){
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
 			<td class="recipe_id">${item.recipe_id}</td>
-			<td class="image"><img src="${item.image }"></td>
+				<c:set var="image" value="${item.image }" />
+				<td class="image">
+					<c:if test="${fn:contains(image,'okdab') }">
+						<c:set var="mainImg" value="${item.image }" />
+						<img width="100px" height="100px" id="main_img" src="${item.image }" width=500 height=300>
+					</c:if>
+					
+					
+					<c:if test="${fn:contains(image,'note')}">
+						<c:set var="mainImg"
+							value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${item.image }" />
+						<img width="100px" height="100px" id="main_img" src="/img/${item.image }" width=500 height=300>
+					</c:if>			
+
+
 			<td class="recipe_name">${item.recipe_name }</td>
 			<td class="member_id">${item.member_id}</td>
 			<td class="del_date">${item.del_date }</td>

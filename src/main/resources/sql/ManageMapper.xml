@@ -265,8 +265,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 and member_id 
 		  like CONCAT('%',#{search},'%')
  		</if>
- 		<if test='filter == "nickname"'>
- 		and nickname 
+ 		<if test='filter == "pur_member_id"'>
+ 		and pur_member_id
 		  like CONCAT('%',#{search},'%')
  		</if>
 		</where>
@@ -284,8 +284,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  member_id
 		  like CONCAT('%',#{search},'%') 
  		</if>
- 		<if test='filter == "nickname"'>
- 		and nickname 
+ 		<if test='filter == "pur_member_id"'>
+ 		and pur_member_id
 		  like CONCAT('%',#{search},'%')
 		 </if>
 		</where>

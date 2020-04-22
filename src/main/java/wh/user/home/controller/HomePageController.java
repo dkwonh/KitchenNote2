@@ -29,6 +29,7 @@ import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.NotifyDto;
 import wh.user.home.model.HomePageCategoryDto;
 import wh.user.home.model.HomePageCategoryName;
+import wh.user.home.model.HomePageMemberDto;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
@@ -46,9 +47,9 @@ public class HomePageController implements ApplicationContextAware {
 	HomePageService homePageService;
 
 	// 메인화면
-	@RequestMapping(value = "home.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Model model) {
-
+		
 		Set<Integer> set = new HashSet<>();
 		while (set.size() <= 3) {
 			Random random = new Random();
@@ -351,10 +352,28 @@ public class HomePageController implements ApplicationContextAware {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		System.out.println(confirm);
-		//out.print(json.toJson(confirm));
+		out.print(json.toJson(confirm));
+	}
+	
+	@RequestMapping(value="buyRecipe.do", method=RequestMethod.GET)
+	public String buyRecipe(int recipe_id, HttpSession session) {
+		String member_id = (String)session.getAttribute("MINFO");
+		HomePageRecipeConfirmDto recipe = new HomePageRecipeConfirmDto();
+		recipe.setPur_member_id(member_id);
+		recipe.setPrice(1);
+		recipe.setRecipe_id(recipe_id);
 		
-		
+		HomePageMemberDto member = homePageService.getMember(member_id);
+		//구매할수 있는 포크가 있을경우 바로 구매 후 읽기 페이지 이동
+		if(member.getFork()>0) {
+			homePageService.insertPur(recipe);
+			homePageService.updateFork(member_id);
+			return "redirect:recipe/read.do?recipe_id="+recipe_id;
+		} else {
+			//포크 없을경우 카카오페이 결제화면으로 이동
+			return "redirect:kakaoPay.do";
+			
+		}
 	}
 
 	@Override

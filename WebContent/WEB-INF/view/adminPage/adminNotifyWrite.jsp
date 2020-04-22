@@ -31,11 +31,18 @@ $(function(){
 <title>Insert title here</title>
 </head>
 <body>
+<div id=wrapper>
+
+		<div id=main>
+			<div class=inner>
 <form id=frm action="writeNotify.do" method=post>
 제목:<input type="text" name="subject" value="${dto.subject }">
 내용:<textarea name="content" id="content" rows="10" cols="100">${dto.content}</textarea>
 <input id=save type=button value=저장>
 </form>
+</div>
+</div>
+</div>
 </body>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>

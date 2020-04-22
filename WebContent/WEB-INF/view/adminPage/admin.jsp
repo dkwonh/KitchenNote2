@@ -83,7 +83,6 @@ $(function(){
 	<div class="inner">
 	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
-	
 	<form>
 	<select name="filter">
 		<option selected value="nickname">닉네임</option>
