@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import wh.admin.manage.model.NotifyDto;
 import wh.user.home.model.HomePageCategoryDto;
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
+import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
 
 @Controller
@@ -205,7 +207,6 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("category3", categoryList.subList(16, 26));
 		model.addAttribute("category4", categoryList.subList(26, 36));
 		model.addAttribute("dto",list);
-		model.addAttribute("dto", list);
 		return "homepage/searchResult";
 	}
 	
@@ -334,6 +335,26 @@ public class HomePageController implements ApplicationContextAware {
 		model.addAttribute("dto",not);
 		
 		return "homepage/notifyItem";
+	}
+	
+	@RequestMapping(value="confirmRecipe.do", method=RequestMethod.GET)
+	public void confirmRecipe(int recipe_id, HttpServletResponse response, HttpSession session) throws IOException {
+		String member_id = (String)session.getAttribute("MINFO");
+		
+		HomePageRecipeConfirmDto req = new HomePageRecipeConfirmDto();
+		req.setMember_id(member_id);
+		req.setRecipe_id(recipe_id);
+		
+		HomePageRecipeConfirmDto confirm = homePageService.getConfirm(req);
+		
+		Gson json = new Gson();
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		System.out.println(confirm);
+		//out.print(json.toJson(confirm));
+		
+		
 	}
 
 	@Override

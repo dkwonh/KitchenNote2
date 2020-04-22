@@ -49,7 +49,7 @@
 				
 		sFileInfo += "&bNewLine=true"; //sFileInfo +="&sFileName=" + realFileNm;; 
 		sFileInfo += "&sFileName=" + filename;
-		sFileInfo += "&sFileURL=" + "./upload/" + realFileNm;// 경로 설정 잘해야함 ./ / ../ 구분 확실히 할것
+		sFileInfo += "&sFileURL=" + "./editor/upload/" + realFileNm;// 경로 설정 잘해야함 ./ / ../ 구분 확실히 할것
 		out.println(sFileInfo);
 	}
 %>

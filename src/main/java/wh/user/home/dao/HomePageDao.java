@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import wh.user.home.model.HomePageCategoryName;
 import wh.user.home.model.HomePageNangbuDto;
+import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
 import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.NotifyDto;
@@ -67,5 +68,9 @@ public class HomePageDao extends SqlSessionDaoSupport {
 	
 	public NotifyDto getNotify(int num) {
 		return getSqlSession().selectOne("manage.getNotify",num);
+	}
+	
+	public HomePageRecipeConfirmDto getConfirm(HomePageRecipeConfirmDto req) {
+		return getSqlSession().selectOne("home.getConfirm",req);
 	}
 }
