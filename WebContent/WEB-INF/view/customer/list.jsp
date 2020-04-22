@@ -39,7 +39,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="images/KakaoTalk_20200420_110749263.png" width="300px"
+						src="../../../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
