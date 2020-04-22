@@ -6,7 +6,9 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../../../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
 .navi input {
@@ -20,6 +22,15 @@
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
+}
+
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -47,27 +58,23 @@
 					<ul class="icons">
 						<li class="out"><a href="login/loginForm.do"
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
-							<li class="in"><a href="login/logoutOk.do"
-							class="icon fa-sign-out"><span class=label>
-							sign-out
-						</span></a>
-						
-						
+						<li class="in"><a href="login/logoutOk.do"
+							class="icon fa-sign-out"><span class=label> sign-out </span></a>
 						<li class="in"><a href=# class="icon fa-user"><span
 								class="label">mypage</span></a></li>
-								
+
 						<li><a href=# class="icon fa-archive modal"><span
 								class="label">nangbu</span></a></li>
 
 						<li class="in"><a href="#" class="icon fa-edit"><span
 								class="label">Facebook</span></a></li>
-								
+
 						<li class="admin"><a
 							href="admin.do?pageNum=1&&filter=&&search="
 							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 					</ul>
-				
-				</header> 
+
+				</header>
 				<section>
 					<h3>자주 묻는 질문/FAQ</h3>
 					<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
@@ -92,17 +99,15 @@
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 							</select> <input type="search" id="select3" name="select3"
-											placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden"
-											name="pageNum" value="1">
-					
-								</form>
+								placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden"
+								name="pageNum" value="1">
+					</form>
 				</section>
 				<section>
 					<article>
 						<h4>자주 묻는 질문 목록</h4>
 						<p>
-						
-									<table border="1" width="600px">
+						<table border="1" width="600px">
 							<tr>
 								<th>번호</th>
 								<th>제목</th>
@@ -138,54 +143,43 @@
 									<span class="button disabled">다음</span>
 								</c:if></li>
 						</ul>
-				
-							</section>
+				</section>
 				</article>
-			
-						</div>
+
+			</div>
 		</div>
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
-				<header class="major">
-					<h2>고객센터</h2>
+					<header class="major">
+						<h2>고객센터</h2>
 					</header>
 					<ul>
 						<li><span class="opener">사용자 관리</span>
 							<ul>
-								<li><a
-									href="admin.do?pageNum=1&&filter=&&search=&&">-
+								<li><a href="admin.do?pageNum=1&&filter=&&search=&&">-
 										일반 사용자 관리</a></li>
-								<li><a
-									href="adminChef.do?pageNum=1&&filter=&&search=&&">-
+								<li><a href="adminChef.do?pageNum=1&&filter=&&search=&&">-
 										쉐프 사용자 관리 </a></li>
-								<li><a
-									href="adminChefUp.do?pageNum=1">-
-										쉐프 신청서 </a></li>
-								<li><a
-									href="dropUser.do?pageNum=1&&filter=&&search=&&">-
+								<li><a href="adminChefUp.do?pageNum=1">- 쉐프 신청서 </a></li>
+								<li><a href="dropUser.do?pageNum=1&&filter=&&search=&&">-
 										탈퇴자 관리 </a></li>
 							</ul></li>
 						<li><span class="opener">레시피 관리</span>
 							<ul>
-								<li><a
-									href="adminRecipe.do?pageNum=1&&filter=&&search=&&">-
+								<li><a href="adminRecipe.do?pageNum=1&&filter=&&search=&&">-
 										전체 레시피 목록</a></li>
 								<li><a
-									href="adminPayRecipe.do?pageNum=1&&filter=&&search=&&">-
-										유료 레시피 목록</a></li>
+									href="adminPayRecipe.do?pageNum=1&&filter=&&search=&&">- 유료
+										레시피 목록</a></li>
 								<li><a
 									href="adminDropRecipe.do?pageNum=1&&filter=&&search=&&">-
 										삭제 레시피 목록 </a></li>
 							</ul></li>
 						<li><span class="opener">결제 내역 관리</span>
 							<ul>
-								<li><a
-									href="forkList.do?pageNum=1">-
-										포크 충전 내역</a></li>
-								<li><a
-									href="purRecipe.do?pageNum=1">-
-										레시피 결제 내역</a></li>
+								<li><a href="forkList.do?pageNum=1">- 포크 충전 내역</a></li>
+								<li><a href="purRecipe.do?pageNum=1">- 레시피 결제 내역</a></li>
 							</ul></li>
 						<li><span class="opener">공지 사항</span>
 							<ul>
@@ -193,24 +187,19 @@
 							</ul></li>
 						<li><span class="opener">문의 사항</span>
 							<ul>
-								<li><a
-									href="admin/AdminFAQ.do?pageNum=0">-
-										자주 묻는 질문 /FAQ</a></li>
-								<li><a
-									href="admin/AdminList.do?pageNum=0">-
-										1:1 문의</a></li>
+								<li><a href="admin/AdminFAQ.do?pageNum=0">- 자주 묻는 질문
+										/FAQ</a></li>
+								<li><a href="admin/AdminList.do?pageNum=0">- 1:1 문의</a></li>
 							</ul></li>
-						<li><a
-							href="adminStatics/adminStatics.do">홈페이지
-								통계 </a></li>
+						<li><a href="adminStatics/adminStatics.do">홈페이지 통계 </a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
-	<script src="../../../assets/js/jquery.min.js"></script>
-	<script src="../../../assets/js/skel.min.js"></script>
-	<script src="../../../assets/js/util.js"></script>
-	<script src="../../../assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>

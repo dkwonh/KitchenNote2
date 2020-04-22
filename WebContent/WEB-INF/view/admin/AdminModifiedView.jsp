@@ -4,7 +4,9 @@
 <head>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../../../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>1:1 문의하기</title>
 <!-- 글 수정 폼  -->
 <style type="text/css">
@@ -14,6 +16,14 @@
 
 .c input {
 	width: 25%
+}
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -166,9 +176,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../../assets/js/jquery.min.js"></script>
-	<script src="../../../assets/js/skel.min.js"></script>
-	<script src="../../../assets/js/util.js"></script>
-	<script src="../../../assets/js/main.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 </body>
 </html>
