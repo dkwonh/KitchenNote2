@@ -74,8 +74,6 @@ public class AdminFaqController {
 		model.addAttribute("select3",select3);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/AdminFAQ");
-		System.out.println(f);
-		System.out.println(pageNum);
 		return mav;
 	}
 
@@ -87,7 +85,6 @@ public class AdminFaqController {
 
 	@RequestMapping(value = "AdminFAQInsert.do", method = RequestMethod.POST)
 	public String insert(@ModelAttribute AdminFaqDto dto) throws Exception {
-		System.out.println(dto);
 		Service.create(dto);
 		return "redirect:AdminFAQ.do?pageNum=0";
 	} // 게시글 작성 처리

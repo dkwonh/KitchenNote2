@@ -17,19 +17,19 @@ public class AdminStaticsServiceImpl implements AdminStaticsService {
 	AdminStaticsDao dao;
 
 	@Override
-	public List<AdminRecipeDto> recipeCount() throws Exception {
+	public List<AdminRecipeDto> recipeCount(String statics) throws Exception {
 
-		return dao.recipeCount();
+		return dao.recipeCount(statics);
 	}
 
 	@Override
-	public List<AdminUserDto> userCount() throws Exception {
-		return dao.userCount();
+	public List<AdminUserDto> userCount(String statics) throws Exception {
+		return dao.userCount(statics);
 	}
 
 	@Override
-	public List<AdminSaleDto> recipeSaleCount() throws Exception {
-		return dao.recipeSaleCount();
+	public List<AdminSaleDto> recipeSaleCount(String statics) throws Exception {
+		return dao.recipeSaleCount(statics);
 	}
 
 }

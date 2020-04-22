@@ -22,7 +22,6 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 
 	@Override
 	public void create(AdminBoardDto dto) throws Exception {
-	System.out.println(dto);
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String to = sdf.format(date);

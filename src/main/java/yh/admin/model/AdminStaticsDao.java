@@ -8,10 +8,10 @@ import yh.admin.controller.AdminUserDto;
 
 public interface AdminStaticsDao {
 
-	public List<AdminRecipeDto> recipeCount() throws Exception;
+	public List<AdminRecipeDto> recipeCount(String statics) throws Exception;
 
-	public List<AdminUserDto> userCount() throws Exception;
+	public List<AdminUserDto> userCount(String statics) throws Exception;
 
-	public List<AdminSaleDto> recipeSaleCount() throws Exception;
+	public List<AdminSaleDto> recipeSaleCount(String statics) throws Exception;
 
 }

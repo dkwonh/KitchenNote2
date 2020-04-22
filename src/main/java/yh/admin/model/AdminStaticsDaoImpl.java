@@ -10,16 +10,17 @@ import yh.admin.controller.AdminUserDto;
 
 public class AdminStaticsDaoImpl extends SqlSessionDaoSupport implements AdminStaticsDao {
 
-	public List<AdminRecipeDto> recipeCount() throws Exception {
-		return getSqlSession().selectList("adminStatics.recipeCount");
+	public List<AdminRecipeDto> recipeCount(String statics) throws Exception {
+		return getSqlSession().selectList("adminStatics.recipeCount", statics);
 	}
 
-	public List<AdminUserDto> userCount() throws Exception {
-		return getSqlSession().selectList("adminStatics.userCount");
+	public List<AdminUserDto> userCount(String statics) throws Exception {
+		return getSqlSession().selectList("adminStatics.userCount", statics);
 	}
 
-	public List<AdminSaleDto> recipeSaleCount() throws Exception {
-		return getSqlSession().selectList("adminStatics.recipeSaleCount");
+	public List<AdminSaleDto> recipeSaleCount(String statics) throws Exception {
+		return getSqlSession().selectList("adminStatics.recipeSaleCount", statics);
 	}
+
 
 }
