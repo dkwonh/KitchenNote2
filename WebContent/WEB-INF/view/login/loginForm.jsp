@@ -34,12 +34,20 @@
 #pw {
 	font-family: 'BBTreeTR';
 }
+td b{
+font-size: 15pt;
+}
 input{
 font-size: 13pt;
 color: #3d4449;
 }
 </style>
 <script type="text/javascript">
+document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	  };
+	}, true);
 function Login(){
         var form = document.login1;
         var e_Chk = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -68,8 +76,9 @@ function Login(){
                }
       form.submit();
       }
+//비밀번호 찾기창
 function open_pw(){
-	window.open("pwFind.do", "비밀번호 찾기","scrollbars=no,resizable=no,width=500,height=400").close;
+	window.open("pwFind.do", "비밀번호 찾기","scrollbars=no,resizable=no,width=510,height=400").close;
 }
 </script>
 </head>
@@ -81,44 +90,39 @@ function open_pw(){
 		</script>
 	</c:if>
 	<div id="main">
-		<div class="inner" style="margin-top: 100px">
+		<div class="inner">
+			<%@ include file="../homepage/head.jsp"%>
 			<div class="text-center" align="center">
-				<h2>로그인</h2>
+				<h1 style="margin-top: 0.5em">로그인</h1>
 			</div>
-			<br>
 			<div class="4u u5">
 				<br>
-				<form name="login1" action="login2.do">
-					<table width="400" height="100" align="center" cellspacing="0">
-						<tr height="10" align="center">
-						</tr>
-
+				<form name="login1" action="login2.do" style="margin:0;">
+					<table align="center" cellspacing="0">
+						
 						<!-- 로그인 -->
 						<tr>
-							<td><b>Email</b></td>
-							<td><input type="text" style="width: 430px" id="id"
-								name="member_id" maxlength="45" placeholder="E-mail" /></td>
+							<td style="width:50px"><b>Email</b></td>
+							<td>
+							<input type="text" id="id" name="member_id" maxlength="45" placeholder="E-mail" />
+							</td>
 						</tr>
 						<tr>
 							<td><b>PW</b></td>
 							<td><input type="password"
-								style="width: 430px;" id="pw" name="password"
+								 id="pw" name="password"
 								maxlength="20" placeholder="PW" /></td>
 						</tr>
 					</table>
-					<br>
 					<!-- 버튼 -->
-					<div width="400" height="50" align="center">
-						<input id="mem_btn" type="button" value="회원가입"
-							onclick="location.href='memberForm.do'"
-							style="margin-right: 50px;" /> <input id="log_btn" type="button"
-							value="로그인 " onclick="Login();" style="margin-left: 50px;" />
-					</div>
-					<br>
-					<div align="center">
-						<button class="special" onclick="open_pw()">비밀번호 찾기</button>
-					</div>
+					<div class="8u" style="margin: auto;"> 
+					<input class="special fit"id="log_btn" type="button" value="로그인 " onclick="Login();"/></div>
 				</form>
+				<div class="8u" style="margin: auto;">
+				<button class="6u" id="mem_btn"
+						onclick="location.href='memberForm.do'" style="float:left;" >회원가입</button> 
+				<button class="6u" onclick="open_pw()" style="float:right;">비밀번호 찾기</button>
+				</div>
 			</div>
 		</div>
 	</div>
