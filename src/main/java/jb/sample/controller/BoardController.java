@@ -11,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import jb.sample.model.BoardDTO;
 import jb.sample.model.RecipeDTO;
 import jb.sample.service.BoardService;
 
@@ -25,28 +23,30 @@ public class BoardController {
 	private BoardService service;
 
 	// 상품목록 + 팔로워 팔로잉 수
-	@RequestMapping(value = "/mypage/recipelist", method = RequestMethod.GET)
-	public void getRecipelist(Model model) throws Exception {
-		logger.info("get recipelist");
-		List<RecipeDTO> list = service.recipelist();
-		model.addAttribute("list", list);
+		@RequestMapping(value = "/mypage/mypagefirst.do", method = RequestMethod.GET)
+		public void getRecipelist(Model model, HttpSession session) throws Exception {
+			logger.info("get recipelist");
+			session.setAttribute("member_id", "member_id");
+			
+			List<RecipeDTO> list = service.recipelist();
+			model.addAttribute("list", list);
 
-		List<RecipeDTO> follower, following = null;
-		follower = service.followerlist();
-		model.addAttribute("followerlist", follower);
-		following = service.followinglist();
-		model.addAttribute("followinglist", following);
+			List<RecipeDTO> follower, following = null;
+			follower = service.followerlist();
+			model.addAttribute("followerlist", follower);
+			following = service.followinglist();
+			model.addAttribute("followinglist", following);
 
-		int getFollower = 0;
-		getFollower = service.getFollower();
-		model.addAttribute("followersize", getFollower);
-		int getFollowing = 0;
-		getFollowing = service.getFollowing();
-		model.addAttribute("followingsize", getFollowing);
-		/*
-		 * System.out.println(getFollower); System.out.println(getFollowing);
-		 */
-	}
+			int getFollower = 0;
+			getFollower = service.getFollower();
+			model.addAttribute("followersize", getFollower);
+			int getFollowing = 0;
+			getFollowing = service.getFollowing();
+			model.addAttribute("followingsize", getFollowing);
+			/*
+			 * System.out.println(getFollower); System.out.println(getFollowing);
+			 */
+		}
 
 	// 팔로워, 팔로우 리스트
 	@RequestMapping(value = "/mypage/followlist.do")

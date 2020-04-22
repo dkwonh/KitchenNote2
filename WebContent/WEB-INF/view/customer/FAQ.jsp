@@ -40,7 +40,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="../../../images/kitchennote-logo.png" width="300px"
+						src="../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
@@ -84,7 +84,7 @@
 				
 							</section>
 				<h4>자주 찾는 도움말</h4>
-				<form action="FAQ.do?pageNum=0">
+				<form action="FAQ.do?pageNum=1">
 					<br> 구분 :<select id="select1" name="select1">
 						<option value="레시피">레시피</option>
 						<option value="쿠킹 클래스">쿠킹 클래스</option>
@@ -101,6 +101,7 @@
 										placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden"
 										name="pageNum" value="1">
 					</p>
+					</form>
 					<h4>자주 묻는 질문 목록</h4>
 					<p>
 					
@@ -149,15 +150,15 @@
 					</header>
 					<ul>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
+							href="FAQ.do?pageNum=0">자주
 								묻는 질문/FAQ</a></li>
 						<li><span class="opener">1:1 문의</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
+									href="list.do?pageNum=0">-
 										내 문의 내역</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
+									href="write.do?pageNum=0">-
 										1:1 문의하기</a></li>
 							</ul></li>
 					</ul>

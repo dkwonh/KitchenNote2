@@ -1,7 +1,7 @@
 
 
 <header id="header">
-					<a href="home.do" class="logo"><img src="./images/KakaoTalk_20200422_111639302.png" width="300px" height=150px></a>
+					<a href="home.do" class="logo"><img src="./images/KakaoTalk_20200422_111639302.png" width="300px" height=100px></a>
 					<section id=search class="alt 4u 12u$">
 					<form method=post action=recipe.do>
 					<input type=text name=search id=query placeholder="Search">
@@ -16,10 +16,10 @@
 							sign-out
 						</span></a>
 						
-						<li class="in"><a href=# class="icon fa-user"><span
+						<li class="in"><a href=mypage/mypagefirst.do class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 								
-						<li><a href=# class="icon fa-archive modal"><span
+						<li><a class="icon fa-archive modal"><span
 								class="label">nangbu</span></a></li>
 
 						<li class="in"><a href="recipe/write.do" class="icon fa-edit"><span

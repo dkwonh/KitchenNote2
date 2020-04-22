@@ -7,8 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <meta name="viewport" content="width=device-width, initial-scale = 1">
-<meta http-equiv="Content-Type" content="text/html; charset = utf-8"
-	pageEncoding="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset = utf-8" pageEncoding="utf-8">
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -57,7 +56,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="../../../images/kitchennote-logo.png" width="300px"
+						src="../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
@@ -110,7 +109,7 @@
 				<script
 								src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
 				<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
-				<div style="width: 60%; , align:center">
+				<div>
 					<canvas id="canvas"></canvas>
 				</div>
 
@@ -301,14 +300,14 @@
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="admin/AdminFAQ.do?pageNum=0">-
+									href="/KitchenNote2/admin/AdminFAQ.do?pageNum=0">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="admin/AdminList.do?pageNum=0">-
+									href="/KitchenNote2/admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="adminStatics.do">홈페이지
+							href="/KitchenNote2/adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>

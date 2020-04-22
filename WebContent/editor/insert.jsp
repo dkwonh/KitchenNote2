@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-	String s =  request.getParameter("content");
+	String s =  request.getParameter("ir1");
 
 %>
 <%=s %>

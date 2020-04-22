@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import yh.admin.service.AdminFaqService;
 
 @Controller
-@RequestMapping(value = "/admin/")
 public class AdminFaqController {
 
 	public static final int PAGE_SIZE = 10;
@@ -47,7 +46,7 @@ public class AdminFaqController {
 	@Autowired
 	AdminFaqService Service;
 
-	@RequestMapping("AdminFAQ.do") // 게시글 목록
+	@RequestMapping("admin/AdminFAQ.do") // 게시글 목록
 	public ModelAndView list(@RequestParam /* (value="pageNum",required = false) */int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
 			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
@@ -77,19 +76,19 @@ public class AdminFaqController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/AdminFAQWrite.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/AdminFAQWrite.do", method = RequestMethod.GET)
 	public String write() {
 
 		return "admin/AdminFAQWrite";
 	} // 게시글 작성화면
 
-	@RequestMapping(value = "AdminFAQInsert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/AdminFAQInsert.do", method = RequestMethod.POST)
 	public String insert(@ModelAttribute AdminFaqDto dto) throws Exception {
 		Service.create(dto);
 		return "redirect:AdminFAQ.do?pageNum=0";
 	} // 게시글 작성 처리
 
-	@RequestMapping(value = "AdminFAQView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/AdminFAQView.do", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception {
 		Service.increaseViewcnt(bno, session);
 		ModelAndView mav = new ModelAndView();
@@ -99,7 +98,7 @@ public class AdminFaqController {
 		return mav;
 	} // 게시글 상세 내용 조회, 게시글 조회수 증가 처리
 
-	@RequestMapping(value = "AdminFAQView.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/AdminFAQView.do", method = RequestMethod.POST)
 	public ModelAndView cancleView(@RequestParam int bno, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("admin/AdminFAQView");
@@ -107,18 +106,18 @@ public class AdminFaqController {
 		return mav;
 	} // 취소 버튼
 
-	@RequestMapping(value = "AdminFAQUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/AdminFAQUpdate.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") AdminFaqDto dto) throws Exception {
 		return "admin/AdminFAQmodifiedView";
 	} // 게시글 수정
 
-	@RequestMapping(value = "AdminFAQUpdate2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/AdminFAQUpdate2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") AdminFaqDto dto) throws Exception {
 		Service.update(dto);
 		return "redirect:AdminFAQ.do?pageNum=0";
 	}
 
-	@RequestMapping("AdminFAQDelete.do")
+	@RequestMapping("admin/AdminFAQDelete.do")
 	public String delete(@RequestParam int bno) throws Exception {
 		Service.delete(bno);
 		return "redirect:AdminFAQ.do?pageNum=0";

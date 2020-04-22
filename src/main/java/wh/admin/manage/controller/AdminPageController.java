@@ -423,6 +423,12 @@ public class AdminPageController implements ApplicationContextAware {
 		return "redirect:notify.do?pageNum=1";
 	}
 	
+	@RequestMapping(value="deleteNotify.do", method=RequestMethod.GET)
+	public String deleteNotify(int num) {
+		adminPageService.deleteNotify(num);
+		return "redirect:notify.do?pageNum=1";
+	}
+	
 	/**/
 	/*
 	 * //필터사용
