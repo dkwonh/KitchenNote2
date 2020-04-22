@@ -32,11 +32,7 @@
 			}
 		});
 		$("#btnUpdate").click(function() {
-			document.form1.action = "AdminFAQUpdate.do?bno=" + $
-			{
-				dto.bno
-			}
-			;
+			document.form1.action = "AdminFAQUpdate.do?bno=" + ${dto.bno};
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {

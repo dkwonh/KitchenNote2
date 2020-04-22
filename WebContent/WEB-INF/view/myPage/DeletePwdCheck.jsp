@@ -37,7 +37,6 @@
 					alert("비밀번호를 확인해주세요");
 				},
 				success : function(data) {
-					alert(data);
 					if ($("#password").val() != data) {
 						alert("비밀번호가 틀립니다.");
 						document.form1.password.focus();
@@ -114,7 +113,7 @@
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
-					<h2>고객센터</h2>
+					<h2>마이 페이지</h2>
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
