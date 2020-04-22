@@ -14,6 +14,7 @@
 function resultCategory(){
 	location.href="searchCategory.do?"+$('form.form').serialize();
 }
+
 </script>
 <script src="./homeJs/home.js"></script>
 

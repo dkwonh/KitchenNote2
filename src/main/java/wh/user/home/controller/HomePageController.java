@@ -47,7 +47,7 @@ public class HomePageController implements ApplicationContextAware {
 	HomePageService homePageService;
 
 	// 메인화면
-	@RequestMapping(value = "home.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Model model) {
 		
 		Set<Integer> set = new HashSet<>();

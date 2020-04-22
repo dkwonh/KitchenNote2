@@ -1,7 +1,7 @@
 
 
 <header id="header">
-					<a href="home.do" class="logo"><img src="./images/KakaoTalk_20200422_111639302.png" width="300px" height=100px></a>
+					<a href="/KitchenNote2/home.do" class="logo"><img src="/KitchenNote2/images/KakaoTalk_20200422_111639302.png" width="300px" height=100px></a>
 					<section id=search class="alt 4u 12u$">
 					<form method=post action=recipe.do>
 					<input type=text name=search id=query placeholder="Search">
