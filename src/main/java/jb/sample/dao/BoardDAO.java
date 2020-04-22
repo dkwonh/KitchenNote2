@@ -2,7 +2,6 @@ package jb.sample.dao;
 
 import java.util.List;
 
-import jb.sample.model.BoardDTO;
 import jb.sample.model.RecipeDTO;
 
 public interface BoardDAO {

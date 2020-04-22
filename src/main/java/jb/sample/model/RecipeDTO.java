@@ -24,6 +24,17 @@ public class RecipeDTO {
 	private String com_member_id; // 댓글 작성자 아이디
 	private String comment; // 댓글
 	private Timestamp comment_date; // 작성일
+	// Recipe_Scrap Table
+	private String scrap_member_id;
+	
+
+	public String getScrap_member_id() {
+		return scrap_member_id;
+	}
+
+	public void setScrap_member_id(String scrap_member_id) {
+		this.scrap_member_id = scrap_member_id;
+	}
 
 	public String getCom_member_id() {
 		return com_member_id;
