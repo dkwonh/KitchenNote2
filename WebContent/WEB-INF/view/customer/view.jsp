@@ -54,7 +54,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="../../../images/kitchennote-logo.png" width="300px"
+						src="../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
@@ -141,15 +141,15 @@
 					</header>
 					<ul>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
+							href="FAQ.do?pageNum=0">자주
 								묻는 질문/FAQ</a></li>
 						<li><span class="opener">1:1 문의</span>
 							<ul>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/list.do?pageNum=0">-
+									href="list.do?pageNum=0">-
 										내 문의 내역</a></li>
 								<li><a
-									href="http://localhost:8082/KitchenNote/customer/write.do?pageNum=0">-
+									href="write.do?pageNum=0">-
 										1:1 문의하기</a></li>
 							</ul></li>
 					</ul>

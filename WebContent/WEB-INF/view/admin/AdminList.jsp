@@ -47,7 +47,7 @@
 			<div class="inner">
 				<header id="header">
 					<a href="home.do" class="logo"><img
-						src="../../../images/kitchennote-logo.png" width="300px"
+						src="../images/kitchennote-logo.png" width="300px"
 						height=150px> KitchenNote</a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
@@ -79,7 +79,7 @@
 				
 				</header> 
 				<section>
-					<h2>내 문의 내역</h2>
+					<h2>내 문의 내역(관리자)</h2>
 					<br>검색 창을 이용하시면 더 정확한 정보를 검색하실 수 있습니다.
 					<hr>
 					<h4>내 문의 내역</h4>
@@ -199,14 +199,14 @@
 						<li><span class="opener">문의 사항</span>
 							<ul>
 								<li><a
-									href="admin/AdminFAQ.do?pageNum=0">-
+									href="/KitchenNote2/admin/AdminFAQ.do?pageNum=0">-
 										자주 묻는 질문 /FAQ</a></li>
 								<li><a
-									href="admin/AdminList.do?pageNum=0">-
+									href="/KitchenNote2/admin/AdminList.do?pageNum=0">-
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="adminStatics/adminStatics.do">홈페이지
+							href="/KitchenNote2/adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>
