@@ -58,38 +58,58 @@
 <body>
 	<div id="wrapper">
 		<div id="main">
-			<header id="header">
-				<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
-				<section id="search" class="alt 4u 12u$">
-					<form method="post">
-						<input name="search" id="query" type="text">
-					</form>
-				</section>
-				<ul class="icons">
-					<li><a href="#" class="icon fa-twitter"><span
-							class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon fa-facebook"><span
-							class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span
-							class="label">Instagram</span></a></li>
-				</ul>
-			</header>
-			<div class="navi c">
-				<input type="button" value="카테고리"> <input type="button"
-					value="레시피"> <input type="button" value="이벤트"> <input
-					type="button" value="고객센터"><br>
-			</div>
-			<hr>
-			<h2>비밀 번호 확인</h2>
+			<div class="inner">
+				<header id="header">
+					<a href="home.do" class="logo"><img
+						src="images/KakaoTalk_20200420_110749263.png" width="300px"
+						height=150px> KitchenNote</a>
+					<section id=search class="alt 4u 12u$">
+						<form method=post action=recipe.do>
+							<input type=text name=search id=query placeholder="Search">
+						</form>
+					</section>
+					<ul class="icons">
+						<li class="out"><a href="login/loginForm.do"
+							class="icon fa-sign-in"><span class=label> sign-in </span></a>
+							<li class="in"><a href="login/logoutOk.do"
+							class="icon fa-sign-out"><span class=label>
+							sign-out
+						</span></a>
+						
+						
+						<li class="in"><a href=# class="icon fa-user"><span
+								class="label">mypage</span></a></li>
+								
+						<li><a href=# class="icon fa-archive modal"><span
+								class="label">nangbu</span></a></li>
 
-			<form method="post" name="form1" id="form1">
-				<div>
-				<h4>회원 탈퇴를 하시려면 비밀번호를 입력하여 주세요.</h4>
-					password : <input type="password" name="password" id="password">
+						<li class="in"><a href="#" class="icon fa-edit"><span
+								class="label">Facebook</span></a></li>
+								
+						<li class="admin"><a
+							href="admin.do?pageNum=1&&filter=&&search="
+							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+					</ul>
+				
+				</header> 
+				<div class="navi c">
+								<input type="button" value="카테고리"> <input type="button"
+									value="레시피"> <input type="button" value="이벤트"> <input
+									type="button" value="고객센터"><br>
 				</div>
-				<input type="button" id="btnCheck" name="btnCheck" value="확인">
-				<input type="button" id="btnCancel" name="btnCancel" value="취소">
-			</form>
+				<hr>
+				<h2>비밀 번호 확인</h2>
+
+				<form method="post" name="form1" id="form1">
+					<div>
+						<h4>회원 탈퇴를 하시려면 비밀번호를 입력하여 주세요.</h4>
+						password : <input type="password" name="password" id="password">
+					</div>
+					<input type="button" id="btnCheck" name="btnCheck" value="확인">
+					<input type="button" id="btnCancel" name="btnCancel" value="취소">
+				</form>
+			
+						</div>
 		</div>
 		<div id="sidebar">
 			<div class="inner">
@@ -121,13 +141,6 @@
 			</div>
 		</div>
 	</div>
-	<footer id="footer">
-		<p class="copyright">
-			&copy; Untitled. All rights reserved. Demo Images: <a
-				href="https://unsplash.com">Unsplash</a>. Design: <a
-				href="https://html5up.net">HTML5 UP</a>.
-		</p>
-	</footer>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>

@@ -7,7 +7,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <meta name="viewport" content="width=device-width, initial-scale = 1">
-<meta name="viewport" content="width=device-width, initial-scale = 1">
 <meta http-equiv="Content-Type" content="text/html; charset = utf-8"
 	pageEncoding="utf-8">
 <link rel="stylesheet" href="../assets/css/main.css" />
@@ -47,32 +46,45 @@
 		<div id="main">
 			<div class="inner">
 				<header id="header">
-					<a href="#" class="KitchenNote"><strong>Kitchen</strong>Note</a>
-					<section id="search" class="alt 4u 12u$">
-						<form method="post">
-							<input name="search" id="query" type="text">
+					<a href="home.do" class="logo"><img
+						src="images/KakaoTalk_20200420_110749263.png" width="300px"
+						height=150px> KitchenNote</a>
+					<section id=search class="alt 4u 12u$">
+						<form method=post action=recipe.do>
+							<input type=text name=search id=query placeholder="Search">
 						</form>
 					</section>
 					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span
-								class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span
+						<li class="out"><a href="login/loginForm.do"
+							class="icon fa-sign-in"><span class=label> sign-in </span></a>
+							<li class="in"><a href="login/logoutOk.do"
+							class="icon fa-sign-out"><span class=label>
+							sign-out
+						</span></a>
+						
+						
+						<li class="in"><a href=# class="icon fa-user"><span
+								class="label">mypage</span></a></li>
+								
+						<li><a href=# class="icon fa-archive modal"><span
+								class="label">nangbu</span></a></li>
+
+						<li class="in"><a href="#" class="icon fa-edit"><span
 								class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span
-								class="label">Instagram</span></a></li>
+								
+						<li class="admin"><a
+							href="admin.do?pageNum=1&&filter=&&search="
+							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 					</ul>
-				</header>
-				<div class="navi c">
-					<input type="button" value="카테고리"> <input type="button"
-						value="레시피"> <input type="button" value="이벤트"> <input
-						type="button" value="고객센터"><br>
-				</div>
+				
+				</header> 
 				<div>
 					<article>
 						<br>
 						<p>
-						<h2>홈페이지 통계</h2>
-						<form method="GET">
+						
+									<h2>홈페이지 통계</h2>
+						<form method="POST">
 							<hr>
 							<select id="statics" name="statics">
 								<option value="recipe">월별 레시피 등록건수</option>
@@ -84,137 +96,159 @@
 				</div>
 				<script src='//cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
 				<script
-					src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
+								src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
 				<script
-					src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
+								src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
 				<script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
 				<div style="width: 50%;">
 					<canvas id="canvas"></canvas>
 				</div>
 
 				<script>
-			$(document).ready(function(){
-			/*  var statics = "statics="+$("#statics option:selected").val(); */
-			  var statics = document.getElementById("statics"); 
-			  statics.options[statics.selectedIndex].value; 
-			var url;	
-			 if($("#statics option:selected").val() == "recipe"){
-			 	url= "recipeAction.do";    
-			 }else if($("#statics option:selected").val() == "user"){
-				url="userAction.do";
-			 }else if($("#statics option:selected").val() == "sale"){
-				url="saleAction.do";
-				}
-			 alert($("#statics option:selected").val());
-			      $.ajax({
-				      type : "POST",
-				   
-			    	  url : url,
-						data : statics,
-						dataType : "json",
-						error : function(error) {
-							alert("에러"+error.status);
-						},success: function(args) {
-								var arrayData=[0,0,0,0,0,0,0,0,0,0,0,0];
-								var label=""; 
-								var color;
-							
-					    	   if($("#statics").val() == "recipe"){
-						           color = "rgba(255, 201, 14, 1)";
-						           label="레시피 판매량";				
-						           for(var i =0 ; i < 12; i++) {
-							           for(var j in args){
-							           if(args[j].monthRecipe == (i+1)){
-							        	   arrayData[i] = args[j].recipeCount;
-						               }
-							           }   
-						             
-						           }
-						           alert(arrayData);
-							   }else if($("#statics").val() == "user"){
-								   color = "rgba(54, 162, 235, 1)";
-							   			label = '가입 회원 수';
-						           		
-							   		  for(var i =0 ; i < 12; i++) {
-								           for(var j in args){
-								           if(args[j].monthUser == (i+1)){
-								        	   arrayData[i] = args[j].userCount;
-								           }   
-								           }
-							           }
-							           alert(arrayData);   
-							   }else if($("#statics").val() == "sale"){
-								   color = "rgba(75, 192, 192, 1)";
-								   label = '레시피 등록건수';
-			
-								   for(var i =0 ; i < 12; i++) {
-							           for(var j in args){
-							           if(args[j].monthSale == (i+1)){
-								           //alert(args[j].recipeSaleCount);
-							        	   arrayData[i] = args[j].recipeSaleCount;
-						               }
-							           }   
-						             
-						           }  alert(arrayData);   
-						       	}
-							 new Chart(
-									document.getElementById("canvas"),
-									{
-										type : 'line',
-										data : {
-											labels : [ '1월', '2월', '3월',
-													'4월', '5월', '6월', '7월',
-													'8월', '9월', '10월',
-													'11월', '12월' ],
-											datasets : [
-													{
-														label : label,
-														data :arrayData,
-														borderColor : color,
-														backgroundColor : "rgba(255, 201, 14, 0.5)",
-														fill : false,
-														lineTension : 0
-													} ]
-										},
-										options : {
-											responsive : true,
-											title : {
-												display : true,
-												text : '홈페이지 통계'
-											},
-											tooltips : {
-												mode : 'index',
-												intersect : false,
-											},
-											hover : {
-												mode : 'nearest',
-												intersect : true
-											},
-											scales : {
-												xAxes : [ {
-													display : true,
-													scaleLabel : {
-														display : true,
+					$(document)
+							.ready(
+									function() {
+										var statics = "statics="
+												+ $("#statics").val();
+										var url;
 
-													}
-												} ],
-												yAxes : [ {
-													display : true,
-													ticks : {
-														suggestedMin : 0,
+										if ($("#statics").val("recipe").prop(
+												"selected", true)) {
+											url = "recipeAction.do";
+										} else if ($("#statics").val("user")
+												.prop("selected", true)) {
+											url = "userAction.do";
+										} else if ($("#statics").val("sale")
+												.prop("selected", true)) {
+											url = "saleAction.do";
+										}
+										$
+												.ajax({
+													type : "POST",
+
+													url : url,
+													data : statics,
+													dataType : "json",
+													error : function(error) {
+														alert("에러"
+																+ error.status);
 													},
-													scaleLabel : {
-														display : true,
-			    
+													success : function(args) {
+														var arrayData = [ 0, 0,
+																0, 0, 0, 0, 0,
+																0, 0, 0, 0, 0 ];
+														var label = "";
+														var color;
+
+														if ($("#statics").val() == "recipe") {
+															color = "rgba(255, 201, 14, 1)";
+															label = "레시피 판매량";
+															for (var i = 0; i < 12; i++) {
+																for ( var j in args) {
+																	if (args[j].monthRecipe == (i + 1)) {
+																		arrayData[i] = args[j].recipeCount;
+																	}
+																}
+
+															}
+															alert(arrayData);
+														} else if ($("#statics")
+																.val() == "user") {
+															color = "rgba(54, 162, 235, 1)";
+															label = '가입 회원 수';
+
+															for (var i = 0; i < 12; i++) {
+																for ( var j in args) {
+																	if (args[j].monthUser == (i + 1)) {
+																		arrayData[i] = args[j].userCount;
+																	}
+																}
+															}
+															alert(arrayData);
+														} else if ($("#statics")
+																.val() == "sale") {
+															color = "rgba(75, 192, 192, 1)";
+															label = '레시피 등록건수';
+
+															for (var i = 0; i < 12; i++) {
+																for ( var j in args) {
+																	if (args[j].monthSale == (i + 1)) {
+																		arrayData[i] = args[j].recipeSaleCount;
+																	}
+																}
+
+															}
+															alert(arrayData);
+														}
+														new Chart(
+																document
+																		.getElementById("canvas"),
+																{
+																	type : 'line',
+																	data : {
+																		labels : [
+																				'1월',
+																				'2월',
+																				'3월',
+																				'4월',
+																				'5월',
+																				'6월',
+																				'7월',
+																				'8월',
+																				'9월',
+																				'10월',
+																				'11월',
+																				'12월' ],
+																		datasets : [ {
+																			label : label,
+																			data : arrayData,
+																			borderColor : color,
+																			backgroundColor : "rgba(255, 201, 14, 0.5)",
+																			fill : false,
+																			lineTension : 0
+																		} ]
+																	},
+																	options : {
+																		responsive : true,
+																		title : {
+																			display : true,
+																			text : '홈페이지 통계'
+																		},
+																		tooltips : {
+																			mode : 'index',
+																			intersect : false,
+																		},
+																		hover : {
+																			mode : 'nearest',
+																			intersect : true
+																		},
+																		scales : {
+																			xAxes : [ {
+																				display : true,
+																				scaleLabel : {
+																					display : true,
+
+																				}
+																			} ],
+																			yAxes : [ {
+																				display : true,
+																				ticks : {
+																					suggestedMin : 0,
+																				},
+																				scaleLabel : {
+																					display : true,
+
+																				}
+																			} ]
+																		}
+																	}
+																});
 													}
-												} ]
-										}	}}
-									);  
-								}
-			      });//ajax
-			});//ready
-			</script>
-			</div>
+												});//ajax
+									});//ready
+				</script>
+			
+						</div>
 		</div>
 		<div id="sidebar" class="inactive">
 			<div class="inner">
@@ -284,20 +318,13 @@
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">홈페이지
+							href="http://localhost:8082/KitchenNote/adminStatics/adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
-	<footer id="footer">
-		<p class="copyright">
-			&copy; Untitled. All rights reserved. Demo Images: <a
-				href="https://unsplash.com">Unsplash</a>. Design: <a
-				href="https://html5up.net">HTML5 UP</a>.
-		</p>
-	</footer>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>

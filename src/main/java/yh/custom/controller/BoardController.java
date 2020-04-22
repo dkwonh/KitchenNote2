@@ -112,14 +112,12 @@ public class BoardController {
 
 	@RequestMapping(value = "update.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") BoardDto dto) throws Exception {
-		System.out.println(dto);
 		return "customer/modifiedView";
 		
 	} // 게시글 수정
 
 	@RequestMapping(value = "update2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") BoardDto dto) throws Exception {
-		System.out.println(dto);
 		boardService.update(dto);
 		return "redirect:list.do?pageNum=0";
 	} 
