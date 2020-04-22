@@ -11,29 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="homeJs/home.js"></script>
 <script>
-<%
-String member_id = (String)session.getAttribute("MINFO");
-Integer level = (Integer)session.getAttribute("LEVEL");
-%>
-
-$(function(){
-	
-if("<%=member_id%>"== "null"){
-	$("li.out").css("display","inline-block");
-	$("li.in").css("display","none");
-}
-else{
-	$("li.in").css("display","inline-block");
-	$("li.out").css("display","none");
-}
-
-if("<%=level%>"!= 0 ){
-	$("li.admin").css("display","none");
-}
-else{
-	$("li.admin").css("display","inline-block");
-}
-});
 function itemClick(num){
 	location.href="notifyItem.do?num="+num
 }
@@ -52,7 +29,12 @@ function itemClick(num){
 				</div>
 				
 				<section>
-				<%@include file="category.jsp" %>
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
 				</section>
 	<section id=search class="alt 4u 12u$">
 	
