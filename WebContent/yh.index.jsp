@@ -15,7 +15,7 @@
 	<br>
 	<a href="myPage/memberInfo.do">회원 정보 수정</a>
 	<br>
-	<a href="adminStatics/adminStatics.do">홈페이지 통계</a>
+	<a href="adminStatics.do">홈페이지 통계</a>
 	<br>
 </body>
 </html>

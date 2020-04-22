@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import yh.admin.service.AdminStaticsService;
 
 @Controller
-@RequestMapping(value = "/adminStatics/")
 public class AdminStaticsController {
 
 	@Autowired
@@ -60,9 +59,6 @@ public class AdminStaticsController {
 
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter();
-
-		/* data = json.toJson(statics); */
 
 		if (recipe != null) {
 			data += json.toJson(recipe);
@@ -80,9 +76,6 @@ public class AdminStaticsController {
 		user = service.userCount(statics);
 		Gson json = new Gson();
 		response.setContentType("text/html;charset=utf-8");
-		// PrintWriter out = response.getWriter();
-
-		// data = json.toJson(statics);
 
 		if (user != null) {
 			data += json.toJson(user);

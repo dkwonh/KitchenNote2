@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale = 1">
 <meta http-equiv="Content-Type" content="text/html; charset = utf-8"
 	pageEncoding="utf-8">
-<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../../../assets/css/main.css" />
 <script src='//unpkg.com/vue-chartjs@2.6.0/dist/vue-chartjs.full.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js'></script>
 <script src='//unpkg.com/hchs-vue-charts@1.2.8'></script>
@@ -298,16 +298,16 @@
 										1:1 문의</a></li>
 							</ul></li>
 						<li><a
-							href="adminStatics/adminStatics.do">홈페이지
+							href="adminStatics.do">홈페이지
 								통계 </a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/js/skel.min.js"></script>
-	<script src="../assets/js/util.js"></script>
-	<script src="../assets/js/main.js"></script>
+	<script src="../../../assets/js/jquery.min.js"></script>
+	<script src="../../../assets/js/skel.min.js"></script>
+	<script src="../../../assets/js/util.js"></script>
+	<script src="../../../assets/js/main.js"></script>
 </body>
 </html>
