@@ -37,7 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 팔로잉 수 가져오기 --><!-- member_id가 소식을 받아오는 사람들의 수 -->
 	<select id="following" resultType="int" parameterType="String">
-		<!-- select count(*) from Subscribe where follower = 'test12@ki.com' -->
 		select count(*) from Subscribe where follower = #{member_id}
 	</select>
 	<!-- 팔로워 리스트 --><!-- member_id의 소식을 받는 사람들 리스트 -->
