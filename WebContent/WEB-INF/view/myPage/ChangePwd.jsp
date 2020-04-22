@@ -40,7 +40,6 @@
 					alert("비밀번호를 확인해주세요");
 				},
 				success : function(data) {
-					alert(data);
 					if ($("#password").val() != data) {
 						alert("비밀번호를 확인해주세요.");
 						document.pwdcheck.password.focus();

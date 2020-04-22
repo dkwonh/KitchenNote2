@@ -27,11 +27,7 @@
 			}
 		});
 		$("#btnUpdate").click(function() {
-			document.form1.action = "update.do?num=" + $
-			{
-				dto.num
-			}
-			;
+			document.form1.action = "update.do?num=" + ${dto.num};
 			document.form1.submit();
 		});
 		$("#btnNon").click(function() {

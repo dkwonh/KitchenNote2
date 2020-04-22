@@ -105,9 +105,7 @@
 				</div>
 
 				<script>
-					$(document)
-							.ready(
-									function() {
+					$(document).ready(function() {
 										var statics = "statics="
 												+ $("#statics").val();
 										var url;
@@ -122,16 +120,14 @@
 												.prop("selected", true)) {
 											url = "saleAction.do";
 										}
-										$
-												.ajax({
+										$.ajax({
 													type : "POST",
 
 													url : url,
 													data : statics,
 													dataType : "json",
 													error : function(error) {
-														alert("에러"
-																+ error.status);
+														alert("에러"+ error.status);
 													},
 													success : function(args) {
 														var arrayData = [ 0, 0,
@@ -151,7 +147,6 @@
 																}
 
 															}
-															alert(arrayData);
 														} else if ($("#statics")
 																.val() == "user") {
 															color = "rgba(54, 162, 235, 1)";
@@ -181,10 +176,8 @@
 															alert(arrayData);
 														}
 														new Chart(
-																document
-																		.getElementById("canvas"),
-																{
-																	type : 'line',
+																document.getElementById("canvas"),
+																{type : 'line',
 																	data : {
 																		labels : [
 																				'1월',
@@ -247,8 +240,7 @@
 												});//ajax
 									});//ready
 				</script>
-			
-						</div>
+			</div>
 		</div>
 		<div id="sidebar" class="inactive">
 			<div class="inner">
