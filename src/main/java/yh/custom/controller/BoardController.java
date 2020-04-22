@@ -47,8 +47,7 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
-
-	@RequestMapping("list.do") // 게시글 목록
+	@RequestMapping("customer/list.do") // 게시글 목록
 	public ModelAndView list(@RequestParam  (value="pageNum",required = false) int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
 			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
@@ -80,18 +79,18 @@ public class BoardController {
 		return mav;
 	}
 
-	@RequestMapping(value = "write.do", method = RequestMethod.GET)
+	@RequestMapping(value = "customer/write.do", method = RequestMethod.GET)
 	public String write() {
 		return "customer/write";
 	} // 게시글 작성화면
 
-	@RequestMapping(value = "insert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "customer/insert.do", method = RequestMethod.POST)
 	public String insert(@ModelAttribute BoardDto dto) throws Exception {
 		 boardService.create(dto); 
 		return "redirect:list.do?pageNum=0";
 	} // 게시글 작성 처리
 
-	@RequestMapping(value = "view.do", method = RequestMethod.GET)
+	@RequestMapping(value = "customer/view.do", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int num, HttpSession session) throws Exception {
 		boardService.increaseViewcnt(num, session);
 		ModelAndView mav = new ModelAndView();
@@ -101,7 +100,7 @@ public class BoardController {
 		return mav;
 	} // 게시글 상세 내용 조회, 게시글 조회수 증가 처리
 
-	@RequestMapping(value = "view.do", method = RequestMethod.POST)
+	@RequestMapping(value = "customer/view.do", method = RequestMethod.POST)
 	public ModelAndView cancleView(@RequestParam int num, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/view");
@@ -109,19 +108,19 @@ public class BoardController {
 		return mav;
 	} // 취소 버튼
 
-	@RequestMapping(value = "update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "customer/update.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") BoardDto dto) throws Exception {
 		return "customer/modifiedView";
 		
 	} // 게시글 수정
 
-	@RequestMapping(value = "update2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "customer/update2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") BoardDto dto) throws Exception {
 		boardService.update(dto);
 		return "redirect:list.do?pageNum=0";
 	} 
 
-	@RequestMapping("delete.do")
+	@RequestMapping("customer/delete.do")
 	public String delete(@RequestParam int num) throws Exception {
 		boardService.delete(num);
 		return "redirect:list.do?pageNum=0";

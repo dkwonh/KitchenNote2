@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import yh.admin.service.AdminStaticsService;
 
 @Controller
-@RequestMapping(value = "/adminStatics/")
 public class AdminStaticsController {
 
 	@Autowired
@@ -27,7 +26,7 @@ public class AdminStaticsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminStaticsController.class);
 
-	@RequestMapping(value = "adminStatics.do", method = RequestMethod.GET)
+	@RequestMapping(value = "adminStatics/adminStatics.do", method = RequestMethod.GET)
 	public ModelAndView statics(String statics) throws Exception {
 
 		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
@@ -49,9 +48,10 @@ public class AdminStaticsController {
 		return mav;
 	}
 
-	@RequestMapping(value = "recipeAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "adminStatics/recipeAction.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String action(String statics, HttpServletResponse response) throws Exception {
+		System.out.println("treststset");
 		String data = "";
 
 		List<AdminRecipeDto> recipe = new ArrayList<AdminRecipeDto>();
@@ -67,7 +67,7 @@ public class AdminStaticsController {
 		return data;
 	};
 
-	@RequestMapping(value = "userAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "adminStatics/userAction.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String user(String statics, HttpServletResponse response) throws Exception {
 
@@ -83,7 +83,7 @@ public class AdminStaticsController {
 		return data;
 	};
 
-	@RequestMapping(value = "saleAction.do", method = RequestMethod.POST)
+	@RequestMapping(value = "adminStatics/saleAction.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String sale(String statics, HttpServletResponse response) throws Exception {
 

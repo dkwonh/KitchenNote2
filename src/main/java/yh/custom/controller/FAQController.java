@@ -16,7 +16,6 @@ import yh.admin.controller.FilterDto;
 import yh.custom.service.FAQService;
 
 @Controller
-@RequestMapping(value="/customer/")
 public class FAQController {
 
 	public static final int PAGE_SIZE = 10;
@@ -46,7 +45,7 @@ public class FAQController {
 	@Autowired
 	FAQService service;
 
-	@RequestMapping("FAQ.do")
+	@RequestMapping("customer/FAQ.do")
 	public ModelAndView list(@RequestParam /* (value="pageNum",required = false) */int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
 			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
@@ -76,7 +75,7 @@ public class FAQController {
 		return mav;
 	} // 게시글 리스트
 
-	@RequestMapping(value = "FAQView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "customer/FAQView.do", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int bno, HttpSession session) throws Exception {
 		service.increaseViewcnt(bno, session);
 		ModelAndView mav = new ModelAndView();
@@ -86,7 +85,7 @@ public class FAQController {
 		return mav;
 	} // 게시글 상세 조회 , 게시글 조회수 증가
 
-	@RequestMapping(value = "FAQView.do", method = RequestMethod.POST)
+	@RequestMapping(value = "customer/FAQView.do", method = RequestMethod.POST)
 	public ModelAndView cancleView(@RequestParam int bno, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("customer/FAQView");
