@@ -2,8 +2,7 @@ package jb.sample.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jb.sample.dao.BoardDAO;
@@ -12,7 +11,7 @@ import jb.sample.model.RecipeDTO;
 @Service("mypageService")
 public class BoardServiceImpl implements BoardService {
 
-	@Inject
+	@Autowired
 	private BoardDAO dao;
 
 	// 내가 구매한 레시피
