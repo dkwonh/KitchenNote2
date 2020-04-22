@@ -101,7 +101,9 @@
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
+				<header class="major">
 					<h2>마이 페이지</h2>
+					</header>
 					<image src="#">
 					<ul>
 						<li><a

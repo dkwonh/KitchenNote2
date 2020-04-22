@@ -99,7 +99,9 @@
 			<div class="inner">
 				<nav id="menu">
 					<p />
+					<header class="major">
 					<h2>고객센터</h2>
+					</header>
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do?pageNum=0">자주
