@@ -10,6 +10,7 @@ import wh.admin.manage.model.FilterDto;
 import wh.admin.manage.model.NotifyDto;
 import wh.user.home.dao.HomePageDao;
 import wh.user.home.model.HomePageCategoryName;
+import wh.user.home.model.HomePageMemberDto;
 import wh.user.home.model.HomePageNangbuDto;
 import wh.user.home.model.HomePageRecipeConfirmDto;
 import wh.user.home.model.HomePageRecipeDto;
@@ -77,6 +78,18 @@ public class HomePageService {
 	
 	public HomePageRecipeConfirmDto getConfirm(HomePageRecipeConfirmDto req) {
 		return homePageDao.getConfirm(req);
+	}
+	
+	public HomePageMemberDto getMember(String member_id) {
+		return homePageDao.getMember(member_id);
+	}
+	
+	public int insertPur(HomePageRecipeConfirmDto recipe) {
+		return homePageDao.insertPur(recipe);
+	}
+	
+	public int updateFork(String member_id) {
+		return homePageDao.updateFork(member_id);
 	}
 	
 }

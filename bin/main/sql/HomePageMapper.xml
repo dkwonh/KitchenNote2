@@ -79,8 +79,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 레시피 체크 -->
 	<select id="getConfirm" parameterType="wh.user.home.model.HomePageRecipeConfirmDto" resultType="wh.user.home.model.HomePageRecipeConfirmDto">
-		select mem.fork, info.recipe_id,mem.member_id, info.price, pur_member_id, info.member_id reg_member_id from recipe_info info join pur_recipe pur join members mem on info.recipe_id = pur.recipe_id and pur.pur_member_id = mem.member_id where info.recipe_id = #{recipe_id} and mem.member_id = #{member_id};
+		select info.recipe_id, info.price, pur_member_id, info.member_id from recipe_info info join pur_recipe pur on info.recipe_id = pur.recipe_id where info.recipe_id = #{recipe_id} and pur_member_id = #{member_id};
 	</select>
+	
+	<select id="getMember" parameterType="string" resultType="wh.user.home.model.HomePageMemberDto">
+		select * from members where member_id =#{member_id}
+	</select>
+	
+	<insert id="insertPur" parameterType="wh.user.home.model.HomePageRecipeConfirmDto">
+		insert into pur_recipe values(#{recipe_id}, #{pur_member_id}, #{price}, now(), 0)
+	</insert>
+	
+	<update id="updateFork" parameterType="string">
+		update members set fork = fork-1 where member_id = #{member_id}
+	</update>
 	
 	
 </mapper>

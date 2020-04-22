@@ -6,6 +6,11 @@
 					</form>
 					</section>
 					<ul class="icons"> 
+					<li><a>
+						
+						${NICK}
+						
+						</a></li>
 						<li class="out" ><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
 							sign-in
 						</span></a>
@@ -31,6 +36,7 @@
 				<%
 					String member_id = (String)session.getAttribute("MINFO");
 					Integer level = (Integer)session.getAttribute("LEVEL");
+					String nick = (String)session.getAttribute("NICK");
 				%>
 				$(function(){
 					if("<%=member_id%>"== "null"){

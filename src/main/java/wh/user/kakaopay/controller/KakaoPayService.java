@@ -15,6 +15,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import wh.admin.manage.model.PayListDto;
+import wh.user.home.model.HomePageMemberDto;
 import wh.user.kakaopay.dao.KakaoPayDao;
 import wh.user.kakaopay.model.*;
 
@@ -109,5 +110,9 @@ public class KakaoPayService {
 	
 	public int insertKakaoPay(PayListDto pay) {
 		return kakaoPayDao.insertKakaoPay(pay);
+	}
+	
+	public int updateFork(PayListDto pay) {
+		return kakaoPayDao.updateFork(pay);
 	}
 }
