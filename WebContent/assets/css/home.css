@@ -1,6 +1,13 @@
 @charset "utf-8";
 
-
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 	.field1>ul {
     height: 270px;
     border: 1px solid #a73f40;
@@ -105,14 +112,8 @@ ul li {
 	cursor:pointer;
 }
 
-@font-face {
-	font-family: 'Cafe24Oneprettynight';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
+
+
 
 #main *{
 	font-family:'Cafe24Oneprettynight';

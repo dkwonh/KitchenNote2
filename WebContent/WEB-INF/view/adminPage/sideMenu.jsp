@@ -1,4 +1,18 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 <div id="sidebar">
 	<div class="inner">
 		<nav id=menu>
