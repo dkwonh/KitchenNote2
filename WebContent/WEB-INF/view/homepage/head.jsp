@@ -1,3 +1,5 @@
+
+
 <header id="header">
 					<a href="home.do" class="logo"><img src="./images/KakaoTalk_20200422_111639302.png" width="300px" height=150px></a>
 					<section id=search class="alt 4u 12u$">
@@ -6,11 +8,7 @@
 					</form>
 					</section>
 					<ul class="icons"> 
-					<li><a>
-						
-						${NICK}
-						
-						</a></li>
+		
 						<li class="out" ><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
 							sign-in
 						</span></a>
@@ -32,6 +30,7 @@
 					</ul>
 				
 				</header>
+				
 				<script>
 				<%
 					String member_id = (String)session.getAttribute("MINFO");
@@ -55,6 +54,5 @@
 						$("li.admin").css("display","inline-block");
 					}
 				});
-				</script>
-				
+			</script>
 				 

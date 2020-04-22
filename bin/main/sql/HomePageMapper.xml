@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertPur" parameterType="wh.user.home.model.HomePageRecipeConfirmDto">
-		insert into pur_recipe values(#{recipe_id}, #{pur_member_id}, #{price}, now(), 0)
+		insert into pur_recipe values(#{recipe_id}, #{pur_member_id}, #{price}, now(), 1)
 	</insert>
 	
 	<update id="updateFork" parameterType="string">

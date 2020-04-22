@@ -359,7 +359,7 @@ public class HomePageController implements ApplicationContextAware {
 	public String buyRecipe(int recipe_id, HttpSession session) {
 		String member_id = (String)session.getAttribute("MINFO");
 		HomePageRecipeConfirmDto recipe = new HomePageRecipeConfirmDto();
-		recipe.setMember_id(member_id);
+		recipe.setPur_member_id(member_id);
 		recipe.setPrice(1);
 		recipe.setRecipe_id(recipe_id);
 		
