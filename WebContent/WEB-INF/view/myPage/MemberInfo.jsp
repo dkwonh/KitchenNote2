@@ -138,7 +138,9 @@
 		<div id="sidebar">
 			<div class="inner">
 				<nav id="menu">
+				<header class="major">
 					<h2>마이 페이지</h2>
+					</header>
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
