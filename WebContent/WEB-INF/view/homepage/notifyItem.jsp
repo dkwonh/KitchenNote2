@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
-	function close(){
-		alert("!");
+	function goBack(){
+
 		history.go(-1);
 		}
 </script>
@@ -29,7 +29,7 @@ ${dto.content }
 <b>${dto.reg_date }</b>
 </div>
 
-<button onclick="close()">목록으로</button>
+<button onclick="goBack()">목록으로</button>
 </div>
 </div>
 </div>
