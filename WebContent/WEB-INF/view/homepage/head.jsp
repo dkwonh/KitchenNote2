@@ -1,4 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
 <header id="header">
 					<a href="home.do" class="logo"><img src="images/KakaoTalk_20200420_110749263.png" width="300px" height=150px>
 					KitchenNote</a>
@@ -8,10 +7,10 @@
 					</form>
 					</section>
 					<ul class="icons"> 
-						<li class="out" onclick="logout()"><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
+						<li class="out" ><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
 							sign-in
 						</span></a>
-						<li class="in"><a href="#" class="icon fa-sign-out"><span class=label>
+						<li class="in"><a href="login/logoutOk.do" class="icon fa-sign-out"><span class=label>
 							sign-out
 						</span></a>
 						

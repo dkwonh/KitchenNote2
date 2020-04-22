@@ -18,6 +18,7 @@ import hn.user.model.MemberDao;
 import hn.user.model.MemberDto;
 import hn.user.service.memberService;
 import hn.user.service.EmailService;
+import hn.user.service.EmailServiceCode;
 import hn.user.model.EmailVO;
 
 @Controller
@@ -29,6 +30,8 @@ public class MemberController {
 	memberService msve;
 	@Autowired
 	private EmailService emailService;
+	@Autowired
+	private EmailServiceCode emailServiceCode;
 
 	
 	public void setDao(MemberDao dao) {
@@ -57,6 +60,7 @@ public class MemberController {
 		List<MemberDto> list= msve.loginOk(lc);
 		int i = list.size();
 		if (i == 0) {
+			session.setAttribute("NOT", 0);
 			return "login/loginForm"; //로그인 실패
 		}else {
 			session.setAttribute("MINFO", lc.getMember_id());
@@ -65,6 +69,7 @@ public class MemberController {
 		} 
 	}
 	//로그아웃
+	@RequestMapping(value = "/login/logoutOk.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/index.jsp";
@@ -84,6 +89,31 @@ public class MemberController {
 		//System.out.println("id"+i2);
 			return i2;
 	}
+	//이메일 인증 창 열기
+		@RequestMapping(value = "/login/emailCode.do")
+		public String form3() {
+			return "login/emailCodeForm";
+		}
+	// 인증번호 이메일 보내기
+		@RequestMapping(value="/login/sendMail.do", produces = "application/json; charset=utf8")
+		@ResponseBody()
+		public String sendMail2(@RequestParam() String member_id) throws Exception {
+			System.out.println("member_id::"+member_id);
+			EmailVO email2 = new EmailVO();
+
+			String receiver = member_id; // Receiver.메일 받을 주소
+			String subject = "[KitchenNote]이메일 인증 번호.";
+			String content = "";
+
+			email2.setReceiver(receiver);
+			email2.setSubject(subject);
+			email2.setContent(content);
+
+			int result = emailServiceCode.sendMail2(email2);
+			return result+"";
+
+		}
+	
 	//닉네임 중복확인
 	@RequestMapping(value = "/login/nkChk.do",method = RequestMethod.GET)
 	@ResponseBody
@@ -105,7 +135,7 @@ public class MemberController {
 	}
 	//비밀번호 찾기
 	@RequestMapping(value = "/login/pwFind.do",method = RequestMethod.GET)
-	public String form3() {
+	public String form4() {
 		return "login/pwFind";
 	}
 	
@@ -133,10 +163,27 @@ public class MemberController {
 
 		email.setContent(content);
 
-		boolean result = emailService.sendMail(email);
+		String result = emailService.sendMail(email);
 
-		return "이메일이 전송 되었습니다: " + result
-				+ "<p><button type='button'  onclick=\"window.close();\">확인</button></p>";
+		return /* "이메일이 전송 되었습니다: "*/
+				"<link rel=\"stylesheet\" href=\"/KitchenNote2/assets/css/main.css\" />"
+				+"<style>@font-face {\r\n" + 
+				"	font-family: 'Cafe24Oneprettynight';\r\n" + 
+				"	src:\r\n" + 
+				"		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')\r\n" + 
+				"		format('woff');\r\n" + 
+				"	font-weight: normal;\r\n" + 
+				"	font-style: normal;\r\n" + 
+				"}</style>"
+				+ "<div id=\"main\">\r\n" + 
+				"<div class=\"inner\" style=\"margin-top: 50px; font-family: 'Cafe24Oneprettynight';\">"
+				+result
+				+ "<br><br><button type='button'  onclick=\"window.close();\">닫기</button>"
+				+ "</div></div>"
+				+ "<script src=\"/KitchenNote2/assets/js/jquery.min.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/skel.min.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/util.js\"></script>\r\n" + 
+				"<script src=\"/KitchenNote2/assets/js/main.js\"></script>";
 
 	}
 	

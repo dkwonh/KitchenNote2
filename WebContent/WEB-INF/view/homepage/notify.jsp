@@ -13,37 +13,27 @@
 <script>
 <%
 String member_id = (String)session.getAttribute("MINFO");
-String level = (String)session.getAttribute("LEVEL");
-
-if(member_id == null){
-	member_id = "guest";
-}
+Integer level = (Integer)session.getAttribute("LEVEL");
 %>
-function logout(){
-<%
-session.invalidate();
-%>
-location.replace("home.do");
-}
 
-	$(function(){
+$(function(){
 	
-	if("<%=member_id%>"=="guest"){
-		$("li.out").css("display","inline-block");
-		$("li.in").css("display","none");
-	}
-	else{
-		$("li.in").css("display","inline-block");
-		$("li.out").css("display","none");
-	}
+if("<%=member_id%>"== "null"){
+	$("li.out").css("display","inline-block");
+	$("li.in").css("display","none");
+}
+else{
+	$("li.in").css("display","inline-block");
+	$("li.out").css("display","none");
+}
 
-	if("<%=level%>"!="0"){
-		$("li.admin").css("display","none");
-	}
-	else{
-		$("li.admin").css("display","inline-block");
-	}
-	})
+if("<%=level%>"!= 0 ){
+	$("li.admin").css("display","none");
+}
+else{
+	$("li.admin").css("display","inline-block");
+}
+});
 function itemClick(num){
 	location.href="notifyItem.do?num="+num
 }
