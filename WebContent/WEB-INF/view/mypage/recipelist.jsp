@@ -42,10 +42,7 @@
 				</fieldset>
 			</c:forEach>
 		</div>
-		<aside>
-			
-			<%@include file="../include/aside.jsp"%>
-		</aside>
+		
 	</div>
 </body>
 </html>
