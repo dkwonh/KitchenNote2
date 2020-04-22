@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/KitchenNote2/assets/css/main.css" />
 <meta charset="UTF-8">
 <title>로그인</title>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <style>
 .u5 {
 	margin: auto;
@@ -86,7 +87,7 @@ function open_pw(){
 	<c:if test="${NOT==0}">
 		<script>
      		alert("로그인에 실패했습니다. 다시로그인 해주세요.");
-     		<% session.invalidate(); %>
+     		<% session.removeAttribute("NOT"); %>
 		</script>
 	</c:if>
 	<div id="main">

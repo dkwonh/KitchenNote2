@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/KitchenNote2/assets/css/main.css" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <title>회원 가입</title>
 <style>
 .u5 {
