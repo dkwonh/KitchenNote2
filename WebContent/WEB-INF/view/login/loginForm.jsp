@@ -12,7 +12,6 @@
 .u5 {
 	margin: auto;
 }
-
 @font-face {
 	font-family: 'BBTreeTR';
 	src:
@@ -29,15 +28,12 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 #main * {
 	font-family: 'Cafe24Oneprettynight';
 }
-
 #pw {
 	font-family: 'BBTreeTR';
 }
-
 td b{
 font-size: 15pt;
 }
@@ -52,12 +48,10 @@ document.addEventListener('keydown', function(event) {
 	    event.preventDefault();
 	  };
 	}, true);
-
 function Login(){
         var form = document.login1;
         var e_Chk = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         var email = document.getElementById("id").value;
-
                //아이디에서 입력 필수 조건문
                if (form.member_id.value == ""){
                        alert("이메일을 입력하세요!");
@@ -69,30 +63,23 @@ function Login(){
                    form.member_id.focus();
                    return false;
                } 
-
                if (form.password.value == ""){
                     alert("패스워드를 입력하세요!");
                     form.password.focus();//포커스를 Password박스로 이동.
                     return;
                }
-
                if (form.password.value.length <8 || form.password.value.length > 20)
                {
                     alert("비밀번호는 8~20자 이내로 입력 가능 합니다!");
-
                     form.password.select();
                     return;
                }
-
       form.submit();
       }
-
 //비밀번호 찾기창
 function open_pw(){
 	window.open("pwFind.do", "비밀번호 찾기","scrollbars=no,resizable=no,width=510,height=400").close;
 }
-
-
 </script>
 </head>
 <body>

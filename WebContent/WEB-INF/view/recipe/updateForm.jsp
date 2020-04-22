@@ -99,7 +99,7 @@ $(function(){
 							if (tag != "" && !existed) {
 								$("#hash_inbox")
 										.append(
-												'<span class="added_tag">#'
+												'<span class="added_tag icon fa-hashtag"> '
 														+ tag
 														+ ' <a href="javascript:;">X</a>'
 														+ '<input type="hidden" class="htag_name" name="tag_name" value="'+tag+'"></span>')
@@ -210,12 +210,12 @@ function set_num() {
 function add_pro() {
 	$("#process")
 			.append(
-					'<li><input type="hidden" value="1" name="process_num">'
+					'<li class="box"><input type="hidden" value="1" name="process_num">'
 							+ '<div class="9u 12u$(small)">'
 							+ '<textarea name="process_content" placeholder="설명" required></textarea><br>'
-							+ '<input name="process_imagefile" type="file" accept="image/*"><a class="button small icon fa-trash delProImg">파일삭제</a><input type="hidden" name="process_image" value="">'
+							+ '<input name="process_imagefile" type="file" accept="image/*"><a class="icon fa-trash delProImg">사진삭제</a><input type="hidden" name="process_image" value="">'
 							+ '</div>'
-							+ '<div class="proImg 2u 10u(small)"></div> <a class="button icon fa-remove" onclick="del_pro(this)"></a></li>');
+							+ '<div class="proImg 2u 10u(small)"></div> <a class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>');
 	set_num();
 }
 
@@ -256,6 +256,11 @@ function del_pro(obj) {
 #mainImg img {
 	height: 100%;
 	display: inline-block;
+}
+
+#delMainImg, .delProImg{
+font-size: larger;
+cursor: pointer;
 }
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -349,22 +354,30 @@ li {
 	border-radius: 0.375em;
 }
 
+#hash_inbox strong{
+font-size: 20px;
+}
+
 #hash_inbox span {
 	margin-bottom: 10px;
 }
 
 .added_tag {
+	font-size:17px;
+	font-weight:bolder;
 	cursor: pointer;
-	background-color: #ffcc80;
+	background-color: #f56a6a;
+	color:#FFF;
 	padding: 2px 5px;
 	margin: 2px 2px;
-	border-radius: 10%;
+	border-radius: 0.375em;
 	display: inline-block;
 }
 
 .added_tag a {
 	color: black;
-	text-decoration: none;
+	border-bottom: 0;
+	font-weight: normal;
 }
 
 input[type=submit] {
@@ -375,26 +388,33 @@ input[type=submit] {
 </style>
 </head>
 <body>
+<c:if test="${MINFO != info.member_id }">
+<script>alert("수정할 수 없는 레시피입니다.");
+location.replace("/KitchenNote2/home.do");
+</script>
+</c:if>
 	<div id="main">
-		<div class="inner 10u">
+		<div class="inner">
+		<%@ include file="../homepage/head.jsp"%>
+		<div class="10u" style="margin: 1em auto;">
 			<header class="main">
-				<h2>레시피 수정하기</h2>
+				<h1 style="margin-top: 0.5em;">레시피 수정하기</h1>
 			</header>
 			<hr class="major">
 			<form method="post" enctype="multipart/form-data" id="updateForm">
 				<input type="hidden" name="recipe_id" value="${info.recipe_id }">
 				<div class="form1 row">
-					<h3 class="3u">레시피 제목</h3>
+					<h2 class="3u">레시피 제목</h2>
 					<div class="9u$">
 						<input type="text" name="recipe_name" value="${info.recipe_name }">
 					</div>
-					<h3 class="3u">요리소개</h3>
+					<h2 class="3u">요리소개</h2>
 					<div class="9u$">
 						<input type="text" name="recipe_exp" value="${info.recipe_exp }">
 					</div>
-					<h3 class="3u">요리 대표사진</h3>
+					<h2 class="3u">요리 대표사진</h2>
 					<div class="9u$">
-						<input type="file" name="imagefile" accept="image/*"><a class="button small icon fa-trash" id="delMainImg">파일삭제</a><input
+						<input type="file" name="imagefile" accept="image/*"><a class="icon fa-trash" id="delMainImg">사진삭제</a><input
 							name="image" type="hidden" value="${info.image }">
 					</div>
 					<div id="mainImg" class="6u">
@@ -404,7 +424,7 @@ input[type=submit] {
 
 					<c:if test="${LEVEL ==2 }">
 						<div class="row" style="width: 100%;">
-							<h3 class="3u">가격</h3>
+							<h2 class="3u">가격</h2>
 							<div class="6u">
 								<input name="price" type="number" min="0" required value="0" />
 							</div>
@@ -413,7 +433,7 @@ input[type=submit] {
 					</c:if>
 				</div>
 				<hr class="major">
-				<h3>카테고리</h3>
+				<h2>카테고리</h2>
 				<div class="form2 row" style="margin: 0;">
 					<select name="category_id" class="3u 12u$(small)">
 						<option value="-1">:: 상황 ::</option>
@@ -463,7 +483,7 @@ input[type=submit] {
 				</div>
 				<hr class="major">
 
-				<h3>재료</h3>
+				<h2>재료</h2>
 				<ul id="ingredient">
 					<c:forEach var="i" items="${ing }">
 						<li><input type="text" name="ing_name" value="${i.ing_name }"
@@ -477,7 +497,7 @@ input[type=submit] {
 				</div>
 
 				<hr class="major">
-				<h3>요리순서</h3>
+				<h2>요리순서</h2>
 				<p>
 					조리시간 총 <input name="duration" type="number"
 						placeholder="조리시간(숫자만 입력)" required value="${info.duration }">분
@@ -486,17 +506,17 @@ input[type=submit] {
 
 				<ul id="process">
 					<c:forEach var="p" items="${process }">
-						<li><input type="hidden" value="${p.process_num }"
+						<li class="box"><input type="hidden" value="${p.process_num }"
 							name="process_num">
 							<div class="9u 12u$(small)">
 								<textarea name="process_content" placeholder="설명" required>${p.process_content }</textarea>
 								<br>
-								<input name="process_imagefile" type="file" accept="image/*"><a class="button small icon fa-trash delProImg">파일삭제</a><input type="hidden" name="process_image"
+								<input name="process_imagefile" type="file" accept="image/*"><a class="icon fa-trash delProImg">사진삭제</a><input type="hidden" name="process_image"
 							value="${p.process_image }">
 							</div>
 							<div class="proImg">
 								<img src="/img/${p.process_image }">
-							</div> <a class="button icon fa-remove" onclick="del_pro(this)"></a></li>
+							</div> <a class="button icon fa-remove delPro" onclick="del_pro(this)" style="margin: auto"></a></li>
 					</c:forEach>
 				</ul>
 				<div class="plusbtn">
@@ -504,13 +524,13 @@ input[type=submit] {
 				</div>
 				<hr class="major">
 				<div class="row">
-					<h3 class="3u">태그</h3>
+					<h2 class="3u">태그</h2>
 					<div id="hashtag" class="9u$">
 						<input type="text" id="tag_input" placeholder="태그 입력">
 						<div id="hash_inbox">
 							<strong>입력된 해시태그</strong><br>
 							<c:forEach var="t" items="${tag }">
-								<span class="added_tag">${t }<a href="javascript:;">X</a><input
+								<span class="added_tag icon fa-hashtag"> ${t } <a href="javascript:;">X</a><input
 									type="hidden" class="htag_name" name="tag_name" value="${t}"></span>
 							</c:forEach>
 						</div>
@@ -520,6 +540,7 @@ input[type=submit] {
 				<input type="submit" value="수정">
 
 			</form>
+			</div>
 		</div>
 	</div>
 	<script src="/KitchenNote2/assets/js/skel.min.js"></script>

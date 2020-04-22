@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>test</title>
+<title>${info.recipe_name }</title>
 <meta property="og:title" id="meta_title" content="KitchenNote" />
 <meta property="og:site_name" content="KitchenNote">
 <meta property="og:type" content="website">
@@ -17,7 +17,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
-
 //댓글가져오기
 function getComments(page){
 	$.ajax({
@@ -496,6 +495,7 @@ ul {
 a {
 	border: 0;
 }
+
 </style>
 </head>
 <body>
@@ -519,9 +519,8 @@ a {
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-
+	<%@ include file="../homepage/head.jsp"%>
 	<div id="wrapper">
-
 		<div id="main">
 			<div class="inner">
 				<!-- 사진 구분 : 서버,공공 -->
@@ -618,9 +617,9 @@ a {
 				</div>
 				<div id="info_basic">
 					<dl>
-						<dt class="icon fa-clock-o">조리시간</dt>
+						<dt class="icon fa-clock-o"> 조리시간</dt>
 						<dd>${info.duration }</dd>
-						<dt class="icon fa-heart">스크랩</dt>
+						<dt class="icon fa-heart"> 스크랩</dt>
 						<dd id="scrapcount">${info.scrap }</dd>
 					</dl>
 
@@ -683,8 +682,6 @@ a {
 			</div>
 		</div>
 	</div>
-
-	<div class="error"></div>
 	<script src="/KitchenNote2/assets/js/skel.min.js"></script>
 	<script src="/KitchenNote2/assets/js/util.js"></script>
 	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
