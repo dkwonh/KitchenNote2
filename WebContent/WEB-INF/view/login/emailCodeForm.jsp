@@ -83,15 +83,14 @@
 </head>
 <body class="text-center">
 	<div id="main">
-		<div class="inner" style="margin-top: 30px;">
-			<div style="margin: 0 auto; margin-top: 0px;" align="center">
+		<div class="inner" style="margin-top: 50px;">
+			<div style="margin: 0 auto;" align="center">
 				<h2>메일인증</h2>
 			</div>
-			<div class="7u u5">
+			<div class="10u u5">
 				<br>
 
-				<div style="padding: 5px; margin: 0 auto; max-width: 500px">
-					<br>
+				<div >
 					<!-- 인증번호 보내기 하면 이메일 보냄 -->
 					<form name="form3" action="sendMail.do" align="center">
 						<table align="center" cellspacing="0">							
@@ -113,14 +112,11 @@
 						<br>
 						<!-- 버튼 -->
 						<!-- 짧은버튼 -->
-						<div width="200" height="30" align="center" cellspacing="0">
-							<tbody>
-
-								<div style="padding-left: 30px">
-									<button type="button" onclick="fn_sendmail()" style="margin-right:15px;">인증번호 받기</button>
-									<input type="button" value="확인" onclick="fn_close()" style="margin-left:15px;">
+						<div class="8u" style="margin: auto;">
+								<div>
+									<button type="button" onclick="fn_sendmail()" style="float: left;">인증번호 받기</button>
+									<input type="button" value="확인" onclick="fn_close()" style="float: right;">
 								</div>
-							</tbody>
 						</div>
 					</form>
 				</div>
