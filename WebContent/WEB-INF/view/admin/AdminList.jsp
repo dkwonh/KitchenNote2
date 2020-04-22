@@ -48,7 +48,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -118,6 +118,7 @@
 					</c:forEach>
 				</table>
 				<button type="button" id="btnWrite">글쓰기</button>
+				<section>
 				<ul class="pagination">
 					<li><c:if test="${startPage > 10 }">
 							<a href="AdminList.do?pageNum=${startPage-10}" class="button">이전</a>
@@ -135,7 +136,7 @@
 							<span class="button disabled">다음</span>
 						</c:if></li>
 				</ul>
-			
+			</section>
 						</div>
 		</div>
 		<div id="sidebar">

@@ -60,7 +60,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -90,23 +90,27 @@
 					</ul>
 				
 				</header> 
-				<br>
+				<section>
 				<h2>회원 1:1 문의</h2>
+				<hr>
 				<form name="form1" method="post">
 					<div>
 						작성일자 :
 						<fmt:formatDate value="${dto.reg_date }"
 										pattern="yyyy-MM-dd a HH:mm:ss" />
 					</div>
-					<div>조회수 : ${dto.readcount }</div>
+					<br>
+					<div>조회수 : ${dto.readcount }</div><br>
 					<div>
 						이름 <input name="member_id" id="member_id"
 										value="${dto.member_id }" readonly>
 					</div>
+					<br>
 					<div>
 						제목<input value="${dto.subject}" name="subject" id="subject"
 										size="80" readonly>
 					</div>
+					<br>
 					<div class="4u 12u$(small)" readonly>
 						공개 여부 :<input type="radio" id="demo-priority-normal" name="secret"
 										value="${dto.secret }"> <label
@@ -119,7 +123,7 @@
 						내용
 						<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
 					</div>
-
+</section>
 					<div style="width: 650px; text-align: center;">
 						<input type="hidden" name="num" value="${dto.num}">
 						<button type="button" id="btnUpdate">답변하기</button>

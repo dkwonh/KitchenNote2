@@ -41,7 +41,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -79,8 +79,8 @@
 					
 								<h3>자주 묻는 질문/FAQ</h3>
 					<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
-					질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.<br>
-					<p>
+					질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.
+					<hr>
 				
 							</section>
 				<h4>자주 찾는 도움말</h4>
@@ -102,6 +102,7 @@
 										name="pageNum" value="1">
 					</p>
 					</form>
+					<hr>
 					<h4>자주 묻는 질문 목록</h4>
 					<p>
 					

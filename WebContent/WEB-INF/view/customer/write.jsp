@@ -68,7 +68,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -104,7 +104,9 @@
 									type="button" value="고객센터">
 				</div>
 				<br>
+				<section>
 				<h2>1:1 문의하기</h2>
+				<hr>
 				<form name="form1" method="post" action="insert.do">
 					<div>
 						제목 :<input name="subject" id="subject" size="80"
@@ -124,13 +126,14 @@
 					</div>
 					<input type="hidden" name="member_id" value="${member_id }">
 					<input type="hidden" name="status" value="${status}">
+					</section>
 					<div style="width: 650px; text-align: center;">
 						<button type="button" id="btnSave">확인</button>
 						<button type="button" id="btnCancel">취소</button>
 					</div>
 				</form>
-			
-						</div>
+				
+				</div>
 		</div>
 		<div id="sidebar">
 			<div class="inner">

@@ -73,7 +73,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -99,7 +99,9 @@
 					</ul>
 
 				</header>
+				<section>
 				<h2>수정하기</h2>
+				<hr>
 				<form name="form2" method="GET">
 					<div>
 						구분 : <select name="menu" id="selectBox">
@@ -111,14 +113,17 @@
 							<option value="신고">신고</option>
 						</select>
 					</div>
+					<br>
 					<div>
-						제목<input name="title" id="title" size="80" placeholder="글 제목 입력">
+						제목 : <input name="title" id="title" size="80" placeholder="글 제목 입력">
 					</div>
+					<br>
 					<div>
-						내용
+						내용 : 
 						<textarea name="content" id="content" rows="8" cols="80"
 							placeholder="글 내용 입력"></textarea>
 					</div>
+					</section>
 					<div style="width: 650px; text-align: center;">
 						<input type="hidden" name="bno" value="${dto.bno}">
 						<button type="button" id="btnConfirm">저장</button>

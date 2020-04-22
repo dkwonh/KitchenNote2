@@ -60,7 +60,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -88,15 +88,16 @@
 				</header>
 				<section>
 					<h2>상세 보기</h2>
+					<hr>
 					<form name="form1" method="post" readonly>
 						<div>분류 : ${dto.menu }</div>
 						<div>조회수 : ${dto.viewcnt }</div>
 						<div>
-							제목<input value="${dto.title}" name="title" id="title" size="80"
+							제목 : <input value="${dto.title}" name="title" id="title" size="80"
 								readonly>
 						</div>
 						<div>
-							내용
+							내용 :
 							<textarea name="content" id="content" rows="8" cols="80" readonly>${dto.content}</textarea>
 						</div>
 

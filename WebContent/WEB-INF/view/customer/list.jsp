@@ -50,7 +50,7 @@
 				<header id="header">
 					<a href="home.do" class="logo"><img
 						src="../images/kitchennote-logo.png" width="300px"
-						height=150px> KitchenNote</a>
+						height=150px></a>
 					<section id=search class="alt 4u 12u$">
 						<form method=post action=recipe.do>
 							<input type=text name=search id=query placeholder="Search">
@@ -89,7 +89,8 @@
 					<h2>내 문의 내역</h2>
 					<br>검색 창을 이용하시면 더 정확한 정보를 검색하실 수 있습니다.
 					<hr>
-					<h4>내 문의 내역</h4>
+					<h4>상세 검색</h4>
+					
 					<div class="12u$">
 						<form action="list.do?pageNum=0">
 							검색 :<select id="select2" name="select2">
@@ -100,7 +101,8 @@
 											name="pageNum" value="1">
 						</form>
 					</div>
-				</section>
+				<hr>
+				<h4>내 문의 내역</h4>
 				<table border="1" width="600px">
 					<tr>
 						<th>번호</th>
@@ -125,6 +127,7 @@
 					</c:forEach>
 				</table>
 				<button type="button" id="btnWrite">글쓰기</button>
+				</section>
 				<ul class="pagination">
 					<li><c:if test="${startPage > 10 }">
 							<a href="list.do?pageNum=${startPage-10}" class="button">이전</a>
