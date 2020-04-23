@@ -58,8 +58,6 @@ function infoAjax(item) {
 	})
 }
 
-
-
 function nangbu() {
 	location.href = "nangbu.do";
 }
@@ -113,27 +111,25 @@ $(function() {
 
 });
 
-function itemClick(item, price) {
-	
-	var member_id = sessionStorage.getItem("MINFO");
-	if (member_id==null) {
-		if (confirm("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?")) {
-			location.href = "login/loginForm.do";
+function itemClick(item, price, member_id) {
+	if (price > 0) {
+		if (!member_id) {
+			if (confirm("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?")) {
+				location.href = "login/loginForm.do";
+			} else {
+			}
 		} else {
-		}
-	} else {
-		if (price > 0) {
+
 			if (confirm(price + "포크로 구매하시겠습니까?")) {
 				infoAjax(item);
 			} else {
-				
+
 			}
-		} else {
-			location.href = "recipe/read.do?recipe_id=" + item;
 		}
+	} else {
+		location.href = "recipe/read.do?recipe_id=" + item;
 	}
-	
-	
+
 }
 
 function ingredients(id, name) {
