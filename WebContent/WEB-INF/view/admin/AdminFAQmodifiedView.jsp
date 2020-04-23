@@ -133,7 +133,6 @@ font-family: 'Cafe24Oneprettynight';
 						구분 : <select name="menu" id="selectBox">
 							<option value="선택">선택</option>
 							<option value="레시피">레시피</option>
-							<option value="쿠킹 클래스">쿠킹 클래스</option>
 							<option value="결제 및 환불">결제 및 환불</option>
 							<option value="오류 및 수정">오류 및 수정</option>
 							<option value="신고">신고</option>

@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				like CONCAT('%',#{select3},'%')
 			</when>
 		</choose>
+		and member_id = #{member_id}
 		</where>
 		order by
 		num desc, reg_date desc limit #{start},10 

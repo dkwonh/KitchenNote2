@@ -15,10 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				  menu
 				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
 			</when>
-			<when test="select1 == '쿠킹 클래스' and select2 == 'title'">
-				  menu
-				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
-			</when>
 			<when test="select1 == '결제 및 환불' and select2 == 'title'">
 				  menu
 				like CONCAT('%',#{select1},'%') and title like CONCAT('%',#{select3},'%')
@@ -33,10 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</when>
 			<when test="select1 == '레시피' and select2 == 'content'">
 				  menu
-				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
-			</when>
-			<when test="select1 == '쿠킹 클래스' and select2 == 'content'">
-				 menu
 				like CONCAT('%',#{select1},'%') and content like CONCAT('%',#{select3},'%')
 			</when>
 			<when test="select1 == '결제 및 환불' and select2 == 'content'">

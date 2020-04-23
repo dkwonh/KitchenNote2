@@ -50,13 +50,14 @@ public class BoardController {
 	@RequestMapping("customer/list.do") // 게시글 목록
 	public ModelAndView list(@RequestParam  (value="pageNum",required = false) int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
-			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
+			,@RequestParam (value="select3",required = false)String select3, Model model,HttpSession session) throws Exception {
 
 		List<AdminFaqDto> dto;
 		int count;//맵퍼 파일에 선언해둔 count(*) sql
 		if(pageNum==0)
 			pageNum=1;
 		FilterDto f = new FilterDto();
+		f.setMember_id((String)session.getAttribute("MINFO"));
 		f.setSelect1(select1);
 		f.setSelect2(select2);
 		f.setSelect3(select3);
