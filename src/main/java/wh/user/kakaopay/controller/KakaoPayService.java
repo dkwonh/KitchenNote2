@@ -68,7 +68,7 @@ public class KakaoPayService {
             e.printStackTrace();
         }
         
-        return "/pay";
+        return "home.do";
         
 	}
 	
