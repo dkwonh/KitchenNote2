@@ -90,7 +90,7 @@
 
 	
 </script>
-<script src="homeJs/home.js?v=2"></script>
+<!-- <script src="homeJs/home.js?v=2"></script> -->
 <body>
 
 	<div id=wrapper>
@@ -121,7 +121,7 @@
 					</div>
 				</section>
 
-				<%@ include file="nangbu.jsp"%>
+				<%-- <%@ include file="nangbu.jsp"%> --%>
 
 			</div>
 		</div>
