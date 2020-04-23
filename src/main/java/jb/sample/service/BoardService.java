@@ -13,10 +13,7 @@ public interface BoardService {
 	public List<RecipeDTO> paidlist(String member_id) throws Exception;
 	
 	// 팔로우하기
-	public List<RecipeDTO> follow() throws Exception;
-	
-	// 언팔로우하기
-	public List<RecipeDTO> unfollow() throws Exception;
+	/* public void follow(RecipeDTO following) throws Exception; */
 
 	// 팔로워 수
 	public int getFollower(String member_id) throws Exception;

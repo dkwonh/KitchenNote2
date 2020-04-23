@@ -28,14 +28,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	// 팔로우 하기
-	public List<RecipeDTO> follow() throws Exception{
-		return sql.selectList(namespace+".follow");
-	}
-	// 언팔로우 하기
-	public List<RecipeDTO> unfollow() throws Exception{
-		return sql.selectList(namespace+".unfollow");
-	}
-
+	/*
+	 * public void follow(RecipeDTO following) throws Exception{
+	 * sql.insert(namespace+".follow"); }
+	 */
 	// 팔로워 수
 	public int getFollower(String member_id) throws Exception {
 		return sql.selectOne(namespace + ".follower", member_id);
