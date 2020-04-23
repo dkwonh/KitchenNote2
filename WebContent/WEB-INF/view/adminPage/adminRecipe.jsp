@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,20 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 <style type="text/css">
 div#glayLayer{
 	display:none;
@@ -83,7 +99,7 @@ $(function(){
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -108,7 +124,23 @@ $(function(){
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
 			<td class="recipe_id">${item.recipe_id}</td>
-			<td class="image"><img width="100px" height="100px" src="${item.image}"></td>
+			<c:set var="image" value="${item.image }" />
+				<td class="image">
+					<c:if test="${fn:contains(image,'okdab') }">
+						<c:set var="mainImg" value="${item.image }" />
+						<img width="100px" height="100px" id="main_img" src="${item.image }" width=500 height=300>
+					</c:if>
+					
+					
+					<c:if test="${fn:contains(image,'note')}">
+						<c:set var="mainImg"
+							value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${item.image }" />
+						<img width="100px" height="100px" id="main_img" src="/img/${item.image }" width=500 height=300>
+					</c:if>
+			</td>
+			
+			
+			
 			<td class="recipe_name">${item.recipe_name }</td>
 			<td class="member_id">${item.member_id }</td>
 		</tr>

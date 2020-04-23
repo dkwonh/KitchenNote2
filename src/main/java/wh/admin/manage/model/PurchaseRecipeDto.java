@@ -5,11 +5,33 @@ import java.sql.Timestamp;
 //레시피 결제 내역 dto
 public class PurchaseRecipeDto {
 	private int recipe_id;
-	private String nickname;
 	private String member_id;
+	private String pur_member_id;
 	private String recipe_name;
-	private Timestamp date;
+	private Timestamp pur_date;
+	private int price;
+	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getPur_member_id() {
+		return pur_member_id;
+	}
+	public void setPur_member_id(String pur_member_id) {
+		this.pur_member_id = pur_member_id;
+	}
+	public Timestamp getPur_date() {
+		return pur_date;
+	}
+	public void setPur_date(Timestamp pur_date) {
+		this.pur_date = pur_date;
+	}
 	private boolean read;
+	
 	
 	public int getRecipe_id() {
 		return recipe_id;
@@ -17,12 +39,7 @@ public class PurchaseRecipeDto {
 	public void setRecipe_id(int recipe_id) {
 		this.recipe_id = recipe_id;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -35,12 +52,7 @@ public class PurchaseRecipeDto {
 	public void setRecipe_name(String recipe_name) {
 		this.recipe_name = recipe_name;
 	}
-	public Timestamp getDate() {
-		return date;
-	}
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
+	
 	public boolean isRead() {
 		return read;
 	}

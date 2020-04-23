@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import wh.admin.manage.model.PayListDto;
+import wh.user.home.controller.HomePageService;
+import wh.user.home.model.HomePageMemberDto;
 import wh.user.kakaopay.model.*;
 
 @Controller
@@ -42,7 +44,7 @@ public class KakaoPayController {
 	public String kakaoSuccess(@RequestParam("pg_token") String pg_token, HttpSession session, Model model) {	
 		KakaoPayApprovalDto dto = kakaoPayService.kakaoPayInfo(pg_token);
 		model.addAttribute("item",dto);
-		
+
 		String member_id = (String)session.getAttribute("MINFO");
 		PayListDto pay = new PayListDto();
 		pay.setMember_id(member_id);
@@ -51,7 +53,8 @@ public class KakaoPayController {
 		System.out.println(pay);
 		
 		//세션 연결하고 테스트할것
-		//kakaoPayService.insertKakaoPay(pay);
+		kakaoPayService.insertKakaoPay(pay);
+		kakaoPayService.updateFork(pay);
 		return "kakaopay/kakaoPaySuccess";
 	}
 	

@@ -26,11 +26,12 @@ public class BoardController {
 		@RequestMapping(value = "/mypage/mypagefirst.do", method = RequestMethod.GET)
 		public void getRecipelist(Model model, HttpSession session) throws Exception {
 			logger.info("get recipelist");
-			session.setAttribute("member_id", "member_id");
 			
 			List<RecipeDTO> list = service.recipelist();
 			model.addAttribute("list", list);
-
+			session.getAttribute("MINFO");
+			String member = (String)session.getAttribute("MINFO");
+			
 			List<RecipeDTO> follower, following = null;
 			follower = service.followerlist();
 			model.addAttribute("followerlist", follower);

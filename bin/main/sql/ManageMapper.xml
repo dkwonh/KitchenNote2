@@ -265,8 +265,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 and member_id 
 		  like CONCAT('%',#{search},'%')
  		</if>
- 		<if test='filter == "nickname"'>
- 		and nickname 
+ 		<if test='filter == "pur_member_id"'>
+ 		and pur_member_id
 		  like CONCAT('%',#{search},'%')
  		</if>
 		</where>
@@ -284,8 +284,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  member_id
 		  like CONCAT('%',#{search},'%') 
  		</if>
- 		<if test='filter == "nickname"'>
- 		and nickname 
+ 		<if test='filter == "pur_member_id"'>
+ 		and pur_member_id
 		  like CONCAT('%',#{search},'%')
 		 </if>
 		</where>
@@ -371,6 +371,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 공지 끝 -->
 	
-	<!-- 레시피 체크 -->
+	<!-- 엑셀 파일 다운 -->
+	<select id="userExcel" resultType="wh.admin.manage.model.MemberDto">
+		select * from members
+	</select>
+	
+	<select id="chefExcel" resultType="wh.admin.manage.model.ChefDto">
+		select * from members join chef on member_id = chef
+	</select>
+	
+	<select id="dropExcel" resultType="wh.admin.manage.model.DropMembersDto">
+		select * from drop_members
+	</select>
+	
+	<select id="forkExcel" resultType="wh.admin.manage.model.PayListDto">
+		select * from pay_list
+	</select>
+	
+	<select id="recipeExcel" resultType="wh.admin.manage.model.PurchaseRecipeDto">
+		select * from pur_recipe
+	</select>
 	
 </mapper>

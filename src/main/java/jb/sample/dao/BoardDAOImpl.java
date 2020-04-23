@@ -14,7 +14,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Autowired
 	private SqlSession sql;
 
-	private static String namespace = "mypageMapper";
+	private static String namespace = "MypageMapper";
 
 	// 마이페이지/레시피-내가 작성한 레시피
 	public List<RecipeDTO> recipelist() throws Exception {

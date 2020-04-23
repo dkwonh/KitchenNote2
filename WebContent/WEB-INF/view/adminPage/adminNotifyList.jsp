@@ -47,12 +47,26 @@ function itemClick(num){
 	
 }
 </script>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 </head>
 <body>
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -81,7 +95,6 @@ function itemClick(num){
 		<tr class="modal" onclick="itemClick(${item.num})">
 			<td class="num">${item.num}</td>
 			<td class="subject">${item.subject }</td>
-			<td class="member_id">${item.member_id }</td>
 			<td class="reg_date">${item.reg_date }</td>
 		</tr>
 		</c:forEach>

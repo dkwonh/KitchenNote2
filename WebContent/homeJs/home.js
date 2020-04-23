@@ -40,8 +40,15 @@ function loadCategory(ing_category){
 			,url:url
 			,data:params		
 			,dataType:"json" })
-			.done(function(args){	//응답이 성공 상태 코드를 반환하면 호출되는 함수
-				alert("s");
+			.done(function(args){
+				//응답이 성공 상태 코드를 반환하면 호출되는 함수
+				if(args==null){
+					location.href="buyRecipe.do?recipe_id="+item;
+				}
+				else{
+					alert("기존 구매내역이 있습니다.");
+					location.href="recipe/read.do?recipe_id="+item;
+				}
 	 			})
 		    .fail(function(e) {
 		    	alert(e.responseText);
@@ -51,7 +58,7 @@ function loadCategory(ing_category){
 
 	function itemClick(item,price) {
 		if(price>0){
-			if(confirm("구매하시겠습니까?")){
+			if(confirm(price+"포크로 구매하시겠습니까?")){
 				infoAjax(item);
 			}
 			else{

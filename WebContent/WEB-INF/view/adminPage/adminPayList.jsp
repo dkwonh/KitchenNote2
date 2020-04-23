@@ -35,14 +35,34 @@ div#glayLayer{
 	position: absolute;
 }
 </style>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 <script>
+function downloadExcel(){
+	var f = document.form1;
+
+	f.action = "forkToExcel.do";
+	f.submit();
+}
 </script>
 </head>
 <body>
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -53,6 +73,9 @@ div#glayLayer{
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>
@@ -65,6 +88,7 @@ div#glayLayer{
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
 		<tr class="modal">
+			<td class="num">${i.count+(pageNum-1)*10}</td>
 			<td class="member_id">${item.member_id }</td>
 			<td class="fork">${item.fork }</td>
 			<td class="price">${item.purchase_amount }</td>

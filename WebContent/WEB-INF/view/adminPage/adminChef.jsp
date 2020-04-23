@@ -46,6 +46,13 @@ function deleteInfo(){
 	form.attr("action","updateChef.do");
 }
 
+function downloadExcel(){
+	var f = document.form1;
+
+	f.action = "chefToExcel.do";
+	f.submit();
+}
+
 $(function(){
 
 	
@@ -81,12 +88,26 @@ $(function(){
 	}
 })
 </script>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 </head>
 <body>
 <div id="wrapper">
 <div id="main">
 	<div class="inner">
-	<header id=header></header>
+	<%@include file="../homepage/head.jsp" %>
 	<section id=search class="alt 4u 12u$">
 	
 	<form>
@@ -98,6 +119,9 @@ $(function(){
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>
@@ -155,8 +179,7 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="updateChef.do" name="form">
-	<div class="row uniform modal-dialog">
+	<form style="background:white" action="updateChef.do" name="form" class="row gtr-uniform">
 		<div class="12u$ modal-body">
 		<h5>닉네임</h5>
 		<input type="text" name="nickname" id=nickBox>
@@ -177,7 +200,6 @@ $(function(){
 			<li><input type="submit" value="수정" class="special"></li>
 			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
-		</div>
 		</div>
 	</form>
 	

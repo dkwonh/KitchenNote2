@@ -9,4 +9,4 @@
 	location.replace("home.do");
 </script>
 </body>
-</html>  
+</html>   
