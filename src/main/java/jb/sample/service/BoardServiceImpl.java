@@ -26,14 +26,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 팔로우 하기
-	public List<RecipeDTO> follow() throws Exception {
-		return dao.follow();
-	}
+	/*
+	 * public void follow(RecipeDTO following) throws Exception{
+	 * dao.follow(following); }
+	 */
 
-	// 언팔로우 하기
-	public List<RecipeDTO> unfollow() throws Exception {
-		return dao.unfollow();
-	}
 
 	// 팔로워 수
 	public int getFollower(String member_id) throws Exception {
