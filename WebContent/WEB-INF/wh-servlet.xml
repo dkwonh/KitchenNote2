@@ -8,4 +8,5 @@
 	<bean id="adminPageDao" class="wh.admin.manage.dao.AdminPageDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 	<bean id="kakaoPayDao" class="wh.user.kakaopay.dao.KakaoPayDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 	<bean id="excelViewDao" class="wh.admin.view.dao.ExcelViewDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
+	<bean id="payDao" class="wh.user.paylist.dao.PayDao" p:sqlSessionFactory-ref="sqlSessionFactory"/>
 </beans> 

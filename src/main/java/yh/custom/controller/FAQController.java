@@ -1,6 +1,8 @@
 package yh.custom.controller;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import wh.user.home.controller.HomePageService;
+import wh.user.home.model.HomePageCategoryName;
+import wh.user.home.model.HomePageNangbuDto;
 import yh.admin.controller.AdminFaqDto;
 import yh.admin.controller.FilterDto;
 import yh.custom.service.FAQService;
@@ -44,11 +49,28 @@ public class FAQController {
 	
 	@Autowired
 	FAQService service;
+	
+	@Autowired
+	HomePageService homePageService;
+	
 
 	@RequestMapping("customer/FAQ.do")
 	public ModelAndView list(@RequestParam /* (value="pageNum",required = false) */int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
 			,@RequestParam (value="select3",required = false)String select3, Model model) throws Exception {
+		
+		List<HomePageCategoryName> categoryList = homePageService.categoryName();
+		List<HomePageNangbuDto> nangbuList = homePageService.nangbuList(1);
+		Map<Integer, String> nangbuCategory = homePageService.nangbuCategoryList();
+
+		model.addAttribute("nangbuList", nangbuList);
+		model.addAttribute("nangbuCategory", nangbuCategory);
+
+		model.addAttribute("category1", categoryList.subList(0, 8));
+		model.addAttribute("category2", categoryList.subList(8, 16));
+		model.addAttribute("category3", categoryList.subList(16, 26));
+		model.addAttribute("category4", categoryList.subList(26, 36));
+		
 		List<AdminFaqDto> dto;
 		int count;
 		if(pageNum==0)
@@ -92,4 +114,16 @@ public class FAQController {
 		mav.addObject("dto", service.read(bno));
 		return mav;
 	} // 취소
+
+	public HomePageService getHomePageService() {
+		return homePageService;
+	}
+
+	public void setHomePageService(HomePageService homePageService) {
+		this.homePageService = homePageService;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
 }

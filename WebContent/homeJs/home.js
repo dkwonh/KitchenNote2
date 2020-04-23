@@ -47,6 +47,7 @@ function infoAjax(item) {
 	}).done(function(args) {
 		// 응답이 성공 상태 코드를 반환하면 호출되는 함수
 		if (args == null) {
+			alert("사용가능한 포크가 없으므로 구매페이지로 이동합니다.");
 			location.href = "buyRecipe.do?recipe_id=" + item;
 		} else {
 			alert("기존 구매내역이 있습니다.");
@@ -74,15 +75,15 @@ $(function() {
 	});
 
 	$("button#recipe").on('click', function() {
-		location.href = "recipe.do"
+		location.href = "/KitchenNote2/recipe.do"
 	});
 
 	$("button#notify").on('click', function() {
-		location.href = "notifyList.do?pageNum=1"
+		location.href = "/KitchenNote2/notifyList.do?pageNum=1"
 	});
 
 	$("button#support").on('click', function() {
-		location.href = "customer/FAQ.do?pageNum=0"
+		location.href = "/KitchenNote2/customer/FAQ.do?pageNum=0"
 	});
 
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
@@ -119,7 +120,6 @@ function itemClick(item, price, member_id) {
 			} else {
 			}
 		} else {
-
 			if (confirm(price + "포크로 구매하시겠습니까?")) {
 				infoAjax(item);
 			} else {

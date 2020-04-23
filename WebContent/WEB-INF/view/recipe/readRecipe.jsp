@@ -30,9 +30,17 @@ function getComments(page){
 				if(data[4].length>0){
 				for(var i = 0;i<data[4].length;i++){
 					var str = "";
+
+					if(data[4][i].picture.indexOf('Url')){
+						var profile='/KitchenNote2/images/'
+							profile+= data[4][i].picture+'.jpg';
+						}else{
+						var profile="";
+							}
+					console.log(profile);
 					 str += '<li><div class="comment">'
 					+ '<div>'
-					+ '<img src="/img/'+data[4][i].picture+'" class="profileimg">'
+					+'<img alt="프로필" src="'+profile+'" class="profileimg">'
 				+ '</div>'
 				+ '<div class="content">'
 				+ '<div class="com-info">'
@@ -612,7 +620,13 @@ a {
 			<div class="inner">
 				<div id="user_info" style="padding-bottom: 2em">
 					<!-- 사용자정보 -->
+					<c:set var="profilepic" value="${writer.picture }"/>
+					<c:if test="${fn:contains(profilepic,'Url') }">
+					<img alt="프로필" src="/KitchenNote2/images/${writer.picture }.jpg" id="profile_pic">
+					</c:if>
+					<c:if test="${fn:contains(profilepic,'zzz') }">
 					<img alt="프로필" src="/img/${writer.picture }" id="profile_pic">
+					</c:if>
 					<a id="userSNS" href="${sns }">${sns }</a> <span id="username">${writer.nickname }</span>
 				</div>
 				<div id="info_basic">

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="assets/css/home.css"/>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="homeJs/home.js"></script>
+<script src="homeJs/home.jsv=2"></script>
 <script>
 function itemClick(num){
 	location.href="notifyItem.do?num="+num

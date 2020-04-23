@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import wh.user.home.controller.HomePageService;
+import wh.user.home.model.HomePageCategoryName;
+import wh.user.home.model.HomePageNangbuDto;
 import yh.admin.controller.AdminFaqDto;
 import yh.admin.controller.FilterDto;
 import yh.custom.service.BoardService;
@@ -47,11 +50,29 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	HomePageService homePageService;
+	
 	@RequestMapping("customer/list.do") // 게시글 목록
 	public ModelAndView list(@RequestParam  (value="pageNum",required = false) int pageNum,@RequestParam (value="select1",required = false)String select1
 			,@RequestParam (value="select2",required = false)String select2
 			,@RequestParam (value="select3",required = false)String select3, Model model,HttpSession session) throws Exception {
 
+		
+		List<HomePageCategoryName> categoryList = homePageService.categoryName();
+		List<HomePageNangbuDto> nangbuList = homePageService.nangbuList(1);
+		Map<Integer, String> nangbuCategory = homePageService.nangbuCategoryList();
+
+		model.addAttribute("nangbuList", nangbuList);
+		model.addAttribute("nangbuCategory", nangbuCategory);
+
+		model.addAttribute("category1", categoryList.subList(0, 8));
+		model.addAttribute("category2", categoryList.subList(8, 16));
+		model.addAttribute("category3", categoryList.subList(16, 26));
+		model.addAttribute("category4", categoryList.subList(26, 36));
+		
+		
 		List<AdminFaqDto> dto;
 		int count;//맵퍼 파일에 선언해둔 count(*) sql
 		if(pageNum==0)
@@ -127,4 +148,11 @@ public class BoardController {
 		return "redirect:list.do?pageNum=0";
 	}
 	
+	public HomePageService getHomePageService() {
+		return homePageService;
+	}
+
+	public void setHomePageService(HomePageService homePageService) {
+		this.homePageService = homePageService;
+	}
 }
