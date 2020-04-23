@@ -95,4 +95,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	
+	<select id="getPayList" parameterType="wh.admin.manage.model.FilterDto" resultType="wh.admin.manage.model.PayListDto">
+		select * from pay_list where member_id = #{search} order by fork_date limit #{start}, 10	
+		
+	</select>
+
+	<select id="getPayCount" parameterType="wh.admin.manage.model.FilterDto" resultType="int">
+		select count(*) from pay_list
+	</select>
+	
 </mapper>

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:if test="${item.price != 0}">
-<article onclick="itemClick(${item.recipe_Id},${item.price })" style=" filter:opacity(25%);">
+<article onclick="itemClick(${item.recipe_Id},${item.price },'${MINFO }')" style=" filter:opacity(25%);">
 <a class="image"> 
 	<c:set var="image" value="${item.image }" />
 				<div>
@@ -21,7 +21,7 @@
 						<img id="main_img" src="/img/${item.image }" width=500 height=300>
 					</c:if>
 					<div style="position:absolute;top:25%;left:25%; font-size:100px;color:black ">유료</div>
-						</div>
+				</div>
 	</a>
 	<h3>${item.recipe_Name }</h3>
 	<p>${item.recipe_Exp}</p>
@@ -33,7 +33,7 @@
 
 </c:if>
 <c:if test="${item.price == 0 }">
-<article onclick="itemClick(${item.recipe_Id},${item.price })">
+<article onclick="itemClick(${item.recipe_Id},${item.price },'${MINFO }')">
 
 
 	<a class="image"> 

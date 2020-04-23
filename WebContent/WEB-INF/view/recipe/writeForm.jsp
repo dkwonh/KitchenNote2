@@ -333,8 +333,8 @@ input[type=reset], input[type=submit] {
 	border-radius: 0.375em;
 }
 
-#hash_inbox strong{
-font-size: 20px;
+#hash_inbox strong {
+	font-size: 20px;
 }
 
 #hash_inbox span {
@@ -342,11 +342,11 @@ font-size: 20px;
 }
 
 .added_tag {
-	font-size:17px;
-	font-weight:bolder;
+	font-size: 17px;
+	font-weight: bolder;
 	cursor: pointer;
 	background-color: #f56a6a;
-	color:#FFF;
+	color: #FFF;
 	padding: 2px 5px;
 	margin: 2px 2px;
 	border-radius: 0.375em;
@@ -368,187 +368,200 @@ li {
 	display: flex;
 }
 
-#delMainImg, .delProImg{
-font-size: larger;
-padding: 5px;
-cursor: pointer;
+#delMainImg, .delProImg {
+	font-size: larger;
+	padding: 5px;
+	cursor: pointer;
 }
-
 </style>
 </head>
 <body>
+	<c:if test="${empty MINFO }">
+		<script>
+alert("로그인 후 이용가능합니다.");
+location.href='<%=request.getContextPath()%>/login/loginForm.do';
+		</script>
+	</c:if>
 	<div id="main">
 		<div class="inner">
-		<%@ include file="../homepage/head.jsp"%>
-		<div class="10u" style="margin: 1em auto;">
-			<header class="main">
-				<h1 style="margin-top: 0.5em;">레시피 등록하기</h1>
-			</header>
-			<hr class="major">
-			<form method="post" enctype="multipart/form-data"
-				action="writePro.do">
-				<div class="form1 row">
-					<input type="hidden" name="member_id" value="${MINFO }">
-					<h2 class="3u">레시피 제목</h2>
-					<div class="9u$">
-						<input type="text" name="recipe_name" required />
-					</div>
-					<h2 class="3u">요리소개</h2>
-					<div class="9u$">
-						<input type="text" name="recipe_exp" required />
-					</div>
-					<h2 class="3u">요리 대표사진</h2>
-					<div class="9u$">
-						<input type="file" name="imagefile" accept="image/*" required><a class="icon fa-trash" id="delMainImg">사진삭제</a>
-					</div>
-					<div id="mainImg" class="6u$ 12u$(small)"></div>
-					<br>
-
-					<c:if test="${LEVEL ==2 }">
-					<div class="row" style="width:100%;">
-						<h2 class="3u">가격</h2>
-						<div class="6u">
-							<input name="price" type="number" min="0" required value="0" />
+			<%@ include file="../homepage/head.jsp"%>
+			<div class="10u" style="margin: 1em auto;">
+				<header class="main">
+					<h1 style="margin-top: 0.5em;">레시피 등록하기</h1>
+				</header>
+				<hr class="major">
+				<form method="post" enctype="multipart/form-data"
+					action="writePro.do">
+					<div class="form1 row">
+						<input type="hidden" name="member_id" value="${MINFO }">
+						<h2 class="3u">레시피 제목</h2>
+						<div class="9u$">
+							<input type="text" name="recipe_name" required />
 						</div>
+						<h2 class="3u">요리소개</h2>
+						<div class="9u$">
+							<input type="text" name="recipe_exp" required />
+						</div>
+						<h2 class="3u">요리 대표사진</h2>
+						<div class="9u$">
+							<input type="file" name="imagefile" accept="image/*" required><a
+								class="icon fa-trash" id="delMainImg">사진삭제</a>
+						</div>
+						<div id="mainImg" class="6u$ 12u$(small)"></div>
 						<br>
-						</div>
-					</c:if>
-				</div>
 
-				<hr class="major">
-
-				<h2>카테고리</h2>
-				<div class="row 12u$" style="margin: 0;">
-					<select name="category_id" class="3u 12u$(small)">
-						<option value="-1">:: 상황 ::</option>
-						<option value="1">면역력강화</option>
-						<option value="2">간식/야식</option>
-						<option value="3">술안주</option>
-						<option value="4">해장요리</option>
-						<option value="5">손님 접대 요리</option>
-						<option value="6">나들이 요리</option>
-						<option value="7">파티/명절요리</option>
-						<option value="8">실생활요리</option>
-					</select> <select name="category_id" class="3u 12u$(small)">
-						<option value="-1">:: 나라 ::</option>
-						<option value="9">한식 요리</option>
-						<option value="10">중식 요리</option>
-						<option value="11">일식 요리</option>
-						<option value="12">동남아/인도 요리</option>
-						<option value="13">멕시칸 요리</option>
-						<option value="14">양식 요리</option>
-						<option value="15">퓨전 요리</option>
-						<option value="16">이국적인맛</option>
-					</select> <select name="category_id" class="3u 12u$(small)">
-						<option value="-1">:: 재료 ::</option>
-						<option value="17">육류 요리</option>
-						<option value="18">채소류 요리</option>
-						<option value="19">해산물 요리</option>
-						<option value="20">콩/두부 요리</option>
-						<option value="21">과일 요리</option>
-						<option value="22">달걀/유제품 요리</option>
-						<option value="23">면/만두 요리</option>
-						<option value="24">김치 요리</option>
-						<option value="25">제철재료 요리</option>
-						<option value="26">가공식품 요리</option>
-					</select> <select name="category_id" class="3u$ 12u$(small)">
-						<option value="-1">:: 조리법 ::</option>
-						<option value="27">밥요리</option>
-						<option value="28">면요리</option>
-						<option value="29">국물요리</option>
-						<option value="30">찜/조림/구이요리</option>
-						<option value="31">볶음/튀김/부침요리</option>
-						<option value="32">나물/샐러드요리</option>
-						<option value="33">김장/절임요리</option>
-						<option value="34">베이킹/디저트요리</option>
-						<option value="35">양념/소스/잼</option>
-						<option value="36">음료/차/커피</option>
-					</select>
-				</div>
-
-				<hr class="major">
-
-				<h2>재료</h2>
-				<ul id="ingredient">
-					<li><input type="text" name="ing_name" placeholder="재료명"
-						required>&nbsp;&nbsp;<input type="text" name="capacity"
-						placeholder="분량">&nbsp;&nbsp;<a
-						class="button icon fa-remove" onclick="del_in(this)"></a></li>
-					<li><input type="text" name="ing_name" placeholder="재료명"
-						required>&nbsp;&nbsp;<input type="text" name="capacity"
-						placeholder="분량">&nbsp;&nbsp;<a
-						class="button icon fa-remove" onclick="del_in(this)"></a></li>
-					<li><input type="text" name="ing_name" placeholder="재료명"
-						required>&nbsp;&nbsp;<input type="text" name="capacity"
-						placeholder="분량">&nbsp;&nbsp;<a
-						class="button icon fa-remove" onclick="del_in(this)"></a></li>
-				</ul>
-				<div class="plusbtn">
-					<a class="button icon special fa-plus" onclick="add_in()">요리재료추가</a>
-				</div>
-
-				<hr class="major">
-
-				<h2>요리순서</h2>
-				<br>
-				<p>
-					조리시간 총 <input name="duration" type="number"
-						placeholder="조리시간(숫자만 입력)" required style="width:200px;">분 소요
-				</p>
-				<ul id="process">
-					<li class="box"><input type="hidden" value="1" name="process_num">
-						<div class="9u 12u$(small)">
-							<textarea name="process_content" placeholder="설명" required></textarea>
-							<br>
-							<div class="imgfile">
-								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="icon fa-trash delProImg">사진삭제</a>
+						<c:if test="${LEVEL ==2 }">
+							<div class="row" style="width: 100%;">
+								<h2 class="3u">가격</h2>
+								<div class="6u">
+									<input name="price" type="number" min="0" required value="0" />
+								</div>
+								<br>
 							</div>
-						</div>
-						<div class="proImg 2u 10u(small)"></div><a
-						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
-					<li class="box"><input type="hidden" value="2" name="process_num">
-						<div class="9u 12u$(small)">
-							<textarea name="process_content" placeholder="설명" required></textarea>
-							<br>
-							<div class="imgfile">
-								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="icon fa-trash delProImg">사진삭제</a>
-							</div>
-						</div>
-						<div class="proImg 2u 10u(small)"></div> <a
-						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
-					<li class="box"><input type="hidden" value="3" name="process_num">
-						<div class="9u 12u$(small)">
-							<textarea name="process_content" placeholder="설명" required></textarea>
-							<br>
-							<div class="imgfile">
-								<input name="process_imagefile" type="file" accept="image/*"
-									required><a class="icon fa-trash delProImg">사진삭제</a>
-							</div>
-						</div>
-						<div class="proImg 2u 10u(small)"></div> <a
-						class="button icon fa-remove" onclick="del_pro(this)" style="margin: auto"></a></li>
-				</ul>
-				<div class="12u$ plusbtn">
-					<a class="button special icon fa-plus" onclick="add_pro()">조리과정추가</a>
-				</div>
+						</c:if>
+					</div>
 
-				<hr class="major">
-				<div class="row">
-					<h2 class="3u 12u$(small)">태그</h2>
-					<div id="hashtag" class="9u$ 12u$(small)">
-						<input type="text" id="tag_input" placeholder="태그 입력">
-						<div id="hash_inbox">
-							<strong>입력된 해시태그</strong><br>
+					<hr class="major">
+
+					<h2>카테고리</h2>
+					<div class="row 12u$" style="margin: 0;">
+						<select name="category_id" class="3u 12u$(small)">
+							<option value="-1">:: 상황 ::</option>
+							<option value="1">면역력강화</option>
+							<option value="2">간식/야식</option>
+							<option value="3">술안주</option>
+							<option value="4">해장요리</option>
+							<option value="5">손님 접대 요리</option>
+							<option value="6">나들이 요리</option>
+							<option value="7">파티/명절요리</option>
+							<option value="8">실생활요리</option>
+						</select> <select name="category_id" class="3u 12u$(small)">
+							<option value="-1">:: 나라 ::</option>
+							<option value="9">한식 요리</option>
+							<option value="10">중식 요리</option>
+							<option value="11">일식 요리</option>
+							<option value="12">동남아/인도 요리</option>
+							<option value="13">멕시칸 요리</option>
+							<option value="14">양식 요리</option>
+							<option value="15">퓨전 요리</option>
+							<option value="16">이국적인맛</option>
+						</select> <select name="category_id" class="3u 12u$(small)">
+							<option value="-1">:: 재료 ::</option>
+							<option value="17">육류 요리</option>
+							<option value="18">채소류 요리</option>
+							<option value="19">해산물 요리</option>
+							<option value="20">콩/두부 요리</option>
+							<option value="21">과일 요리</option>
+							<option value="22">달걀/유제품 요리</option>
+							<option value="23">면/만두 요리</option>
+							<option value="24">김치 요리</option>
+							<option value="25">제철재료 요리</option>
+							<option value="26">가공식품 요리</option>
+						</select> <select name="category_id" class="3u$ 12u$(small)">
+							<option value="-1">:: 조리법 ::</option>
+							<option value="27">밥요리</option>
+							<option value="28">면요리</option>
+							<option value="29">국물요리</option>
+							<option value="30">찜/조림/구이요리</option>
+							<option value="31">볶음/튀김/부침요리</option>
+							<option value="32">나물/샐러드요리</option>
+							<option value="33">김장/절임요리</option>
+							<option value="34">베이킹/디저트요리</option>
+							<option value="35">양념/소스/잼</option>
+							<option value="36">음료/차/커피</option>
+						</select>
+					</div>
+
+					<hr class="major">
+
+					<h2>재료</h2>
+					<ul id="ingredient">
+						<li><input type="text" name="ing_name" placeholder="재료명"
+							required>&nbsp;&nbsp;<input type="text" name="capacity"
+							placeholder="분량">&nbsp;&nbsp;<a
+							class="button icon fa-remove" onclick="del_in(this)"></a></li>
+						<li><input type="text" name="ing_name" placeholder="재료명"
+							required>&nbsp;&nbsp;<input type="text" name="capacity"
+							placeholder="분량">&nbsp;&nbsp;<a
+							class="button icon fa-remove" onclick="del_in(this)"></a></li>
+						<li><input type="text" name="ing_name" placeholder="재료명"
+							required>&nbsp;&nbsp;<input type="text" name="capacity"
+							placeholder="분량">&nbsp;&nbsp;<a
+							class="button icon fa-remove" onclick="del_in(this)"></a></li>
+					</ul>
+					<div class="plusbtn">
+						<a class="button icon special fa-plus" onclick="add_in()">요리재료추가</a>
+					</div>
+
+					<hr class="major">
+
+					<h2>요리순서</h2>
+					<br>
+					<p>
+						조리시간 총 <input name="duration" type="number"
+							placeholder="조리시간(숫자만 입력)" required style="width: 200px;">분
+						소요
+					</p>
+					<ul id="process">
+						<li class="box"><input type="hidden" value="1"
+							name="process_num">
+							<div class="9u 12u$(small)">
+								<textarea name="process_content" placeholder="설명" required></textarea>
+								<br>
+								<div class="imgfile">
+									<input name="process_imagefile" type="file" accept="image/*"
+										required><a class="icon fa-trash delProImg">사진삭제</a>
+								</div>
+							</div>
+							<div class="proImg 2u 10u(small)"></div>
+							<a class="button icon fa-remove" onclick="del_pro(this)"
+							style="margin: auto"></a></li>
+						<li class="box"><input type="hidden" value="2"
+							name="process_num">
+							<div class="9u 12u$(small)">
+								<textarea name="process_content" placeholder="설명" required></textarea>
+								<br>
+								<div class="imgfile">
+									<input name="process_imagefile" type="file" accept="image/*"
+										required><a class="icon fa-trash delProImg">사진삭제</a>
+								</div>
+							</div>
+							<div class="proImg 2u 10u(small)"></div> <a
+							class="button icon fa-remove" onclick="del_pro(this)"
+							style="margin: auto"></a></li>
+						<li class="box"><input type="hidden" value="3"
+							name="process_num">
+							<div class="9u 12u$(small)">
+								<textarea name="process_content" placeholder="설명" required></textarea>
+								<br>
+								<div class="imgfile">
+									<input name="process_imagefile" type="file" accept="image/*"
+										required><a class="icon fa-trash delProImg">사진삭제</a>
+								</div>
+							</div>
+							<div class="proImg 2u 10u(small)"></div> <a
+							class="button icon fa-remove" onclick="del_pro(this)"
+							style="margin: auto"></a></li>
+					</ul>
+					<div class="12u$ plusbtn">
+						<a class="button special icon fa-plus" onclick="add_pro()">조리과정추가</a>
+					</div>
+
+					<hr class="major">
+					<div class="row">
+						<h2 class="3u 12u$(small)">태그</h2>
+						<div id="hashtag" class="9u$ 12u$(small)">
+							<input type="text" id="tag_input" placeholder="태그 입력">
+							<div id="hash_inbox">
+								<strong>입력된 해시태그</strong><br>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<hr class="major">
-				<input type="submit" value="등록"><input type="reset"
-					value="다시쓰기" onclick="del_tag()">
-			</form>
+					<hr class="major">
+					<input type="submit" value="등록"><input type="reset"
+						value="다시쓰기" onclick="del_tag()">
+				</form>
 			</div>
 		</div>
 	</div>

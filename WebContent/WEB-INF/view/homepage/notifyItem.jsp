@@ -18,6 +18,7 @@
 <div id=wrapper>
 <div id=main>
 <div class=inner>
+<%@ include file="head.jsp"%>
 <h3>
 ${dto.subject }
 </h3>

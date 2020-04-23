@@ -2,8 +2,9 @@ package jb.sample.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jb.sample.model.RecipeDTO;
@@ -11,49 +12,58 @@ import jb.sample.model.RecipeDTO;
 @Repository("mypageDAO")
 public class BoardDAOImpl implements BoardDAO {
 
-	@Autowired
+	@Inject
 	private SqlSession sql;
 
 	private static String namespace = "MypageMapper";
 
 	// 마이페이지/레시피-내가 작성한 레시피
-	public List<RecipeDTO> recipelist() throws Exception {
-		return sql.selectList(namespace + ".recipelist");
+	public List<RecipeDTO> recipelist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".recipelist", member_id);
 	}
 
 	// 마이페이지/레시피-내가 구매한 레시피
-	public List<RecipeDTO> paidlist() throws Exception {
-		return sql.selectList(namespace + ".paidlist");
+	public List<RecipeDTO> paidlist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".paidlist", member_id);
+	}
+	
+	// 팔로우 하기
+	public List<RecipeDTO> follow() throws Exception{
+		return sql.selectList(namespace+".follow");
+	}
+	// 언팔로우 하기
+	public List<RecipeDTO> unfollow() throws Exception{
+		return sql.selectList(namespace+".unfollow");
 	}
 
 	// 팔로워 수
-	public int getFollower() throws Exception {
-		return sql.selectOne(namespace + ".follower");
+	public int getFollower(String member_id) throws Exception {
+		return sql.selectOne(namespace + ".follower", member_id);
 	}
 
 	// 팔로우 수
-	public int getFollowing() throws Exception {
-		return sql.selectOne(namespace + ".following");
+	public int getFollowing(String member_id) throws Exception {
+		return sql.selectOne(namespace + ".following", member_id);
 	}
 
 	// 팔로워 리스트
-	public List<RecipeDTO> followerlist() throws Exception {
-		return sql.selectList(namespace + ".followerlist");
+	public List<RecipeDTO> followerlist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".followerlist", member_id);
 	}
 
 	// 팔로잉 리스트
-	public List<RecipeDTO> followinglist() throws Exception {
-		return sql.selectList(namespace + ".followinglist");
+	public List<RecipeDTO> followinglist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".followinglist", member_id);
 	}
 
 	// 마이페이지/스크랩-리스트
-	public List<RecipeDTO> scraplist() throws Exception {
-		return sql.selectList(namespace + ".scraplist");
+	public List<RecipeDTO> scraplist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".scraplist", member_id);
 	}
 
 	// 마이페이지/댓글 -리스트
-	public List<RecipeDTO> commentlist() throws Exception {
-		return sql.selectList(namespace + ".commentlist");
+	public List<RecipeDTO> commentlist(String member_id) throws Exception {
+		return sql.selectList(namespace + ".commentlist", member_id);
 	}
 
 }
