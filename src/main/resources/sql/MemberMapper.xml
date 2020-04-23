@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 로그인 성공 -->
 	<select id="loginOk" resultType="hn.user.model.MemberDto"
 		parameterType="hn.user.model.LoginCommand">
-		select member_id,password,level from members where
+		select member_id,password,level,nickname from members where
 		member_id=#{member_id}
 		and password=#{password}
 	</select>
