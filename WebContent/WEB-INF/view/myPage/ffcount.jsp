@@ -96,6 +96,7 @@ $(document).ready(function() {
 
 });
 </script>
+<%request.getParameter("MINFO"); %>
 <body>
 	<!-- Modal HTML embedded directly into document -->
 	<div id="modal_open" class="modal">

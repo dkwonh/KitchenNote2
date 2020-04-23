@@ -46,6 +46,13 @@ function deleteInfo(){
 	form.attr("action","updateChef.do");
 }
 
+function downloadExcel(){
+	var f = document.form1;
+
+	f.action = "chefToExcel.do";
+	f.submit();
+}
+
 $(function(){
 
 	
@@ -112,6 +119,9 @@ $(function(){
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>
@@ -169,8 +179,7 @@ $(function(){
 </div>
 <div id=popupWindow style="display:none">
 
-	<form style="background:white" action="updateChef.do" name="form">
-	<div class="row uniform modal-dialog">
+	<form style="background:white" action="updateChef.do" name="form" class="row gtr-uniform">
 		<div class="12u$ modal-body">
 		<h5>닉네임</h5>
 		<input type="text" name="nickname" id=nickBox>
@@ -191,7 +200,6 @@ $(function(){
 			<li><input type="submit" value="수정" class="special"></li>
 			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
-		</div>
 		</div>
 	</form>
 	

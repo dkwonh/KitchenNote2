@@ -429,6 +429,11 @@ public class AdminPageController implements ApplicationContextAware {
 		return "redirect:notify.do?pageNum=1";
 	}
 	
+	@RequestMapping(value="downloadExcel", method=RequestMethod.POST)
+	public String downloadExcel(Model model) {
+		return "";
+	}
+	
 	/**/
 	/*
 	 * //필터사용

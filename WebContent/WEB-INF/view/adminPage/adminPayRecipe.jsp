@@ -96,6 +96,7 @@ $(function(){
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	
 	<div class="table-wrapper">
 	<table>
 		<thead>

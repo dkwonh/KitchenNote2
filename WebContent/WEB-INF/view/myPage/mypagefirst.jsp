@@ -81,7 +81,6 @@ ul, li {
 	color: #ffffff !important;
 }
 </style>
-
 <body>
 
 	<div id="wrapper">

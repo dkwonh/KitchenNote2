@@ -9,8 +9,15 @@ public class PurchaseRecipeDto {
 	private String pur_member_id;
 	private String recipe_name;
 	private Timestamp pur_date;
-
+	private int price;
 	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public String getPur_member_id() {
 		return pur_member_id;
 	}
