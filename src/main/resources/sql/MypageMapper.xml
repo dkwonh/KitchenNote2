@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 마이페이지/댓글-리스트 -->
 	<select id="commentlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
 		<!-- select recipe_id, com_member_id, comment, comment_date, image, recipe_name from recipe_comment c natural join recipe_info r where r.member_id='admin123@kitchen.com' order by comment_date desc --> 
-		select recipe_id, com_member_id, comment, comment_date, image, recipe_name from recipe_comment c natural join recipe_info r where r.member_id=#{member_id} order by comment_date desc 
+		select recipe_id, com_member_id, comment, comment_date, image, recipe_name, r.member_id from recipe_comment c natural join recipe_info r where r.member_id=#{member_id} order by comment_date desc 
 	</select>
 	
 	<!-- 팔로워 수 가져오기 --><!-- member_id의 소식을 받는 사람의 수 -->

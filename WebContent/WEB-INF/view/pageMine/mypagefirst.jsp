@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,42 +81,38 @@ ul, li {
 }
 </style>
 <script>
-function changeContent(url){
+	function changeContent(url) {
 
-	$.ajax({
-		type : "get",
-		url : url,
-		dataType : "json"
-	}).done(function(args) {
-		$("div.posts").html("");
-		for(i=0; args.length > i; i++){
-			attach(args[i]);
+		$.ajax({
+			type : "get",
+			url : url,
+			dataType : "json"
+		}).done(function(args) {
+			$("div.posts").html("");
+			for (i = 0; args.length > i; i++) {
+				attach(args[i]);
 			}
-	
-	}).fail(function(e) {
-		alert(e.responseText);
-		return;
-	})
-}
 
-function attach(args){
-	var img = ""+args.image+"";
-	if(img.indexOf('okdab')>=0){
-		img = "<img src="+args.image+"  width=290 height=280 class=image>";
+		}).fail(function(e) {
+			alert(e.responseText);
+			return;
+		})
 	}
-	else{
-		img = "<img src=/img/"+args.image+"  width=290 height=280 class=image>";
-	}
-	$("div.posts").append(
-			"<article onclick=itemClick(" + args.recipe_id + ")>"
-			+ "<a class=image>"
-			+ img
-			+ "</a>" + "<h3>" + args.recipe_name + "</h3>"
-			+"<h5>"+args.member_id+"</h5>"
-			+ "<span><a class='icon fa-eye'></a>" + args.readcount
-			+ "</span>" + "</article>");
-}
 
+	function attach(args) {
+		var img = "" + args.image + "";
+		if (img.indexOf('okdab') >= 0) {
+			img = "<img src="+args.image+"  width=290 height=300 class=image>";
+		} else {
+			img = "<img src=/img/"+args.image+"  width=290 height=300 class=image>";
+		}
+		$("div.posts").append(
+				"<article onclick=itemClick(" + args.recipe_id + ")>"
+						+ "<a class=image>" + img + "</a>" + "<h3>"
+						+ args.recipe_name + "</h3>" + "<h5>" + args.member_id
+						+ "</h5>" + "<span><a class='icon fa-eye'></a>"
+						+ args.readcount + "</span>" + "</article>");
+	}
 </script>
 <body>
 
@@ -126,9 +123,10 @@ function attach(args){
 				<section>
 					<header>
 						<ul class="actions">
-							<li><a class="button primary" onclick="changeContent('myRecipe.do')">내가
-									작성한 레시피</a>
-							<li><a class="button primary" onclick="changeContent('myPurRecipe.do')">구매한 레시피</a>
+							<li><a class="button primary"
+								onclick="changeContent('myRecipe.do')">내가 작성한 레시피</a>
+							<li><a class="button primary"
+								onclick="changeContent('myPurRecipe.do')">구매한 레시피</a>
 						</ul>
 					</header>
 				</section>
@@ -136,7 +134,18 @@ function attach(args){
 					<div class="posts">
 						<c:forEach items="${list}" var="list">
 							<article>
-								<img src="${list.image}" width="290" height="280" class="image">
+
+								<c:set var="image" value="${list.image}" />
+								<c:if test="${fn:contains(image,'okdab') }">
+									<c:set var="mainImg" value="${list.image}" />
+									<img src="${list.image}" width="290" height="300" class="image">
+								</c:if>
+								<c:if test="${fn:contains(image,'note')}">
+									<c:set var="mainImg"
+										value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${list.image }" />
+									<img src="/img/${list.image }" width="290" height="300">
+								</c:if>
+
 								<h3>${list.recipe_name}</h3>
 								<div class="reicpe_readcount">조회수 : ${list.readcount}</div>
 								<div class="recipe_scrap">스크랩 수 : ${list.scrap}</div>
@@ -157,6 +166,7 @@ function attach(args){
 					<%@include file="ffcount.jsp"%>
 				</section>
 				<nav id="menu">
+					
 					<%@include file="aside.jsp"%>
 				</nav>
 			</div>

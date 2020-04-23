@@ -75,11 +75,8 @@ ul, li {
 	width: calc(33.33333% - 6em);
 }
 
-.button.primary {
-	background-color: #f56a6a;
-	box-shadow: none;
-	color: #ffffff !important;
-}
+
+
 </style>
 
 <body>
@@ -104,7 +101,7 @@ ul, li {
 								<c:if test="${fn:contains(image,'note')}">
 									<c:set var="mainImg"
 										value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${scraplist.image }" />
-									<img src="/img/${scraplist.image }">
+									<img src="/img/${scraplist.image }" width="290" height="300">
 								</c:if>
 								<h3>${scraplist.recipe_name}</h3>
 								<h5>조회수 : ${scraplist.readcount}</h5>
