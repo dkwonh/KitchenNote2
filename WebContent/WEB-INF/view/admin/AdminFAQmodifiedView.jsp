@@ -221,7 +221,6 @@ function resultCategory(){
 			</div>
 		</div>
 	</div>
-	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
