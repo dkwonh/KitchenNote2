@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:if test="${item.price != 0}">
-<article onclick="itemClick(${item.recipe_Id},${item.price })" style=" filter:opacity(25%);">
+<article onclick="itemClick(${item.recipe_Id},${item.price },${MINFO })" style=" filter:opacity(25%);">
 <a class="image"> 
 	<c:set var="image" value="${item.image }" />
 				<div>
@@ -33,7 +33,7 @@
 
 </c:if>
 <c:if test="${item.price == 0 }">
-<article onclick="itemClick(${item.recipe_Id},${item.price })">
+<article onclick="itemClick(${item.recipe_Id},${item.price },'${MINFO }')">
 
 
 	<a class="image"> 
