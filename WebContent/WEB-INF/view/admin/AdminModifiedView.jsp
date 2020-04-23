@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -30,6 +30,12 @@ font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+function resultCategory(){
+	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
+}
+</script>
+<script src="/KitchenNote2/homeJs/home.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btnReset").click(function() {
@@ -196,6 +202,7 @@ font-family: 'Cafe24Oneprettynight';
 			</div>
 		</div>
 	</div>
+	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
