@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="assets/css/home.css" />
 <title>Insert title here</title>
 <script src="../homepage/home.jsp"></script>
+<script>
+function buyFork(){
+	location.href="/KitchenNote2/kakaoPay.do";
+	
+}
+</script>
 </head>
 <body>
 	<div id=wrapper>
@@ -16,22 +22,27 @@
 		<div id=main>
 			<div class=inner>
 				<%@ include file="../homepage/head.jsp"%>
+				<section>
+				<h3>결제내역</h3>
+				<hr>
+				<button onclick="buyFork()">포크구매</button>
+				
 				<div class="table-wrapper">
 					<table>
 						<thead>
 							<tr>
 								<c:forEach var="item" items="${type }">
-									<td>${item}</td>
+									<th>${item}</th>
 								</c:forEach>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="item" items="${userList }" varStatus="i">
-								<tr class="modal">
+								<tr>
 									<td class="num">${i.count+(pageNum-1)*10}</td>
-									<td class="nickname">${item.fork }</td>
-									<td class="member_id">${item.purchase_amount }</td>
-									<td class="join_date">${item.fork_date }</td>
+									<td class="fork">포크 ${item.fork } 개</td>
+									<td class="purchase_amount">${item.purchase_amount }</td>
+									<td class="fork_date">${item.fork_date }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -68,7 +79,7 @@
 						</c:if></li>
 				</ul>
 
-
+			</section>
 			</div>
 		</div>
 		<div id="sidebar" class="inactive">

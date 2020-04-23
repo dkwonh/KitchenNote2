@@ -127,7 +127,7 @@ $(function(){
 		<thead>
 			<tr>
 				<c:forEach var="item" items="${type }">
-					<td>${item}</td>
+					<th>${item}</th>
 				</c:forEach>
 			</tr>
 		</thead>
