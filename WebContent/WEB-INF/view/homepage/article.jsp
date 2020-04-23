@@ -21,7 +21,7 @@
 						<img id="main_img" src="/img/${item.image }" width=500 height=300>
 					</c:if>
 					<div style="position:absolute;top:25%;left:25%; font-size:100px;color:black ">유료</div>
-						</div>
+				</div>
 	</a>
 	<h3>${item.recipe_Name }</h3>
 	<p>${item.recipe_Exp}</p>
