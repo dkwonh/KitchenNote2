@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -7,7 +7,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
-<link rel="stylesheet" href="../assets/css/home.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>회원 정보 수정</title>
@@ -40,12 +39,6 @@ font-family: "NanumSquare";
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script>
-function resultCategory(){
-	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
-}
-</script>
-<script src="/KitchenNote2/homeJs/home.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -151,25 +144,16 @@ function resultCategory(){
 				</script>
 				</header> 
 				<div class="navi c">
-					<button id="category">카테고리</button>
-					<button id="recipe">레시피</button>
-					<button id="notify">공지사항</button>
-					<button id="support">고객센터</button>
+								<input type="button" value="카테고리"> <input type="button"
+									value="레시피"> <input type="button" value="이벤트"> <input
+									type="button" value="고객센터"><br>
 				</div>
-				<section>
-					<div id="category" style="display: none">
-						<form style="text-align: center" class="form">
-							<%@ include file="../homepage/category.jsp"%>
-							<input type="button" onclick="resultCategory()" value="검색">
-						</form>
-					</div>
-				</section>
 				<br>
 				<form method="post" name="pwdcheck" id="pwdcheck">
 					<h2>비밀번호 변경</h2>
 					<br> <input type="hidden" name="pwd" value="${pwd}">
 					<div>
-						현재 비밀번호 : <input type="password" name="password" id="password"
+						현재 비밀번호 : <input type="password" name="password" id="password" style="color:BLACK;"
 										placeholder="현재 비밀번호를 입력하여 주세요.">
 					</div>
 					<br>
@@ -195,6 +179,7 @@ function resultCategory(){
 				<header class="major">
 					<h2>마이 페이지</h2>
 					</header>
+					<image src="#">
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
@@ -221,7 +206,6 @@ function resultCategory(){
 			</div>
 		</div>
 	</div>
-	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
