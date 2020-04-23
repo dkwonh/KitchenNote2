@@ -31,13 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 팔로우 하기 -->
-	<insert id="follow" parameterType="jb.sample.model.RecipeDTO">
+<!-- 	<insert id="follow" parameterType="jb.sample.model.RecipeDTO">
 		insert into subscribe(follower, following) values(#{follower}, #{following})
-	</insert>
+	</insert> -->
 	<!-- 언팔로우 하기 -->
-	<delete id="unfollow" parameterType="jb.sample.model.RecipeDTO">
+	<!-- <delete id="unfollow" parameterType="jb.sample.model.RecipeDTO">
 		delete from subscribe where follower=#{follower} and following=#{following}
-	</delete>
+	</delete> -->
 
 	<!-- 팔로워 수 가져오기 --><!-- member_id의 소식을 받는 사람의 수 -->
 	<select id="follower" resultType="int" parameterType="String">

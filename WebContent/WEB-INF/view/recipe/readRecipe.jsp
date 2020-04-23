@@ -30,9 +30,17 @@ function getComments(page){
 				if(data[4].length>0){
 				for(var i = 0;i<data[4].length;i++){
 					var str = "";
+
+					if(data[4][i].picture.indexOf('Url')){
+						var profile='/KitchenNote2/images/'
+							profile+= data[4][i].picture+'.jpg';
+						}else{
+						var profile="";
+							}
+					console.log(profile);
 					 str += '<li><div class="comment">'
 					+ '<div>'
-					+ '<img src="/img/'+data[4][i].picture+'" class="profileimg">'
+					+'<img alt="프로필" src="'+profile+'" class="profileimg">'
 				+ '</div>'
 				+ '<div class="content">'
 				+ '<div class="com-info">'
@@ -496,6 +504,9 @@ a {
 	border: 0;
 }
 
+header * {
+	font-family: 'Cafe24Oneprettynight';
+}
 </style>
 </head>
 <body>
@@ -612,14 +623,21 @@ a {
 			<div class="inner">
 				<div id="user_info" style="padding-bottom: 2em">
 					<!-- 사용자정보 -->
-					<img alt="프로필" src="/img/${writer.picture }" id="profile_pic">
+					<c:set var="profilepic" value="${writer.picture }" />
+					<c:if test="${fn:contains(profilepic,'Url') }">
+						<img alt="프로필" src="/KitchenNote2/images/${writer.picture }.jpg"
+							id="profile_pic">
+					</c:if>
+					<c:if test="${fn:contains(profilepic,'zzz') }">
+						<img alt="프로필" src="/img/${writer.picture }" id="profile_pic">
+					</c:if>
 					<a id="userSNS" href="${sns }">${sns }</a> <span id="username">${writer.nickname }</span>
 				</div>
 				<div id="info_basic">
 					<dl>
-						<dt class="icon fa-clock-o"> 조리시간</dt>
+						<dt class="icon fa-clock-o">조리시간</dt>
 						<dd>${info.duration }</dd>
-						<dt class="icon fa-heart"> 스크랩</dt>
+						<dt class="icon fa-heart">스크랩</dt>
 						<dd id="scrapcount">${info.scrap }</dd>
 					</dl>
 
@@ -664,8 +682,11 @@ a {
 							title="카카오톡"> </a></li>
 					</ul>
 				</div>
-				<div id="ingList" style="padding: 5px; background-color: #FFF; border-radius: 0.375em;">
-				<header class="major"><h2>재료리스트</h2></header>
+				<div id="ingList"
+					style="padding: 5px; background-color: #FFF; border-radius: 0.375em;">
+					<header class="major">
+						<h2>재료리스트</h2>
+					</header>
 					<table>
 						<tbody>
 							<!-- 재료 리스트 -->

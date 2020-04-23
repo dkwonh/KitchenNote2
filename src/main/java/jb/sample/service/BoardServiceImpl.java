@@ -24,13 +24,14 @@ public class BoardServiceImpl implements BoardService {
 	public List<RecipeDTO> recipelist(String member_id) throws Exception {
 		return dao.recipelist(member_id);
 	}
-	
-	//팔로우 하기
-	public List<RecipeDTO> follow() throws Exception{
+
+	// 팔로우 하기
+	public List<RecipeDTO> follow() throws Exception {
 		return dao.follow();
 	}
-	//언팔로우 하기
-	public List<RecipeDTO> unfollow() throws Exception{
+
+	// 언팔로우 하기
+	public List<RecipeDTO> unfollow() throws Exception {
 		return dao.unfollow();
 	}
 
