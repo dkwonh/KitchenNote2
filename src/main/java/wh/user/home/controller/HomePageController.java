@@ -211,6 +211,7 @@ public class HomePageController implements ApplicationContextAware {
 		return "homepage/searchResult";
 	}
 	
+	//카테고리 검색 ajax
 	@RequestMapping(value="searchCategoryAjax.do", method=RequestMethod.GET)
 	public void CategoryAjax(HomePageCategoryDto category, HttpServletResponse response) throws IOException {
 		List<Integer> integer = new ArrayList<>();
@@ -244,6 +245,7 @@ public class HomePageController implements ApplicationContextAware {
 		out.print(json.toJson(list));
 	}
 	
+	//재료검색 ajax
 	@RequestMapping(value = "searchNangbu.do", method = RequestMethod.GET)
 	public void searchNangbuAjax(@RequestParam("ingredients[]") int ingredients[], HttpServletResponse response) throws IOException {
 		List<HomePageRecipeDto> list = homePageService.searchFromIngre(ingredients);
@@ -362,6 +364,7 @@ public class HomePageController implements ApplicationContextAware {
 		recipe.setPur_member_id(member_id);
 		recipe.setPrice(1);
 		recipe.setRecipe_id(recipe_id);
+	
 		
 		HomePageMemberDto member = homePageService.getMember(member_id);
 		//구매할수 있는 포크가 있을경우 바로 구매 후 읽기 페이지 이동

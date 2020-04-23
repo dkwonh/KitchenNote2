@@ -19,8 +19,8 @@
 	font-style: normal;
 }
 
-#main *{
-	font-family:'Cafe24Oneprettynight';
+#main * {
+	font-family: 'Cafe24Oneprettynight';
 }
 </style>
 </head>
@@ -46,12 +46,9 @@ function resultCategory(){
 							<h1>WELCOME TO KITCHEN NOTE!</h1>
 							<p>다양하고 참신한 레시피를 지금 만나보세요!</p>
 						</header>
-						<p>
-							재료, 이름, 카테고리 별로 원하는 레시피를 검색할 수 있습니다.<br> 또한 셰프로 등업하여 더 많은
-							혜택을 만나보세요.<br> 셰프는 유료 레시피를 등록하여 수익을 벌어들일수 있다는 사실!<br>
-							뭔가 내용이 더있어야 할것 같다.<br> ㅁㄴㅇㅁㄴ아아ㅏㅇ라ㅏ아아 맘ㄴ임ㄴ아머ㅔ리탗ㅍㅌㅊㅍ,틏ㅍ<br>
-							ㄴ이라먼리남어랴기ㅗ헬히ㅏㅓ<br>
-						</p>
+						<p>요리의 즐거움을 아는 회원님을 환영합니다!<br> 집에 있는 식재료를 활용한 레시피를 찾아보시고 이름 및 카테고리
+							별로 원하는 레시피를 검색해보세요!<br> 또한 쉐프로 등업하여 더 많은 혜택을 만나보세요.<br> 쉐프는 자기만의 레시피를 유료로
+							등록하여 수익을 창출! 할 수 있다는 사실 잊지마세요~</p>
 					</div>
 					<span class="image object" style="inline: block; height: 400px">
 						<img src="images/KakaoTalk_20200417_204831310.png">
