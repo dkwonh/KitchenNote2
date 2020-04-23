@@ -6,6 +6,15 @@ public class FilterDto {
 	String select2; // 제목 , 내용
 	String select3; // 검색 내용
 	int start; // 시작 고정
+	String member_id;
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
 
 	public String getSelect1() {
 		return select1;

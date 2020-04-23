@@ -63,8 +63,9 @@ public class MemberController {
 			session.setAttribute("NOT", 0);
 			return "redirect:/login/loginForm.do"; //로그인 실패
 		}else {
-			session.setAttribute("MINFO", lc.getMember_id());
-			session.setAttribute("NICK", lc.getNickname());
+			session.setAttribute("MINFO", list.get(0).getMember_id());
+			session.setAttribute("NICK", list.get(0).getNickname());
+			System.out.println("lc.getNickname():::"+list.get(0).getNickname());
 			session.setAttribute("LEVEL", list.get(0).getLevel());
 			return "redirect:/index.jsp"; //로그인 성공
 		} 

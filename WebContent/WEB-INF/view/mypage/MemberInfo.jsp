@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -36,7 +36,43 @@ font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="/KitchenNote2/homeJs/home.js">
+<script>
+	$(document).ready(function() {
+		$("#btnWrite").click(function() {
+			location.href = "chefApply.do?chef=test2@ki.com";
+		});
+		$("#btnPwd").click(function() {
+			location.href = "changePwdView.do";
+		});
+		$("#btnDel").click(function() {
+			location.href = "pwdCheck.do";
+		});
+		$("#btnChange").click(function() {
+			var nickname = $("#nickname").val();
+			var tel = $("#tel").val();
+			var sns_address = $("#sns_address").val();
+
+			if (nickname == "") {
+				alert("닉네임을 입력하세요.");
+				document.form2.nickname.focus();
+				return;
+			}
+			if (tel == "") {
+				alert("전화 번호를 입력하세요.");
+				document.form2.tel.focus();
+				return;
+			}
+			if (sns_address == "") {
+				alert("SNS주소를 입력하세요.");
+				document.form2.sns_address.focus();
+				return;
+			} else {
+				confirm("저장 하시겠습니까?");
+				document.form2.action = "changeUser.do";
+				document.form2.submit();
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -70,8 +106,14 @@ font-family: 'Cafe24Oneprettynight';
 							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 					</ul>
 				<script>
+				
 				<%String member_id = (String) session.getAttribute("MINFO");
-			Integer level = (Integer) session.getAttribute("LEVEL");%>
+				System.out.println("member_id:::"+member_id);
+			Integer level = (Integer) session.getAttribute("LEVEL");
+			String nickname = (String) session.getAttribute("NICK");
+			
+			System.out.println("nickname:::"+nickname);
+			%>
 				$(function(){
 					if("<%=member_id%>"== "null"){
 						$("li.out").css("display","inline-block");
@@ -95,71 +137,33 @@ font-family: 'Cafe24Oneprettynight';
 									value="레시피"> <input type="button" value="이벤트"> <input
 									type="button" value="고객센터"><br>
 				</div>
-				<section>
-					<P>
-					
-								<h3>자주 묻는 질문/FAQ</h3>
-					<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
-					질문 내용에 따라 비공개에서 공개로 전환 될 수 있음을 알려드립니다.
+				<hr>
+				<h2>회원 정보 수정</h2>
+				<img src="${picture }"></img>
+				<form method="POST" name="form2">
+					사진 바꾸기
+					<button type="submit" value="첨부">첨부</button>
+					<button type="button" id="btnWrite">쉐프 신청</button>
+					<br>
+					<div>
+						닉네임 : <input type="text" id="nickname" name="nickname" value="${NICK}">
+					</div>
+					<div>
+						이메일 : <input type="text" id="chef" name="chef" value="<%=member_id %>"
+										readonly>
+					</div>
+					<div>
+						연락처 : <input type="text" id="tel" name="tel" value="${dto.tel}">
+					</div>
+					<div>
+						개인 SNS주소 : <input type="text" id="sns_address" name="sns_address"
+										value="${dto.sns_address}">
+					</div>
 					<hr>
-				
-							</section>
-				<h4>자주 찾는 도움말</h4>
-				<form action="FAQ.do?pageNum=1">
-					<br> 구분 :<select id="select1" name="select1">
-						<option value="레시피">레시피</option>
-						<option value="결제 및 환불">결제 및 환불</option>
-						<option value="오류 및 수정">오류 및 수정</option>
-						<option value="신고">신고</option>
-					</select>
-					<p>
-						검색 :<select id="select2" name="select2">
-							<option value="전체">전체</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select> <input type="search" name="select3" id="select3"
-										placeholder="검색 할 내용을 입력하여주세요."> <input type="hidden"
-										name="pageNum" value="1">
-					</p>
-					</form>
-					<hr>
-					<h4>자주 묻는 질문 목록</h4>
-					<p>
-					
-								<table border="1" width="600px">
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>구분</th>
-							<th>조회수</th>
-						</tr>
-						<c:forEach var="row" items="${FAQ}">
-							<tr>
-								<td>${row.bno+(pageNum-1)*10}</td>
-								<td><a href="FAQView.do?bno=${row.bno}">${row.title }</a></td>
-								<td>${row.menu}</td>
-								<td>${row.viewcnt }</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<p />
-					<ul class="pagination">
-						<li><c:if test="${startPage > 10 }">
-								<a href="FAQ.do?pageNum=${startPage-10}" class="button">이전</a>
-							</c:if> <c:if test="${startPage <= 10 }">
-								<span class="button disabled">이전</span>
-							</c:if></li>
-
-						<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-							<li><a href="FAQ.do?pageNum=${i}" class="page">${i}</a></li>
-						</c:forEach>
-
-						<li><c:if test="${endPage < pageCount }">
-								<a href="FAQ.do?pageNum=${startPage+10}" class="button">다음</a>
-							</c:if> <c:if test="${endPage >= pageCount }">
-								<span class="button disabled">다음</span>
-							</c:if></li>
-					</ul>
+					<button type="button" id="btnChange">계정 정보 변경</button>
+					<button type="button" id="btnPwd">비밀번호 바꾸기</button>
+					<button type="button" id="btnDel">탈퇴 하기</button>
+				</form>
 			
 						</div>
 		</div>
@@ -167,27 +171,34 @@ font-family: 'Cafe24Oneprettynight';
 			<div class="inner">
 				<nav id="menu">
 				<header class="major">
-					<h2>고객센터</h2>
+					<h2>마이 페이지</h2>
 					</header>
 					<ul>
 						<li><a
-							href="FAQ.do?pageNum=0">자주
-								묻는 질문/FAQ</a></li>
-						<li><span class="opener">1:1 문의</span>
-							<ul>
-								<li><a
-									href="list.do?pageNum=0">-
-										내 문의 내역</a></li>
-								<li><a
-									href="write.do?pageNum=0">-
-										1:1 문의하기</a></li>
-							</ul></li>
+							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+								레시피</a></li>
+
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/list.do">-
+								스크랩</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								댓글</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								알람</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/customer/write.do">-
+								결제 내역</a></li>
+						<li><a
+							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+								회원 정보 수정</a></li>
+
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
-	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
