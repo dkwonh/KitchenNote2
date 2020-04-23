@@ -169,7 +169,7 @@ function resultCategory(){
 					<h2>비밀번호 변경</h2>
 					<br> <input type="hidden" name="pwd" value="${pwd}">
 					<div>
-						현재 비밀번호 : <input type="password" name="password" id="password" style="color:BLACK;"
+						현재 비밀번호 : <input type="password" name="password" id="password"
 										placeholder="현재 비밀번호를 입력하여 주세요.">
 					</div>
 					<br>
@@ -195,7 +195,6 @@ function resultCategory(){
 				<header class="major">
 					<h2>마이 페이지</h2>
 					</header>
-					<image src="#">
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -

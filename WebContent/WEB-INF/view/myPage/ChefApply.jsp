@@ -177,7 +177,6 @@ function resultCategory(){
 				<header class="major">
 					<h2>마이 페이지</h2>
 					</header>
-					<image src="#">
 					<ul>
 						<li><a
 							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -

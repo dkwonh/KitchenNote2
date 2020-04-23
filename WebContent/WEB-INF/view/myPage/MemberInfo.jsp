@@ -161,10 +161,7 @@ function resultCategory(){
 				</section>
 				<hr>
 				<h2>회원 정보 수정</h2>
-				<img src="${picture }"></img>
 				<form method="POST" name="form2">
-					사진 바꾸기
-					<button type="submit" value="첨부">첨부</button>
 					<button type="button" id="btnWrite">쉐프 신청</button>
 					<br>
 					<div>
