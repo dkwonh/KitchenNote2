@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -36,6 +36,13 @@ font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+function resultCategory(){
+	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
+}
+</script>
+<script src="/KitchenNote2/homeJs/home.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btnSave").click(function() {
@@ -87,7 +94,7 @@ font-family: 'Cafe24Oneprettynight';
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label> sign-out </span></a>
-						<li class="in"><a href="'mypage/mypagefirst.do" class="icon fa-user"><span
+						<li class="in"><a href="'/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
 						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
@@ -122,10 +129,19 @@ font-family: 'Cafe24Oneprettynight';
 				</script>
 				</header> 
 				<div class="navi c">
-								<input type="button" value="카테고리"> <input type="button"
-									value="레시피"> <input type="button" value="이벤트"> <input
-									type="button" value="고객센터"><br>
+					<button id="category">카테고리</button>
+					<button id="recipe">레시피</button>
+					<button id="notify">공지사항</button>
+					<button id="support">고객센터</button>
 				</div>
+				<section>
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="../homepage/category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
+				</section>
 				<hr>
 				<form name="form1" method="post" action="chefApply_submit.do">
 					<h2>쉐프 신청하기</h2>

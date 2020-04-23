@@ -7,7 +7,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <meta name="viewport" content="width=device-width, initial-scale = 1">
-<meta http-equiv="Content-Type" content="text/html; charset = utf-8" pageEncoding="utf-8">
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -45,14 +44,6 @@ function resultCategory(){
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
-}
-@font-face {
-	font-family: 'Cafe24Oneprettynight';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
 }
 @font-face {
 	font-family: 'Cafe24Oneprettynight';

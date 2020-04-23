@@ -12,6 +12,13 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
+.navi input {
+	float: left;
+}
+
+.c input {
+	width: 25%
+}
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
@@ -35,6 +42,7 @@ function resultCategory(){
 }
 </script>
 <script src="/KitchenNote2/homeJs/home.js"></script>
+<script src="../homepage/nangbu.jsp"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -53,10 +61,10 @@ function resultCategory(){
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label> sign-out </span></a>
-						<li class="in"><a href="/KitchenNote2/myPage/memberInfo.do" class="icon fa-user"><span
+						<li class="in"><a href="/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
-						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
+						<li><a href="#" class="icon fa-archive modal"><span
 								class="label">nangbu</span></a></li>
 
 						<li class="in"><a href="/KitchenNote2/recipe/write.do" class="icon fa-edit"><span
@@ -66,7 +74,7 @@ function resultCategory(){
 							href="/KitchenNote2/admin.do?pageNum=1&&filter=&&search="
 							class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
 					</ul>
-				<script>
+					<script>
 				<%String member_id = (String) session.getAttribute("MINFO");
 			Integer level = (Integer) session.getAttribute("LEVEL");%>
 				$(function(){
