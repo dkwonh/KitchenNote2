@@ -31,10 +31,25 @@ public class MemberInfoController {
 
 	@RequestMapping(value = "memberInfo.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView view(@RequestParam(required = false) String member_id, HttpSession session) throws Exception {
+
+		/*
+		 * session.getAttribute("MINFO"); session.getAttribute("NICK");
+		 * session.getAttribute("LEVEL");
+		 */
+		
+		ChefDto chef = new ChefDto();
+		String sns = chef.getSns_address();
+		String tel = chef.getTel();
+		MemberInfoDto dto = service.view(member_id);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myPage/MemberInfo");
-		MemberInfoDto dto = service.view(member_id);
+
 		mav.addObject("dto", dto);
+		mav.addObject("sns", sns);
+		mav.addObject("tel", tel);
+		System.out.println(dto);
+		System.out.println("sns;;;" + sns);
+		System.out.println("tel;;;" + tel);
 		return mav;
 	} // 회원 정보
 
@@ -83,14 +98,14 @@ public class MemberInfoController {
 	public String deletePwdCheck(@ModelAttribute ChefDto dto) {
 		return "myPage/DeletePwdCheck";
 	} // 회원 탈퇴 전 비밀 번호 확인
-	
+
 	@RequestMapping(value = "deleteForm.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public String memberWithdrawalView(@ModelAttribute ChefDto dto) {
 		return "myPage/MemberWithdrawal";
 	} // 회원 탈퇴 창
-	
+
 	@RequestMapping(value = "delete.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public String delete(@RequestParam (value = "member_id",required = false)String member_id) throws Exception {
+	public String delete(@RequestParam(value = "member_id", required = false) String member_id) throws Exception {
 		service.delete(member_id);
 		return "redirect:memberInfo.do";
 	} // 회원 탈퇴

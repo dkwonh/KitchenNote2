@@ -75,7 +75,28 @@ $(function(){
 		});
 	}
 })
+
+function downloadExcel(){
+	var f = document.form1;
+	f.action="userToExcel.do";
+	f.submit();
+}
 </script>
+
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 </head>
 <body>
 <div id="wrapper">
@@ -92,6 +113,9 @@ $(function(){
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>
@@ -141,15 +165,10 @@ $(function(){
 			</c:if>
 		</li>
 	</ul>
-	</div>
-</div>
-<%@ include file="sideMenu.jsp" %>
-</div>
-<div id=popupWindow style="display:none">
+	<div id=popupWindow style="display:none" class="col-12">
 
-	<form style="background:white" name="form" action="update.do">
-	<div class="row uniform">
-		<div class="12u$">
+	<form style="background:white" name="form" action="update.do" class="row gtr-uniform">
+		<div class="col-12">
 		<h3>닉네임</h3>
 		<input type="text" name="nickname" id=nickBox>
 		
@@ -164,10 +183,14 @@ $(function(){
 			<li><input type="button" value="삭제" onclick="deleteInfo()"></li>
 		</ul>
 		</div>
-		</div>
 	</form>
 	
 </div>
+	</div>
+</div>
+<%@ include file="sideMenu.jsp" %>
+</div>
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>

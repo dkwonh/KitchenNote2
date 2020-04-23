@@ -25,7 +25,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-#main *{
+#wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
 </style>
@@ -124,7 +124,7 @@ font-family: 'Cafe24Oneprettynight';
 				<section>
 				<h2>1:1 문의하기</h2>
 				<hr>
-				<form name="form1" method="post" action="insert.do">
+				<form name="form1" method="get" action="insert.do">
 					<div>
 						제목 :<input name="subject" id="subject" size="80"
 										placeholder="글 제목 입력">
@@ -141,7 +141,7 @@ font-family: 'Cafe24Oneprettynight';
 						<textarea name="content" id="content" rows="8" cols="80"
 										placeholder="글 내용 입력"></textarea>
 					</div>
-					<input type="hidden" name="member_id" value="${member_id }">
+					<input type="hidden" name="member_id" value="${MINFO }">
 					<input type="hidden" name="status" value="${status}">
 					</section>
 					<div style="width: 650px; text-align: center;">
@@ -149,6 +149,7 @@ font-family: 'Cafe24Oneprettynight';
 						<button type="button" id="btnCancel">취소</button>
 					</div>
 				</form>
+
 				
 				</div>
 		</div>

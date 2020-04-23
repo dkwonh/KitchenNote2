@@ -6,7 +6,20 @@
 <link rel="stylesheet" href="assets/css/main.css" />
 <script type="text/javascript" src="./editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<style type="text/css">
+@font-face {
+	font-family: 'Cafe24Oneprettynight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
+#main *{
+	font-family:'Cafe24Oneprettynight';
+}
+</style>
 <script>
 	
 </script>
