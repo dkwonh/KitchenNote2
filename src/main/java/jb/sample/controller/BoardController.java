@@ -65,6 +65,19 @@ public class BoardController {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print(json.toJson(list));
+			List<RecipeDTO> follower, following = null;
+			follower = service.followerlist(member_id);
+			model.addAttribute("followerlist", follower);
+			following = service.followinglist(member_id);
+			model.addAttribute("followinglist", following);
+
+			int getFollower = 0;
+			getFollower = service.getFollower(member_id);
+			model.addAttribute("followersize", getFollower);
+			int getFollowing = 0;
+			getFollowing = service.getFollowing(member_id);
+			model.addAttribute("followingsize", getFollowing);
+			
 		}
 		
 		//ajaxMyPurrecipe
@@ -78,6 +91,19 @@ public class BoardController {
 					response.setContentType("text/html;charset=utf-8");
 					PrintWriter out = response.getWriter();
 					out.print(json.toJson(list));
+					List<RecipeDTO> follower, following = null;
+					follower = service.followerlist(member_id);
+					model.addAttribute("followerlist", follower);
+					following = service.followinglist(member_id);
+					model.addAttribute("followinglist", following);
+
+					int getFollower = 0;
+					getFollower = service.getFollower(member_id);
+					model.addAttribute("followersize", getFollower);
+					int getFollowing = 0;
+					getFollowing = service.getFollowing(member_id);
+					model.addAttribute("followingsize", getFollowing);
+					
 				}
 		
 
@@ -90,8 +116,6 @@ public class BoardController {
 		model.addAttribute("followerlist", follower);
 		following = service.followinglist(member_id);
 		model.addAttribute("followinglist", following);
-		System.out.println(follower);
-		System.out.println(following);
 		return "pageMine/followlist";
 	}
 
@@ -102,6 +126,19 @@ public class BoardController {
 		List<RecipeDTO> paidlist = null;
 		paidlist = service.paidlist(member_id);
 		model.addAttribute("paidlist", paidlist);
+		List<RecipeDTO> follower, following = null;
+		follower = service.followerlist(member_id);
+		model.addAttribute("followerlist", follower);
+		following = service.followinglist(member_id);
+		model.addAttribute("followinglist", following);
+
+		int getFollower = 0;
+		getFollower = service.getFollower(member_id);
+		model.addAttribute("followersize", getFollower);
+		int getFollowing = 0;
+		getFollowing = service.getFollowing(member_id);
+		model.addAttribute("followingsize", getFollowing);
+		
 		/* System.out.println(paidlist); */
 		return "pageMine/paidlist";
 
@@ -114,7 +151,20 @@ public class BoardController {
 		List<RecipeDTO> scraplist = null;
 		scraplist = service.scraplist(member_id);
 		model.addAttribute("scraplist", scraplist);
-		System.out.println("스크랩리스트"+scraplist);
+		/* System.out.println("스크랩리스트"+scraplist); */
+		List<RecipeDTO> follower, following = null;
+		follower = service.followerlist(member_id);
+		model.addAttribute("followerlist", follower);
+		following = service.followinglist(member_id);
+		model.addAttribute("followinglist", following);
+
+		int getFollower = 0;
+		getFollower = service.getFollower(member_id);
+		model.addAttribute("followersize", getFollower);
+		int getFollowing = 0;
+		getFollowing = service.getFollowing(member_id);
+		model.addAttribute("followingsize", getFollowing);
+		
 		return "pageMine/scraplist";
 	}
 
@@ -125,6 +175,19 @@ public class BoardController {
 		List<RecipeDTO> getComment = null;
 		getComment = service.commentlist(member_id);
 		model.addAttribute("commentlist", getComment);
+		List<RecipeDTO> follower, following = null;
+		follower = service.followerlist(member_id);
+		model.addAttribute("followerlist", follower);
+		following = service.followinglist(member_id);
+		model.addAttribute("followinglist", following);
+
+		int getFollower = 0;
+		getFollower = service.getFollower(member_id);
+		model.addAttribute("followersize", getFollower);
+		int getFollowing = 0;
+		getFollowing = service.getFollowing(member_id);
+		model.addAttribute("followingsize", getFollowing);
+		
 		return "pageMine/commentlist";
 	}
 }
