@@ -124,7 +124,7 @@ font-family: 'Cafe24Oneprettynight';
 				<section>
 				<h2>1:1 문의하기</h2>
 				<hr>
-				<form name="form1" method="get" action="insert.do">
+				<form name="form1" method="POST" action="insert.do">
 					<div>
 						제목 :<input name="subject" id="subject" size="80"
 										placeholder="글 제목 입력">
