@@ -47,6 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 팔로잉 리스트 --><!-- member_id가 소식을 받아오는 사람들 리스트 -->
 	<select id="followinglist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
 		<!-- select nickname, member_id from members where member_id in (select following from subscribe where follower = 'test12@ki.com') -->
-		select nickname, member_id from members where member_id in (select following from subscribe where follower = '#{member_id})
+		select nickname, member_id from members where member_id in (select following from subscribe where follower = #{member_id})
 	</select>
 </mapper>

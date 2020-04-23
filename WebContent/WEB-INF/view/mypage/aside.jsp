@@ -1,19 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
 	<ul>
-		<li><a href="mypagefirst.do">·¹½ÃÇÇ</a>
-		<li><a href="scraplist.do">½ºÅ©·¦</a>
-		<li><a href="commentlist.do">´ñ±Û</a>
-		<li><a href="">¾Ë¸²</a>
-		<li><a href="">°áÁ¦³»¿ª</a>
-		<li><a href="">È¸¿øÁ¤º¸¼öÁ¤</a>
+		<li><a href="mypagefirst.do">ë ˆì‹œí”¼</a>
+		<li><a href="scraplist.do">ìŠ¤í¬ëž©</a>
+		<li><a href="commentlist.do">ëŒ“ê¸€</a>
+		<li><a href="">ê²°ì œë‚´ì—­</a>
+		<li><a href="">íšŒì›ì •ë³´ìˆ˜ì •</a>
 		
 		
 	</ul>

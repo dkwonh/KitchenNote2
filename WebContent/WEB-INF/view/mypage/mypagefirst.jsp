@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <meta name="viewport"
@@ -81,6 +79,7 @@ ul, li {
 	color: #ffffff !important;
 }
 </style>
+
 <body>
 
 	<div id="wrapper">
@@ -90,9 +89,9 @@ ul, li {
 				<section>
 					<header>
 						<ul class="actions">
-							<li><a href="mypagefirst.do" class="button primary">³»°¡
-									ÀÛ¼ºÇÑ ·¹½ÃÇÇ</a>
-							<li><a href="paidlist.do" class="button primary">±¸¸ÅÇÑ ·¹½ÃÇÇ</a>
+							<li><a href="mypagefirst.do" class="button primary">ë‚´ê°€
+									ì‘ì„±í•œ ë ˆì‹œí”¼</a>
+							<li><a href="paidlist.do" class="button primary">êµ¬ë§¤í•œ ë ˆì‹œí”¼</a>
 						</ul>
 					</header>
 				</section>
@@ -102,11 +101,11 @@ ul, li {
 							<article>
 								<img src="${list.image}" width="290" height="280" class="image">
 								<h3>${list.recipe_name}</h3>
-								<div class="reicpe_readcount">Á¶È¸¼ö : ${list.readcount}</div>
-								<div class="recipe_scrap">½ºÅ©·¦ ¼ö : ${list.scrap}</div>
+								<div class="reicpe_readcount">ì¡°íšŒìˆ˜ : ${list.readcount}</div>
+								<div class="recipe_scrap">ìŠ¤í¬ë© ìˆ˜ : ${list.scrap}</div>
 								<ul class="actions">
-									<li><a href="modify.jsp">¼öÁ¤</a></li>
-									<li><a href="delete.jsp">»èÁ¦</a></li>
+									<li><a href="modify.jsp">ìˆ˜ì •</a></li>
+									<li><a href="delete.jsp">ì‚­ì œ</a></li>
 								</ul>
 							</article>
 						</c:forEach>
@@ -117,7 +116,7 @@ ul, li {
 		<!-- Sidebar -->
 		<div id="sidebar" class="inactive">
 			<div class="inner">
-				<!-- ÆÈ·Î¿ö/ÆÈ·Î¿ì ¼ö -->
+				<!-- íŒ”ë¡œì›Œ/íŒ”ë¡œìš° ìˆ˜ -->
 				<section id="count">
 					<%@include file="ffcount.jsp"%>
 				</section>
@@ -126,7 +125,6 @@ ul, li {
 				</nav>
 			</div>
 		</div>
-		<div></div>
 	</div>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
