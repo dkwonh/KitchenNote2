@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<header id="header">
+	<header id="header">
 					<a href="/KitchenNote2/home.do" class="logo"><img src="/KitchenNote2/images/KakaoTalk_20200422_111639302.png" width="300px" height=100px></a>
 					<section id=search class="alt 4u 12u$">
 					<form method=post action=recipe.do>
@@ -29,7 +29,7 @@
 						<li class="admin"><a href="/KitchenNote2/admin.do?pageNum=1&&filter=&&search=" class="icon fa-snapchat-ghost"><span
 								class="label">Snapchat</span></a></li>
 					</ul>
-				
+				<%@include file="nangbu.jsp" %>
 				</header>
 				
 				<script>
@@ -56,4 +56,6 @@
 					}
 				});
 			</script>
+			
+			<script src="/KitchenNote2/homeJs/home.js?v=1"></script>
 				 

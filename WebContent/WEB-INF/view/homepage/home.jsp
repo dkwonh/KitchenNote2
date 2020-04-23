@@ -30,7 +30,6 @@ function resultCategory(){
 }
 
 </script>
-<script src="homeJs/home.js?v=2"></script>
 
 <body>
 
@@ -109,7 +108,6 @@ function resultCategory(){
 						</c:forEach>
 					</div>
 				</section>
-				<%@ include file="nangbu.jsp"%>
 			</div>
 		</div>
 	</div>

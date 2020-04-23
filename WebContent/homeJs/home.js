@@ -3,15 +3,15 @@ function closeCategory() {
 }
 
 function searchCategory(category) {
-	location.href = "searchCategory.do?category1=" + category;
+	location.href = "/KitchenNote2/searchCategory.do?category1=" + category;
 }
 
 function resultCategory() {
-	location.href = "searchCategory.do?" + $('form.form').serialize();
+	location.href = "/KitchenNote2/searchCategory.do?" + $('form.form').serialize();
 }
 
 function loadCategory(ing_category) {
-	var url = "category.do"
+	var url = "/KitchenNote2/category.do"
 	var params = "ing_category=" + ing_category
 	$.ajax({
 		type : "get",
@@ -37,7 +37,7 @@ function loadCategory(ing_category) {
 }
 
 function infoAjax(item) {
-	var url = "confirmRecipe.do"
+	var url = "/KitchenNote2/confirmRecipe.do"
 	var params = "recipe_id=" + item;
 	$.ajax({
 		type : "get",
@@ -48,10 +48,10 @@ function infoAjax(item) {
 		// 응답이 성공 상태 코드를 반환하면 호출되는 함수
 		if (args == null) {
 			alert("사용가능한 포크가 없으므로 구매페이지로 이동합니다.");
-			location.href = "buyRecipe.do?recipe_id=" + item;
+			location.href = "/KitchenNote2/buyRecipe.do?recipe_id=" + item;
 		} else {
 			alert("기존 구매내역이 있습니다.");
-			location.href = "recipe/read.do?recipe_id=" + item;
+			location.href = "/KitchenNote2/recipe/read.do?recipe_id=" + item;
 		}
 	}).fail(function(e) {
 		alert(e.responseText);
@@ -60,7 +60,7 @@ function infoAjax(item) {
 }
 
 function nangbu() {
-	location.href = "nangbu.do";
+	location.href = "/KitchenNote2/nangbu.do";
 }
 
 $(function() {
@@ -116,7 +116,7 @@ function itemClick(item, price, member_id) {
 	if (price > 0) {
 		if (!member_id) {
 			if (confirm("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?")) {
-				location.href = "login/loginForm.do";
+				location.href = "/KitchenNote2/login/loginForm.do";
 			} else {
 			}
 		} else {
@@ -127,7 +127,7 @@ function itemClick(item, price, member_id) {
 			}
 		}
 	} else {
-		location.href = "recipe/read.do?recipe_id=" + item;
+		location.href = "/KitchenNote2/recipe/read.do?recipe_id=" + item;
 	}
 
 }
