@@ -5,17 +5,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="MemberInfo">
 
 	<select id="view" resultType="yh.mypage.controller.MemberInfoDto">
-		select m.nickname,m.member_id,
+		select 
+		<!-- <if test = "level == '1'"> -->
+		nickname, member_id,
+		picture, level
+		 from members where member_id = #{member_id}
+		<!-- </if> -->
+		<!-- <if test= "level == 2">
+		m.nickname,m.member_id,
 		m.picture, m.Level, c.tel, c.sns_address
-		from members m inner join chef c
-		<where>
-		<if test="m.member_id= #{member_id} == c.chef= #{chef}">
-		where m.member_id= #{member_id} and c.chef= #{chef} and level = 2;
-		</if>
-		<if test="m.member_id= #{member_id} != c.chef= #{chef}">
-		where m.member_id=#{member_id} and level = 1;
-		</if>
-		</where>
+		from members m inner join chef c on m.member_id where m.member_id = #{member_id} 
+		</if> -->
 	</select>
 
 	<insert id="submit"

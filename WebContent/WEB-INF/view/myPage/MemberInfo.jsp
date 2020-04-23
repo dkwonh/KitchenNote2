@@ -31,13 +31,14 @@
 	font-weight: normal;
 	font-style: normal;
 }
-#main *{
+#wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
+		
 		$("#btnWrite").click(function() {
 			location.href = "chefApply.do?member_id="+${dto.member_id};
 		});
@@ -107,7 +108,8 @@ font-family: 'Cafe24Oneprettynight';
 					</ul>
 				<script>
 				<%String member_id = (String) session.getAttribute("MINFO");
-			Integer level = (Integer) session.getAttribute("LEVEL");%>
+			Integer level = (Integer) session.getAttribute("LEVEL");
+			String nickname = (String) session.getAttribute("NICK");%>
 				$(function(){
 					if("<%=member_id%>"== "null"){
 						$("li.out").css("display","inline-block");
@@ -123,6 +125,9 @@ font-family: 'Cafe24Oneprettynight';
 						} else {
 							$("li.admin").css("display", "inline-block");
 						}
+<%-- 					if("<%=level%>" == "1"){
+						
+						} --%>
 					});
 				</script>
 				</header> 
@@ -140,20 +145,20 @@ font-family: 'Cafe24Oneprettynight';
 					<br>
 					<div>
 						닉네임 : <input type="text" id="nickname" name="nickname"
-										value="${dto.nickname}">
+										value="${NICK}">
 					</div>
 					<div>
-						이메일 : <input type="text" id="chef" name="chef" value="${dto.member_id}"
+						이메일 : <input type="text" id="member_id" name="member_id" value="${MINFO}"
 										readonly>
 					</div>
 					<div>
-						연락처 : <input type="text" id="tel" name="tel" value="${dto.tel}">
+						연락처 : <input type="text" id="tel" name="tel" value="${tel.tel}">
 					</div>
 					<div>
 						개인 SNS주소 : <input type="text" id="sns_address" name="sns_address"
-										value="${dto.sns_address}">
+										value="${sns.sns_address}">
 					</div>
-					<input type="hidden" name="bno" value="${dto.level}">
+					<input type="hidden" name="level" value="${LEVEL}">
 					<hr>
 					<button type="button" id="btnChange">계정 정보 변경</button>
 					<button type="button" id="btnPwd">비밀번호 바꾸기</button>

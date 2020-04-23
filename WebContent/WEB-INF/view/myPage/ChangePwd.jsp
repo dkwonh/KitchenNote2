@@ -31,7 +31,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-#main *{
+#wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
 </style>
