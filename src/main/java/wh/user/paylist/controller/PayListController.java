@@ -58,11 +58,6 @@ public class PayListController {
 		model.addAttribute("userList", list);
 		model.addAttribute("pageNum", pageNum);
 
-		
-		model.addAttribute("dto",list);
-		
-		
-		
 		return "myPay/myPayList";
 	}
 	

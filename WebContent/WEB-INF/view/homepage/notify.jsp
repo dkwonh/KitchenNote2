@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <!-- <script src="homeJs/home.jsv=2"></script> -->
 <script>
-function itemClick(num){
+function notifyItemClick(num){
 	location.href="notifyItem.do?num="+num
 }
 
@@ -76,7 +76,7 @@ function itemClick(num){
 		</thead>
 		<tbody>
 		<c:forEach var="item" items="${list }" varStatus="i">
-		<tr onclick="itemClick(${item.num})">
+		<tr onclick="notifyItemClick(${item.num})">
 			<td class="num">${item.num}</td>
 			<td class="subject">${item.subject }</td>
 			<td class="reg_date">${item.reg_date }</td>

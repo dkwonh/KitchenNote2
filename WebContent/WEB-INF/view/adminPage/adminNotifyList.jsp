@@ -42,7 +42,7 @@ function writeNotify(){
 	
 }
 
-function itemClick(num){
+function notifyItemClick(num){
 	location.href="viewNotify.do?num="+num
 	
 }
@@ -86,13 +86,13 @@ function itemClick(num){
 		<thead>
 			<tr>
 				<c:forEach var="item" items="${type }">
-					<td>${item}</td>
+					<th>${item}</th>
 				</c:forEach>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach var="item" items="${userList }" varStatus="i">
-		<tr class="modal" onclick="itemClick(${item.num})">
+		<tr class="modal" onclick="notifyItemClick(${item.num})">
 			<td class="num">${item.num}</td>
 			<td class="subject">${item.subject }</td>
 			<td class="reg_date">${item.reg_date }</td>

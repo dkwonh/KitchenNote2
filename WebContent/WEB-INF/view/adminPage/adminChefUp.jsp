@@ -105,6 +105,9 @@ $(function(){
 	<table>
 		<thead>
 			<tr>
+				<c:forEach var="item" items="${type}">
+					<th>${item }</th>
+				</c:forEach>
 			</tr>
 		</thead>
 		<tbody>

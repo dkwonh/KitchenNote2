@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kakao">
 
 	<insert id="insertKakaoPay" parameterType="wh.admin.manage.model.PayListDto" >
-		insert into pay_list values(#{member_id},#{purchase_amount},#{fork},now())
+		insert into pay_list(member_id, purchase_amount, fork, fork_date) values(#{member_id},#{purchase_amount},#{fork},now())
 	</insert>
 	
 	<update id="updateFork" parameterType="wh.user.home.model.HomePageMemberDto">

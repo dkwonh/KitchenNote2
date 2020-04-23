@@ -176,6 +176,7 @@ public class AdminPageController implements ApplicationContextAware {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageBlock", pageBlock);
+		model.addAttribute("type",new String[] {"번호","닉네임","아이디","SNS주소","연락처","내용"});
 		model.addAttribute("userList",member);
 		model.addAttribute("pageNum", pageNum);
 		

@@ -10,8 +10,8 @@
 $(function(){
 	alert("포크를 구매해 주셔서 감사합니다.");
 })
-	function close(){
-		location.replace("home.do");
+	function goHome(){
+		location.replace("/KitchenNote2/home.do");
 		
 	}
 </script>
@@ -24,7 +24,7 @@ $(function(){
 주문 수량: ${item.quantity}<br>
 주문 시간: ${item.created_at}<br>
 
-<button onclick="close()">확인</button>
+<button onclick="goHome()">확인</button>
 </body>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
