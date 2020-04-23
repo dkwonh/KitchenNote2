@@ -30,6 +30,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select recipe_id, com_member_id, comment, comment_date, image, recipe_name, r.member_id from recipe_comment c natural join recipe_info r where r.member_id=#{member_id} order by comment_date desc 
 	</select>
 	
+	<!-- 팔로우 하기 -->
+	<insert id="follow" parameterType="jb.sample.model.RecipeDTO">
+		insert into subscribe(follower, following) values(#{follower}, #{following})
+	</insert>
+	<!-- 언팔로우 하기 -->
+	<delete id="unfollow" parameterType="jb.sample.model.RecipeDTO">
+		delete from subscribe where follower=#{follower} and following=#{following}
+	</delete>
+
 	<!-- 팔로워 수 가져오기 --><!-- member_id의 소식을 받는 사람의 수 -->
 	<select id="follower" resultType="int" parameterType="String">
 		<!-- select count(*) from Subscribe where following = 'test12@ki.com' -->
@@ -39,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="following" resultType="int" parameterType="String">
 		select count(*) from Subscribe where follower = #{member_id}
 	</select>
+	
 	<!-- 팔로워 리스트 --><!-- member_id의 소식을 받는 사람들 리스트 -->
 	<select id="followerlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
 		<!-- select nickname, member_id from members where member_id in (select follower from subscribe where following = 'test12@ki.com') -->

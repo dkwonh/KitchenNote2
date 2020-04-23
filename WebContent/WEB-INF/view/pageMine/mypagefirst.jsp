@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
@@ -120,16 +120,14 @@ ul, li {
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<section>
-					<header>
-						<ul class="actions">
+			
+					<%@include file="../homepage/head.jsp" %>
+					<ul class="actions">
 							<li><a class="button primary"
 								onclick="changeContent('myRecipe.do')">내가 작성한 레시피</a>
 							<li><a class="button primary"
 								onclick="changeContent('myPurRecipe.do')">구매한 레시피</a>
 						</ul>
-					</header>
-				</section>
 				<section>
 					<div class="posts">
 						<c:forEach items="${list}" var="list">
