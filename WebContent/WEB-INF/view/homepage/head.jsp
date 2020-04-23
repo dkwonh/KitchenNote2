@@ -38,7 +38,7 @@
 					String nick = (String)session.getAttribute("NICK");
 				%>
 				$(function(){
-					if("<%=member_id%>"== "null"){
+					if(${MINFO== null}){
 						$("li.out").css("display","inline-block");
 						$("li.in").css("display","none");
 					}
@@ -47,7 +47,7 @@
 						$("li.out").css("display","none");
 					}
 
-					if("<%=level%>"!= "0" ){
+					if(${LEVEL != 0} ){
 						$("li.admin").css("display","none");
 					}
 					else{

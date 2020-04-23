@@ -30,7 +30,7 @@ function resultCategory(){
 }
 
 </script>
-<script src="./homeJs/home.js"></script>
+<script src="homeJs/home.js"></script>
 
 <body>
 
@@ -48,7 +48,8 @@ function resultCategory(){
 						</header>
 						<p>요리의 즐거움을 아는 회원님을 환영합니다!<br> 집에 있는 식재료를 활용한 레시피를 찾아보시고 이름 및 카테고리
 							별로 원하는 레시피를 검색해보세요!<br> 또한 쉐프로 등업하여 더 많은 혜택을 만나보세요.<br> 쉐프는 자기만의 레시피를 유료로
-							등록하여 수익을 창출! 할 수 있다는 사실 잊지마세요~</p>
+							등록하여 수익을 창출! 할 수 있다는 사실 잊지마세요~<br>
+							</p>
 					</div>
 					<span class="image object" style="inline: block; height: 400px">
 						<img src="images/KakaoTalk_20200417_204831310.png">

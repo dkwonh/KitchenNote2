@@ -87,6 +87,8 @@
 			alert(e.responseText);
 		});
 	}
+
+	
 </script>
 <script src="homeJs/home.js"></script>
 <body>
