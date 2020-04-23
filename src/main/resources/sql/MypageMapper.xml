@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 마이페이지/레시피-내가구매한 레시피 -->
 	<select id="paidlist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
 		<!-- select r.recipe_id,r.image, r.recipe_name, r.scrap from pur_recipe p inner join recipe_info r on p.recipe_id = r.recipe_id where p.pur_member_id = 'test12@ki.com' -->
-		select r.recipe_id,r.image, r.recipe_name, r.scrap from pur_recipe p inner join recipe_info r on p.recipe_id = r.recipe_id where p.pur_member_id = #{member_id}
+		select r.recipe_id,r.image, r.recipe_name, r.scrap, r.member_id from pur_recipe p inner join recipe_info r on p.recipe_id = r.recipe_id where p.pur_member_id = #{member_id}
 	</select>
 
 	<!-- 마이페이지/스크랩 -->
@@ -47,6 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 팔로잉 리스트 --><!-- member_id가 소식을 받아오는 사람들 리스트 -->
 	<select id="followinglist" resultType="jb.sample.model.RecipeDTO" parameterType="String">
 		<!-- select nickname, member_id from members where member_id in (select following from subscribe where follower = 'test12@ki.com') -->
-		select nickname, member_id from members where member_id in (select following from subscribe where follower = '#{member_id})
+		select nickname, member_id from members where member_id in (select following from subscribe where follower = #{member_id})
 	</select>
 </mapper>
