@@ -78,7 +78,7 @@ $(function(){
 
 function downloadExcel(){
 	var f = document.form1;
-	f.action="downloadExcel"
+	f.action="userToExcel.do";
 	f.submit();
 }
 </script>

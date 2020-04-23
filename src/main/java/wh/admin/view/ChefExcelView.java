@@ -1,5 +1,6 @@
 package wh.admin.view;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -87,7 +88,9 @@ public class ChefExcelView extends AbstractXlsView{
 		cell.setCellValue(mem.getFork());
 
 		cell = row.createCell(4);
-		cell.setCellValue(mem.getJoin_date());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String time = sdf.format(mem.getJoin_date());
+		cell.setCellValue(time);
 
 		cell = row.createCell(5);
 		cell.setCellValue(mem.getLevel());
@@ -99,6 +102,7 @@ public class ChefExcelView extends AbstractXlsView{
 		cell.setCellValue(mem.getTel());
 		
 		cell = row.createCell(8);
-		cell.setCellValue(mem.getDate());
+		time = sdf.format(mem.getDate());
+		cell.setCellValue(time);
 	}
 }

@@ -1,5 +1,6 @@
 package wh.admin.view;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -43,13 +44,14 @@ public class DropExcelView extends AbstractXlsView{
 	
 	private void createColumnLabel(Sheet sheet) {
 		Row firstRow = sheet.createRow(0);
+		
 		Cell cell = firstRow.createCell(0);
 		cell.setCellValue("아이디");
 
-		cell = firstRow.createCell(2);
+		cell = firstRow.createCell(1);
 		cell.setCellValue("닉네임");
 
-		cell = firstRow.createCell(8);
+		cell = firstRow.createCell(2);
 		cell.setCellValue("탈퇴일");
 		
 	}
@@ -64,7 +66,9 @@ public class DropExcelView extends AbstractXlsView{
 		cell.setCellValue(mem.getNickname());
 
 		cell = row.createCell(2);
-		cell.setCellValue(mem.getDrop_date());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String time = sdf.format(mem.getDrop_date());
+		cell.setCellValue(time);
 
 
 	}

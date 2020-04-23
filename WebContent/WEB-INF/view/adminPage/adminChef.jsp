@@ -46,6 +46,13 @@ function deleteInfo(){
 	form.attr("action","updateChef.do");
 }
 
+function downloadExcel(){
+	var f = document.form1;
+
+	f.action = "chefToExcel.do";
+	f.submit();
+}
+
 $(function(){
 
 	
@@ -112,6 +119,9 @@ $(function(){
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>

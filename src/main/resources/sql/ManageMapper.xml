@@ -377,7 +377,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="chefExcel" resultType="wh.admin.manage.model.ChefDto">
-		select * from members natural join chef
+		select * from members join chef on member_id = chef
 	</select>
 	
 	<select id="dropExcel" resultType="wh.admin.manage.model.DropMembersDto">

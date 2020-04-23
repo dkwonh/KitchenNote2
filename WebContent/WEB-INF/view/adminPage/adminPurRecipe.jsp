@@ -50,6 +50,12 @@ div#glayLayer{
 }
 </style>
 <script>
+function downloadExcel(){
+	var f = document.form1;
+
+	f.action = "recipeToExcel.do";
+	f.submit();
+}
 </script>
 </head>
 <body>
@@ -69,6 +75,9 @@ div#glayLayer{
 	<input type=hidden name="pageNum" value="1">
 	</form>
 	</section>
+	<form name="form1" method="post">
+	<button onclick="downloadExcel()">excel</button>
+	</form>
 	<div class="table-wrapper">
 	<table>
 		<thead>

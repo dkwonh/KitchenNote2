@@ -13,22 +13,22 @@ import wh.admin.manage.model.PurchaseRecipeDto;
 public class ExcelViewDao extends SqlSessionDaoSupport{
 
 	public List<MemberDto> userExcel(){
-		return getSqlSession().selectList("admin.userExcel");
+		return getSqlSession().selectList("manage.userExcel");
 	}
 	
 	public List<ChefDto> chefExcel(){
-		return getSqlSession().selectList("admin.chefExcel");
+		return getSqlSession().selectList("manage.chefExcel");
 	}
 	
 	public List<DropMembersDto> dropExcel(){
-		return getSqlSession().selectList("admin.dropExcel");
+		return getSqlSession().selectList("manage.dropExcel");
 	}
 	
 	public List<PayListDto> forkExcel(){
-		return getSqlSession().selectList("admin.forkExcel");
+		return getSqlSession().selectList("manage.forkExcel");
 	}
 	
 	public List<PurchaseRecipeDto> recipeExcel(){
-		return getSqlSession().selectList("admin.recipeExcel");
+		return getSqlSession().selectList("manage.recipeExcel");
 	}
 }

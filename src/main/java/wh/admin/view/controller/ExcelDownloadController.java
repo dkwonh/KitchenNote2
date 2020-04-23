@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import wh.admin.manage.model.ChefDto;
@@ -23,14 +24,14 @@ public class ExcelDownloadController {
 		this.service = service;
 	}
 
-	@RequestMapping("/userToExcel")
+	@RequestMapping(value="userToExcel.do", method=RequestMethod.POST)
 	public ModelAndView userExcel() {
 		List<MemberDto> list = service.userExcel();
 		return new ModelAndView("userToExcel","userExcel",list);
 		
 	}
 	
-	@RequestMapping("/chefToExcel")
+	@RequestMapping(value="chefToExcel.do", method=RequestMethod.POST)
 	public ModelAndView chefExcel() {
 		List<ChefDto> list = service.chefExcel();
 		
@@ -38,7 +39,7 @@ public class ExcelDownloadController {
 		
 	}
 	
-	@RequestMapping("/dropToExcel")
+	@RequestMapping(value="dropToExcel.do", method=RequestMethod.POST)
 	public ModelAndView dropExcel() {
 		List<DropMembersDto> list = service.dropExcel();
 		
@@ -46,7 +47,7 @@ public class ExcelDownloadController {
 		
 	}
 	
-	@RequestMapping("/forkToExcel")
+	@RequestMapping(value="forkToExcel.do",method=RequestMethod.POST)
 	public ModelAndView forkExcel() {
 		List<PayListDto> list = service.forkExcel();
 		
@@ -54,7 +55,7 @@ public class ExcelDownloadController {
 		
 	}
 	
-	@RequestMapping("/recipeToExcel")
+	@RequestMapping(value="recipeToExcel.do",method=RequestMethod.POST)
 	public ModelAndView recipeExcel() {
 		List<PurchaseRecipeDto> list = service.recipeExcel();
 		
