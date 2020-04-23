@@ -13,7 +13,7 @@ public interface BoardDAO {
 	public List<RecipeDTO> paidlist(String member_id) throws Exception;
 
 	// 팔로우 하기
-	public List<RecipeDTO> follow() throws Exception;
+	 public List<RecipeDTO> follow() throws Exception;
 	
 	// 언팔로우 하기
 	public List<RecipeDTO> unfollow() throws Exception;
