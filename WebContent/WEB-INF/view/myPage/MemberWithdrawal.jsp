@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>자주 묻는 질문/FAQ</title>
+<title>회원 정보 수정</title>
 <style type="text/css">
 .navi input {
 	float: left;

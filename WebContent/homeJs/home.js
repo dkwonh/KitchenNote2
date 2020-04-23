@@ -47,6 +47,7 @@ function infoAjax(item) {
 	}).done(function(args) {
 		// 응답이 성공 상태 코드를 반환하면 호출되는 함수
 		if (args == null) {
+			alert("사용가능한 포크가 없으므로 구매페이지로 이동합니다.");
 			location.href = "buyRecipe.do?recipe_id=" + item;
 		} else {
 			alert("기존 구매내역이 있습니다.");
@@ -119,7 +120,6 @@ function itemClick(item, price, member_id) {
 			} else {
 			}
 		} else {
-
 			if (confirm(price + "포크로 구매하시겠습니까?")) {
 				infoAjax(item);
 			} else {

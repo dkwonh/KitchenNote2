@@ -11,15 +11,15 @@ public interface MemberInfoService {
 
 	public void submit(Chef_applyDto dto) throws Exception; // 쉐프 신청
 
-	public MemberInfoDto view(String member_id) throws Exception; // 회원 정보
-
+	public ChefDto view(MemberInfoDto mem) throws Exception; // 회원 정보
+	
 	public int memUpdate(MemberInfoDto dto) throws Exception; // members 업데이트
 
 	public int chefUpdate(ChefDto dto) throws Exception; // chef 업데이트
 
 	public void delete(String member_id) throws Exception; // 회원 탈퇴
 
-	public int pwd(String password) throws Exception; // 비밀번호 확인
+	public String pwd(String member_id) throws Exception; // 비밀번호 확인
 
 	public int changePwd(Map<String,String> map) throws Exception;
 

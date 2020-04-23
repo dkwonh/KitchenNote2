@@ -17,10 +17,15 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 	} // 쉐프 신청서 제출
 
 	@Override
-	public MemberInfoDto view(String member_id) throws Exception {
-		return getSqlSession().selectOne("MemberInfo.view", member_id);
+	public ChefDto view(MemberInfoDto mem) throws Exception {
+		System.out.println(mem);
+		return getSqlSession().selectOne("MemberInfo.view", mem);
 	} // 회원정보 출력
 
+	@Override
+	public ChefDto chefview(MemberInfoDto mem) throws Exception{
+		return getSqlSession().selectOne("MemberInfo.chefview",mem);
+	}
 	@Override
 	public int memUpdate(MemberInfoDto dto) throws Exception {
 		return getSqlSession().update("MemberInfo.memupdate", dto);
@@ -42,8 +47,8 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 		return getSqlSession().selectOne("MemberInfo.checkPwd",password);
 	} // 비밀번호 확인
 
-	public int pwd(String password) throws Exception {
-		return getSqlSession().selectOne("MemberInfo.pwd", password);
+	public String pwd(String member_id) throws Exception {
+		return getSqlSession().selectOne("MemberInfo.pwd", member_id);
 	} // 비밀번호 확인
 	
 	public int changePwd(Map<String,String> map) throws Exception {
