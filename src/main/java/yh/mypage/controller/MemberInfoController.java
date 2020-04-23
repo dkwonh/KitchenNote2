@@ -30,17 +30,15 @@ public class MemberInfoController {
 	MemberInfoService service;
 
 	@RequestMapping(value = "memberInfo.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView view(@RequestParam(required = false) String member_id, HttpSession session) throws Exception {
+	public ModelAndView view(ChefDto chef, HttpSession session) throws Exception {
 
-		/*
-		 * session.getAttribute("MINFO"); session.getAttribute("NICK");
-		 * session.getAttribute("LEVEL");
-		 */
-		
-		ChefDto chef = new ChefDto();
+		session.getAttribute("MINFO");
+		session.getAttribute("NICK");
+		session.getAttribute("LEVEL");
+
 		String sns = chef.getSns_address();
 		String tel = chef.getTel();
-		MemberInfoDto dto = service.view(member_id);
+		MemberInfoDto dto = service.view(chef.getChef());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myPage/MemberInfo");
 

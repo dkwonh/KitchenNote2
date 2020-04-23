@@ -111,7 +111,6 @@ font-family: 'Cafe24Oneprettynight';
 					<form action="AdminFAQ.do?pageNum=0">
 						<br> 구분 : <select name="select1">
 							<option value="레시피">레시피</option>
-							<option value="쿠킹 클래스">쿠킹 클래스</option>
 							<option value="결제 및 환불">결제 및 환불</option>
 							<option value="오류 및 수정">오류 및 수정</option>
 							<option value="신고">신고</option>
