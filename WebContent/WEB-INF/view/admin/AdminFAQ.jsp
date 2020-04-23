@@ -32,7 +32,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-#main *{
+#wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
 </style>
@@ -89,14 +89,14 @@ font-family: 'Cafe24Oneprettynight';
 						$("li.out").css("display","none");
 					}
 
-					if("<%=level%>
-					" != "0") {
+					if("<%=level%>" != "0") {
 							$("li.admin").css("display", "none");
 						} else {
 							$("li.admin").css("display", "inline-block");
 						}
 					});
 				</script>
+			</header>
 				<section>
 					<h3>자주 묻는 질문/FAQ</h3>
 					<br> 키친노트서비스 이용에 대하여 궁금한 점이나 문의사항을 등록해주시면 빠른 시간 내에 답변해 드리겠습니다.<br>
@@ -126,7 +126,7 @@ font-family: 'Cafe24Oneprettynight';
 					</form>
 				</section>
 				<section>
-					<article>
+
 						<h4>자주 묻는 질문 목록</h4>
 						<p>
 						<table border="1" width="600px">
@@ -166,7 +166,6 @@ font-family: 'Cafe24Oneprettynight';
 								</c:if></li>
 						</ul>
 				</section>
-				</article>
 
 			</div>
 		</div>
