@@ -75,15 +75,15 @@ $(function() {
 	});
 
 	$("button#recipe").on('click', function() {
-		location.href = "recipe.do"
+		location.href = "/KitchenNote2/recipe.do"
 	});
 
 	$("button#notify").on('click', function() {
-		location.href = "notifyList.do?pageNum=1"
+		location.href = "/KitchenNote2/notifyList.do?pageNum=1"
 	});
 
 	$("button#support").on('click', function() {
-		location.href = "customer/FAQ.do?pageNum=0"
+		location.href = "/KitchenNote2/customer/FAQ.do?pageNum=0"
 	});
 
 	$("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
