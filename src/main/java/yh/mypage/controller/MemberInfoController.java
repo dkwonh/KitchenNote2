@@ -32,22 +32,18 @@ public class MemberInfoController {
 	@RequestMapping(value = "memberInfo.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView view(ChefDto chef, HttpSession session) throws Exception {
 
-		session.getAttribute("MINFO");
+		String member_id = (String)session.getAttribute("MINFO");
+		Integer level = (Integer)session.getAttribute("LEVEL");
+		ChefDto mem = new ChefDto();
+		mem.setMember_id(member_id);
+		mem.setLevel(level);
 		session.getAttribute("NICK");
-		session.getAttribute("LEVEL");
-
-		String sns = chef.getSns_address();
-		String tel = chef.getTel();
-		MemberInfoDto dto = service.view(chef.getChef());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myPage/MemberInfo");
+		ChefDto dto = new ChefDto();
+		dto = service.view(mem);
+		mav.addObject("dto",dto);
 
-		mav.addObject("dto", dto);
-		mav.addObject("sns", sns);
-		mav.addObject("tel", tel);
-		System.out.println(dto);
-		System.out.println("sns;;;" + sns);
-		System.out.println("tel;;;" + tel);
 		return mav;
 	} // 회원 정보
 
@@ -65,15 +61,15 @@ public class MemberInfoController {
 	@RequestMapping(value = "changeUser.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") ChefDto dto, HttpSession session) throws Exception {
 		service.chefUpdate(dto);
-		ChefDto chef = (ChefDto) service.view(dto.getChef());
+		ChefDto chef = service.view(dto);
 		return "redirect:memberInfo.do";
 	} // 회원 정보 수정
 
 	@RequestMapping(value = "changePwd.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public String changePwd(@ModelAttribute("dto") MemberInfoDto dto, String pwdcheck1, HttpSession session)
+	public String changePwd(String pwdcheck1, HttpSession session)
 			throws Exception {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("member_id", dto.getMember_id());
+		map.put("member_id", (String)session.getAttribute("MINFO"));
 		map.put("pwdcheck1", pwdcheck1);
 		service.changePwd(map);
 		return "redirect:memberInfo.do";
@@ -86,9 +82,16 @@ public class MemberInfoController {
 
 	@RequestMapping(value = "pwd.do", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public String Pwd(String password, HttpSession session) throws Exception {
-		int a = service.pwd(password);
+	public String Pwd(String member_id, HttpSession session) throws Exception {
+		String member = (String)session.getAttribute("MINFO");
+		Integer level = (Integer)session.getAttribute("LEVEL");
+		MemberInfoDto mem = new MemberInfoDto();
+		mem.setMember_id(member);
+		mem.setLevel(level);
+		ChefDto dto =  service.view(mem);
+		String a = service.pwd(member);
 		Gson json = new Gson();
+		System.out.println(mem);
 		return json.toJson(a);
 	} // 비밀 번호 확인
 
@@ -103,7 +106,8 @@ public class MemberInfoController {
 	} // 회원 탈퇴 창
 
 	@RequestMapping(value = "delete.do", method = { RequestMethod.POST, RequestMethod.GET })
-	public String delete(@RequestParam(value = "member_id", required = false) String member_id) throws Exception {
+	public String delete(HttpSession session) throws Exception {
+		String member_id = (String)session.getAttribute("MINFO");
 		service.delete(member_id);
 		return "redirect:memberInfo.do";
 	} // 회원 탈퇴
