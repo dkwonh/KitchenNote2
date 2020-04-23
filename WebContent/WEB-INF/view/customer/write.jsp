@@ -88,7 +88,7 @@ function resultCategory(){
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label> sign-out </span></a>
-						<li class="in"><a href=# class="icon fa-user"><span
+						<li class="in"><a href="/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
 						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
@@ -128,6 +128,14 @@ function resultCategory(){
 					<button id="notify">공지사항</button>
 					<button id="support">고객센터</button>
 				</div>
+				<section>
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="../homepage/category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
+				</section>
 				<section>
 					<div id="category" style="display: none">
 						<form style="text-align: center" class="form">
