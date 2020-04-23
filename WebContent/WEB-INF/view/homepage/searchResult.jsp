@@ -90,7 +90,7 @@
 
 	
 </script>
-<script src="homeJs/home.js"></script>
+<script src="homeJs/home.js?v=1"></script>
 <body>
 
 	<div id=wrapper>
