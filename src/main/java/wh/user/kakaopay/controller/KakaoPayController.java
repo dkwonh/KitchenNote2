@@ -27,7 +27,7 @@ public class KakaoPayController {
 	}
 	
 	@RequestMapping(value = "kakaoPay.do",method = RequestMethod.POST)
-	public String kakaoPost(@RequestParam("fork")String fork) {
+	public String kakaoPost(String fork) {
 		KakaoPayRequestDto req = new KakaoPayRequestDto();
 		int amount = Integer.parseInt(fork)*200;
 		req.setItem_name("fork"+fork+"개");

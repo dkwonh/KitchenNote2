@@ -4,7 +4,7 @@
 <div id="nangbu" style="display: none">
 
 
-	<form method="post" action="nangbu.do" class="row gtr-uniform"
+	<form method="post" action="/KitchenNote2/nangbu.do" class="row gtr-uniform"
 		style="background: white">
 		<fieldset>
 			<h4>냉장고를 부탁해! 재료로 레시피를 검색해보세요</h4>
