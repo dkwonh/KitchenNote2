@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>자주 묻는 질문/FAQ</title>
+<title>회원 정보 수정</title>
 <style type="text/css">
 .navi input {
 	float: left;
@@ -34,6 +34,9 @@
 #wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
+input[type=password]{
+font-family: "NanumSquare";
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script
@@ -45,14 +48,16 @@ font-family: 'Cafe24Oneprettynight';
 			var password = "password=" + $("#password").val();
 			var url = "pwd.do"
 			$.ajax({
-				type : "POST",
+				type : "GET",
 				url : url,
 				data : password,
 				dataType : "json",
-				error : function() {
-					alert("비밀번호를 확인해주세요");
+				error : function(xhr) {
+					alert("통신에러");
+					 alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+xhr);
 				},
 				success : function(data) {
+					alert("통신 성공");
 					if ($("#password").val() != data) {
 						alert("비밀번호를 확인해주세요.");
 						document.pwdcheck.password.focus();
@@ -148,7 +153,7 @@ font-family: 'Cafe24Oneprettynight';
 					<h2>비밀번호 변경</h2>
 					<br> <input type="hidden" name="pwd" value="${pwd}">
 					<div>
-						현재 비밀번호 : <input type="password" name="password" id="password"
+						현재 비밀번호 : <input type="password" name="password" id="password" style="color:BLACK;"
 										placeholder="현재 비밀번호를 입력하여 주세요.">
 					</div>
 					<br>

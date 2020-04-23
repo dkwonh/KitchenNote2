@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>자주 묻는 질문/FAQ</title>
+<title>회원 정보 수정</title>
 <style type="text/css">
 .navi input {
 	float: left;
@@ -38,8 +38,14 @@ font-family: 'Cafe24Oneprettynight';
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 	$(document).ready(function() {
+		if(${LEVEL}  == 2){
+			$("#btnWrite").css('display','none');
+			} else if(${LEVEL}==1){
+				$("#tel").css('display','none');
+				$("#sns_address").css('display','none');
+				}
 		$("#btnWrite").click(function() {
-			location.href = "chefApply.do?chef=test2@ki.com";
+			location.href = "chefApply.do?member_id=";
 		});
 		$("#btnPwd").click(function() {
 			location.href = "changePwdView.do";
@@ -159,6 +165,7 @@ font-family: 'Cafe24Oneprettynight';
 						개인 SNS주소 : <input type="text" id="sns_address" name="sns_address"
 										value="${dto.sns_address}">
 					</div>
+					
 					<hr>
 					<button type="button" id="btnChange">계정 정보 변경</button>
 					<button type="button" id="btnPwd">비밀번호 바꾸기</button>

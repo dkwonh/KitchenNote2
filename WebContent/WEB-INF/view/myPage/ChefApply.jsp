@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../assets/css/main.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>자주 묻는 질문/FAQ</title>
+<title>회원 정보 수정</title>
 <style type="text/css">
 .navi input {
 	float: left;
@@ -131,7 +131,7 @@ font-family: 'Cafe24Oneprettynight';
 					<h2>쉐프 신청하기</h2>
 					<br>
 					<div>
-						<input type="hidden" name="member_id" value="${dto.chef }">
+						<input type="hidden" name="member_id" value="<%= member_id%>">
 					</div>
 					<div>
 						연락처 : <input name="tel" id="tel" type="text"
