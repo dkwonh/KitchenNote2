@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,12 +82,13 @@ ul, li {
 }
 </style>
 
+
 <body>
 
 	<div id="wrapper">
 		<!-- Main -->
 		<div id="main">
-			<div id="inner">
+			<div class="inner">
 				<section>
 					<header>
 						<ul class="actions">
@@ -100,13 +102,19 @@ ul, li {
 					<div id="posts">
 						<c:forEach items="${paidlist}" var="list">
 							<article>
-								<img src="${list.image}">
-								<div id="recipe_image"></div>
-								<div id="recipe_exp">
-									<div id="recipe_name">${list.recipe_name}</div>
-									<div id="recipe_member_id">${list.member_id}</div>
-									<div id="recipe_scrap">${list.scrap}</div>
-								</div>
+								<c:set var="image" value="${list.image }" />
+								<c:if test="${fn:contains(image,'okdab') }">
+									<c:set var="mainImg" value="${list.image }" />
+									<img src="${paidlist.image }" width="290" height="300" class="image">
+								</c:if>
+								<c:if test="${fn:contains(image,'note')}">
+									<c:set var="mainImg"
+										value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${list.image }" />
+									<img src="/img/${list.image }">
+								</c:if>
+									<h3>${list.recipe_name}</h3>
+									<div id="recipe_member_id">작성자 : ${list.member_id}</div>
+									<div id="recipe_scrap">스크랩 수 : ${list.scrap}</div>
 							</article>
 						</c:forEach>
 					</div>
