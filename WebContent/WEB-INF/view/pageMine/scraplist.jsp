@@ -95,36 +95,36 @@ ul, li {
 					<div class="posts">
 						<c:forEach items="${scraplist}" var="scraplist">
 							<article>
-								<c:set var="image" value="${scraplist.image }" />
-										<c:if test="${fn:contains(image,'okdab') }">
-											<c:set var="mainImg" value="${scraplist.image }" />
-											<img src="${scraplist.image }" width="290" height=300 class="image">
-										</c:if>
-										<c:if test="${fn:contains(image,'note')}">
-											<c:set var="mainImg"
-												value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${scraplist.image }" />
-											<img src="/img/${scraplist.image }">
-										</c:if>
-									<h3>${scraplist.recipe_name}</h3>
-									<h5>조회수 : ${scraplist.readcount}</h5>
-									<h5>스크랩 수 : ${scraplist.scrap}</h5>
+								<c:set var="image" value="${scraplist.image}" />
+								<c:if test="${fn:contains(image,'okdab') }">
+									<c:set var="mainImg" value="${scraplist.image}" />
+									<img src="${scraplist.image}" width="290" height="300"
+										class="image">
+								</c:if>
+								<c:if test="${fn:contains(image,'note')}">
+									<c:set var="mainImg"
+										value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${scraplist.image }" />
+									<img src="/img/${scraplist.image }">
+								</c:if>
+								<h3>${scraplist.recipe_name}</h3>
+								<h5>조회수 : ${scraplist.readcount}</h5>
+								<h5>스크랩 수 : ${scraplist.scrap}</h5>
 							</article>
 						</c:forEach>
 					</div>
 				</section>
-
-				<!-- Sidebar -->
-				<div id="sidebar" class="inactive">
-					<div class="inner">
-						<!-- 팔로워/팔로우 수 -->
-						<section id="count">
-							<%@include file="ffcount.jsp"%>
-						</section>
-						<nav id="menu">
-							<%@include file="aside.jsp"%>
-						</nav>
-					</div>
-				</div>
+			</div>
+		</div>
+		<!-- Sidebar -->
+		<div id="sidebar" class="inactive">
+			<div class="inner">
+				<!-- 팔로워/팔로우 수 -->
+				<section id="count">
+					<%@include file="ffcount.jsp"%>
+				</section>
+				<nav id="menu">
+					<%@include file="aside.jsp"%>
+				</nav>
 			</div>
 		</div>
 	</div>

@@ -79,7 +79,44 @@ ul, li {
 	color: #ffffff !important;
 }
 </style>
+<script>
+function changeContent(url){
 
+	$.ajax({
+		type : "get",
+		url : url,
+		dataType : "json"
+	}).done(function(args) {
+		$("div.posts").html("");
+		for(i=0; args.length > i; i++){
+			attach(args[i]);
+			}
+	
+	}).fail(function(e) {
+		alert(e.responseText);
+		return;
+	})
+}
+
+function attach(args){
+	var img = ""+args.image+"";
+	if(img.indexOf('okdab')>=0){
+		img = "<img src="+args.image+"  width=290 height=280 class=image>";
+	}
+	else{
+		img = "<img src=/img/"+args.image+"  width=290 height=280 class=image>";
+	}
+	$("div.posts").append(
+			"<article onclick=itemClick(" + args.recipe_id + ")>"
+			+ "<a class=image>"
+			+ img
+			+ "</a>" + "<h3>" + args.recipe_name + "</h3>"
+			+"<h5>"+args.member_id+"</h5>"
+			+ "<span><a class='icon fa-eye'></a>" + args.readcount
+			+ "</span>" + "</article>");
+}
+
+</script>
 <body>
 
 	<div id="wrapper">
@@ -89,9 +126,9 @@ ul, li {
 				<section>
 					<header>
 						<ul class="actions">
-							<li><a href="mypagefirst.do" class="button primary">내가
+							<li><a class="button primary" onclick="changeContent('myRecipe.do')">내가
 									작성한 레시피</a>
-							<li><a href="paidlist.do" class="button primary">구매한 레시피</a>
+							<li><a class="button primary" onclick="changeContent('myPurRecipe.do')">구매한 레시피</a>
 						</ul>
 					</header>
 				</section>
@@ -104,8 +141,7 @@ ul, li {
 								<div class="reicpe_readcount">조회수 : ${list.readcount}</div>
 								<div class="recipe_scrap">스크랩 수 : ${list.scrap}</div>
 								<ul class="actions">
-									<li><a href="modify.jsp">수정</a></li>
-									<li><a href="delete.jsp">삭제</a></li>
+									<li><a href="../recipe/updateForm.jsp">수정</a></li>
 								</ul>
 							</article>
 						</c:forEach>
