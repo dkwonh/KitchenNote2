@@ -113,10 +113,8 @@ $(function() {
 
 });
 
-function itemClick(item, price) {
-	
-	var member_id = sessionStorage.getItem("MINFO");
-	if (member_id==null) {
+function itemClick(item, price,member_id) {
+	if (!member_id) {
 		if (confirm("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?")) {
 			location.href = "login/loginForm.do";
 		} else {
