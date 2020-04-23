@@ -35,7 +35,7 @@
 			img = "<img src=/img/"+args.image+" width=500 height=300>";
 		}
 		$("div.posts").append(
-				"<article onclick=itemClick(" + args.recipe_Id + ")>"
+				"<article onclick=itemClick(" + args.recipe_Id + ","+args.price+","+sessionStorage.getItem("MINFO")+")>"
 						+ "<a class=image>"
 						+ img
 						+ "</a>" + "<h3>" + args.recipe_Name + "</h3>" + "<p>"
