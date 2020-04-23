@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=UTF-8"%>
 
 <header id="header">
 					<a href="/KitchenNote2/home.do" class="logo"><img src="/KitchenNote2/images/KakaoTalk_20200422_111639302.png" width="300px" height=100px></a>
@@ -8,6 +8,7 @@
 					</form>
 					</section>
 					<ul class="icons"> 
+						<li class="in"><a><span>환영합니다. ${NICK } 님!</span></a>
 		
 						<li class="out" ><a href="login/loginForm.do" class="icon fa-sign-in"><span class=label>
 							sign-in
@@ -16,7 +17,7 @@
 							sign-out
 						</span></a>
 						
-						<li class="in"><a href=mypage/mypagefirst.do class="icon fa-user"><span
+						<li class="in"><a href=pageMine/mypagefirst.do class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 								
 						<li><a class="icon fa-archive modal"><span
@@ -38,7 +39,7 @@
 					String nick = (String)session.getAttribute("NICK");
 				%>
 				$(function(){
-					if("<%=member_id%>"== "null"){
+					if(${MINFO== null}){
 						$("li.out").css("display","inline-block");
 						$("li.in").css("display","none");
 					}
@@ -47,7 +48,7 @@
 						$("li.out").css("display","none");
 					}
 
-					if("<%=level%>"!= "0" ){
+					if(${LEVEL != 0} ){
 						$("li.admin").css("display","none");
 					}
 					else{
