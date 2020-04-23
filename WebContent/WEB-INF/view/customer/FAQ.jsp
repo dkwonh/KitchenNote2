@@ -29,13 +29,12 @@ font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="/KitchenNote2/homeJs/home.js">
-</script>
 <script>
 function resultCategory(){
 	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
 }
 </script>
+<script src="/KitchenNote2/homeJs/home.js"></script>
 </head>
 <body>
 	<div id="wrapper">

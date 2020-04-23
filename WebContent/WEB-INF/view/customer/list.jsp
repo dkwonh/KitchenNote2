@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,6 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=0.7, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/home.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>1:1 문의하기</title>
@@ -38,6 +39,12 @@ font-family: 'Cafe24Oneprettynight';
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+function resultCategory(){
+	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
+}
+</script>
+<script src="/KitchenNote2/homeJs/home.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btnWrite").click(function() {
@@ -98,10 +105,19 @@ font-family: 'Cafe24Oneprettynight';
 				</script>
 				</header> 
 				<div class="navi c">
-								<input type="button" value="카테고리"> <input type="button"
-									value="레시피"> <input type="button" value="이벤트"> <input
-									type="button" value="고객센터"><br>
+					<button id="category">카테고리</button>
+					<button id="recipe">레시피</button>
+					<button id="notify">공지사항</button>
+					<button id="support">고객센터</button>
 				</div>
+				<section>
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="../homepage/category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
+				</section>
 				<section>
 					<h2>내 문의 내역</h2>
 					<br>검색 창을 이용하시면 더 정확한 정보를 검색하실 수 있습니다.
@@ -189,6 +205,7 @@ font-family: 'Cafe24Oneprettynight';
 			</div>
 		</div>
 	</div>
+	<%@ include file="../homepage/nangbu.jsp" %>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
 	<script src="../assets/js/util.js"></script>
