@@ -7,18 +7,11 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/home.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>자주 묻는 질문/FAQ</title>
 <style type="text/css">
-.navi input {
-	float: left;
-}
-
-.c input {
-	width: 25%
-}
-
 .searchbtn input {
 	font-size: 15px;
 	padding: 10px 10px
@@ -38,6 +31,11 @@ font-family: 'Cafe24Oneprettynight';
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="/KitchenNote2/homeJs/home.js">
 </script>
+<script>
+function resultCategory(){
+	location.href="/KitchenNote2/searchCategory.do?"+$('form.form').serialize();
+}
+</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -56,7 +54,7 @@ font-family: 'Cafe24Oneprettynight';
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label> sign-out </span></a>
-						<li class="in"><a href="'mypage/mypagefirst.do" class="icon fa-user"><span
+						<li class="in"><a href="/KitchenNote2/myPage/memberInfo.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
 						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
@@ -91,10 +89,20 @@ font-family: 'Cafe24Oneprettynight';
 				</script>
 				</header> 
 				<div class="navi c">
-								<input type="button" value="카테고리"> <input type="button"
-									value="레시피"> <input type="button" value="이벤트"> <input
-									type="button" value="고객센터"><br>
+					<button id="category">카테고리</button>
+					<button id="recipe">레시피</button>
+					<button id="notify">공지사항</button>
+					<button id="support">고객센터</button>
 				</div>
+				<section>
+					<div id="category" style="display: none">
+						<form style="text-align: center" class="form">
+							<%@ include file="../homepage/category.jsp"%>
+							<input type="button" onclick="resultCategory()" value="검색">
+						</form>
+					</div>
+				</section>
+				
 				<section>
 					<P>
 					

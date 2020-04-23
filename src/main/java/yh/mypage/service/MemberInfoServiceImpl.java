@@ -20,8 +20,14 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		dao.submit(dto);
 	} // 쉐프 신청서 제출
 
-	public MemberInfoDto view(String member_id) throws Exception {
-		MemberInfoDto dto = dao.view(member_id);
+	public ChefDto view(MemberInfoDto mem) throws Exception {
+		ChefDto dto = new ChefDto();
+		if(mem.getLevel() > 1) {
+			dao.view(mem);
+			System.out.println(dto);
+		} else {
+		   dao.chefview(mem);
+		}
 		return dto;
 	} // 회원 정보 수정 페이지
 
@@ -42,8 +48,8 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		return a;
 	}
 	
-	public int pwd(String password) throws Exception{
-		int dto = dao.pwd(password);
+	public String pwd(String member_id) throws Exception{
+		String dto = dao.pwd(member_id);
 		return dto;
 	}
 	
