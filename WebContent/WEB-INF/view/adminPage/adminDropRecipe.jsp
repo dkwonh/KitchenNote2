@@ -55,7 +55,6 @@ div#glayLayer{
 function replacePage(url){
 	location.replace(url);
 }
-})
 </script>
 </head>
 <body>
@@ -91,16 +90,16 @@ function replacePage(url){
 				<td class="image">
 					<c:if test="${fn:contains(image,'okdab') }">
 						<c:set var="mainImg" value="${item.image }" />
-						<img width="100px" height="100px" id="main_img" src="${item.image }" width=500 height=300>
+						<img width="100px" height="100px" id="main_img" src="${item.image }">
 					</c:if>
 					
 					
 					<c:if test="${fn:contains(image,'note')}">
 						<c:set var="mainImg"
 							value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${item.image }" />
-						<img width="100px" height="100px" id="main_img" src="/img/${item.image }" width=500 height=300>
-					</c:if>			
-
+						<img width="100px" height="100px" id="main_img" src="${item.image }">
+					</c:if>
+					</td>
 
 			<td class="recipe_name">${item.recipe_name }</td>
 			<td class="member_id">${item.member_id}</td>
