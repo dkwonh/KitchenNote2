@@ -92,8 +92,8 @@ public class MemberInfoController {
 		mem.setLevel(level);
 		ChefDto dto =  service.view(mem);
 		String a = service.pwd(member);
+		System.out.println("pwd:::"+a);
 		Gson json = new Gson();
-		System.out.println("mem:::"+mem);
 		return json.toJson(a);
 	} // 비밀 번호 확인
 

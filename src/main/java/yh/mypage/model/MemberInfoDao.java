@@ -24,6 +24,8 @@ public interface MemberInfoDao {
 	public int checkPwd(String password) throws Exception; // 비밀 번호 확인
 
 	public String pwd(String member_id) throws Exception; // 비밀 번호 확인
+	
+	public String chefpwd(String member_id) throws Exception;
 
 	public int changePwd(Map<String, String> map) throws Exception; // 비밀 번호 변경
 
