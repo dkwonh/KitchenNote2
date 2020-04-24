@@ -1,5 +1,6 @@
 package yh.admin.controller;
 
+// 상세 검색 DTO
 public class FilterDto {
 
 	String select1; // 구분 : 레시피 / 결제 및 환불 등등..

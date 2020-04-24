@@ -2,6 +2,7 @@ package yh.admin.controller;
 
 import java.util.Date;
 
+// 자주 묻는 질문 관리자 페이지
 public class AdminFaqDto {
 
 	int bno;

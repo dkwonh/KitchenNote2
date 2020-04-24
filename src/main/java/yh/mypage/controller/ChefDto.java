@@ -2,6 +2,7 @@ package yh.mypage.controller;
 
 import java.util.Date;
 
+// 쉐프 DTO
 public class ChefDto extends MemberInfoDto{
 
 	String chef;

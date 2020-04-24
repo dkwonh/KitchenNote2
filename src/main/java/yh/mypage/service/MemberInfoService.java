@@ -21,7 +21,7 @@ public interface MemberInfoService {
 
 	public String pwd(String member_id) throws Exception; // 비밀번호 확인
 
-	public String chefpwd(String member_id) throws Exception;
+	public String chefpwd(String member_id) throws Exception; // 
 	
 	public int changePwd(Map<String,String> map) throws Exception;
 

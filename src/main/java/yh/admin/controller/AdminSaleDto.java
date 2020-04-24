@@ -1,5 +1,6 @@
 package yh.admin.controller;
 
+//홈페이지 통계 판매 레시피 수
 public class AdminSaleDto {
 
 	int recipeSaleCount;

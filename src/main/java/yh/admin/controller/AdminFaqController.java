@@ -109,18 +109,17 @@ public class AdminFaqController {
 	@RequestMapping(value = "admin/AdminFAQUpdate.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") AdminFaqDto dto) throws Exception {
 		return "admin/AdminFAQmodifiedView";
-	} // 게시글 수정
+	} // 게시글 수정 폼
 
 	@RequestMapping(value = "admin/AdminFAQUpdate2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") AdminFaqDto dto) throws Exception {
 		Service.update(dto);
 		return "redirect:AdminFAQ.do?pageNum=0";
-	}
+	} // 게시글 수정
 
 	@RequestMapping("admin/AdminFAQDelete.do")
 	public String delete(@RequestParam int bno) throws Exception {
 		Service.delete(bno);
 		return "redirect:AdminFAQ.do?pageNum=0";
-	}
-	
+	} // 게시글 삭제
 }

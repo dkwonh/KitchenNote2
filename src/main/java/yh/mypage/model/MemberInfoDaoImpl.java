@@ -24,7 +24,8 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 	@Override
 	public ChefDto chefview(MemberInfoDto mem) throws Exception{
 		return getSqlSession().selectOne("MemberInfo.chefview",mem);
-	}
+	}// 쉐프 정보 출력
+	
 	@Override
 	public int memUpdate(MemberInfoDto dto) throws Exception {
 		return getSqlSession().update("MemberInfo.memupdate", dto);
@@ -44,7 +45,7 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 	@Override
 	public int checkPwd(String password) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.checkPwd",password);
-	} // 비밀번호 확인
+	} // 비밀번호 확인 (필요 없음)
 
 	public String pwd(String member_id) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.pwd", member_id);

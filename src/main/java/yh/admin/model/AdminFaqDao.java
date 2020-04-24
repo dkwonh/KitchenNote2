@@ -7,6 +7,7 @@ import yh.admin.controller.AdminFaqDto;
 import yh.admin.controller.FilterDto;
 import yh.custom.controller.BoardDto;
 
+// 자주 묻는 질문 관리자 Interface
 public interface AdminFaqDao {
 
 	public void create(AdminFaqDto dto) throws Exception;

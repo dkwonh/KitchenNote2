@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import yh.admin.service.AdminStaticsService;
 
+// 홈페이지 통계
 @Controller
 public class AdminStaticsController {
 
@@ -46,7 +47,7 @@ public class AdminStaticsController {
 		mav.addObject("user", user);
 
 		return mav;
-	}
+	} // 페이지 첫 화면
 
 	@RequestMapping(value = "adminStatics/recipeAction.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -65,7 +66,7 @@ public class AdminStaticsController {
 			data += json.toJson(recipe);
 		}
 		return data;
-	};
+	}; // 등록 레시피 통계
 
 	@RequestMapping(value = "adminStatics/userAction.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -81,7 +82,7 @@ public class AdminStaticsController {
 			data += json.toJson(user);
 		}
 		return data;
-	};
+	}; // 회원 가입자수 통계
 
 	@RequestMapping(value = "adminStatics/saleAction.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -97,6 +98,6 @@ public class AdminStaticsController {
 			data = json.toJson(sale);
 		}
 		return data;
-	};
+	}; // 판매량 통계
 
 }

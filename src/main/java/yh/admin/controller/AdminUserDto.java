@@ -1,5 +1,6 @@
 package yh.admin.controller;
 
+// 회원 가입자 수
 public class AdminUserDto {
 
 	int userCount;

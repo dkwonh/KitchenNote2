@@ -47,7 +47,7 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 	public int checkPwd(String password) throws Exception{
 		int a = dao.checkPwd(password);
 		return a;
-	}
+	} // 필요없음
 	
 	public String pwd(String member_id) throws Exception{
 		ChefDto dto = new ChefDto();
@@ -59,11 +59,11 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 		System.out.println("chefpwd:::"+dao.chefpwd(member_id));
 		return	dao.chefpwd(member_id);
 		}
-	}
+	} // 일반 / 쉐프 비번 확인
 	
 	public int changePwd(Map<String,String> map) throws Exception{
 		return dao.changePwd(map);
-	}
+	} // 비밀번호 변경
 
 	@Override
 	public String chefpwd(String member_id) throws Exception {

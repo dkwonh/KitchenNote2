@@ -2,6 +2,7 @@ package yh.admin.controller;
 
 import java.util.Date;
 
+// 1:1 문의 관리자 페이지 DTO
 public class AdminBoardDto {
 
 	int num;
