@@ -148,7 +148,7 @@ ul, li {
 								<div class="reicpe_readcount">조회수 : ${list.readcount}</div>
 								<div class="recipe_scrap">스크랩 수 : ${list.scrap}</div>
 								<ul class="actions">
-									<li><a href="../recipe/updateForm.jsp">수정</a></li>
+									<li><a href="../recipe/update.do?recipe_id=${list.recipe_id}">수정</a></li>
 								</ul>
 							</article>
 						</c:forEach>
