@@ -73,6 +73,7 @@ public class MemberInfoController {
 		map.put("member_id", (String)session.getAttribute("MINFO"));
 		map.put("pwdcheck1", pwdcheck1);
 		service.changePwd(map);
+		System.out.println("pwdcheck1:::"+pwdcheck1);
 		return "redirect:memberInfo.do";
 	} // 비밀 번호 변경
 
