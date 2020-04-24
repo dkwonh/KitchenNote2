@@ -6,6 +6,7 @@ import yh.admin.controller.AdminRecipeDto;
 import yh.admin.controller.AdminSaleDto;
 import yh.admin.controller.AdminUserDto;
 
+// 홈페이지 통계 Interface
 public interface AdminStaticsDao {
 
 	public List<AdminRecipeDto> recipeCount(String statics) throws Exception;

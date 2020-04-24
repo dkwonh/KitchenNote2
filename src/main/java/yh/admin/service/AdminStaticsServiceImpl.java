@@ -10,6 +10,7 @@ import yh.admin.controller.AdminSaleDto;
 import yh.admin.controller.AdminUserDto;
 import yh.admin.model.AdminStaticsDao;
 
+// 홈페이지 통계
 @Service
 public class AdminStaticsServiceImpl implements AdminStaticsService {
 

@@ -2,6 +2,7 @@ package yh.mypage.controller;
 
 import java.sql.Timestamp;
 
+// 회원DTO
 public class MemberInfoDto {
 
 	String member_id;

@@ -1,5 +1,6 @@
 package yh.mypage.controller;
 
+// 쉐프 신청서
 public class Chef_applyDto {
 
 	String member_id;

@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import yh.mypage.service.MemberInfoService;
 
+// 마이 페이지 회원 정보 수정창
 @Controller
 @RequestMapping(value = "/myPage/")
 public class MemberInfoController {
@@ -116,11 +117,4 @@ public class MemberInfoController {
 		return "redirect:memberInfo.do";
 	} // 회원 탈퇴
 	
-	/*
-	 * @RequestMapping(value="deleteInsert.do", method = { RequestMethod.POST,
-	 * RequestMethod.GET }) public Stirng deleteInsert(HttpSession session) throws
-	 * Exception{ Stirng member_id = (String)session.getAttribute("MINFO"); serivce.
-	 * }
-	 */
-
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import yh.admin.controller.AdminBoardDto;
 import yh.admin.controller.FilterDto;
 
+// 1:1 문의 관리자 DAO
 public interface AdminBoardDao {
 
 	public void create(AdminBoardDto dto) throws Exception;

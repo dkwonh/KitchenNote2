@@ -110,17 +110,17 @@ public class AdminBoardController {
 	@RequestMapping(value = "admin/adminUpdate.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") AdminBoardDto dto) throws Exception {
 		return "admin/AdminModifiedView";
-	} // 게시글 수정
+	} // 게시글 수정 폼
 
 	@RequestMapping(value = "admin/adminUpdate2.do", method = RequestMethod.GET)
 	public String update2(@ModelAttribute("dto") AdminBoardDto dto) throws Exception {
 		adminboardService.update(dto);
 		return "redirect:AdminList.do?pageNum=0";
-	}
+	}// 게시글 수정
 
 	@RequestMapping("admin/adminDelete.do")
 	public String delete(@RequestParam int num) throws Exception {
 		adminboardService.delete(num);
 		return "redirect:AdminList.do?pageNum=0";
-	}
+	} // 게시글 삭제
 }
