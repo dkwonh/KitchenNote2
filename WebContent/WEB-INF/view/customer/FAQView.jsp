@@ -79,7 +79,7 @@ function resultCategory(){
 						<li class="in"><a href="/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
-						<li><a href="/KitchenNote2/homeJs/home.js " class="icon fa-archive modal"><span
+						<li><a href="#" class="icon fa-archive modal"><span
 								class="label">nangbu</span></a></li>
 
 						<li class="in"><a href="/KitchenNote2/recipe/write.do" class="icon fa-edit"><span
@@ -178,6 +178,7 @@ function resultCategory(){
 				</nav>
 			</div>
 		</div>
+		<%@include file="../homepage/nangbu.jsp" %>
 	</div>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>

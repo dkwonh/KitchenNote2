@@ -42,7 +42,6 @@ function resultCategory(){
 }
 </script>
 <script src="/KitchenNote2/homeJs/home.js"></script>
-<script src="../homepage/nangbu.jsp"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -201,6 +200,7 @@ function resultCategory(){
 				</nav>
 			</div>
 		</div>
+		<%@include file="../homepage/nangbu.jsp" %>
 	</div>
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/skel.min.js"></script>
