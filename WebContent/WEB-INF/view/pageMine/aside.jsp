@@ -10,7 +10,7 @@
 		<li><a href="scraplist.do">스크랩</a>
 		<li><a href="commentlist.do">댓글</a>
 		<li><a href="payList.do">결제내역</a>
-		<li><a href="">회원정보수정</a>
+		<li><a href="/KitchenNote2/myPage/memberInfo.do">회원정보수정</a>
 		
 		
 	</ul>
