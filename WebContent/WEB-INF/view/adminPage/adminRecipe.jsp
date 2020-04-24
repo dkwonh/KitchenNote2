@@ -92,7 +92,7 @@ $(function(){
 			$("#overLayer").css('top',($(document).scrollTop()+$(window).height()/2) +"px");
 		});
 	}
-})
+});
 </script>
 </head>
 <body>
