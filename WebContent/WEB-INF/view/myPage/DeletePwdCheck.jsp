@@ -175,7 +175,7 @@ function resultCategory(){
 							href="/KitchenNote2/pageMine/payList.do">-
 								결제 내역</a></li>
 						<li><a
-							href="/KitchenNote/myPage/memberInfo.do">-
+							href="/KitchenNote2/myPage/memberInfo.do">-
 								회원 정보 수정</a></li>
 
 					</ul>
