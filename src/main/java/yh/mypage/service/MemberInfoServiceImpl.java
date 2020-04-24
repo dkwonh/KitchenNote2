@@ -50,12 +50,25 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 	}
 	
 	public String pwd(String member_id) throws Exception{
-		String dto = dao.pwd(member_id);
-		return dto;
+		ChefDto dto = new ChefDto();
+		if(dto.getLevel() <= 1) {
+			System.out.println("pwd:::"+dao.pwd(member_id));
+			return dao.pwd(member_id);
+		
+		}else {
+		System.out.println("chefpwd:::"+dao.chefpwd(member_id));
+		return	dao.chefpwd(member_id);
+		}
 	}
 	
 	public int changePwd(Map<String,String> map) throws Exception{
 		return dao.changePwd(map);
+	}
+
+	@Override
+	public String chefpwd(String member_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 
 }

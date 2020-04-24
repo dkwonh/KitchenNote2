@@ -14,9 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="chefview" resultType="yh.mypage.controller.ChefDto"
 		parameterType="yh.mypage.controller.ChefDto">
-		select nickname ,member_id, picture, level, tel, sns_address
+		select nickname ,member_id, picture, level, tel,
+		sns_address
 		from members inner join chef on member_id = chef
-		where member_id = #{member_id}
+		where
+		member_id = #{member_id}
 	</select>
 
 	<select id="chef" parameterType="String"
@@ -56,17 +58,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="changePwd" parameterType="map">
+		update members
+		set password = #{pwdcheck1}
+		where
+		member_id = #{member_id}
+	</update>
+	<update id="chefchangePwd" parameterType="map">
 		update members m inner join
 		chef c
 		on m.member_id = c.chef
 		set password = #{pwdcheck1}
 		where
 		m.member_id = #{member_id} and c.chef= #{member_id}
-
-
 	</update>
 
 	<select id="pwd" parameterType="string" resultType="string">
+		select
+		password from members where member_id = #{member_id}
+	</select>
+
+	<select id="chefpwd" parameterType="String" resultType="String">
 		select
 		password
 		from members m inner join chef c

@@ -48,7 +48,11 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 
 	public String pwd(String member_id) throws Exception {
 		return getSqlSession().selectOne("MemberInfo.pwd", member_id);
-	} // 비밀번호 확인
+	} // 회원비밀번호 확인
+	
+	public String chefpwd(String member_id) throws Exception {
+		return getSqlSession().selectOne("MemberInfo.chefpwd", member_id);
+	} // 쉐프비밀번호 확인
 	
 	public int changePwd(Map<String,String> map) throws Exception {
 		return getSqlSession().update("MemberInfo.changePwd", map);
