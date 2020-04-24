@@ -22,12 +22,12 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 
 	public ChefDto view(MemberInfoDto mem) throws Exception {
 		ChefDto dto = new ChefDto();
-		if(mem.getLevel() > 1) {
+		if(mem.getLevel() <= 1) {
 			dao.view(mem);
-			System.out.println(dto);
+			System.out.println("일반회원:::"+dto);
 		} else {
 		   dao.chefview(mem);
-		   System.out.println(dto);
+		   System.out.println("쉐프회원:::"+dto);
 		}
 		return dto;
 	} // 회원 정보 수정 페이지
