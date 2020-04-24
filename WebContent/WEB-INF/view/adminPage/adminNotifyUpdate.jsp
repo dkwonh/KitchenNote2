@@ -21,7 +21,32 @@
 }
 </style>
 <script>
+$("#save").click(function() {
+	var subject = $("#subject").val();
 	
+	if (subject == "") {
+		alert("제목을 입력하세요.");
+		document.form1.subject.focus();
+		return;
+	}
+	
+    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+    var ir1 = $("#content").val();
+
+    if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>')  {
+         alert("내용을 입력하세요.");
+         oEditors.getById["ir1"].exec("FOCUS"); //포커싱
+         return;
+    }
+
+	
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	$("#frm").submit();
+});
+
+$("#cancel").click(function(){
+history.go(-1);
+});
 </script>
 
 <script type="text/javascript">
@@ -34,10 +59,32 @@ $(function(){
 	 fCreator: "createSEditor2"
 	});
 
-	$("#save").click(function(){
+	$("#save").click(function() {
+		var subject = $("#subject").val();
+		
+		if (subject == "") {
+			alert("제목을 입력하세요.");
+			document.form1.subject.focus();
+			return;
+		}
+		
+        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+        var ir1 = $("#content").val();
+
+        if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>')  {
+             alert("내용을 입력하세요.");
+             oEditors.getById["ir1"].exec("FOCUS"); //포커싱
+             return;
+        }
+
+		
 		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 		$("#frm").submit();
-	})
+});
+
+$("#cancel").click(function(){
+	history.go(-1);
+	});
 });
 
 </script>
@@ -46,10 +93,11 @@ $(function(){
 <body>
 <form id=frm action="updateNotify.do" method=post>
 <input type="hidden" name=num value="${dto.num }">
-제목:<input type="text" name="subject" value="${dto.subject }">
-내용:<textarea name="content" id="content" rows="10" cols="100">${dto.content}</textarea>
+제목:<input type="text" name="subject" value="${dto.subject }" id="subject" required>
+내용:<textarea name="content" id="content" rows="10" cols="100" required>${dto.content}</textarea>
 <input type="hidden" name="num" value="${dto.num }">
 <input id=save type=button value=저장>
+<input id=cancel type=button value=취소>
 </form>
 </body>
 <script src="assets/js/jquery.min.js"></script>
