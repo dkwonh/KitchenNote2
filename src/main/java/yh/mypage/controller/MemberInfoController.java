@@ -42,6 +42,7 @@ public class MemberInfoController {
 		mav.setViewName("myPage/MemberInfo");
 		ChefDto dto = new ChefDto();
 		dto = service.view(mem);
+		System.out.println("회원 정보:::"+service.view(mem));
 		mav.addObject("dto",dto);
 
 		return mav;
@@ -91,7 +92,7 @@ public class MemberInfoController {
 		ChefDto dto =  service.view(mem);
 		String a = service.pwd(member);
 		Gson json = new Gson();
-		System.out.println(mem);
+		System.out.println("mem:::"+mem);
 		return json.toJson(a);
 	} // 비밀 번호 확인
 

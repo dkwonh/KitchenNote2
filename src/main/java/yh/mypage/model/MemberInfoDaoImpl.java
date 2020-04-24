@@ -18,7 +18,7 @@ public class MemberInfoDaoImpl extends SqlSessionDaoSupport implements MemberInf
 
 	@Override
 	public ChefDto view(MemberInfoDto mem) throws Exception {
-		System.out.println(mem);
+		System.out.println(this.view(mem));
 		return getSqlSession().selectOne("MemberInfo.view", mem);
 	} // 회원정보 출력
 
