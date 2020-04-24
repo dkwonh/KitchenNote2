@@ -32,10 +32,15 @@ public class WriteRecipeController {
 	@RequestMapping(value="/recipe/writePro.do",method = RequestMethod.POST)
 	public ModelAndView writePro(WriteRecipeDto dto) {
 		ModelAndView mav = new ModelAndView();
+		try {
 		int c = service.writeRecipe(dto);
 		if(c > 0) {
 			mav.setViewName("redirect:/index.jsp");
 		}else {
+			mav.setViewName("recipe/writeForm");
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
 			mav.setViewName("recipe/writeForm");
 		}
 		return mav;

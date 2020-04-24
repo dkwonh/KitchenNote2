@@ -426,7 +426,7 @@ location.replace("/KitchenNote2/home.do");
 						<div class="row" style="width: 100%;">
 							<h2 class="3u">가격</h2>
 							<div class="6u">
-								<input name="price" type="number" min="0" required value="0" />
+								<input name="price" type="number" min="0" required value="${info.price }" />
 							</div>
 							<br>
 						</div>
