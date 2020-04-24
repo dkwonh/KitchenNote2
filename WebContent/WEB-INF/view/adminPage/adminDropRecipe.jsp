@@ -100,7 +100,7 @@ function replacePage(url){
 						<img width="100px" height="100px" id="main_img" src="${item.image }">
 					</c:if>
 					</td>
-
+ 
 			<td class="recipe_name">${item.recipe_name }</td>
 			<td class="member_id">${item.member_id}</td>
 			<td class="del_date">${item.del_date }</td>
