@@ -7,6 +7,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/home.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>회원 정보 수정</title>
