@@ -79,6 +79,8 @@ ul, li {
 	box-shadow: none;
 	color: #ffffff !important;
 }
+
+
 </style>
 <body>
 	<div id="wrapper">
@@ -92,19 +94,16 @@ ul, li {
 					<div id="posts">
 						<c:forEach items="${commentlist}" var="comment">
 							<article>
-
-
-								<span class="icon fa-gem"><c:set var="image"
-										value="${comment.image}" /> <c:if
-										test="${fn:contains(image,'okdab') }">
+								<c:set var="image" value="${comment.image}" />
+								<c:if test="${fn:contains(image,'okdab') }">
 										<c:set var="mainImg" value="${comment.image}" />
 										<img src="${list.image}" width="290" height="300"
-											class="image">
-									</c:if> <c:if test="${fn:contains(image,'note')}">
+											class="image"></c:if>
+											<c:if test="${fn:contains(image,'note')}">
 										<c:set var="mainImg"
 											value="${pageContext.request.scheme}://192.168.0.108:${pageContext.request.serverPort}/img/${comment.image }" />
 										<img src="/img/${comment.image }" width="290" height="300">
-									</c:if></span>
+									</c:if>
 								<div class="content">
 									<h3>${comment.recipe_name}</h3>
 									<div>${comment.member_id}</div>
