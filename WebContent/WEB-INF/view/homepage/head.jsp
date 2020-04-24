@@ -17,7 +17,7 @@
 							sign-out
 						</span></a>
 						
-						<li class="in"><a href=/KitchenNote2/pageMine/mypagefirst.do class="icon fa-user"><span
+						<li class="in"><a href="/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 								
 						<li><a class="icon fa-archive modal"><span
