@@ -106,7 +106,7 @@ function resultCategory(){
 							class="icon fa-sign-in"><span class=label> sign-in </span></a>
 						<li class="in"><a href="/KitchenNote2/login/logoutOk.do"
 							class="icon fa-sign-out"><span class=label> sign-out </span></a>
-						<li class="in"><a href="'/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
+						<li class="in"><a href="/KitchenNote2/pageMine/mypagefirst.do" class="icon fa-user"><span
 								class="label">mypage</span></a></li>
 
 						<li><a href="#" class="icon fa-archive modal"><span
@@ -195,23 +195,20 @@ function resultCategory(){
 					</header>
 					<ul>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+							href="/KitchenNote2/pageMine/mypagefirst.do"> -
 								레시피</a></li>
 
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/list.do">-
+							href="/KitchenNote2/pageMine/scraplist.do">-
 								스크랩</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
+							href="/KitchenNote2/pageMine/commentlist.do">-
 								댓글</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
-								알람</a></li>
-						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
+							href="/KitchenNote2/pageMine/payList.do">-
 								결제 내역</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+							href="/KitchenNote2/myPage/memberInfo.do">-
 								회원 정보 수정</a></li>
 
 					</ul>

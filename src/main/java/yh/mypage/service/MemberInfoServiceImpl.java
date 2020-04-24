@@ -27,6 +27,7 @@ public class MemberInfoServiceImpl implements MemberInfoService{
 			System.out.println(dto);
 		} else {
 		   dao.chefview(mem);
+		   System.out.println(dto);
 		}
 		return dto;
 	} // 회원 정보 수정 페이지
