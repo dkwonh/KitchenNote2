@@ -196,25 +196,22 @@ function resultCategory(){
 				<header class="major">
 					<h2>마이 페이지</h2>
 					</header>
-					<image src="#">
 					<ul>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/FAQ.do"> -
+							href="/KitchenNote2/pageMine/mypagefirst.do"> -
 								레시피</a></li>
+
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/list.do">-
+							href="/KitchenNote2/pageMine/scraplist.do">-
 								스크랩</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
+							href="/KitchenNote2/pageMine/commentlist.do">-
 								댓글</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
-								알람</a></li>
-						<li><a
-							href="http://localhost:8082/KitchenNote/customer/write.do">-
+							href="/KitchenNote2/pageMine/payList.do">-
 								결제 내역</a></li>
 						<li><a
-							href="http://localhost:8082/KitchenNote/myPage/memberInfo.do">-
+							href="/KitchenNote/myPage/memberInfo.do">-
 								회원 정보 수정</a></li>
 
 					</ul>
