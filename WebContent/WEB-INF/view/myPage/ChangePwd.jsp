@@ -61,11 +61,9 @@ function resultCategory(){
 				data : password,
 				dataType : "json",
 				error : function(xhr) {
-					alert("통신에러");
 					 alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+xhr);
 				},
 				success : function(data) {
-					alert("통신 성공");
 					if ($("#password").val() != data) {
 						alert("비밀번호를 확인해주세요.");
 						document.pwdcheck.password.focus();
