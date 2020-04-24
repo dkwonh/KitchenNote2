@@ -33,7 +33,7 @@ public class WriteRecipeService {
 		uploadName += filename.substring(filename.lastIndexOf("."));
 
 		try {
-			img.transferTo(new File("\\\\192.168.0.108\\img\\" + uploadName));
+			img.transferTo(new File("d://upload/img/" + uploadName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
@@ -46,10 +46,10 @@ public class WriteRecipeService {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public int writeRecipe(WriteRecipeDto dto) {
+	public int writeRecipe(WriteRecipeDto dto) throws Exception{
 		int c = 0;
 		Map<String,Object> map = null;
-		try {
+		
 			//기본정보
 			dto.setImage(uploadImg(dto.getImagefile()));
 			dto.setDuration(dto.getDuration()+"분");
@@ -117,13 +117,8 @@ public class WriteRecipeService {
 				tag.setRecipe_id(recipe_id);
 				tag.setTag_name(tags[i]);
 				c += dao.addRecipeTag(tag);
-			}
+			} 
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
-		
 		return c;
 	}
 

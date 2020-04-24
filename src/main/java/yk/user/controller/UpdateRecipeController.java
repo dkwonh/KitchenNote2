@@ -19,48 +19,55 @@ import yk.user.service.UpdateRecipeService;
 
 @Controller
 public class UpdateRecipeController {
-	
+
 	private ReadRecipeService readservice;
+
 	@Autowired
 	public void setReadservice(ReadRecipeService readservice) {
 		this.readservice = readservice;
 	}
-	
+
 	private UpdateRecipeService updateservice;
+
 	@Autowired
 	public void setUpdateservice(UpdateRecipeService updateservice) {
 		this.updateservice = updateservice;
 	}
 
 	@RequestMapping("/recipe/update.do")
-	public ModelAndView getUpdateForm(@RequestParam("recipe_id")int recipe_id) {
+	public ModelAndView getUpdateForm(@RequestParam("recipe_id") int recipe_id) {
 		ModelAndView mav = new ModelAndView("recipe/updateForm");
-		//가져올 값 : 기본정보, 재료, 과정, 태그
+		// 가져올 값 : 기본정보, 재료, 과정, 태그
 		Recipe_InfoDto info = readservice.getRecipeInfo(recipe_id);
-		info.setDuration(info.getDuration().substring(0,info.getDuration().length()-1));
+		info.setDuration(info.getDuration().substring(0, info.getDuration().length() - 1));
 		mav.addObject("info", info);
-		
+
 		mav.addObject("ing", readservice.getIng(recipe_id));
 		mav.addObject("process", readservice.getPro(recipe_id));
 		mav.addObject("tag", readservice.getTag(recipe_id));
-		
+
 		return mav;
 	}
-	
-	@RequestMapping(value="/recipe/update.do",method = RequestMethod.POST)
-	public ModelAndView updatePro(WriteRecipeDto dto,int recipe_id) {
-		int c = updateservice.updateRecipe(dto, recipe_id);
-		if(c > 0) {
-			return new ModelAndView("redirect:/recipe/read.do?recipe_id="+recipe_id);
-		}else {
-			return new ModelAndView("redirect:/recipe/update.do?recipe_id="+recipe_id);
+
+	@RequestMapping(value = "/recipe/update.do", method = RequestMethod.POST)
+	public ModelAndView updatePro(WriteRecipeDto dto, int recipe_id) {
+		try {
+			int c = updateservice.updateRecipe(dto, recipe_id);
+			if (c > 0) {
+				return new ModelAndView("redirect:/recipe/read.do?recipe_id=" + recipe_id);
+			} else {
+				return new ModelAndView("redirect:/recipe/update.do?recipe_id=" + recipe_id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ModelAndView("redirect:/recipe/update.do?recipe_id=" + recipe_id);
 		}
 	}
-	
-	//카테고리번호
-	@RequestMapping(value="/recipe/getCategoryId.do",method=RequestMethod.POST)
+
+	// 카테고리번호
+	@RequestMapping(value = "/recipe/getCategoryId.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String getCategoryId(@RequestParam("recipe_id")int recipe_id) {
+	public String getCategoryId(@RequestParam("recipe_id") int recipe_id) {
 		List<Integer> list = readservice.getRecipeCategoryId(recipe_id);
 		Gson gson = new Gson();
 		return gson.toJson(list);

@@ -41,7 +41,7 @@ public class UpdateRecipeService {
 		uploadName += filename.substring(filename.lastIndexOf("."));
 
 		try {
-			img.transferTo(new File("\\\\192.168.0.108\\img\\" + uploadName));
+			img.transferTo(new File("d://upload/img/" + uploadName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
@@ -49,9 +49,9 @@ public class UpdateRecipeService {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public int updateRecipe(WriteRecipeDto dto,int recipe_id) {
+	public int updateRecipe(WriteRecipeDto dto,int recipe_id) throws Exception {
 		int c = 0;
-		try {
+		
 			//기본정보
 			Recipe_InfoDto info = new Recipe_InfoDto();
 			info.setRecipe_id(recipe_id);
@@ -67,7 +67,7 @@ public class UpdateRecipeService {
 			}
 
 			c+= updatedao.infoUpdate(info);
-			System.out.println("기본정보::"+c);
+			//System.out.println("기본정보::"+c);
 			
 			//카테고리
 			c += updatedao.delCategory(recipe_id);
@@ -139,10 +139,6 @@ public class UpdateRecipeService {
 				c += writedao.addRecipeTag(tag);
 			}
 			
-		}catch(Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 		return c;
 	}
 
