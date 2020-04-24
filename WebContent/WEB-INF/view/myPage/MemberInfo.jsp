@@ -35,6 +35,7 @@
 #wrapper *{
 font-family: 'Cafe24Oneprettynight';
 }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -49,8 +50,7 @@ function resultCategory(){
 		if(${LEVEL}  == 2){
 			$("#btnWrite").css('display','none');
 			} else if(${LEVEL}==1){
-				$("#tel").css('display','none');
-				$("#sns_address").css('display','none');
+				$(".tel").css('display','none');
 				}
 		$("#btnWrite").click(function() {
 			location.href = "chefApply.do?member_id=";
@@ -173,10 +173,8 @@ function resultCategory(){
 						이메일 : <input type="text" id="chef" name="chef" value="<%=member_id %>"
 										readonly>
 					</div>
-					<div>
+					<div class="tel">
 						연락처 : <input type="text" id="tel" name="tel" value="${dto.tel}">
-					</div>
-					<div>
 						개인 SNS주소 : <input type="text" id="sns_address" name="sns_address"
 										value="${dto.sns_address}">
 					</div>
