@@ -66,7 +66,7 @@ public class UpdateRecipeService {
 				info.setImage(uploadImg(dto.getImagefile()));
 			}
 
-			
+			c+= updatedao.infoUpdate(info);
 			System.out.println("기본정보::"+c);
 			
 			//카테고리
