@@ -61,8 +61,10 @@ public class MemberInfoController {
 
 	@RequestMapping(value = "changeUser.do", method = RequestMethod.POST)
 	public String update(@ModelAttribute("dto") ChefDto dto, HttpSession session) throws Exception {
+		
 		service.chefUpdate(dto);
 		ChefDto chef = service.view(dto);
+		System.out.println("업데이트:::"+chef);
 		return "redirect:memberInfo.do";
 	} // 회원 정보 수정
 
@@ -113,5 +115,12 @@ public class MemberInfoController {
 		service.delete(member_id);
 		return "redirect:memberInfo.do";
 	} // 회원 탈퇴
+	
+	/*
+	 * @RequestMapping(value="deleteInsert.do", method = { RequestMethod.POST,
+	 * RequestMethod.GET }) public Stirng deleteInsert(HttpSession session) throws
+	 * Exception{ Stirng member_id = (String)session.getAttribute("MINFO"); serivce.
+	 * }
+	 */
 
 }
