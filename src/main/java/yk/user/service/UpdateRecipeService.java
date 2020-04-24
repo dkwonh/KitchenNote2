@@ -72,10 +72,12 @@ public class UpdateRecipeService {
 			//카테고리
 			c += updatedao.delCategory(recipe_id);
 			for(int i = 0; i<dto.getCategory_id().length;i++) {
+				if(dto.getCategory_id()[i]>0) {
 				Recipe_CategoryDto cat = new Recipe_CategoryDto();
 				cat.setRecipe_id(recipe_id);
 				cat.setCategory_id(dto.getCategory_id()[i]);
 				c += writedao.addRecipeCategory(cat);
+				}
 			}
 			
 			//재료
